@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "birla_my_home",
+	"appId": "io.birla.myhome",
+	"appName": "Birla Estates My Home",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }
