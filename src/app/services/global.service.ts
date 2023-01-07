@@ -11,15 +11,18 @@ export class GlobalService {
   customerId: number;
   activeSlideIndicator: number;
   selectedProjectObj: any;
+urls=environment.serverUrl;
+
   constructor(public _http: HttpClient, public storage: Storage) {}
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
-      this._http
-        .get(`${environment.serverUrl}config/getConfigData/UseTerm`)
-        .toPromise()
-        .then((response) => {
-          resolve(response);
-        });
+        this._http
+            .get(`${this.urls}config/getConfigData/UseTerm`)
+            .toPromise()
+            .then(response => {
+
+                resolve(response);
+            });
     });
     return promise;
   }

@@ -24,3 +24,181 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+// http://ionicframework.com/docs/theming/
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+// theme
+
+/* config */
+
+@import "./assets/sass/config/mixin";
+@import "./assets/sass/config/_variables";
+@import "./assets/sass/theme/theme";
+
+/* element */
+
+@import "./assets/sass/elements/reset";
+@import "./assets/sass/elements/normalize";
+@import "./assets/sass/elements/elements";
+
+/*font*/
+
+@import "./assets/sass/font/font";
+
+/* common */
+
+@import "./assets/sass/common/common";
+@import "./assets/sass/custom";
+
+/* ionic extended */
+
+@import "./assets/sass/ionic-extended/button";
+@import "./assets/sass/ionic-extended/grid";
+@import "./assets/sass/ionic-extended/alert";
+@import "./assets/sass/ionic-extended/swiper";
+@import "./assets/sass/ionic-extended/footer";
+@import "./assets/sass/ionic-extended/tabs";
+@import "./assets/sass/ionic-extended/menu";
+@import "./assets/sass/ionic-extended/loading";
+@import "./assets/sass/ionic-extended/searchbar";
+@import "./assets/sass/ionic-extended/segment";
+@import "./assets/sass/ionic-extended/toggle";
+@import "./assets/sass/ionic-extended/toast";
+
+/* base */
+
+@import "./assets/sass/base/bs-splash";
+@import "./assets/sass/base/bs-header";
+@import "./assets/sass/base/bs-title-desc";
+@import "./assets/sass/base/bs-heading-desc";
+@import "./assets/sass/base/bs-form";
+@import "./assets/sass/base/bs-project-info";
+@import "./assets/sass/base/bs-icon-desc";
+@import "./assets/sass/base/bs-icon-list";
+@import "./assets/sass/base/bs-icon-button";
+@import "./assets/sass/base/bs-name-value";
+@import "./assets/sass/base/bs-upcoming-visit";
+@import "./assets/sass/base/bs-date";
+@import "./assets/sass/base/bs-visit";
+@import "./assets/sass/base/bs-radio";
+@import "./assets/sass/base/bs-checkbox";
+@import "./assets/sass/base/bs-icon-list";
+@import "./assets/sass/base/bs-message-list";
+@import "./assets/sass/base/bs-slider";
+@import "./assets/sass/base/bs-indicators";
+@import "./assets/sass/base/bs-revenue";
+@import "./assets/sass/base/bs-appIntro";
+@import "./assets/sass/base/bs-doc";
+@import "./assets/sass/base/bs-modal";
+@import "./assets/sass/base/bs-payment-info";
+@import "./assets/sass/base/bs-button-group";
+@import "./assets/sass/base/bs-icon-disc";
+@import "./assets/sass/base/bs-moreInfo";
+@import "./assets/sass/base/bs-location";
+@import "./assets/sass/base/bs-amount-info";
+@import "./assets/sass/base/bs-amount-info-sliding";
+@import "./assets/sass/base/bs-static-cont";
+@import "./assets/sass/base/bs-notice";
+@import "./assets/sass/base/bs-card";
+@import "./assets/sass/base/bs-blog";
+@import "./assets/sass/base/bs-blog-detail";
+
+/* layout */
+
+@import "./assets/sass/layout/lyt-section";
+@import "./assets/sass/layout/lyt-login";
+@import "./assets/sass/layout/lyt-dashboard";
+@import "./assets/sass/layout/lyt-banner";
+@import "./assets/sass/layout/lyt-doc";
+@import "./assets/sass/layout/lyt-floor-plans";
+@import "./assets/sass/layout/lyt-filter";
+@import "./assets/sass/layout/lyt-my-ac";
+@import "./assets/sass/layout/lyt-thank-you";
+@import "./assets/sass/layout/lyt-conversion";
+@import "./assets/sass/layout/lyt-upload";
+@import "./assets/sass/layout/lyt-payment-future";
+@import "./assets/sass/layout/lyt-faq";
+@import "./assets/sass/layout/lyt-construction";
+@import "./assets/sass/layout/lyt-payment-gateway";
+
+/* module */
+
+@import "./assets/sass/module/mod-project";
+@import "./assets/sass/module/mod-appintro";
+@import "./assets/sass/module/mod-project-details";
+@import "./assets/sass/module/mod-card";
+@import "./assets/sass/module/mod-blog";
+@import "./assets/sass/module/mod-asset-preview.scss";
+
+/*Deep styles*/
+
+.margin-auto {
+  margin: auto;
+}
+
+.opacity-none {
+  opacity: 0 !important;
+}
+
+.opacity-full {
+  opacity: 1 !important;
+}
+
+.close-preview {
+  position: absolute;
+  right: 1rem;
+  z-index: 9;
+  top: 1rem;
+}
+
+.videoPreview {
+  height: 100%;
+  margin-top: 3rem;
+}
+
+.otp-counter {
+  margin-top: 2.5rem;
+  color: $clr-primary;
+}
+
+.form-submit-error {
+  padding-left: 14px;
+  color: red;
+  font-size: 1.1rem;
+}
+
+.pinch-zoom-overflow {
+  overflow: visible !important;
+}
+
+.error-input {
+  input {
+    border-color: red !important;
+  }
+}
+
+ion-spinner {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.term-of-use p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #4d4d4f;
+}
+
+.display-flex-content {
+  display: flex;
+}
