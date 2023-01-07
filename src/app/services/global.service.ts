@@ -6,15 +6,15 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class GlobalService {
-
+urls=environment.serverUrl;
   constructor( public _http: HttpClient,) { }
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
         this._http
-            .get(environment.serverUrl + "config/getConfigData/UseTerm")
+            .get(`${this.urls}config/getConfigData/UseTerm`)
             .toPromise()
             .then(response => {
-              
+
                 resolve(response);
             });
     });

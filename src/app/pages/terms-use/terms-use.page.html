@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>terms-use</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="lyt-section bg-color">
+  <div class="content-inner">
+      <div class="content no-padding">
+          <div class="vertical-top">
+              <div class="bs-static-cont">
+                  <div class="term-of-use" [innerHTML]="global.sanitizeHtml(terms)"></div>
+              </div>
+              <div class="bs-static-cont" *ngIf="terms == 'undefined'">
+                  No data found.
+              </div>               
+          </div>
+
+      </div>
+  </div>
+</ion-content>
+
