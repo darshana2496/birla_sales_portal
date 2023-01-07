@@ -16,7 +16,7 @@
               <div class="bs-static-cont">
                   <div class="term-of-use" [innerHTML]="global.sanitizeHtml(terms)"></div>
               </div>
-              <div class="bs-static-cont" *ngIf="terms == 'null'">
+              <div class="bs-static-cont" *ngIf="terms == 'undefined'">
                   No data found.
               </div>               
           </div>
