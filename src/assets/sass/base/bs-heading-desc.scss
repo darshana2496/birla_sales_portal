@@ -1,0 +1,30 @@
+.bs-heading-desc {
+  margin-bottom: 40px;
+
+  .title {
+    font-size: 1.4rem;
+    color: $clr-black;
+    font-weight: $font-bold;
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 0;
+
+    &:after {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      margin-left: -48px;
+      height: 3px;
+      width: 96px;
+      background: url('../assets/imgs/heading-bottom.png');
+      content: '';
+    }
+  }
+
+  .desc {
+    font-size: 1.2rem;
+    color: $clr-text-color;
+    font-weight: $font-semi-bold;
+    margin-bottom: 5px;
+  }
+}

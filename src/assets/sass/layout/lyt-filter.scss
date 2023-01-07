@@ -1,0 +1,21 @@
+.lyt-filter {
+    .title {
+        font-size: 1.2rem;
+        color: $clr-black;
+        font-weight: $font-extra-bold;
+        padding-bottom: 20px;
+        text-transform: uppercase;
+        &:nth-of-type(2) {
+            padding-bottom: 0px;
+        }
+    }
+    ion-grid {
+        margin-bottom: 50px;
+    }
+    .bs-form {
+        .label-md[stacked],
+        .label-md[floating] {
+            margin-top: 0;
+        }
+    }
+}

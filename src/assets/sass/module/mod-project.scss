@@ -1,0 +1,51 @@
+.mod-project {
+    //position: relative;
+    img {
+        width: 100%;
+    }
+    .title {
+        font-size: 1.6rem;
+        line-height: 1.8rem;
+        color: $clr-white;
+        font-weight: $font-bold;
+        position: absolute;
+        left: 15px;
+        bottom: 32px;
+        text-align: left;
+    }
+    .location {
+        font-size: 0.9rem;
+        line-height: 1.4rem;
+        color: $clr-white;
+        font-weight: $font-medium;
+        position: absolute;
+        left: 15px;
+        bottom: 15px;
+        text-transform: uppercase;
+    }
+    .icon-next {
+        color: $clr-white;
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+    }
+    .tag {
+        background: url(./../assets/imgs/shield.png) no-repeat center;
+        // background-size: 20px;
+        position: absolute;
+        left: 15px;
+        top: 15px;
+        width: 26px;
+        height: 30px;
+        text-align: center;
+        padding-top: 5px;
+        span {
+            font-size: 1.6rem;
+            color: $clr-white;
+        }
+    }
+}
+
+.mod-project:after{
+    //background: linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
+}

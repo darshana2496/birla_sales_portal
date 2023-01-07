@@ -1,0 +1,146 @@
+
+.button {
+  color: $clr-primary;
+  background: #fff;
+  font-weight: $font-extra-bold;
+  -webkit-box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
+  -moz-box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
+  box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
+  text-transform: uppercase;
+  font-weight: $font-extra-bold;
+  font-size: 1.4rem;
+  display: inline-block;
+
+  &.activated {
+    background-color: #f5f5f5;
+    -webkit-box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
+    -moz-box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
+    box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
+  }
+
+  &.button-link {
+    background: transparent;
+    box-shadow: none;
+    height: 2rem;
+    font-size: 1.2rem;
+    font-weight: $font-semi-bold;
+    &.typ-blue {
+      color: $clr-blue;
+    }
+    &.typ-grey {
+      color: $clr-text-color;
+    }
+    &.typ-whatsapp {
+      color: #00b456;
+    }
+    &.typ-icon {
+      font-size: 1.6rem;
+      padding: 0 10px;
+    }
+    &.typ-icon-border {
+      padding: 0 10px;
+      border: 1px solid $clr-border;
+      border-radius: 50%;
+      height: 24px;
+      width: 24px;
+      background: #fff;
+      font-size: 1.2rem;
+      text-align: center;
+      padding-top: 3px;
+    }
+    &.typ-big {
+      font-size: 2.4rem;
+      height: auto;
+      line-height: inherit;
+    }
+  }
+  &.case-none {
+    text-transform: none;
+  }
+  &.icon-button {
+    box-shadow: none;
+    height: auto;
+    text-align: center;
+    overflow: inherit;
+    background: transparent;
+    .button-inner {
+      display: block;
+    }
+    .icon {
+      display: inline-block;
+      // -webkit-box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
+      // box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
+      //border-radius: 50%;
+      height: 30px;
+      width: 30px;
+      padding-top: 6px;
+      font-size: 1.7rem;
+      //background: #fff;
+    }
+    .text {
+      clear: both;
+      display: block;
+      margin-top: 2px;
+      font-size: 0.8rem;
+      font-weight: $font-semi-bold;
+    }
+  }
+  &.button-float-button {
+    @include border-radius(50%);
+    right: 20px;
+    bottom: 20px;
+    position: fixed;
+    z-index: 999;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    font-size: 20px;
+    padding: 0;
+  }
+  &.button-progress {
+      position: absolute;
+      top: 15px;
+      right: 10px;
+      padding: 0;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.1);
+      .icon {
+          position: relative;
+      }
+      .text {
+          position: absolute;
+          right: 4px;
+          top: 8px;
+          color: #ffffff;
+          margin-top: 0;
+      }
+      round-progress {
+          width: 25px !important;
+          height: 25px !important;
+          padding: 0 1px 0 0;
+      }
+  }
+  //*deep
+  &.button-progress-dashboard {
+    .icon {
+      position: relative;
+    }
+
+    round-progress {
+      width: 31px !important;
+      height: 31px !important;
+      position: absolute;
+      top: -6px;
+      padding: 0 1px 0 0;
+      right: -8px;
+    }
+  }
+}
+
+.button-parent {
+  .align-vertical {
+    display: block;
+    margin-top: 10px;
+  }
+}
+

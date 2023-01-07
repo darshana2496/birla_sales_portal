@@ -1,0 +1,49 @@
+.lyt-doc {
+  .bs-title-desc {
+    .title {
+      margin-bottom: 20px;
+    }
+  }
+
+  .bs-slider {
+    .swiper-slide {
+
+      .lyt-floor-plan,
+      .bs-icon-button {
+        @include transition(all, 0.3s, linear);
+        opacity: 0;
+      }
+
+      &.swiper-slide-active {
+
+        .lyt-floor-plan,
+        .bs-icon-button {
+          opacity: 1;
+
+        }
+      }
+    }
+  }
+
+  .img-parent {
+    img {
+      border: 1px solid rgba(#000, 0.15);
+    }
+
+    margin-bottom:20px;
+  }
+
+  &.typ-slider {
+    .img-parent {
+      padding: 6px;
+    }
+
+    &.type-floor-plan {
+      .img-parent {
+        img {
+          padding: 5px;
+        }
+      }
+    }
+  }
+}

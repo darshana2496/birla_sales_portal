@@ -1,0 +1,47 @@
+.searchbar-md {
+    padding: 8px 0;
+    .searchbar-input {
+        box-sizing: border-box;
+        box-sizing: border-box;
+        box-shadow: none;
+        border: 1px solid $clr-border;
+        border-radius: 3px;
+        padding-left: 8px;
+    }
+    .searchbar-search-icon {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+    .searchbar-clear-icon {
+        box-shadow: none;
+        // background: transparent;
+        background-image: none;
+    }
+    .searchbar-clear-icon {
+        width: 22px;
+        height: 95%;
+        top: 2.5%;
+    }
+}
+
+.search-list {
+    &.list-md {
+        .item-block .item-inner {
+            border-bottom: 0;
+            color: $clr-text-color;
+            font-size: 1.4rem;
+            font-weight: $font-medium;
+        }
+    }
+    ion-item {
+        border-bottom: 1px solid $clr-border;
+        padding-left: 0;
+    }
+    ion-label {
+        white-space: normal;
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+        color: $clr-text-color;
+    }
+}

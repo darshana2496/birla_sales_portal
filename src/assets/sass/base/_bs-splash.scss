@@ -1,0 +1,20 @@
+.bs-splash {
+
+  background: $clr-primary;
+
+  .logo-wrap {
+    margin-bottom: 20px;
+  }
+
+  .title {
+    color: $clr-secondary;
+    font-weight: $font-extra-bold;
+    text-transform: uppercase;
+    font-size: 16px;
+  }
+
+  .grid{
+    background-image: none;
+  }
+
+}

@@ -1,0 +1,76 @@
+//mod-blog
+.mod-blog {
+  width: 100%;
+  margin: 0;
+  box-shadow: 0 0 19px 7px #e4e4e4;
+  border-radius: 5px;
+  .img-wrap {
+    max-height: 128px;
+    position: relative;
+    div {
+      position: absolute;
+      max-height: 50%;
+      width: 100%;
+      height: 100%;
+      background: $common-loading;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: flex;
+      margin: auto;
+      margin-top: 38px;
+    }
+    img {
+      position: relative;
+      max-height: 128px;
+      min-height: 128px;
+    }
+  }
+  .card-content-md {
+    padding: 20px;
+    .card-title-md {
+      font-size: 1.2rem;
+      line-height: 1.4rem;
+      font-weight: $font-bold;
+      color: #4d4d4f;
+      padding: 0;
+      margin: 0 0 3px 0;
+      display: block;
+    }
+    .desc {
+      display: block;
+      position: relative;
+      .timeStamp {
+        font-size: 1rem;
+        line-height: 1.2rem;
+        color: #999999;
+        font-weight: $font-semi-bold;
+        position: relative;
+        margin-right: 10px;
+        padding-right: 10px;
+        &:after {
+          content: "|";
+          font-size: 1.2rem;
+          line-height: 1.4rem;
+          color: #999999;
+          position: absolute;
+          right: -2px;
+          top: -1px;
+        }
+      }
+      .type {
+        font-size: 1rem;
+        line-height: 1.2rem;
+        color: #a08349;
+        font-weight: $font-semi-bold;
+      }
+      .icon {
+        position: absolute;
+        right: 0;
+        top: -2px;
+        color: #850c70;
+        font-size: 2rem;
+      }
+    }
+  }
+}

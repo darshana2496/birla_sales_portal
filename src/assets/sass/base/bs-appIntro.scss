@@ -1,0 +1,24 @@
+.bs-appIntro {
+    .button-parent {
+        position: absolute;
+        bottom: 26px;
+        right: 0;
+        left: 0;
+    }
+    &.typ-landing {
+        background: url(../assets/imgs/intro4.jpg) no-repeat 0 0 transparent;
+        background-size: cover;
+        .introSlider {
+            .mod-appintro {
+                position: absolute;
+                top: 50%;
+                right: 0;
+                left: 0;
+                transform: translateY(50%);
+                .title {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

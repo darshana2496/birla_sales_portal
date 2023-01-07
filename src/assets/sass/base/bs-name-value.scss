@@ -1,0 +1,45 @@
+.bs-name-value {
+    .name {
+        font-size: 0.9rem;
+        color: $clr-text-color;
+        font-weight: $font-semi-bold;
+        display: block;
+    }
+    .value {
+        font-size: 2.4rem;
+        color: $clr-text-color;
+        font-weight: $font-extra-bold;
+        display: block;
+    }
+    &.typ-total {
+        .name {
+            font-size: 1.6rem;
+            color: $clr-black;
+            line-height: 2.5rem;
+            font-weight: $font-extra-bold;
+        }
+        .value {
+            font-size: 1.2rem;
+            color: $clr-primary;
+            line-height: 4rem;
+            font-weight: $font-extra-bold;
+            span {
+                font-size: 3.6rem;
+                line-height: 4rem;
+            }
+        }
+    }
+    &.typ-inpt {
+        margin-bottom: 30px;
+        .name {
+            font-size: 1rem;
+            color: $clr-black;
+            padding-bottom: 20px;
+        }
+        .value {
+            font-size: 1.6rem;
+            font-weight: $font-medium;
+            color: $clr-text-color;
+        }
+    }
+}

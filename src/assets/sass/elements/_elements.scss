@@ -1,0 +1,89 @@
+/* element.scss */
+
+* {
+    outline: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html {
+    font-size: 10px;
+}
+
+body {
+    line-height: initial;
+    font-family: $font;
+    color: $clr-text-color;
+    font-family: 'Montserrat', sans-serif;
+    // counter-reset: section1;
+}
+
+h2 {
+    font-size: 6.3rem;
+    line-height: 6.4rem; // font-weight: $font-bold;
+}
+
+p {
+    // font-size: 1.4rem;
+    // line-height: 1.8rem;
+    margin-bottom: 10px;
+    line-height: 2.2rem;
+    letter-spacing: 0.25px;
+    font-size: 1.4rem;
+}
+
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none;
+    outline: none;
+}
+
+ul,
+li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//     font-weight: $font-bold;
+// }
+.heading {
+    font-size: 2.4rem;
+    color: #333333;
+    font-weight: 400;
+    text-align: center;
+}
+
+.list {
+    li {
+        line-height: 2.2rem;
+        margin-bottom: 5px;
+    }
+}
+
+@media only screen and (max-width: $breakpoint-xs) {}
+
+//     .heading{
+//         text-align: left;
+//         color: #262628;
+//         font-family: 'FS-Elliot-bold';
+//         font-size: 4.5rem;
+//         line-height: 5.7rem;
+//     }
+//     p{
+//         font-size: 3rem;
+//         line-height: 4.2rem;
+//     }
+// }
+@media (max-width: $breakpoint-xs) {
+    p {
+        line-height: 1.8rem;
+    }
+}

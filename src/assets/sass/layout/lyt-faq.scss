@@ -1,0 +1,83 @@
+.lyt-faq {
+    ion-segment.segment .segment-button {
+        width: auto;
+    }
+    .swiper-container {
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .swiper-slide {
+        width: auto !important;
+        margin-right: 20px !important;
+    }
+    .tab-btn {
+        font-size: 1.2rem;
+        line-height: 4rem;
+        color: $clr-footer-link;
+        font-weight: $font-extra-bold;
+        border-bottom: 3px solid transparent;
+        text-transform: uppercase;
+        &.active {
+            color: $clr-text-color;
+            border-bottom: 3px solid $clr-text-color;
+        }
+    }
+    .tab-contents {
+        padding-top: 30px;
+    }
+    .tab-content {
+        display: none;
+        &.active {
+            display: block;
+        }
+    }
+    .bs-accordian {
+        li {
+            background: $clr-white;
+            border-radius: 3px;
+            padding: 10px;
+            text-align: left;
+            margin-bottom: 10px;
+            box-shadow: 0 0 10px 1px #d8d8d8;
+            .accord-head {
+                font-size: 1.4rem;
+                line-height: 2.2rem;
+                color: $clr-text-color;
+                font-weight: $font-semi-bold;
+                position: relative;
+                padding-right: 40px;
+                &:after {
+                    content: 'a';
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                    font-family: cp;
+                    font-size: 1.2rem;
+                    color: $clr-primary;
+                }
+            }
+            .accord-cont {
+                font-size: 1.4rem;
+                line-height: 2.2rem;
+                color: $clr-text-color;
+                font-weight: $font-regular;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.8s ease;
+            }
+            &.active {
+                .accord-head {
+                    &:after {
+                        content: 'u';
+                        font-size: 1rem;
+                    }
+                }
+                .accord-cont {
+                    display: block;
+                    max-height: 250px;
+                    transition-delay: 0.3s;
+                }
+            }
+        }
+    }
+}

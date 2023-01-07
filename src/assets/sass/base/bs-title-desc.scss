@@ -1,0 +1,66 @@
+.bs-title-desc {
+    text-align: center;
+    margin-bottom: 30px;
+    .title {
+        font-size: 4.8rem;
+        color: $clr-black;
+        font-weight: $font-extra-bold;
+        margin-bottom: 2px;
+        line-height: 4.8rem;
+        .badget {
+            background: #d1d3d4;
+            color: #4d4d4f;
+            padding: 5px;
+            border-radius: 4px;
+            font-weight: $font-bold;
+            padding: 2px 4px;
+            margin-left: 7px;
+            font-size: 1.2rem;
+        }
+    }
+    .sub-title {
+        font-size: 2.0rem;
+        line-height: 2.0rem;
+        color: $clr-black;
+        font-weight: $font-semi-bold;
+    }
+    .button-parent {
+        margin-top: 4px;
+        .button {
+            padding: 0;
+        }
+    }
+    .icon {
+        width: 45px;
+        height: 45px;
+        display: inline-block;
+        background-size: 45px;
+        margin-bottom: 15px;
+        &.opportunity-document {
+            background-position: 0px -262px;
+        }
+        &.project-brochure {
+            background-position: 0px -331px;
+        }
+        &.sms-whatsapp {
+            background-position: 0px -460px;
+        }
+        &.emailers {
+            background-position: 0px -386px;
+        }
+        &.videos {
+            background-position: 0px -592px;
+        }
+        &.floor-plans {
+            background-position: 0px -528px;
+        }
+    }
+    .desc {
+        font-size: 1.4rem;
+        color: $clr-text-color;
+        margin-bottom: 15px;
+        .bold {
+            font-weight: $font-bold;
+        }
+    }
+}
