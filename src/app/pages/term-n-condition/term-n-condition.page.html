@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="primary" defaultHref="#">
+        <ion-icon name="square"></ion-icon>
+      </ion-back-button>
+    </ion-buttons>
+    <ion-title class="title">TERMS OF USE</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="lyt-section bg-color">
+  <div class="content-inner">
+      <div class="content no-padding">
+          <div class="vertical-top">
+              <div class="bs-static-cont">
+                  <div class="term-of-use" [innerHTML]="global.sanitizeHtml(terms)"></div>
+              </div>
+              <div class="bs-static-cont" *ngIf="terms == 'null'">
+                  No data found.
+              </div>               
+          </div>
+
+      </div>
+  </div>
+</ion-content>

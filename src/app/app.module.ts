@@ -9,12 +9,15 @@ import { AppComponent } from './app.component';
 import { AuthenticationService } from './services/authentication.service';
 import { DateFormatPipe } from './utilities/pipes/date-format.pipe';
 import { TimeInMinsFormatPipe } from './utilities/pipes/time-in-mins.pipe';
-
+import {  HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { JwtInterceptor } from './helpers/jwt.interceptor';
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+
     DateFormatPipe,
     TimeInMinsFormatPipe,
     AuthenticationService
