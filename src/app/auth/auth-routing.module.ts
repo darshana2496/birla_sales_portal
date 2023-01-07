@@ -9,12 +9,16 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       {
+        path: 'AppIntroPage',
+        loadChildren: () => import('./app-intro/app-intro.module').then(m => m.AppIntroPageModule)
+      },
+      {
         path: 'login',
         component: LoginComponent
       },
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'AppIntroPage',
         pathMatch: 'full'
       }
     ]

@@ -39,7 +39,8 @@ const routes: Routes = [
   {
     path: 'term-n-condition',
     loadChildren: () => import('./term-n-condition/term-n-condition.module').then( m => m.TermNConditionPageModule)
-  }
+  },
+
 
 ];
 
