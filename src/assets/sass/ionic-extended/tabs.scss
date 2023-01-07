@@ -1,0 +1,74 @@
+.tabs {
+    .tab-button-text {
+        font-size: 1.0rem;
+        color: #b2b2b2;
+        margin-top: 1px;
+    }
+    .tabbar {
+        background: #ffffff;
+        -webkit-box-shadow: -2px -2px 13px 0px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: -2px -2px 13px 0px rgba(0, 0, 0, 0.2);
+        box-shadow: -2px -2px 13px 0px rgba(0, 0, 0, 0.2);
+        &:before {
+            background-image: none !important;
+        }
+    }
+    .tab-button-icon {
+        color: #b2b2b2;
+        font-size: 2rem;
+        &.ion-md-bar {
+            &:before {
+                content: 'c';
+            }
+        }
+        &.ion-md-file {
+            &:before {
+                content: 'd';
+            }
+        }
+        &.ion-md-users {
+            &:before {
+                content: 'e';
+            }
+        }
+        &.ion-md-rupee {
+            &:before {
+                content: 'j';
+            }
+        }
+        &.ion-md-doc {
+            &:before {
+                content: 'g';
+            }
+        }
+        &.ion-md-building {
+            &:before {
+                content: 'l';
+            }
+        }
+        &.ion-md-bell {
+            &:before {
+                content: 'b';
+            }
+        }
+    }
+    .tab-button[aria-selected=true] {
+        .tab-button-text,
+        .tab-button-icon {
+            color: $clr-primary;
+        }
+    }
+}
+
+.tabs-md[tabsLayout=icon-top] .has-icon {
+    min-height: 6rem;
+}
+
+.tabs-md[tabsLayout=icon-top] .has-icon .tab-button-text {
+    margin-top: 0.3rem;
+    text-overflow: unset;
+    white-space: initial;
+    width: 72%;
+    font-size: 0.8rem;
+    line-height: 0.9rem;
+}

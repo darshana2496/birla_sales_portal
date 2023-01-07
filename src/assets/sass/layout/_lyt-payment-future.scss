@@ -1,0 +1,24 @@
+.lyt-payment-future {
+    ion-item-sliding {
+        margin-bottom: 10px;
+        overflow: initial;
+    }
+    .bs-icon-button {
+        text-align: right;
+        margin-bottom: 15px;
+    }
+    .bs-payment-info {
+        margin-bottom: 20px;
+    }
+    .bs-amount-info {
+        margin-bottom: 20px;
+    }
+    .paymet-note {
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        text-align: center;
+        .star {
+            color: $clr-primary;
+        }
+    }
+}

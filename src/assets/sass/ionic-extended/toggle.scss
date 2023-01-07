@@ -1,0 +1,27 @@
+.item-md {
+    .toggle-md {
+        margin: 0 auto;
+        width: 44px;
+        padding: 12px 0;
+        .toggle-icon {
+            background: #f2f2f2;
+        }
+        .toggle-inner {
+            background: $clr-border;
+            box-shadow: none;
+            width: 22px;
+            height: 22px;
+            top: -4px;
+        }
+        &.toggle-checked {
+            .toggle-icon {
+                background: #d1d3d4;
+            }
+            .toggle-inner {
+                background: $clr-primary;
+                -webkit-transform: translate3d(22px, 0, 0);
+                transform: translate3d(22px, 0, 0);
+            }
+        }
+    }
+}

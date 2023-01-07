@@ -1,0 +1,63 @@
+.bs-project-info {
+    .desc {
+        font-size: 1.4rem;
+        line-height: 2.4rem;
+        color: $clr-text-color;
+        .bold {
+            font-weight: $font-semi-bold;
+        }
+    }
+    .title {
+        font-size: 2.4rem;
+        line-height: 2.4rem;
+        color: $clr-black;
+        font-weight: $font-bold;
+        padding-bottom: 8px;
+        text-align: center;
+        margin-bottom: 0px;
+    }
+    .location {
+        font-size: 1.1rem;
+        line-height: 1.4rem;
+        color: $clr-black;
+        font-weight: $font-medium;
+        display: block;
+        margin-bottom: 30px;
+    }
+    .rera {
+        font-size: 1.1rem;
+        line-height: 1.4rem;
+        color: $clr-black;
+        font-weight: $font-bold;
+        display: block;
+    }
+    .tag {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: url(./../assets/imgs/shield-grey.png) no-repeat center;
+        width: 31px;
+        height: 36px;
+        text-align: center;
+        padding-top: 8px;
+        span {
+            color: $clr-white;
+            font-size: 1.6rem;
+        }
+    }
+}
+
+.proj-desc {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    color: $clr-text-color;
+    padding: 26px 0;
+    margin: 0;
+}
+
+.proj-link {
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+    color: $clr-primary;
+    font-weight: $font-semi-bold;
+}

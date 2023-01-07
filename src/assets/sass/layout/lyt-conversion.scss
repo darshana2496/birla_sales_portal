@@ -1,0 +1,62 @@
+.lyt-conversion {
+    // padding: 20px 30px;
+    .list.typ-conv {
+        padding-bottom: 20px;
+        border-bottom: 1px solid $clr-border;
+        margin-bottom: 50px;
+        .item {
+            display: inline-block;
+            width: 32%;
+            border-right: 1px solid $clr-border;
+            &:last-child {
+                border-right: 0;
+            }
+            .bs-name-value {
+                text-align: center;
+            }
+            .cm-sprite.visit-plan {
+                background-size: 100%;
+                background-position: 0px -460px;
+                width: 24px;
+                height: 16px;
+                display: inline-block;
+            }
+            .cm-sprite.visit-complete {
+                background-size: 100%;
+                background-position: 0 -479px;
+                width: 25px;
+                height: 16px;
+                display: inline-block;
+            }
+            .cm-sprite.booking-done {
+                background-size: 100%;
+                background-position: 0 -97px;
+                width: 21px;
+                height: 16px;
+                display: inline-block;
+            }
+            .cm-sprite.total-prospects {
+                background-size: 100%;
+                background-position: 0 -66px;
+                width: 21px;
+                height: 16px;
+                display: inline-block;
+            }
+            .cm-sprite.total-bookings {
+                background-size: 100%;
+                background-position: 0 -97px;
+                width: 21px;
+                height: 16px;
+                display: inline-block;
+            }
+        }
+        &.typ-two {
+            .item {
+                width: 49%;
+            }
+        }
+    }
+    .swiper-slide {
+        width: auto;
+    }
+}

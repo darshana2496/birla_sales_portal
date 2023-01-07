@@ -1,0 +1,35 @@
+.bs-visit {
+    display: inline-block;
+    vertical-align: top;
+    background: #f2f2f2;
+    height: 80px;
+    width: calc(48.6% - 40px);
+    padding: 15px;
+    position: relative;
+    .visit-txt {
+        font-size: 1.2rem;
+        line-height: 2rem;
+        color: $clr-text-color;
+        font-weight: $font-extra-bold;
+        display: block;
+        text-transform: uppercase;
+        span {
+            font-size: 2rem;
+        }
+    }
+    .time-txt {
+        font-size: 1rem;
+        line-height: 1rem;
+        color: $clr-text-color;
+        font-weight: $font-semi-bold;
+        display: block;
+        text-transform: uppercase;
+        padding-bottom: 5px;
+    }
+    .icon-right-arrow {
+        color: $clr-primary;
+        position: absolute;
+        right: 10px;
+        bottom: 8px;
+    }
+}

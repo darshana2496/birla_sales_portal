@@ -1,0 +1,130 @@
+.bs-slider {
+  width: 100vw;
+
+  ion-slides {
+    width: 100%;
+  }
+
+  .swiper-slide {
+    opacity: 0.3;
+    @include transition(opacity, 0.3s, linear);
+
+    &.swiper-slide-active {
+      opacity: 1;
+    }
+  }
+
+  &.typ-project {
+    .swiper-slide {
+      opacity: 1;
+      margin: 0 1px;
+      // padding: 0 2px;
+      height: auto;
+      margin: auto;
+
+      .loading-gif {
+        width: 100%;
+        height: 100%;
+        background: $common-loading;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: absolute;
+        bottom: 7rem;
+        z-index: -1;
+        max-height: 35%;
+      }
+
+      .name {
+        padding: 5px;
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: #fff;
+        font-weight: $font-bold;
+        font-size: 1.8rem;
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0+0,0.65+100 */
+        background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.65) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        /* IE6-9 */
+      }
+
+      .img-parent {}
+    }
+
+    &.typ2 {
+      .button {
+        &.button-link {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
+
+  &.typ-menu {
+    .swiper-slide {
+      opacity: 1;
+      padding: 0 2px;
+      text-align: center;
+
+      &.active {
+        .img-parent {
+          img {
+            border: 3px solid $clr-secondary;
+          }
+        }
+
+        .name {
+          color: $clr-secondary;
+        }
+      }
+
+      .img-parent {
+        width: 80px;
+        height: 80px;
+        @include border-radius(50%);
+        margin: 0 auto;
+        margin-bottom: 10px;
+
+        img {
+          border-radius: 50%;
+          margin: 0 auto;
+        }
+      }
+
+      .name {
+        font-size: 1rem;
+        font-weight: $font-medium;
+        color: #fff;
+      }
+
+      .add-button {
+        width: 80px;
+        height: 80px;
+        @include border-radius(50%);
+        border: 1px #fff dashed;
+        background: transparent;
+        color: #fff;
+        font-size: 32px;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+.swiper-slide img {
+  display: block;
+}

@@ -1,0 +1,39 @@
+ion-segment.segment {
+  .segment-button {
+    color: #b2b2b2;
+    font-size: 1.2rem;
+    font-weight: $font-extra-bold;
+    border-bottom: 3px solid transparent;
+    height: auto;
+    padding: 4px 10px;
+
+    &.segment-activated {
+      color: $clr-text-color;
+      border-bottom: 3px solid $clr-text-color;
+    }
+  }
+}
+
+// .swiper-slide {
+//   overflow-y: scroll;
+//   display: block;
+// }
+
+// ion-segment.scroll-segment {
+//   display: block;
+//   white-space: nowrap;
+//   font-size: 0;
+//   overflow: auto;
+
+//   &::-webkit-scrollbar {
+//     width: 0;
+//     height: 0;
+//     display: none;
+//   }
+
+//   ion-segment-button.segment-button {
+//     display: inline-block;
+//     min-width: 100px;
+//     width: auto;
+//   }
+// }

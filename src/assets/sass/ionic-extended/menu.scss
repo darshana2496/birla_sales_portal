@@ -1,0 +1,134 @@
+.md {
+
+  .menu-inner {
+    width: 100%;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#840c6f+0,500546+100 */
+    background: rgb(132, 12, 111);
+    /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(132, 12, 111, 1) 0%, rgba(80, 5, 70, 1) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(132, 12, 111, 1) 0%, rgba(80, 5, 70, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(132, 12, 111, 1) 0%, rgba(80, 5, 70, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#840c6f', endColorstr='#500546', GradientType=0);
+    /* IE6-9 */
+
+    .content-md {
+      background: transparent;
+      background: url(./../assets/imgs/bb-bg.png) no-repeat top 20px center;
+      background-size: 85%;
+      background-position: 50%;
+    }
+
+    .close-menu {
+      color: $clr-white;
+      float: left;
+      margin: 15px;
+
+      .icon-close {
+        font-size: 1.2rem;
+      }
+    }
+
+    .logout {
+      color: $clr-white;
+      float: right;
+      margin: 15px;
+
+      .icon-log-out {
+        font-size: 1.6rem;
+      }
+    }
+
+    .menu-heading {
+      text-align: center;
+      color: #fff;
+
+      .name {
+        font-weight: $font-bold;
+        font-size: 1.4rem;
+      }
+
+      .shape-parent {
+        img {
+          display: block;
+          margin: 0 auto;
+          margin-top: 5px;
+        }
+      }
+
+      .cust-id {
+        font-weight: $font-medium;
+        font-size: 1.2rem;
+        margin-top: 10px;
+        margin-bottom: 30px;
+      }
+    }
+
+    ion-list {
+
+      padding-top: 30px;
+
+      .item {
+        background: transparent;
+        font-size: 1.2rem;
+        color: $clr-white;
+        font-weight: $font-semi-bold;
+        text-align: center;
+        text-transform: uppercase;
+
+        &:hover,
+        &.active {
+          color: $clr-secondary;
+        }
+      }
+    }
+
+    .list-md .item-block .item-inner {
+      border: 0;
+
+      .label-md {
+        margin: 15px 0;
+      }
+    }
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 20px;
+    text-align: center;
+    width: 100%;
+
+    .button-link {
+      color: #fff;
+      font-size: 1.0rem;
+    }
+  }
+
+  .menu-content {
+    &.active {
+      // z-index: 83;
+    }
+  }
+
+  //   .menu-inner {
+  //     width: 100%;
+  //     background: $clr-primary url(./../assets/imgs/bb-bg.png) no-repeat top 20px center;
+
+  //   }
+
+}
+
+// ion-app {
+//     perspective: 302px;
+//     perspective-origin: 50% 50%;
+//     .app-root {
+//         &.active {
+//             -webkit-transform: rotateX(22deg);
+//             -webkit-transform-origin: 100% 100%;
+//             transform: rotateX(22deg);
+//             transform-origin: 100% 100%;
+//         }
+//     }
+// }

@@ -1,0 +1,33 @@
+.lyt-payment-gateway {
+
+    .form-cont {
+        top: 4% !important;
+    }
+
+    .payment-success {
+        content: '';
+        display: block;
+        width: 108px;
+        height: 40px;
+        background: url(./../assets/imgs/sprite2.svg) no-repeat center;
+        margin: 0 auto 25px;
+        background-size: 100px;
+        background-position: 3px -302px;
+    }
+
+    .payment-failed {
+        content: '';
+        display: block;
+        width: 108px;
+        height: 40px;
+        background: url(./../assets/imgs/sprite2.svg) no-repeat center;
+        margin: 0 auto 25px;
+        background-size: 100px;
+        background-position: 3px -219px;
+    }
+
+    .decision-btn {
+        text-align: center;
+        margin-top: 15px;
+    }
+}

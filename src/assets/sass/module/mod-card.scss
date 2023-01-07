@@ -1,0 +1,51 @@
+//mod-card
+.mod-card {
+    background: $clr-white;
+    box-shadow: 0 0 19px 7px #e4e4e4;
+    max-height: 150px;
+    min-height: 150px;
+    padding: 10px;
+    border-radius: 5px;
+    .img-wrap {
+        height: 88px;
+        text-align: center;
+        position: relative;
+        margin-bottom: 8px;
+        img {
+            position: absolute;
+            right: 0;
+            left: 0;
+            margin: 0 auto;
+            bottom: 2px;
+        }
+    }
+    .title {
+        font-size: 1rem;
+        line-height: 1.2rem;
+        font-weight: $font-semi-bold;
+        color: #a08349;
+        display: block;
+        margin-bottom: 6px;
+    }
+    .name {
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        font-weight: $font-bold;
+        color: #4d4d4f;
+    }
+    &.scratch-card {
+        position: relative;
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: url(./../assets/imgs/scratch.png) no-repeat center center #730a61;
+            z-index: 3;
+            border-radius: 5px;
+            background-size: 80%;
+        }
+    }
+}

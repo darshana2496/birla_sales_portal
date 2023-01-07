@@ -1,0 +1,44 @@
+//bs-moreInfo
+.bs-moreInfo {
+    width: 90%;
+    margin: 0 auto;
+
+    .note {
+        font-size: 1.4rem;
+        line-height: 1.6rem;
+        color: $clr-black;
+        display: block;
+        font-weight: $font-medium;
+        margin-bottom: 8px;
+    }
+
+    .timeStamp {
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        color: #4d4d4f;
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .call {
+        display: block;
+
+        .icon {
+            font-size: 2.8rem;
+            line-height: 1.8rem;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 6px;
+            color: #60bd27;
+        }
+    }
+
+    .num {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 1.4rem;
+        line-height: 1.6rem;
+        color: $clr-black;
+        font-weight: $font-semi-bold;
+    }
+}

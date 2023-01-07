@@ -1,0 +1,72 @@
+.bs-payment-info {
+    -webkit-box-shadow: 0px 0px 39px -5px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 39px -5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 0px 39px -5px rgba(0, 0, 0, 0.2);
+    padding: 0 20px;
+    background: #fff;
+    border-radius: 6px;
+    ul.list {
+        .item {
+            display: block;
+            text-align: center;
+            border-bottom: 1px solid $clr-border;
+            padding: 20px 0;
+            &:last-child {
+                border-bottom: 0;
+            }
+            .text:not(span) {
+                color: #a08349;
+                font-size: 1.4rem;
+                font-weight: $font-semi-bold;
+                margin-bottom: 10px;
+            }
+            .date {
+                font-weight: $font-extra-bold;
+                font-size: 2.0rem;
+                color: $clr-text-color;
+                .icon-inr {
+                    font-size: 1.3rem;
+                    vertical-align: text-top;
+                    margin-top: 1px;
+                    display: inline-block;
+                    margin-right: 2px;
+                }
+            }
+            .amount {
+                margin-top: 5px;
+                color: #999999;
+                font-weight: $font-semi-bold;
+                .icon-inr {
+                    vertical-align: text-top;
+                }
+            }
+            .includin-tax-txt{
+                font-weight: 600;
+                font-size: 1.0rem;
+                color: #b2b2b2;
+            }
+        }
+    }
+    &.typ-2 {
+        padding: 10px 20px;
+        ul.list {
+            .pay-link{
+                text-align: center;
+                margin-top: 1.2rem;
+            }
+            .item {
+                border-bottom: 0;
+                padding: 10px 0;
+                margin-bottom: 0;
+                .text:not(span) {
+                    font-size: 1.0rem;
+                    margin-bottom: 0;
+                }
+                .date {
+                    font-size: 1.2rem;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+}

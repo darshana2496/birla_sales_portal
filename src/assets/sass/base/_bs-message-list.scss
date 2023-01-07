@@ -1,0 +1,361 @@
+.bs-message-list {
+    .item {
+        padding: 30px 10px 20px;
+        border-bottom: 1px solid #e2e2e2;
+        &:first-child {
+            padding-top: 10px;
+        }
+        &:last-child {
+            border-bottom: 0;
+        }
+        .date {
+            font-size: 1.0rem;
+            font-weight: $font-semi-bold;
+            color: #000;
+            margin-bottom: 10px;
+        }
+        .desc {
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            color: $clr-text-color;
+            margin-bottom: 20px;
+        }
+        .bs-icon-button {
+            .button {
+                padding: 0px 10px;
+            }
+        }
+    }
+    &.typ-video {
+        .item {
+            padding: 20px 0 20px;
+            &:first-child {
+                padding-top: 10px;
+            }
+            .date {
+                margin-bottom: 0;
+                text-transform: uppercase;
+                padding-bottom: 10px;
+            }
+            .desc {
+                font-size: 0.9rem;
+                line-height: 1.2rem;
+                margin-bottom: 0;
+                font-weight: $font-semi-bold;
+            }
+            .video-wrap {
+                display: inline-block;
+                vertical-align: top;
+                // width: 49%;
+            }
+            .video-details {
+                display: inline-block;
+                vertical-align: top;
+                // width: 48%;
+                padding-left: 15px;
+            }
+        }
+        .bs-icon-button {
+            .button {
+                padding: 10px 25px 0 5px;
+            }
+        }
+    }
+    &.type-notification {
+        .item {
+            border: none;
+            background: $clr-white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            box-shadow: 0 0 18px -4px #c7c7c7;
+            &.unread {
+                background: #f2f2f2;
+                box-shadow: none;
+            }
+        }
+        .title {
+            font-weight: $font-bold;
+            color: #000;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .desc {
+            font-size: 1.2rem;
+            font-weight: $font-regular;
+            color: $clr-text-color;
+            margin-bottom: 12px;
+        }
+        .date {
+            font-weight: $font-semi-bold;
+            text-transform: uppercase;
+            color: #000;
+            margin-bottom: 0;
+        }
+    }
+    &.type-contact-list {
+        .item {
+            width: 100%;
+            padding: 20px 0 20px 15px;
+            &.dot {
+                position: relative;
+                &:before {
+                    content: '';
+                    height: 6px;
+                    width: 6px;
+                    @include border-radius(50%);
+                    left: 0;
+                    top: 23px;
+                    position: absolute;
+                }
+                &.red {
+                    &:before {
+                        background: $clr-red;
+                    }
+                }
+                &.green {
+                    &:before {
+                        background: $clr-green;
+                    }
+                }
+                &.yellow {
+                    &:before {
+                        background: $clr-yellow;
+                    }
+                }
+            }
+            .item-right {
+                float: right;
+            }
+            .button-list {
+                .button {
+                    padding: 0 2px;
+                    .icon-more {
+                        color: #b2b2b2;
+                    }
+                }
+            }
+        }
+        .more-info {
+            display: none;
+            padding-top: 10px;
+            &.active {
+                display: block;
+            }
+            .data-list {
+                font-size: 1.2rem;
+                li {
+                    float: left;
+                    .title {
+                        font-weight: $font-bold;
+                        color: #000;
+                        margin-bottom: 10px;
+                    }
+                    .text {
+                        font-weight: $font-medium;
+                        color: #000;
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+            .action-parent {
+                margin: 0 -10px;
+                .button {
+                    padding: 0 10px;
+                    margin: 0;
+                    height: auto;
+                    border-right: 1px solid $clr-primary;
+                    &:last-child {
+                        border-right: 0;
+                    }
+                }
+            }
+            .data-label {
+                float: none;
+                padding-left: 10px;
+                overflow: hidden;
+            }
+            .edit-info {
+                position: relative;
+                .edit {
+                    position: absolute;
+                    top: -12px;
+                    right: 6px;
+                }
+                background: #f2f2f2;
+                padding: 10px;
+                margin-top: 10px;
+                .date {
+                    font-size: 1.0rem;
+                    color: #000;
+                    margin-bottom: 10px;
+                }
+                .desc {
+                    font-size: 1.2rem;
+                    color: $clr-text-color;
+                    margin-bottom: 0;
+                }
+            }
+        }
+        .title {
+            font-weight: $font-bold;
+            color: #000;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .counter {
+            color: $clr-text-color;
+            font-size: 1.0rem;
+            display: inline-block;
+            height: 16px;
+            width: 16px;
+            border: 1px solid $clr-text-color;
+            @include border-radius(50%);
+            text-align: center;
+            padding-top: 1px;
+        }
+        // .desc {
+        //   font-size: 1.2rem;
+        //   font-weight: $font-regular;
+        //   color: $clr-text-color;
+        //   margin-bottom: 10px;
+        // }
+        .date {
+            font-weight: $font-semi-bold;
+            text-transform: uppercase;
+            color: $clr-text-color;
+            margin-bottom: 0;
+        }
+    }
+    &.type-status-list {
+        .title {
+            font-weight: $font-bold;
+            color: #000;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .progress-list {
+            .progress-item {
+                text-align: center;
+                padding: 0 2px;
+                position: relative;
+                display: inline-block;
+                width: 18%;
+                &:before {
+                    width: 100%;
+                    border-bottom: 1px dotted #e2e2e2;
+                    content: '';
+                    position: absolute;
+                    left: 50%;
+                    top: 7px;
+                    z-index: -1;
+                }
+                .circle {
+                    height: 16px;
+                    width: 16px;
+                    border: 1px solid transparent;
+                    @include border-radius(50%);
+                    text-align: center;
+                    display: inline-block;
+                    margin-bottom: 5px;
+                    position: relative;
+                    background: #fff;
+                    &:after {
+                        position: absolute;
+                        content: '';
+                        height: 6px;
+                        width: 6px;
+                        background: #e2e2e2;
+                        @include border-radius(50%);
+                        display: inline-block;
+                        display: inline-block;
+                        margin: 4px;
+                        left: 50%;
+                        margin-left: -3px;
+                    }
+                    .icon {
+                        font-size: 0.8rem;
+                        vertical-align: text-top;
+                        padding-top: 4px;
+                        display: inline-block;
+                    }
+                }
+                .name {
+                    color: #000;
+                    font-size: 1.0rem;
+                    font-weight: $font-semi-bold;
+                    margin-bottom: 3px;
+                }
+                .date {
+                    font-weight: $font-semi-bold;
+                    font-size: 0.8rem;
+                    color: #b2b2b2;
+                }
+                &:last-child {
+                    &:before {
+                        display: none;
+                    }
+                }
+                &.green {
+                    &:before {
+                        border-bottom: 1px solid $clr-green;
+                    }
+                    .circle {
+                        border-color: $clr-green;
+                        &:after {
+                            content: "\45";
+                            font-family: "birla-channel-partner" !important;
+                            background: transparent;
+                            font-size: 0.8rem;
+                            color: $clr-green;
+                            left: 44%;
+                        }
+                    }
+                }
+                &.red {
+                    &.delayed {
+                        &:after {
+                            width: 20px;
+                            border-bottom: 1px solid $clr-red;
+                            content: '';
+                            position: absolute;
+                            left: 50%;
+                            top: 7px;
+                            z-index: -1;
+                        }
+                    }
+                    .date {
+                        color: $clr-red;
+                    }
+                    .circle {
+                        border-color: $clr-red;
+                        &:after {
+                            background: $clr-red;
+                        }
+                    }
+                    &.active {
+                        .circle {
+                            box-shadow: 0 0 15px #f26c4f;
+                        }
+                    }
+                }
+                &.yellow {
+                    .circle {
+                        border-color: $clr-yellow;
+                        &:after {
+                            background: $clr-yellow;
+                        }
+                    }
+                    &.active {
+                        .circle {
+                            box-shadow: 0 0 15px #ffa200;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

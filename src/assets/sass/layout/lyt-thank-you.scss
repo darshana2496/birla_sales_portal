@@ -1,0 +1,61 @@
+.lyt-thank-you {
+    text-align: center;
+    .thumbs-up {
+        width: 40px;
+        height: 40px;
+        background-size: 100%;
+        background-position: 0 0;
+    }
+    .thank-wrap {
+        margin-bottom: 65px;
+        .title {
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            font-weight: $font-semi-bold;
+            color: $clr-black;
+            padding-bottom: 8px;
+            text-transform: uppercase;
+        }
+    }
+    .userinfo {
+        .name {
+            font-size: 1.2rem;
+            line-height: 1.2rem;
+            font-weight: $font-extra-bold;
+            color: $clr-black;
+            padding-bottom: 8px;
+            text-transform: uppercase;
+        }
+        .address {
+            font-size: 1.4rem;
+            line-height: 2.2rem;
+            color: $clr-text-color;
+            margin-bottom: 30px;
+        }
+    }
+    &.typ-ac {
+        .bs-name-value {
+            padding-bottom: 25px;
+            .name {
+                font-size: 1rem;
+                font-weight: $font-semi-bold;
+                color: $clr-text-color;
+                line-height: 1rem;
+                padding-bottom: 5px;
+            }
+            .value {
+                font-size: 1.2rem;
+            }
+        }
+        .invoice-wrap {
+            padding: 20px 0 0;
+            border-top: 1px solid $clr-border;
+            .info {
+                font-size: 1.4rem;
+                line-height: 2.2rem;
+                color: $clr-text-color;
+                // padding-bottom: 15px;
+            }
+        }
+    }
+}

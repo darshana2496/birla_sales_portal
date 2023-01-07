@@ -1,0 +1,31 @@
+//bs-static-cont
+.bs-static-cont {
+    p {
+        font-size: 1.0rem;
+        line-height: 1.8rem;
+        color: #4d4d4f;
+        margin-bottom: 30px;
+    }
+
+    .title {
+        font-size: 1.0rem;
+        line-height: 1.2rem;
+        margin-bottom: 8px;
+        font-weight: $font-bold;
+        color: #4d4d4f;
+    }
+
+    .txt-bold {
+        font-weight: 700;
+    }
+
+    .p-block-lvl {
+        display: block !important;
+        margin-bottom: 8px;
+    }
+
+    .sub-text {
+        display: block;
+        margin-left: 16px;
+    }
+}

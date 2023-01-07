@@ -1,0 +1,80 @@
+.bs-icon-desc {
+    .item {
+        margin-bottom: 15px;
+
+        .icon-parent {
+            background: $clr-primary;
+            color: #fff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            line-height: 44px;
+            display: inline-block;
+        }
+
+        &.type-blue {
+            .icon-parent {
+                background: $clr-blue;
+            }
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &.typ-construct {
+        text-align: center;
+        width: 125px;
+        height: 125px;
+        padding-top: 20px;
+        pointer-events: none;
+        margin: 0 auto;
+
+        .date {
+            display: block;
+            font-size: 1.2rem;
+            line-height: 1.6rem;
+            font-weight: $font-semi-bold;
+            color: $clr-text-color;
+            pointer-events: none;
+        }
+
+        .desc {
+            display: block;
+            font-size: 1.4rem;
+            line-height: 1.6rem;
+            font-weight: $font-bold;
+            color: #a08349;
+            pointer-events: none;
+            margin: 0 13px;
+        }
+
+        .icon {
+            background: url(../assets/imgs/sprite2.svg) no-repeat;
+            background-size: 100px;
+            display: block;
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+            pointer-events: none;
+
+            &.typ-excava {
+                background-position: -29px -385px;
+            }
+
+            &.typ-plinth {
+                background-position: -29px -467px;
+            }
+
+            &.typ-slab {
+                background-position: -29px -626px;
+            }
+
+            &.typ-possession {
+                background-position: -29px -942px;
+            }
+        }
+    }
+}
