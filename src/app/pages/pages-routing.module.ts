@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.page';
 
+
 const routes: Routes = [
   {
     path: 'pages',
@@ -20,6 +21,10 @@ const routes: Routes = [
         loadChildren: () => import('./tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
+        path: 'termscondition',
+        loadChildren:()=>import('./term-n-condition/term-n-condition.module').then(m=>m.TermNConditionPageModule)
+      },
+      {
         path: '',
         redirectTo: '/pages/tab1',
         pathMatch: 'full'
@@ -30,7 +35,12 @@ const routes: Routes = [
     path: '',
     redirectTo: '/pages/tab1',
     pathMatch: 'full'
+  },
+  {
+    path: 'term-n-condition',
+    loadChildren: () => import('./term-n-condition/term-n-condition.module').then( m => m.TermNConditionPageModule)
   }
+
 ];
 
 @NgModule({
