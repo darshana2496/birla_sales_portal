@@ -1,0 +1,84 @@
+<ion-nav id="nav"></ion-nav>
+
+<ng-container *ngIf="type === 'normal'">
+  <ion-header class="bs-header">
+    <ion-nav>
+      <ion-title>
+        <ng-container *ngIf="typeTitle === 'logo'">
+          <img src="./assets/imgs/logo.svg" class="cm-img">
+        </ng-container>
+        <ng-container *ngIf="typeTitle === 'pageName'">
+          <span>{{pageNameVal}}</span>
+        </ng-container>
+      </ion-title>
+
+      <ng-container *ngIf="typeEnd === 'notification'">
+        <ion-buttons end class="notification-btn">
+          <button class="button-link button" (click)="contactModal()">
+            <i class="icon-bell-outline"></i>
+          </button>
+        </ion-buttons>
+      </ng-container>
+    </ion-nav>
+  </ion-header>
+</ng-container>
+
+<ng-container *ngIf="type === 'menu'">
+  <ion-header class="bs-header">
+    <ion-nav>
+      <ion-buttons start class="menu-btn" (click)="openSideMenu()">
+        <button class="button-link button">
+          <i class="icon-profile"></i>
+        </button>
+      </ion-buttons>
+      <ion-title>
+        <ng-container *ngIf="typeTitle === 'logo'">
+          <img src="./assets/imgs/logo.svg" class="cm-img">
+        </ng-container>
+        <ng-container *ngIf="typeTitle === 'pageName'">
+          <span>{{pageNameVal}}</span>
+        </ng-container>
+      </ion-title>
+      <ion-buttons end class="notification-btn">
+        <button class="button-link button" (click)="contactModal()">
+          <i class="icon-call-outline"></i>
+        </button>
+      </ion-buttons>
+    </ion-nav>
+  </ion-header>
+</ng-container>
+
+<ng-container *ngIf="type === 'close'">
+    <ion-header class="bs-header">
+      <ion-nav>     
+        <ion-title>        
+          <ng-container>
+            <span>{{pageNameVal}}</span>
+          </ng-container>
+        </ion-title>
+        <ion-buttons end class="notification-btn">
+          <button class="button-link button close-size-custom" (click)="goBack()">
+            <i class="icon-close"></i>
+          </button>
+        </ion-buttons>
+      </ion-nav>
+    </ion-header>
+  </ng-container>
+
+  <ng-container *ngIf="type === 'back'">
+    <ion-header class="bs-header">
+      <ion-nav>
+       
+        <ion-title>
+          <ng-container *ngIf="typeTitle === 'pageName'">
+            <span>{{pageNameVal}}</span>
+          </ng-container>
+        </ion-title>
+        <ion-buttons end class="notification-btn">
+          <button class="button-link button" (click)="contactModal()">
+            <i class="icon-call-outline"></i>
+          </button>
+        </ion-buttons>
+      </ion-nav>
+    </ion-header>
+  </ng-container>
