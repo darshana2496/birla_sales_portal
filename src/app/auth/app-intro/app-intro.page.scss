@@ -1,0 +1,16 @@
+.skipButton {
+    position: fixed;
+    bottom: 4rem;
+    width: 100%;
+
+    ion-button {
+        background-color: transparent;
+        box-shadow: none;
+    }
+}
+
+.title {
+    .cm-bold {
+    margin: 0 0.5rem;
+    }
+}

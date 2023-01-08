@@ -10,13 +10,13 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [AuthComponent, LoginComponent],
   imports: [
+    IonicModule,
     CommonComponentsModule,
     CommonModule,
     FormsModule,
     AuthRoutingModule,
-    IonicModule
-  ]
+  ],
+  declarations: [AuthComponent, LoginComponent],
 })
 export class AuthModule { }

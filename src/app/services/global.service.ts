@@ -1,3 +1,4 @@
+import { Network } from '@capacitor/network';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
@@ -11,9 +12,13 @@ export class GlobalService {
   customerId: number;
   activeSlideIndicator: number;
   selectedProjectObj: any;
-urls=environment.serverUrl;
+  urls=environment.serverUrl;
+  network: any;
 
-  constructor(public _http: HttpClient, public storage: Storage) {}
+  constructor(
+    public _http: HttpClient, 
+    public storage: Storage,
+    ) {}
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
         this._http
@@ -69,4 +74,41 @@ urls=environment.serverUrl;
     });
     return promise;
   }
+
+  async getNetworkCarrierInfo(): Promise<any> {
+    let promise = new Promise((resolve, reject) => {
+        if (this.network.connectionType != "none") {
+            if (this.network.connectionType === "wifi") {
+                // this.networkInterface
+                //     .getWiFiIPAddress()
+                //     .then((response: any) => {
+                //         console.log(response);
+                //         this.deviceIP = response.ip;
+                //         resolve(response);
+                //     })
+                //     .catch((response: any) => {
+                //         console.log(response);
+                //     });
+            }
+
+            if (
+                this.network.connectionType === "cellular"
+            ) {
+                // this.networkInterface
+                //     .getCarrierIPAddress()
+                //     .then((response: any) => {
+                //         console.log(response);
+                //         this.deviceIP = response.ip;
+                //         resolve(response);
+                //     })
+                //     .catch((response: any) => {
+                //         console.log(response);
+                //     });
+            }
+        } else {
+            resolve("");
+        }
+    });
+    return promise;
+}
 }

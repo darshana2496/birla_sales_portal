@@ -44,17 +44,25 @@
 
 .introSlider {
     position: fixed;
-    top: -74px;
+    top: -80px;
     bottom: 0;
     right: 0;
     left: 0;
     ion-slide {
         padding: 28px;
+        height: 110vh;
     }
     .swiper-pagination {
         bottom: 70px;
         .swiper-pagination-bullet {
             background: #565452;
+        }
+    }
+
+    ion-button {
+        .button {
+            --background: transparent;
+            --box-shadow: none;
         }
     }
 }

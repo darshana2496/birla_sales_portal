@@ -11,9 +11,9 @@ import { AppIntroPage } from './app-intro.page';
 
 @NgModule({
   imports: [
+    IonicModule,
     CommonModule,
     FormsModule,
-    IonicModule,
     AppIntroPageRoutingModule,
     CommonComponentsModule
   ],

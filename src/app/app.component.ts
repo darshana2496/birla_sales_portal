@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { Network } from '@capacitor/network';
+import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { GlobalService } from './services/global.service';
 
@@ -8,9 +10,20 @@ import { GlobalService } from './services/global.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+  @ViewChild("myNav") nav: NavController;
+
   rootPage: string;
-  constructor(public storage: Storage, public globalService: GlobalService) {
+  
+  constructor(
+    public storage: Storage, 
+    public globalService: GlobalService,
+    ) {
     storage.create();
+    Network.getStatus().then(val=> {
+      console.log("NETWORK STATUS", val);
+      this.globalService.network = val
+    })
+
     storage.get("AccessPin").then(val => {
 
       this.setInitialPage(val);

@@ -9,6 +9,15 @@ import { IonSlides } from '@ionic/angular';
 export class AppIntroPage implements OnInit {
   public static pageName = "AppintroPage";
   @ViewChild(IonSlides) slides: IonSlides;
+  slideOpts = {
+    initialSlide: 0,
+    speed: 300,
+    loop: true,
+    autoplay: {
+      delay: 4000,
+      disableOnInteraction: false,
+  }
+  };
 
   constructor() { }
 

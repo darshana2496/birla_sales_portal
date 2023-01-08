@@ -10,11 +10,11 @@ import { PagesComponent } from './pages.page';
 
 @NgModule({
   imports: [
-    PagesRoutingModule,
     IonicModule,
     CommonModule,
     FormsModule,
-    CommonComponentsModule
+    CommonComponentsModule,
+    PagesRoutingModule,
   ],
   declarations: [PagesComponent]
 })
