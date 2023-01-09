@@ -1,3 +1,4 @@
+import { CommonComponentsModule } from './../common-components/common-components.module';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,10 +10,11 @@ import { PagesComponent } from './pages.page';
 
 @NgModule({
   imports: [
-    PagesRoutingModule,
     IonicModule,
     CommonModule,
     FormsModule,
+    CommonComponentsModule,
+    PagesRoutingModule,
   ],
   declarations: [PagesComponent]
 })

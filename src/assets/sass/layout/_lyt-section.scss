@@ -1,5 +1,6 @@
 .lyt-section {
     &.typ-bg {
+
         background: url(../../images/mainbg.jpg) no-repeat center center;
         background-size: cover;
     }
@@ -57,13 +58,21 @@
     }
 
     &.typ-bg-uploads-img {
+<<<<<<< HEAD
         background: url(../../images/bgVault.jpg) no-repeat center center;
+=======
+        background: url(../../../assets/images/bgVault.jpg) no-repeat center center;
+>>>>>>> ebac2c85e77f9052e1e57a35b7e031bd8f289373
         background-size: cover;
     }
 
     &.bg-color {
         // background: #fafafa;
+<<<<<<< HEAD
         background: url(../../images/topShadow.png) repeat-x 0 56px;
+=======
+        background: url(../../../assets/images/topShadow.png) repeat-x 0 56px;
+>>>>>>> ebac2c85e77f9052e1e57a35b7e031bd8f289373
     }
 
     &.typ-steps {

@@ -39,11 +39,13 @@
 
 .cm-sprite {
     background: url(../../images/birla-sprite.svg);
+
     background-size: 20px;
     background-repeat: no-repeat;
 }
 
 .bg-sprite {
+
     background: url(../../images/sprite2.svg);
     background-size: 20px;
     background-repeat: no-repeat;
@@ -100,5 +102,17 @@ ion-app.md [padding].extra-padding .scroll-content {
 
     .desc {
         color: $clr-primary !important;
+    }
+}
+
+.typ-transparent {
+    ion-toolbar {
+        --background: transparent;
+        height: 125px;
+        display: flex;
+      }
+    .toolbar-container {
+        height: 95px;
+        padding-top: 20px;
     }
 }

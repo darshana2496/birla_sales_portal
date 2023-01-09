@@ -11,9 +11,20 @@ import { DateFormatPipe } from './utilities/pipes/date-format.pipe';
 import { TimeInMinsFormatPipe } from './utilities/pipes/time-in-mins.pipe';
 import {  HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { IonicStorageModule } from '@ionic/storage-angular';
+
+
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule],
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot()
+  ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
