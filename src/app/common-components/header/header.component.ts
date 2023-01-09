@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MenuController, NavController } from '@ionic/angular';
 import { GlobalService } from 'src/app/services/global.service';
 import { Router } from '@angular/router';
+import { AnimationOptions } from '@ionic/angular/providers/nav-controller';
 
 @Component({
   selector: 'app-header',
@@ -34,5 +35,12 @@ export class HeaderComponent {
   contactModal(): void {
     // this.app.getRootNavs()[1].push("CallPage");
     this.router.navigate(['/callPage'])
+  }
+  back(){
+    let animations:AnimationOptions={
+      animated: true,
+      animationDirection: "back"
+    }
+    this.navCtrl.back(animations)
   }
 }

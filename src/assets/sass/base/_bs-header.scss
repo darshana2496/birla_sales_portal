@@ -9,7 +9,7 @@
             width: 100%;
         }
     }
-    ion-navbar.toolbar {
+    ion-nav.toolbar {
         display: block;
     }
     .back-button.show-back-button {
@@ -38,7 +38,7 @@
     }
 }
 
-cm-header{
+app-header{
     .toolbar,
     .toolbar-ios {
         min-height: 56px;
@@ -54,7 +54,7 @@ cm-header{
     }
 }
 
-.toolbar-title-md {
+.title-default {
     font-size: 1.2rem;
     line-height: 2.2rem;
     font-weight: $font-semi-bold;
