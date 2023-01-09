@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PrivacyPolicyPageRoutingModule } from './privacy-policy-routing.module';
 
 import { PrivacyPolicyPage } from './privacy-policy.page';
+import { CommonComponentsModule } from 'src/app/common-components/common-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PrivacyPolicyPageRoutingModule
+    PrivacyPolicyPageRoutingModule,
+    CommonComponentsModule
   ],
   declarations: [PrivacyPolicyPage]
 })

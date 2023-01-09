@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { PagesRoutingModule } from './pages-routing.module';
 
 import { PagesComponent } from './pages.page';
+import { PrivacyPolicyPageModule } from './privacy-policy/privacy-policy.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { PagesComponent } from './pages.page';
     FormsModule,
     CommonComponentsModule,
     PagesRoutingModule,
+    PrivacyPolicyPageModule
   ],
   declarations: [PagesComponent]
 })

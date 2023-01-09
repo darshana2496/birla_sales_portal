@@ -164,12 +164,15 @@ ion-spinner {
   height: 50px !important;
 }
 
-.term-of-use p {
+.term-of-use
+{
+  margin-top: 2rem;
+p {
   font-size: 1.2rem;
   font-weight: 400;
   color: #4d4d4f;
 }
-
+}
 .display-flex-content {
   display: flex;
 }
@@ -187,4 +190,8 @@ ion-spinner {
         --box-shadow: none;
     // }
   }
+  
+}
+.back-btn{
+  box-shadow: none;
 }
