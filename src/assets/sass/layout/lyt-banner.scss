@@ -1,5 +1,5 @@
 .lyt-banner {
-  // background: url(././assets/images/banner.png);
+  // background: url(../../imagesbanner.png);
   // min-height: 360px;
   position: relative;
   .estimated-date {
@@ -11,7 +11,7 @@
     padding-top: 10px;
   }
   &.typ-img {
-    // background: url(././assets/images/banner.png) no-repeat;
+    // background: url(../../imagesbanner.png) no-repeat;
     // background-size: 100%;
     // background-attachment: fixed;
     height: 360px;
@@ -76,7 +76,9 @@
     left: 30px;
     bottom: 30px;
     .tag {
-      background: url(../../../assets/images/shield.png) no-repeat center;
+
+      background: url(../../images/shield.png) no-repeat center;
+
       background-size: 28px 36px;
     }
     .title {

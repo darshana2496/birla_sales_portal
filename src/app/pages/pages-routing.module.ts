@@ -61,7 +61,11 @@ const routes: Routes = [
   {
     path: 'terms-use',
     loadChildren: () => import('./terms-use/terms-use.module').then( m => m.TermsUsePageModule)
+  },  {
+    path: 'about-birla',
+    loadChildren: () => import('./about-birla/about-birla.module').then( m => m.AboutBirlaPageModule)
   }
+
 
 
 ];
