@@ -14,6 +14,7 @@ export class GlobalService {
   selectedProjectObj: any;
   urls=environment.serverUrl;
   network: any;
+  deviceIP: any;
 
   constructor(
     public _http: HttpClient, 
@@ -104,11 +105,81 @@ export class GlobalService {
                 //     .catch((response: any) => {
                 //         console.log(response);
                 //     });
+
             }
         } else {
             resolve("");
         }
     });
     return promise;
-}
+  }
+
+  //loading modal
+  showOrShowloadingModel(action: string) {
+    if (action == "show") {
+        // if (!this.loadingCtrlOpenCount) {
+        //     this.loadingModel = this.loadingCtrl.create({
+        //         content: "<img src='./assets/imgs/loader.gif' alt='loader'>",
+        //         spinner: "hide"
+        //     });
+        //     this.loadingCtrlOpenCount++;
+        //     this.loadingModel.present();
+        // }
+    } else {
+        // if (this.loadingCtrlOpenCount) {
+        //     this.loadingModel.present().then((response: any) => {
+        //         this.loadingModel.dismiss();
+        //         this.loadingCtrlOpenCount = 0;
+        //     });
+        // }
+    }
+  }
+
+  checkInternetConnection() {
+    var connectionType = this.network.connectionType;
+    console.log("NETWORK TYPE ====", connectionType);
+    // if (connectionType == "none") {
+    //     if (this.appCtrl.getRootNavs()[1].getPrevious() != null) {
+    //         if (
+    //             this.appCtrl.getRootNavs()[1].getActive().component.name ==
+    //             "NetworkCheckPage"
+    //         ) {
+    //             console.log("SHOWING NETWORK CHECKER PAGE");
+    //         } else {
+    //             if (this.newtworkPageRemoved) {
+    //                 this.appCtrl.getRootNavs()[1].push("NetworkCheckPage");
+    //                 this.newtworkPageRemoved = false;
+    //             }
+    //         }
+    //     } else {
+    //         if (this.newtworkPageRemoved) {
+    //             this.appCtrl.getRootNavs()[1].push("NetworkCheckPage");
+    //             this.newtworkPageRemoved = false;
+    //         }
+    //     }
+    // } else {
+    //     console.log("this.newtworkPageRemoved", this.newtworkPageRemoved);
+    //     if (!this.newtworkPageRemoved) {
+    //         this.newtworkPageRemoved = true;
+    //         console.log("this.currentActivePageReference");
+    //         console.log(this.currentActivePageReference);
+
+    //         let page = this.appCtrl.getRootNavs()[1].getPrevious();
+    //         console.log(page);
+
+    //         switch (page.component.name) {
+    //             case "TabsPage":
+    //                 this.appCtrl.getRootNavs()[1].pop();
+    //                 this.currentActivePageReference.ionViewWillEnter();
+
+    //                 break;
+
+    //             default:
+    //                 this.appCtrl.getRootNavs()[1].pop();
+
+    //                 break;
+    //         }
+    //     }
+    // }
+  }
 }

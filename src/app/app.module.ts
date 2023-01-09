@@ -23,12 +23,11 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     IonicModule.forRoot(), 
     AppRoutingModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-
     DateFormatPipe,
     TimeInMinsFormatPipe,
     AuthenticationService
