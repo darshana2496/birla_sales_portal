@@ -28,6 +28,10 @@ const routes: Routes = [
         component: LandingPage
       },
       {
+        path:'loginwithcustid',
+        loadChildren:()=>import('./login-with-cust-id/login-with-cust-id.module').then(m=>m.LoginWithCustIdPageModule)
+      },
+      {
         path: '',
         redirectTo: 'AppIntroPage',
         pathMatch: 'full'

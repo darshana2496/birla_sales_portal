@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { RefundCancelationPageRoutingModule } from './refund-cancelation-routing.module';
 
 import { RefundCancelationPage } from './refund-cancelation.page';
+import { CommonComponentsModule } from 'src/app/common-components/common-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    RefundCancelationPageRoutingModule
+    RefundCancelationPageRoutingModule,
+    CommonComponentsModule
   ],
   declarations: [RefundCancelationPage]
 })

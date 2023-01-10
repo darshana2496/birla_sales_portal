@@ -15,6 +15,16 @@ export class GlobalService {
   urls=environment.serverUrl;
   network: any;
   deviceIP: any;
+  commonheaderObj = {
+    userName: "CPAppbirlaestate",
+    password: "CPAppbirla!@#123"
+};
+
+//razorPayAuth data
+razorPayAuth = {
+    vcKeyId: "",
+    vcKeySecret: ""
+}
 
 
   constructor(
