@@ -17,13 +17,15 @@ export class AppComponent {
   constructor(
     public storage: Storage, 
     public globalService: GlobalService,
-    public platform: Platform
+    public platform: Platform,
     ) {
-    storage.create();
-    Network.getStatus().then(val=> {
-      console.log("NETWORK STATUS", val);
-      this.globalService.network = val
-    })
+      this.globalService.network = Network.getStatus().then(val=> {
+         return val
+      }).catch(err => {
+        return null
+      })
+      this.globalService.getNetworkCarrierInfo();
+      storage.create();
 
     storage.get("AccessPin").then(val => {
       this.setInitialPage(val);

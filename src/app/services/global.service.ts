@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
-
+import { GET_IP_API_URL } from '../utilities/constants/globals'
 @Injectable({
   providedIn: 'root',
 })
@@ -15,6 +15,7 @@ export class GlobalService {
   urls=environment.serverUrl;
   network: any;
   deviceIP: any;
+
 
   constructor(
     public _http: HttpClient, 
@@ -79,39 +80,20 @@ export class GlobalService {
   async getNetworkCarrierInfo(): Promise<any> {
     let promise = new Promise((resolve, reject) => {
         if (this.network.connectionType != "none") {
-            if (this.network.connectionType === "wifi") {
-                // this.networkInterface
-                //     .getWiFiIPAddress()
-                //     .then((response: any) => {
-                //         console.log(response);
-                //         this.deviceIP = response.ip;
-                //         resolve(response);
-                //     })
-                //     .catch((response: any) => {
-                //         console.log(response);
-                //     });
-            }
-
-            if (
-                this.network.connectionType === "cellular"
-            ) {
-                // this.networkInterface
-                //     .getCarrierIPAddress()
-                //     .then((response: any) => {
-                //         console.log(response);
-                //         this.deviceIP = response.ip;
-                //         resolve(response);
-                //     })
-                //     .catch((response: any) => {
-                //         console.log(response);
-                //     });
-
-            }
+          resolve(this.getIPAddress())
         } else {
-            resolve("");
+          resolve("");
         }
     });
     return promise;
+  }
+
+  getIPAddress() {
+    this._http.get(GET_IP_API_URL).subscribe((response:any) => {
+      this.deviceIP = response.query;
+      }, err => {
+        this.deviceIP = '127.0.0.1'
+      })
   }
 
   //loading modal

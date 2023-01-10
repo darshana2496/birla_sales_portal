@@ -3,8 +3,8 @@ import { IonSlides } from '@ionic/angular';
 
 @Component({
   selector: 'app-app-intro',
-  templateUrl: './app-intro.page.html',
-  styleUrls: ['./app-intro.page.scss'],
+  templateUrl: './app-intro.component.html',
+  styleUrls: ['./app-intro.component.scss'],
 })
 export class AppIntroPage implements OnInit {
   public static pageName = "AppintroPage";
