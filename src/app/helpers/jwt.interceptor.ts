@@ -67,11 +67,11 @@ export class JwtInterceptor implements HttpInterceptor {
 
         let userNamePwd;
 
-        // if (request.url.includes('razorpay')) {
-        //     userNamePwd = this.globalService.razorPayAuth.vcKeyId + ":" + this.globalService.razorPayAuth.vcKeySecret;
-        // } else {
-        //     userNamePwd = this.globalService.commonheaderObj.userName + ":" + this.globalService.commonheaderObj.password;
-        // }
+        if (request.url.includes('razorpay')) {
+            userNamePwd = this.globalService.razorPayAuth.vcKeyId + ":" + this.globalService.razorPayAuth.vcKeySecret;
+        } else {
+            userNamePwd = this.globalService.commonheaderObj.userName + ":" + this.globalService.commonheaderObj.password;
+        }
 
 
         headerSettings['Authorization'] = "Basic " + btoa(userNamePwd);

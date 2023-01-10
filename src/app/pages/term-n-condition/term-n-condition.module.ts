@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { TermNConditionPageRoutingModule } from './term-n-condition-routing.module';
 
 import { TermNConditionPage } from './term-n-condition.page';
+import { CommonComponentsModule } from 'src/app/common-components/common-components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TermNConditionPageRoutingModule
+    TermNConditionPageRoutingModule,
+    CommonComponentsModule
   ],
   declarations: [TermNConditionPage]
 })

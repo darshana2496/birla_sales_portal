@@ -2,12 +2,13 @@
 <ng-container *ngIf="type === 'normal'">
   <ion-header [translucent]="true" class="bs-header">
     <ion-toolbar>
-      <ion-buttons class="back-btn" slot="start">
+      <ng-container *ngIf="backbtn === 'true'">
+      <ion-buttons  class="back-btn" slot="start">
         <ion-back-button (click)="back()" class="back-btn" icon="chevron-back-outline" >
          
         </ion-back-button>
       </ion-buttons>
-
+    </ng-container>
   
     <ion-nav class="toolbar toolbar-md">
     
@@ -61,8 +62,9 @@
 </ng-container>
 
 <ng-container *ngIf="type === 'close'">
-    <ion-header class="bs-header">
-      <ion-nav>     
+    <ion-header [translucent]="true" class="bs-header">
+      
+      <ion-nav class="toolbar toolbar-md">     
         <ion-title>        
           <ng-container>
             <span>{{pageNameVal}}</span>

@@ -16,11 +16,12 @@ export class HeaderComponent {
   @Input('typeTitle') typeTitle;
   @Input('typeEnd') typeEnd;
   @Input('pageNameVal') pageNameVal;
-
+  @Input() backbtn;
 
   text: string;
 
   constructor(public menuCtrl: MenuController, public globalService: GlobalService, public navCtrl: NavController, public app: AppComponent, public router: Router) {
+ console.log(navCtrl.navigateBack,'nav Detai')
   }
 
   openSideMenu() {
