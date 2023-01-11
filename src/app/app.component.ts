@@ -24,6 +24,7 @@ export class AppComponent {
       }).catch(err => {
         return null
       })
+
       this.globalService.getNetworkCarrierInfo();
       storage.create();
 
