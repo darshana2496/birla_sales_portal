@@ -25,6 +25,7 @@ export class AppComponent {
         return null
       })
 
+      this.globalService.getNetworkCarrierInfo();
       storage.create();
 
     storage.get("AccessPin").then(val => {

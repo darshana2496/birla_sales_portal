@@ -1,15 +1,9 @@
 .lyt-section {
     &.typ-bg {
-
-        background: url(../../images/mainbg.jpg) no-repeat center center;
+        --background: url(../../images/mainbg.jpg) no-repeat center center;
         background-size: cover;
     }
 
-    // &.typ-form {
-    //     .scroll-content {
-    //         padding: 16px 40px;
-    //     }
-    // }
     &.typ-search {
         .scroll-content {
             box-shadow: none;

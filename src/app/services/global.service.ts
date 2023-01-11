@@ -252,6 +252,7 @@ encryptData(msg) {
   });
  alert.present();
 }
+
 onKeyUpEventOTP(event, index, repeat, uniqueComponentNameId) {
   console.log(event, index, repeat, uniqueComponentNameId);
   const eventCode = event.which || event.keyCode;
@@ -287,6 +288,10 @@ onKeyEvent(event,compoid){
   if(event.target.value) return compoid.setFocus();
   
 }
+
+
+
+
 
 onFocusEventOTP(index, uniqueComponentNameId) {
   for (let item = 1; item < index; item++) {

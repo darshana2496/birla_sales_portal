@@ -30,7 +30,9 @@ import { OnlyNumberDirective } from '../utilities/directives/only-number.directi
     AppIntroPage,
     KnowYourCustIdPage,
     LandingPage,
+
     SetPinComponent,OnlyNumberDirective
+
   ],
 })
 export class AuthModule { }

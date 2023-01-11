@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
-  template: ' <ion-router-outlet></ion-router-outlet>',
+  template: ' <router-outlet></router-outlet>',
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {

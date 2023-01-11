@@ -1,0 +1,32 @@
+.content {
+    padding: 0 32px;
+}
+
+.page-title {
+    font-size: 2rem;
+    line-height: 2.8rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.sub-title {
+    font-size: 1.5rem;
+    line-height: 2.8rem;
+    font-weight: 500;
+    // text-align: center;
+    margin: 1rem 0;
+}
+
+.form-wrapper {
+    margin-top: 3rem;
+}
+
+.button-cont {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.error-msg {
+    color: red;
+    margin-top: 1rem;
+}

@@ -1,3 +1,4 @@
+import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.page';
@@ -37,7 +38,12 @@ const routes: Routes = [
       },
       {
         path:'privacypolicy',
-        loadChildren:()=>import('./privacy-policy/privacy-policy.module').then(m=>m.PrivacyPolicyPageModule),      },
+        loadChildren:()=>import('./privacy-policy/privacy-policy.module').then(m=>m.PrivacyPolicyPageModule),      
+      },
+      {
+        path:'formLayout',
+        component: FormLayoutComponent      
+      },
 
   {
     path: '',
