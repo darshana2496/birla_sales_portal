@@ -12,6 +12,7 @@
             @include opacity(1);
             color: #000;
         }
+
         .item-input {
             border: 0;
             padding-right: 0;
@@ -224,14 +225,29 @@
                     }
                 }
             }
+
+            &:last-child {
+              box-shadow: none;
+              border: inherit;
+            }
+          }
+
+          ion-input {
+            &.error-input {
+              .text-input {
+                border-color: $clr-red;
+              }
+            }
+          }
         }
-    }
-    .field-label {
-        font-size: 1.4rem;
-        line-height: 2rem;
+      }
+    
+
+    &.typ-area {
+      label {
+        font-size: 1rem;
         color: $clr-black;
         font-weight: $font-medium;
-        margin-bottom: 11px;
         display: block;
     }
     .button-parent {
@@ -248,7 +264,10 @@
         font-size: 1.6rem;
         color: $clr-text-color;
         background: $clr-white;
-        margin: 0;
+        border: 1px solid $clr-border;
+        border-radius: 3px;
+        padding: 20px 10px;
+      }
     }
     .otp-parent {
         text-align: left;
@@ -264,6 +283,7 @@
                     margin-right: 0;
                 }
             }
+          }
         }
         .native-input,.sc-ion-input-ios {
             width: 60px;
@@ -278,71 +298,272 @@
                 box-shadow: 0px 0px 13px 4px #00000026;
             }
         }
-        .error {
-            text-align: center;
+      
+
+      .item-md {
+        &.item-select {
+          padding-left: 8px;
+
+          .select-text {
+            padding-left: 6px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #4d4d4f;
+          }
         }
-    }
-    .lbl-inpt {
-        color: $clr-black;
-        font-weight: $font-regular;
-        font-size: 1.2rem;
-        line-height: 2.2rem;
-        display: block;
-        text-align: left;
-        padding: 0 9px;
-    }
-    .error {
-        color: $clr-red;
-        font-weight: $font-regular;
-        font-size: 1.1rem;
-        display: block;
-        text-align: left;
-        padding: 0 0 0 15px;
-    }
-    .select-date-btn {
-        position: absolute;
-        right: 15px;
-        bottom: 10px;
-        font-size: 1.2rem;
-        color: #999;
-    }
-    &.typ-note {
-        max-width: 220px;
-        margin: 0 auto;
-    }
-    &.type-otp {
-        .form-group-parent {
-            margin-bottom: 20px;
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-        .form-group {
-            display: inline-block;
-            text-align: left;
-            .otp-lable {
-                font-weight: $font-medium;
-                color: #000;
-                font-size: 1.0rem;
-                margin-bottom: 5px;
-                display: block;
-            }
-        }
-    }
-    .form-title {
-        font-size: 2.4rem;
-        line-height: 2.6rem;
-        color: $clr-black;
-        font-weight: $font-extra-bold;
-        margin-bottom: 30px;
-    }
-    .form-group-wrap {
+      }
+
+      &.bot-space {
         margin-bottom: 20px;
-        &.last {
-            margin-bottom: 0;
+      }
+    
+
+    &.addOn {
+      padding-right: 50px;
+      position: relative;
+
+      .button-parent {
+        position: absolute;
+        margin: 0;
+        right: 0;
+        top: 0;
+        height: 100%;
+
+        .button {
+          background: transparent;
+          box-shadow: none;
+          height: 100%;
+          padding: 0 20px;
+          margin: 0;
         }
+      }
     }
-}
+
+    &.typ-file {
+      position: relative;
+
+      ion-input {
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    .item-select {
+      .select-icon {
+        .select-icon-inner {
+          border: none;
+
+          &:after {
+            content: 'w';
+            font-family: "cp" !important;
+            font-size: 1.4rem;
+            line-height: 1.6rem;
+            position: relative;
+            top: -18px;
+            left: -18px;
+          }
+        }
+      }
+    }
+
+    ion-textarea {
+      line-height: 1.4rem;
+    }
+
+    &.typ-uploads {
+      display: block;
+      height: 70px;
+      padding: 13px 50px 13px 16px;
+
+      .img-wrap {
+        float: left;
+        margin-right: 10px;
+        border: 1px solid $clr-footer-link;
+        vertical-align: middle;
+        width: 43px;
+        height: 43px;
+      }
+
+      .file-name {
+        font-size: 1.4rem;
+        line-height: 4.5rem;
+        color: $clr-text-color;
+        display: inline-block;
+        font-weight: $font-semi-bold;
+        text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+      }
+
+      .status-bar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+
+        .icon-button {
+          &.button-progress {
+            top: 20px;
+            right: 10px;
+
+            .round-progress {
+              width: 20px !important;
+              height: 20px !important;
+            }
+          }
+        }
+      }
+    }
+  
+
+  .field-label {
+    font-size: 1.4rem;
+    line-height: 2rem;
+    color: $clr-black;
+    font-weight: $font-medium;
+    margin-bottom: 11px;
+    display: block;
+  }
+
+  .button-parent {
+    margin-top: 30px;
+
+    &.typ-link {
+      margin-top: 16px;
+    }
+  }
+
+  .text-input {
+    border: 1px solid $clr-border;
+    line-height: 3.8rem;
+    border-radius: 3px;
+    padding-left: 10px;
+    font-size: 1.6rem;
+    color: $clr-text-color;
+    background: $clr-white;
+    margin: 0;
+  }
+
+  .otp-parent {
+    text-align: left;
+
+    ion-input {
+      display: inline;
+
+      border: none;
+      outline: none;
+
+      &:first-child {
+        .text-input {
+          margin-left: 0;
+        }
+      }
+
+      &:last-child {
+        .text-input {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .text-input {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      padding: 0;
+      display: inline-block;
+      margin: 0 2.4%;
+      font-size: 3.6rem;
+      -webkit-text-security: disc !important;
+
+      &:focus {
+        box-shadow: 0px 0px 13px 4px #00000026;
+      }
+    }
+
+    .error {
+      text-align: center;
+    }
+  }
+
+  .lbl-inpt {
+    color: $clr-black;
+    font-weight: $font-regular;
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+    display: block;
+    text-align: left;
+    padding: 0 9px;
+  }
+
+  .error {
+    color: $clr-red;
+    font-weight: $font-regular;
+    font-size: 1.1rem;
+    display: block;
+    text-align: left;
+    padding: 0 0 0 15px;
+  }
+
+  .select-date-btn {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    font-size: 1.2rem;
+    color: #999;
+  }
+
+  &.typ-note {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+
+  &.type-otp {
+    .form-group-parent {
+      margin-bottom: 20px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .form-group {
+      display: inline-block;
+      text-align: left;
+
+      .otp-lable {
+        font-weight: $font-medium;
+        color: #000;
+        font-size: 1.0rem;
+        margin-bottom: 5px;
+        display: block;
+      }
+    }
+  }
+
+  .form-title {
+    font-size: 2.4rem;
+    line-height: 2.6rem;
+    color: $clr-black;
+    font-weight: $font-extra-bold;
+    margin-bottom: 30px;
+  }
+
+  .form-group-wrap {
+    margin-bottom: 20px;
+
+    &.last {
+      margin-bottom: 0;
+    }
+  }
+
 
 .bs-form .form-group.typ-band textarea.native-input {
     resize: none;
@@ -351,7 +572,6 @@
     margin-top: 8px;
     background: transparent;
 }
-
 @media only screen and (max-width: 360px) {
     .bs-form {
         .otp-parent {

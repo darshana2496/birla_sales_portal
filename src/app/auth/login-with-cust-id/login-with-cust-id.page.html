@@ -2,19 +2,33 @@
   <app-header class="typ-transparent" [type]="'normal'" [typeTitle]="'logo'"></app-header>
 </ion-header>
 
-<ion-content padding class="lyt-section typ-bg extra-padding">
-  <div class="content-inner">
+<ion-content class="lyt-section typ-bg">
+
+  <div class="content-inner lyt-section typ-bg">
       <div class="content">
-          <div class="form-cont">
-              <div class="bs-title-desc" text-left>
+          <div class="form-cont pad">
+              <div class="bs-title-desc ion-text-start pad">
                   <h2 class="title">Hello</h2>
                   <h3 class="sub-title">welcome home</h3>
               </div>
               <div class="bs-form">
-                  <!-- <input-with-btn [pageData]="pageData"></input-with-btn> -->
+
+                <div class="form-group typ-band addOn active">
+                  <ion-item>
+                      <ion-label position="floating">CUSTOMER ID</ion-label>
+                      <ion-input class="input" type="number" [(ngModel)]="typedText" (ionChange)="inputChanged($event)"></ion-input>
+                    </ion-item>
+                  <div class="button-parent">
+                      <button class="button" ion-button (click)="inputBtn()">
+                          <span class="icons icon-next"></span>
+                      </button>
+                     
+                  </div>
+                
+              </div>
                   <br>
-                  <span class="get-id-link">
-                      <a routerLink="/pages/tab1" style="font-weight: 600;" (click)="getUser()">Get Customer Id</a>
+                  <span class="get-id-link ion-text-end">
+                      <a  routerLink="/pages/tab1" style="font-weight: 600;" (click)="getUser()">Get Customer Id</a>
                   </span>
               </div>
           </div>
