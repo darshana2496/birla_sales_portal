@@ -3,8 +3,8 @@ import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-terms-use',
-  templateUrl: './terms-use.page.html',
-  styleUrls: ['./terms-use.page.scss'],
+  templateUrl: './terms-use.component.html',
+  styleUrls: ['./terms-use.component.scss'],
 })
 export class TermsUsePage implements OnInit {
 terms:string;

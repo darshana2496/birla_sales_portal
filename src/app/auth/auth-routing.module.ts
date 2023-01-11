@@ -1,10 +1,12 @@
-import { LandingPage } from './landing/landing.component';
-import { KnowYourCustIdPage } from './know-your-cust-id/know-your-cust-id.component';
+import { OtpComponent } from './otp/otp.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppIntroPage } from './app-intro/app-intro.component';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
+import { LoginWithCustIdPage } from './login-with-cust-id/login-with-cust-id.component';
+import { LandingPage } from './landing/landing.component';
+import { KnowYourCustIdPage } from './know-your-cust-id/know-your-cust-id.component';
 
 const routes: Routes = [
   {
@@ -29,7 +31,11 @@ const routes: Routes = [
       },
       {
         path:'loginwithcustid',
-        loadChildren:()=>import('./login-with-cust-id/login-with-cust-id.module').then(m=>m.LoginWithCustIdPageModule)
+        component: LoginWithCustIdPage
+      },
+      {
+        path:'otp',
+        component: OtpComponent
       },
       {
         path: '',

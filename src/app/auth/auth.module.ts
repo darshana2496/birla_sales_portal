@@ -1,3 +1,4 @@
+import { LoginWithCustIdPage } from './login-with-cust-id/login-with-cust-id.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -28,6 +29,7 @@ import { LandingPage } from './landing/landing.component';
     AppIntroPage,
     KnowYourCustIdPage,
     LandingPage,
+    LoginWithCustIdPage
   ],
 })
 export class AuthModule { }

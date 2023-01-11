@@ -1,3 +1,7 @@
+import { TermsUsePage } from './terms-use/terms-use.component';
+import { TermNConditionPage } from './term-n-condition/term-n-condition.component';
+import { RefundCancelationPage } from './refund-cancelation/refund-cancelation.component';
+import { PrivacyPolicyPage } from './privacy-policy/privacy-policy.component';
 import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -20,34 +24,33 @@ const routes: Routes = [
       {
         path: 'tab3',
         loadChildren: () => import('./tab3/tab3.module').then(m => m.Tab3PageModule)
-      }
-    ]
-  },
-      
+      },
       {
       path:'refundcancel',
-      loadChildren: () => import('./refund-cancelation/refund-cancelation.module').then(m => m.RefundCancelationPageModule)
+      component: RefundCancelationPage
       },
       {
         path: 'termscondition',
-        loadChildren:()=>import('./term-n-condition/term-n-condition.module').then(m=>m.TermNConditionPageModule)
+        component: TermNConditionPage
       },
       {
         path: 'termuse',
-        loadChildren:()=>import('./terms-use/terms-use.module').then(m=>m.TermsUsePageModule),
+        component: TermsUsePage
       },
       {
         path:'privacypolicy',
-        loadChildren:()=>import('./privacy-policy/privacy-policy.module').then(m=>m.PrivacyPolicyPageModule),      
+        component: PrivacyPolicyPage
       },
       {
         path:'formLayout',
         component: FormLayoutComponent      
       },
+    ]
+  },
 
   {
     path: '',
-    redirectTo: '/pages/tab1',
+    redirectTo: '/tab1',
     pathMatch: 'full'
   },
  

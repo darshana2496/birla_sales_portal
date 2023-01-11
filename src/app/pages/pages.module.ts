@@ -1,3 +1,7 @@
+import { TermsUsePage } from './terms-use/terms-use.component';
+import { TermNConditionPage } from './term-n-condition/term-n-condition.component';
+import { RefundCancelationPage } from './refund-cancelation/refund-cancelation.component';
+import { PrivacyPolicyPage } from './privacy-policy/privacy-policy.component';
 import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { CommonComponentsModule } from './../common-components/common-components.module';
 import { IonicModule } from '@ionic/angular';
@@ -8,7 +12,6 @@ import { FormsModule } from '@angular/forms';
 import { PagesRoutingModule } from './pages-routing.module';
 
 import { PagesComponent } from './pages.page';
-import { PrivacyPolicyPageModule } from './privacy-policy/privacy-policy.module';
 
 @NgModule({
   imports: [
@@ -17,8 +20,14 @@ import { PrivacyPolicyPageModule } from './privacy-policy/privacy-policy.module'
     FormsModule,
     CommonComponentsModule,
     PagesRoutingModule,
-    PrivacyPolicyPageModule,
   ],
-  declarations: [PagesComponent, FormLayoutComponent]
+  declarations: [
+    PagesComponent, 
+    FormLayoutComponent,
+    PrivacyPolicyPage,
+    RefundCancelationPage,
+    TermNConditionPage,
+    TermsUsePage
+  ]
 })
 export class PagesModule {}
