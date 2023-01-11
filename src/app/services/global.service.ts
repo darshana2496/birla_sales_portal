@@ -262,4 +262,23 @@ getCustomerId(obj) {
   })
   return promise
 }
+
+async getNetworkCarrierInfo(): Promise<any> {
+  let promise = new Promise((resolve, reject) => {
+      if (this.network.connectionType != "none") {
+        resolve(this.getIPAddress())
+      } else {
+        resolve("");
+      }
+  });
+  return promise;
+}
+
+getIPAddress() {
+  this._http.get(GET_IP_API_URL).subscribe((response:any) => {
+    this.deviceIP = response.query;
+    }, err => {
+      this.deviceIP = '127.0.0.1'
+    })
+}
 }
