@@ -1,4 +1,6 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingPage implements OnInit {
 
-  constructor() { }
+  constructor(public storage: Storage,public router: Router) { }
 
   ngOnInit() {
+  }
+
+  gotoCustIdPage() {
+    this.storage.set("FirstTimeAppLoad", false);
+    this.router.navigate(['know-your-cust-id'])
   }
 
 }

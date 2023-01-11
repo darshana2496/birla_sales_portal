@@ -1,25 +1,12 @@
-// .list-md .item-input.item-input-has-focus:last-child,
-// .list-md .item-input.input-has-focus:last-child
-// .item-input-has-focus .label-md[floating],
-// .input-has-focus .label-md[floating]
 .bs-form {
     .form-group {
         position: relative;
-        .label-md[floating] {
-            -webkit-transform: translate3d(13px, 29px, 10px);
-            transform: translate3d(13px, 29px, 10px);
+        .label-floating {
+            // -webkit-transform: translate3d(13px, 29px, 10px);
+            // transform: translate3d(13px, 29px, 10px);
         }
-        .item-inner {
-            padding-right: 0;
-            border: 0;
-        }
-        .item-md.item-input.item-input-has-focus .item-inner,
-        .item-md.item-input.input-has-focus .item-inner {
-            border: 0;
-            box-shadow: none;
-        }
-        .item-input-has-value .label-md[floating],
-        .input-has-value .label-md[floating] {
+        .item-input-has-value .label-floating,
+        .input-has-value .label-floating {
             -webkit-transform: translate3d(0, 0, 0) scale(0.8);
             transform: translate3d(0, 0, 0) scale(0.8);
             @include opacity(1);
@@ -32,7 +19,7 @@
             background: transparent;
             &.item-input-has-focus,
             &.input-has-focus {
-                .label-md[floating] {
+                .label-floating {
                     -webkit-transform: translate3d(0, 0, 0) scale(0.8);
                     transform: translate3d(0, 0, 0) scale(0.8);
                     color: $clr-text-color;
@@ -42,11 +29,6 @@
                     padding-right: 0;
                     border: 0;
                 }
-                .item-md.item-input.item-input-has-focus .item-inner,
-                .item-md.item-input.input-has-focus .item-inner {
-                    border: 0;
-                    box-shadow: none;
-                }
                 .item-input {
                     border: 0;
                     padding-right: 0;
@@ -54,7 +36,7 @@
                     background: transparent;
                     &.item-input-has-focus,
                     &.input-has-focus {
-                        .label-md[floating] {
+                        .label-floating {
                             -webkit-transform: translate3d(0, 0, 0) scale(0.8);
                             transform: translate3d(0, 0, 0) scale(0.8);
                             color: $clr-text-color;
@@ -66,7 +48,7 @@
                     }
                     ion-input {
                         &.error-input {
-                            .text-input {
+                            .native-input, .sc-ion-input-ios {
                                 border-color: $clr-red;
                             }
                         }
@@ -104,7 +86,7 @@
                     }
                 }
             }
-            .label-md[floating] {
+            .label-floating {
                 font-size: 1.4rem;
                 line-height: 1.4rem;
                 color: #999999;
@@ -115,16 +97,16 @@
                 position: relative;
                 z-index: 2;
             }
-            .text-input {
+            .native-input .sc-ion-input-ios {
                 border: none;
                 padding-left: 6px;
                 text-transform: uppercase;
                 font-weight: $font-semi-bold;
             }
-            .item-input.item-input-has-focus .label-md[floating],
-            .item-input.input-has-focus .label-md[floating],
-            .item-input-has-value .label-md[floating],
-            .input-has-value .label-md[floating] {
+            .item-input.item-input-has-focus .label-floating,
+            .item-input.input-has-focus .label-floating,
+            .item-input-has-value .label-floating,
+            .input-has-value .label-floating {
                 -webkit-transform: translate3d(6px, 0, 0) scale(0.8);
                 transform: translate3d(6px, 0, 0) scale(0.8);
                 color: #a08349;
@@ -138,7 +120,7 @@
                     }
                 }
             }
-            .item-md {
+            .item-interactive {
                 &.item-select {
                     padding-left: 8px;
                     .select-text {
@@ -258,7 +240,7 @@
             margin-top: 16px;
         }
     }
-    .text-input {
+    .native-input,.sc-ion-input-ios {
         border: 1px solid $clr-border;
         line-height: 3.8rem;
         border-radius: 3px;
@@ -273,17 +255,17 @@
         ion-input {
             display: inline;
             &:first-child {
-                .text-input {
+                .native-input,.sc-ion-input-ios {
                     margin-left: 0;
                 }
             }
             &:last-child {
-                .text-input {
+                .native-input,.sc-ion-input-ios {
                     margin-right: 0;
                 }
             }
         }
-        .text-input {
+        .native-input,.sc-ion-input-ios {
             width: 60px;
             height: 60px;
             text-align: center;
@@ -362,7 +344,7 @@
     }
 }
 
-.bs-form .form-group.typ-band textarea.text-input {
+.bs-form .form-group.typ-band textarea.native-input {
     resize: none;
     line-height: 1.8rem;
     height: 80px;
@@ -373,11 +355,19 @@
 @media only screen and (max-width: 360px) {
     .bs-form {
         .otp-parent {
-            .text-input {
+            .native-input,.sc-ion-input-ios {
                 width: 50px;
                 height: 50px;
                 margin: 0 2%;
             }
         }
     }
+}
+
+.label-stacked.sc-ion-label-ios-h {
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+    color: $form-label;
+    text-transform: uppercase;
+    margin-bottom: 11px;
 }

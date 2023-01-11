@@ -1,9 +1,20 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>landing</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header class="typ-transparent" [type]="'normal'" [typeTitle]="'logo'"></app-header>
 
-<ion-content>
-
+<ion-content [fullscreen]="true" class="bs-appIntro typ-landing">
+  <div class="introSlider">
+    <div class="mod-appintro">
+      <h2 class="title">
+        <span>Ready</span>
+        <span class="cm-bold">set go!</span>
+      </h2>
+    </div>
+  </div>
+  <div class="button-parent" text-center>
+    <div class="ion-text-center ion-align-vertical ">
+      <ion-button class="button" (click)="gotoCustIdPage()">I am an owner</ion-button>
+    </div>
+    <div class="ion-align-vertical ion-text-center">
+      <ion-button class="button button-link" (click)="gotoCustIdPage()">Continue as guest</ion-button>
+    </div>
+  </div>
 </ion-content>

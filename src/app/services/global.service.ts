@@ -174,4 +174,16 @@ razorPayAuth = {
     //     }
     // }
   }
+
+  getCustomerId(obj) {
+    let promise = new Promise((resolve, reject) => {
+        this._http.post(this.urls + "account/GetCustomerID", obj).toPromise().then(response => {
+            resolve(response);
+        })
+            .catch(response => {
+                reject(response);
+            })
+    })
+    return promise
+}
 }

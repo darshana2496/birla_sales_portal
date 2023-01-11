@@ -2,7 +2,7 @@ import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonComponentsModule } from './../common-components/common-components.module';
 import { AuthRoutingModule } from './auth-routing.module';
 
@@ -20,13 +20,14 @@ import { LandingPage } from './landing/landing.component';
     CommonModule,
     FormsModule,
     AuthRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AuthComponent, 
     LoginComponent,
     AppIntroPage,
     KnowYourCustIdPage,
-    LandingPage
+    LandingPage,
   ],
 })
 export class AuthModule { }
