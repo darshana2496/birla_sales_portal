@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
-import { GET_IP_API_URL } from '../utilities/constants/globals'
+import * as CryptoJS from 'crypto-js/crypto-js';
+import { AlertController } from '@ionic/angular';
+import { GET_IP_API_URL } from '../utilities/constants/globals';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,6 +17,7 @@ export class GlobalService {
   urls=environment.serverUrl;
   network: any;
   deviceIP: any;
+  encryptSecretKey = "AAECAwQFBgcICQoLDA0ODw==";
   commonheaderObj = {
     userName: "CPAppbirlaestate",
     password: "CPAppbirla!@#123"
@@ -25,11 +28,12 @@ razorPayAuth = {
     vcKeyId: "",
     vcKeySecret: ""
 }
-
-
+encryptedCustId: String;
+oneSignalPlayerId: string;
   constructor(
     public _http: HttpClient, 
     public storage: Storage,
+    public alertCtrl: AlertController,
     ) {}
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
@@ -87,25 +91,73 @@ razorPayAuth = {
     return promise;
   }
 
-  async getNetworkCarrierInfo(): Promise<any> {
+  async validateCustomerLogic(typedText: number) {
     let promise = new Promise((resolve, reject) => {
-        if (this.network.connectionType != "none") {
-          resolve(this.getIPAddress())
-        } else {
-          resolve("");
+        var pasedInt = typedText.toString();
+        this.encryptedCustId = this.encryptData(pasedInt);
+        console.log("Encrypted data is ", this.encryptedCustId);
+        if (pasedInt.length) {
+            let obj = {
+                vcCustomerID: this.encryptedCustId,
+                vcIp: "",
+                vcDeviceID: ""
+                // vcDeviceID: "db377163-09a3-48f6-a93f-13210a82f3ea"
+            };
+
+            this.validateCustomer(obj)
+                .then((data: any) => {
+                  console.log(data,'data console check');
+                    if (data.btIsSuccess) {
+                        this.customerId = typedText;
+                        resolve(data);
+                    } else {
+                        resolve(data);
+                    }
+                })
+                .catch((data: any) => {
+                    reject(data);
+                });
         }
     });
     return promise;
-  }
+}
+validateCustomer(obj) {
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .post(
+              environment.serverUrl + "account/validateCustomer",
+             obj
+          )
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          })
+          .catch(response => {
+              reject(response);
+          });
+  });
+  return promise;
+}
+encryptData(msg) {
+  var keySize = 256;
+  var salt = CryptoJS.lib.WordArray.random(16);
+  var key = CryptoJS.PBKDF2(this.encryptSecretKey, salt, {
+      keySize: keySize / 32,
+      iterations: 100
+  });
 
-  getIPAddress() {
-    this._http.get(GET_IP_API_URL).subscribe((response:any) => {
-      this.deviceIP = response.query;
-      }, err => {
-        this.deviceIP = '127.0.0.1'
-      })
-  }
+  var iv = CryptoJS.lib.WordArray.random(128 / 8);
 
+  var encrypted = CryptoJS.AES.encrypt(msg, key, {
+      iv: iv,
+      padding: CryptoJS.pad.Pkcs7,
+      mode: CryptoJS.mode.CBC
+  });
+
+  var result = CryptoJS.enc.Base64.stringify(salt.concat(iv).concat(encrypted.ciphertext));
+
+  return result;
+}
   //loading modal
   showOrShowloadingModel(action: string) {
     if (action == "show") {
@@ -174,4 +226,28 @@ razorPayAuth = {
     //     }
     // }
   }
+  decrypt(key, ciphertextB64) {
+
+    var key = CryptoJS.enc.Utf8.parse(key);
+    var iv = CryptoJS.lib.WordArray.create([0x00, 0x00, 0x00, 0x00]);
+
+    var decrypted = CryptoJS.AES.decrypt(ciphertextB64, key, { iv: iv });
+    return decrypted.toString(CryptoJS.enc.Utf8);
+}
+  async universalAlert(title: string, message: string, text: string) {
+  let alert = await this.alertCtrl.create({
+    header: title,
+    message: message,
+    buttons: [
+      {
+        text: text,
+        role: "cancel",
+        handler: () => {
+          console.log("Cancel clicked");
+        }
+      }
+    ]
+  });
+ alert.present();
+}
 }

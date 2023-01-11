@@ -16,7 +16,7 @@ export class HeaderComponent {
   @Input('typeTitle') typeTitle;
   @Input('typeEnd') typeEnd;
   @Input('pageNameVal') pageNameVal;
-  @Input() backbtn;
+  @Input() backbtn= false;
 
   text: string;
 

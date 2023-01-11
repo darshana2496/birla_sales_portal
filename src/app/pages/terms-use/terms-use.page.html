@@ -1,4 +1,4 @@
-<app-header [type]="'normal'" [backbtn]="'true'"  [pageNameVal]="'terms of use'" [typeTitle]="'pageName'" ></app-header>
+<app-header [type]="'normal'" [backbtn]="true"  [pageNameVal]="'terms of use'" [typeTitle]="'pageName'" ></app-header>
 <ion-content padding class="lyt-section bg-color ion-padding">
   <div class="content-inner">
       <div class="content no-padding">
@@ -6,7 +6,7 @@
               <div class="bs-static-cont">
                   <div class="term-of-use" [innerHTML]="global.sanitizeHtml(terms)"></div>
               </div>
-              <div class="bs-static-cont" *ngIf="terms == 'undefined'">
+              <div class="bs-static-cont" *ngIf="terms === 'undefined'">
                   No data found.
               </div>               
           </div>
