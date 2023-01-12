@@ -113,7 +113,7 @@ showResendOtpOption() {
             else {
               this.globalService.AcVerifiedAlert();
               // this.navCtrl.push("SetPinPage");
-              this.router.navigate(['/setpin'])
+              this.router.navigate(['/set-pin'])
             }
           }).catch((response: any) => {
 

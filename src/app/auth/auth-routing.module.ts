@@ -39,6 +39,10 @@ const routes: Routes = [
         component: OtpComponent
       },
       {
+        path:'set-pin',
+        component:SetPinComponent
+      },
+      {
         path: '',
         redirectTo: 'AppIntroPage',
         pathMatch: 'full'
@@ -50,10 +54,7 @@ const routes: Routes = [
     redirectTo: 'AppIntroPage',
     pathMatch: 'full'
   },
-  {
-    path:'set-pin',
-    component:SetPinComponent
-  }
+
  
 ];
 

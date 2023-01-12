@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
 import * as CryptoJS from 'crypto-js/crypto-js';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { GET_IP_API_URL } from '../utilities/constants/globals';
 @Injectable({
   providedIn: 'root',
@@ -32,10 +32,14 @@ encryptedCustId: String;
 oneSignalPlayerId: string;
 setPinValue: string;
 isPhoneUnlocked: boolean = false;
+loadingModel: any;
+loadingCtrlOpenCount: number = 0;
+
   constructor(
     public _http: HttpClient, 
     public storage: Storage,
     public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController
     ) {}
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
@@ -153,21 +157,20 @@ encryptData(msg) {
   //loading modal
   showOrShowloadingModel(action: string) {
     if (action == "show") {
-        // if (!this.loadingCtrlOpenCount) {
-        //     this.loadingModel = this.loadingCtrl.create({
-        //         content: "<img src='./assets/imgs/loader.gif' alt='loader'>",
-        //         spinner: "hide"
-        //     });
-        //     this.loadingCtrlOpenCount++;
-        //     this.loadingModel.present();
-        // }
+        if (!this.loadingCtrlOpenCount) {
+            this.loadingModel = this.loadingCtrl.create({
+                // content: "<img src='./assets/imgages/loader.gif' alt='loader'>",
+            });
+            this.loadingCtrlOpenCount++;
+            this.loadingModel.present();
+        }
     } else {
-        // if (this.loadingCtrlOpenCount) {
-        //     this.loadingModel.present().then((response: any) => {
-        //         this.loadingModel.dismiss();
-        //         this.loadingCtrlOpenCount = 0;
-        //     });
-        // }
+        if (this.loadingCtrlOpenCount) {
+            this.loadingModel.present().then((response: any) => {
+                this.loadingModel.dismiss();
+                this.loadingCtrlOpenCount = 0;
+            });
+        }
     }
   }
 
