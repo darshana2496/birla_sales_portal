@@ -30,6 +30,8 @@ razorPayAuth = {
 }
 encryptedCustId: String;
 oneSignalPlayerId: string;
+setPinValue: string;
+isPhoneUnlocked: boolean = false;
   constructor(
     public _http: HttpClient, 
     public storage: Storage,
@@ -250,7 +252,35 @@ encryptData(msg) {
   });
  alert.present();
 }
-
+onKeyUpEventOTP(event, index, repeat, uniqueComponentNameId) {
+  console.log(event, index, repeat, uniqueComponentNameId);
+  const eventCode = event.which || event.keyCode;
+  if (event.target.value.length === 1) {
+      if (index !== repeat) {
+          (<HTMLInputElement>(
+              this.getCodeBoxElement(index + 1, uniqueComponentNameId)
+          )).focus();
+      } else {
+          (<HTMLInputElement>(
+              this.getCodeBoxElement(index, uniqueComponentNameId)
+          )).blur();
+          // Submit code
+          console.log("submit code");
+      }
+  }
+  if (!event.target.value.length) {
+      if (index != 1) {
+          (<HTMLInputElement>(
+              this.getCodeBoxElement(index - 1, uniqueComponentNameId)
+          )).focus();
+      }
+  }
+  if (eventCode === 8 && index !== 1) {
+      (<HTMLInputElement>(
+          this.getCodeBoxElement(index - 1, uniqueComponentNameId)
+      )).focus();
+  }
+}
 getCustomerId(obj) {
   let promise = new Promise((resolve, reject) => {
       this._http.post(this.urls + "account/GetCustomerID", obj).toPromise().then(response => {
@@ -281,4 +311,37 @@ getIPAddress() {
       this.deviceIP = '127.0.0.1'
     })
 }
+
+onKeyEvent(event,compoid){
+  console.log(typeof event.target.value);
+
+  if(event.target.value) return compoid.setFocus();
+  
 }
+
+
+
+
+
+onFocusEventOTP(index, uniqueComponentNameId) {
+  for (let item = 1; item < index; item++) {
+      const currentElement = this.getCodeBoxElement(
+          item,
+          uniqueComponentNameId
+      );
+      if (!(<HTMLInputElement>currentElement).value) {
+          (<HTMLInputElement>currentElement).focus();
+          break;
+      }
+  }
+}
+getCodeBoxElement(index: number, uniqueComponentNameId: string) {
+  //console.log(index, uniqueComponentNameId);
+  let dom = document.getElementById(uniqueComponentNameId);
+  //console.log(dom);
+
+  let ref = dom.children.namedItem("pin" + index).children[0];
+  return ref;
+}
+}
+

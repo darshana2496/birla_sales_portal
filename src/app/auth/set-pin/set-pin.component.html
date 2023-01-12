@@ -1,0 +1,70 @@
+<app-header class="typ-transparent" [type]="'normal'" [typeTitle]="'logo'">
+</app-header>
+
+<ion-content class="lyt-section typ-bg ">
+  <div class="content-inner lyt-section typ-bg">
+    <div class="content ">
+      <div class="form-cont ion-padding">
+        <div class="bs-form">
+          <h2 class="form-title">Set your pin</h2>
+          <form [formGroup]="pinGroup" (ngSubmit)="fnsetPin()" novalidate>
+          <div class="form-group-wrap">
+            <span class="field-label"><span class="cm-bold">enter pin</span></span>
+            <div class="form-group ion-text-center" >
+              <div class="otp-parent display-flex-content">
+              
+                <ion-input #codeBox1 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin1" (keyup)="globalService.onKeyEvent($event,codeBox2);changeInput(1)"
+                formControlName="pin1"
+                 ></ion-input>
+
+                <ion-input #codeBox2 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin2" (keyup)="globalService.onKeyEvent($event,codeBox3);changeInput(2)"
+                formControlName="pin2"x 
+                  ></ion-input>
+
+                <ion-input #codeBox3 type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin3" (keyup)="globalService.onKeyEvent($event,codeBox4);changeInput(3)"
+                formControlName="pin3"
+                  ></ion-input>
+
+                <ion-input #codeBox4 type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin4" (keyup)="globalService.onKeyEvent($event,codeBox4);changeInput(4)"
+                formControlName="pin4"
+                  ></ion-input>
+                 </div></div></div>
+                  <div class="form-group-wrap">
+                    <span class="field-label"><span class="cm-bold">re-enter pin</span></span>
+                    <div class="form-group ion-text-center">
+                      <div class="otp-parent display-flex-content">
+                        <!--  Old Projects key ups n Focus
+                           (keyup)="globalService.onKeyUpEventOTP($event, 3,4,compoIDsecond);checkLength()"
+                          (focus)="globalService.onFocusEventOTP(3,compoIDsecond)" -->
+                        <ion-input #codeBox5  type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin4" (keyup)="globalService.onKeyEvent($event,codeBox6);changeInput(5)"
+                        formControlName="pin5"
+                        ></ion-input>
+         
+                        <ion-input #codeBox6  type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin1" (keyup)="globalService.onKeyEvent($event,codeBox7);changeInput(6)"
+                        formControlName="pin6"
+                          ></ion-input>
+        
+                        <ion-input #codeBox7  type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin2" (keyup)="globalService.onKeyEvent($event,codeBox8);changeInput(7)"
+                        formControlName="pin7"
+                         ></ion-input>
+        
+                        <ion-input #codeBox8 type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin3" (keyup)="globalService.onKeyEvent($event,codeBox8);changeInput(8)"
+                        formControlName="pin8"
+                          ></ion-input>
+                          </div>
+                          <div class="button-parent ion-text-center">
+                            <ion-button  [disabled]="!submitted" class="button" type="submit">PROCEED</ion-button>
+                          </div>
+    
+                          
+                    </div>
+                  </div>
+                </form>
+             
+          
+         
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
