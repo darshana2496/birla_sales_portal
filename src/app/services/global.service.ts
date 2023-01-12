@@ -319,6 +319,10 @@ onKeyEvent(event,compoid){
   
 }
 
+
+
+
+
 onFocusEventOTP(index, uniqueComponentNameId) {
   for (let item = 1; item < index; item++) {
       const currentElement = this.getCodeBoxElement(
