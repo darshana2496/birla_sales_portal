@@ -14,6 +14,8 @@ import { LoginComponent } from './login/login.component';
 import { AppIntroPage } from './app-intro/app-intro.component';
 import { KnowYourCustIdPage } from './know-your-cust-id/know-your-cust-id.component';
 import { LandingPage } from './landing/landing.component';
+import { SetPinComponent } from './set-pin/set-pin.component';
+import { OnlyNumberDirective } from '../utilities/directives/only-number.directive';
 
 
 @NgModule({
@@ -33,7 +35,9 @@ import { LandingPage } from './landing/landing.component';
     LandingPage,
     LoginWithCustIdPage,
     OtpComponent,
-    EncryptNumberPipe
+    EncryptNumberPipe,
+    SetPinComponent,
+    OnlyNumberDirective
   ],
   providers: [
     EncryptNumberPipe

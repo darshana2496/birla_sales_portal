@@ -7,6 +7,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppIntroPage } from './app-intro/app-intro.component';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
+import { SetPinComponent } from './set-pin/set-pin.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,15 @@ const routes: Routes = [
       },
     ]
   },
+  {
+    path: '',
+    redirectTo: 'AppIntroPage',
+    pathMatch: 'full'
+  },
+  {
+    path:'set-pin',
+    component:SetPinComponent
+  }
  
 ];
 
