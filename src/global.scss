@@ -17,7 +17,7 @@
 /* config */
 
 @import "./assets/sass/config/mixin";
-@import "./assets/sass/config/_variables";
+@import "./assets/sass/config/variables";
 
 /* element */
 
@@ -175,12 +175,6 @@ p {
 }
 .display-flex-content {
   display: flex;
-}
-
-.hello-world {
-  font-size: 40px;
-  color:brown;
-  font-weight: 900;
 }
 
 .button-link {

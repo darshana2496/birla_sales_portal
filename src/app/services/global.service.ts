@@ -281,6 +281,37 @@ onKeyUpEventOTP(event, index, repeat, uniqueComponentNameId) {
       )).focus();
   }
 }
+getCustomerId(obj) {
+  let promise = new Promise((resolve, reject) => {
+      this._http.post(this.urls + "account/GetCustomerID", obj).toPromise().then(response => {
+          resolve(response);
+      })
+          .catch(response => {
+              reject(response);
+          })
+  })
+  return promise
+}
+
+async getNetworkCarrierInfo(): Promise<any> {
+  let promise = new Promise((resolve, reject) => {
+      if (this.network.connectionType != "none") {
+        resolve(this.getIPAddress())
+      } else {
+        resolve("");
+      }
+  });
+  return promise;
+}
+
+getIPAddress() {
+  this._http.get(GET_IP_API_URL).subscribe((response:any) => {
+    this.deviceIP = response.query;
+    }, err => {
+      this.deviceIP = '127.0.0.1'
+    })
+}
+
 onKeyEvent(event,compoid){
   console.log(typeof event.target.value);
 

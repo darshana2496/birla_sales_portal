@@ -1,26 +1,28 @@
 
 .button {
   color: $clr-primary;
-  background: #fff;
+  --background: $clr-white;
   font-weight: $font-extra-bold;
   -webkit-box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
   -moz-box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
-  box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
+  --box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
   text-transform: uppercase;
   font-weight: $font-extra-bold;
   font-size: 1.4rem;
   display: inline-block;
 
-  &.activated {
-    background-color: #f5f5f5;
+  &.ion-activated {
+    --background-color: #f5f5f5;
     -webkit-box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
     -moz-box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
-    box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
+    --box-shadow: 0px 0px 7px 3px rgba(18, 48, 87, 0.1);
   }
 
   &.button-link {
-    background: transparent;
-    box-shadow: none;
+    --background: transparent;
+    --box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
     height: 2rem;
     font-size: 1.2rem;
     font-weight: $font-semi-bold;
@@ -143,4 +145,3 @@
     margin-top: 10px;
   }
 }
-
