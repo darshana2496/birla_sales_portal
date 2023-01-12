@@ -1,3 +1,5 @@
+import { OtpComponent } from './otp/otp.component';
+import { LoginWithCustIdPage } from './login-with-cust-id/login-with-cust-id.component';
 import { LandingPage } from './landing/landing.component';
 import { KnowYourCustIdPage } from './know-your-cust-id/know-your-cust-id.component';
 import { NgModule } from '@angular/core';
@@ -29,7 +31,11 @@ const routes: Routes = [
       },
       {
         path:'loginwithcustid',
-        loadChildren:()=>import('./login-with-cust-id/login-with-cust-id.module').then(m=>m.LoginWithCustIdPageModule)
+        component: LoginWithCustIdPage
+      },
+      {
+        path:'otp',
+        component: OtpComponent
       },
       {
         path: '',

@@ -3,8 +3,8 @@ import { GlobalService } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-term-n-condition',
-  templateUrl: './term-n-condition.page.html',
-  styleUrls: ['./term-n-condition.page.scss'],
+  templateUrl: './term-n-condition.component.html',
+  styleUrls: ['./term-n-condition.component.scss'],
 })
 export class TermNConditionPage implements OnInit {
   terms: string;

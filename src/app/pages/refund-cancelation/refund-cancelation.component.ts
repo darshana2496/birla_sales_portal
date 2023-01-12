@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-refund-cancelation',
-  templateUrl: './refund-cancelation.page.html',
-  styleUrls: ['./refund-cancelation.page.scss'],
+  templateUrl: './refund-cancelation.component.html',
+  styleUrls: ['./refund-cancelation.component.scss'],
 })
 export class RefundCancelationPage implements OnInit {
 
