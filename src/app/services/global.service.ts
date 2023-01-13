@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
 import * as CryptoJS from 'crypto-js/crypto-js';
-import { AlertController, MenuController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController } from '@ionic/angular';
 import { GET_IP_API_URL } from '../utilities/constants/globals';
 import { ICustomerProject } from '../utilities/constants/commonInterface';
 import { Subject } from 'rxjs';
@@ -35,6 +35,8 @@ encryptedCustId: String;
 oneSignalPlayerId: string;
 setPinValue: string;
 isPhoneUnlocked: boolean = false;
+loadingModel: any;
+loadingCtrlOpenCount: number = 0;
 selectedProjectObj: ICustomerProject = {
   customerProjectId: 0,
   customerName: "",
@@ -52,6 +54,7 @@ clearPinInput = new Subject<any>();
     public _http: HttpClient, 
     public storage: Storage,
     public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
     public menuCtrl: MenuController,
     public route: Router,
     ) {}
@@ -120,7 +123,6 @@ clearAllAddedProjects() {
       this.storage
         .get('ProjectList')
         .then((data) => {
-          console.log(data);
           if (data == null) {
             //first time load
             this.projectList = [];
@@ -137,13 +139,6 @@ clearAllAddedProjects() {
               }
             });
           }
-
-          console.log('this.globalService.projectList', this.projectList);
-          console.log('this.globalService.customerId', this.customerId);
-          console.log(
-            'this.globalService.selectedProjectObj',
-            this.selectedProjectObj
-          );
           resolve(true);
         })
         .catch(() => {});
@@ -157,7 +152,6 @@ clearAllAddedProjects() {
     let promise = new Promise((resolve, reject) => {
         var pasedInt = typedText.toString();
         this.encryptedCustId = this.encryptData(pasedInt);
-        console.log("Encrypted data is ", this.encryptedCustId);
         if (pasedInt.length) {
             let obj = {
                 vcCustomerID: this.encryptedCustId,
@@ -168,7 +162,6 @@ clearAllAddedProjects() {
 
             this.validateCustomer(obj)
                 .then((data: any) => {
-                  console.log(data,'data console check');
                     if (data.btIsSuccess) {
                         this.customerId = typedText;
                         resolve(data);
@@ -223,27 +216,25 @@ encryptData(msg) {
   //loading modal
   showOrShowloadingModel(action: string) {
     if (action == "show") {
-        // if (!this.loadingCtrlOpenCount) {
-        //     this.loadingModel = this.loadingCtrl.create({
-        //         content: "<img src='./assets/imgs/loader.gif' alt='loader'>",
-        //         spinner: "hide"
-        //     });
-        //     this.loadingCtrlOpenCount++;
-        //     this.loadingModel.present();
-        // }
+        if (!this.loadingCtrlOpenCount) {
+            this.loadingModel = this.loadingCtrl.create({
+                // content: "<img src='./assets/imgages/loader.gif' alt='loader'>",
+            });
+            this.loadingCtrlOpenCount++;
+            this.loadingModel.present();
+        }
     } else {
-        // if (this.loadingCtrlOpenCount) {
-        //     this.loadingModel.present().then((response: any) => {
-        //         this.loadingModel.dismiss();
-        //         this.loadingCtrlOpenCount = 0;
-        //     });
-        // }
+        if (this.loadingCtrlOpenCount) {
+            this.loadingModel.present().then((response: any) => {
+                this.loadingModel.dismiss();
+                this.loadingCtrlOpenCount = 0;
+            });
+        }
     }
   }
 
   checkInternetConnection() {
     var connectionType = this.network.connectionType;
-    console.log("NETWORK TYPE ====", connectionType);
     // if (connectionType == "none") {
     //     if (this.appCtrl.getRootNavs()[1].getPrevious() != null) {
     //         if (
@@ -372,25 +363,91 @@ getIPAddress() {
     })
 }
 
-onKeyEvent(event,compoid,previd){
-
- 
-
-
-
-if(event.key == 'Backspace')
-{
-
- previd.setFocus();
-}
-  else if(event.key !== 'Backspace' && event.target.value){
-    compoid.setFocus();
-  } 
-
+validateOtp(obj) {
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .post(this.urls + "account/validateotp", JSON.stringify(obj))
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
 }
 
+async checkAccessPin(): Promise<any> {
+  let promise = new Promise((resolve, reject) => {
+      this.storage.get("AccessPin").then(val => {
+          resolve(val);
+      });
+  });
+  return promise;
+}
 
+  //A/c verified alert
+  AcVerifiedAlert() {
+    const alert = this.alertCtrl.create({
+        header: "ACCOUNT VERIFIED",
+        cssClass: "ac-verify normal"
+    });
+  }
 
+   //add project to list, which is used in side menu and acc. to selected slider(project) api calls are done
+   addCustomerProjectList(serverObj) {
+    if (serverObj.vcProjectName == null) {
+        serverObj.vcProjectName = "____"
+    }
+
+    if (serverObj.vcImageUrl == null) {
+        serverObj.vcImageUrl = "./assets/imgs/default-fallback-image_2.png";
+    }
+
+    var obj = {
+        customerProjectId: parseInt(serverObj.vcCustomerCode, 10),
+        customerName: serverObj.vcCustomerName,
+        projectName: serverObj.vcProjectName,
+        projectImage: serverObj.vcImageUrl
+    };
+    this.projectList.push(obj);
+    this.storage.set("ProjectList", this.projectList);
+  }
+
+    //raise an issue alert during login
+    issue() {
+      const confirm = this.alertCtrl.create({
+          header: "NOT YOU?",
+          cssClass: "vertical-bottom",
+          message:
+              "There could be a typing error at your end, please try again. If you still face an issue kindly raise an issue and we will do the rest.",
+          buttons: [
+              // {
+              //     text: "RAISE AN ISSUE",
+              //     handler: () => {
+              //         this.appCtrl.getRootNavs()[1].push("ReportLoginIssuePage");
+              //     }
+              // },
+              // {
+              //     text: "TRY AGAIN",
+              //     handler: () => {
+              //         this.appCtrl.getRootNavs()[1].setRoot("CustIdPage");
+              //         console.log("Agree clicked");
+              //     }
+              // }
+          ]
+      });
+  }
+
+  onKeyEvent(event,compoid,previd){
+
+    if(event.key == 'Backspace')
+    {
+    
+     previd.setFocus();
+    }
+      else if(event.key !== 'Backspace' && event.target.value){
+        compoid.setFocus();
+      } 
+}
 
 
 onFocusEventOTP(index, uniqueComponentNameId) {

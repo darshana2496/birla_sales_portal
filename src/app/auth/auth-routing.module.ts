@@ -1,3 +1,5 @@
+import { OtpComponent } from './otp/otp.component';
+import { LoginWithCustIdPage } from './login-with-cust-id/login-with-cust-id.component';
 import { LandingPage } from './landing/landing.component';
 import { KnowYourCustIdPage } from './know-your-cust-id/know-your-cust-id.component';
 import { NgModule } from '@angular/core';
@@ -12,40 +14,51 @@ const routes: Routes = [
   {
     path: '',
     component: AuthComponent,
-  },
-  {
-    path: 'AppIntroPage',
-    component: AppIntroPage
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  },
-  {
-    path: 'know-your-cust-id',
-    component: KnowYourCustIdPage
-  },
-  {
-    path: 'landing',
-    component: LandingPage
-  },
-  {
-    path:'loginwithcustid',
-    loadChildren:()=>import('./login-with-cust-id/login-with-cust-id.module').then(m=>m.LoginWithCustIdPageModule)
+    children: [
+      {
+        path: 'AppIntroPage',
+        component: AppIntroPage
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'know-your-cust-id',
+        component: KnowYourCustIdPage
+      },
+      {
+        path: 'landing',
+        component: LandingPage
+      },
+      {
+        path:'loginwithcustid',
+        component: LoginWithCustIdPage
+      },
+      {
+        path:'otp',
+        component: OtpComponent
+      },
+      {
+        path:'set-pin',
+        component:SetPinComponent
+      },
+      {
+        path:'enter-pin',
+        component:EnterPinComponent
+      },
+      {
+        path: '',
+        redirectTo: 'AppIntroPage',
+        pathMatch: 'full'
+      },
+    ]
   },
   {
     path: '',
     redirectTo: 'AppIntroPage',
     pathMatch: 'full'
   },
-  {
-    path:'set-pin',
-    component:SetPinComponent
-  },
-  {
-    path:'enter-pin',
-    component:EnterPinComponent
-  }
  
 ];
 

@@ -107,7 +107,6 @@ export class AppComponent {
     } else {
         //this.globalService.checkAppReview();
         this.storage.get("FirstTimeAppLoad").then(val => {
-            console.log("FirstTimeAppLoad=", val);
             if (val == null) {
                 this.rootPage = "AppintroPage";
             } else {

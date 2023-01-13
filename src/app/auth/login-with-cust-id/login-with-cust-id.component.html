@@ -2,7 +2,7 @@
   <app-header class="typ-transparent" [type]="'normal'" [typeTitle]="'logo'"></app-header>
 </ion-header>
 
-<ion-content class="lyt-section typ-bg">
+<ion-content [fullscreen]="true" class="lyt-section typ-bg">
 
   <div class="content-inner lyt-section typ-bg">
       <div class="content">
@@ -19,9 +19,9 @@
                       <ion-input class="input" type="number" [(ngModel)]="typedText" (ionChange)="inputChanged($event)"></ion-input>
                     </ion-item>
                   <div class="button-parent">
-                      <button class="button" ion-button (click)="inputBtn()">
+                      <ion-button class="button" (click)="inputBtn()">
                           <span class="icons icon-next"></span>
-                      </button>
+                      </ion-button>
                      
                   </div>
                 

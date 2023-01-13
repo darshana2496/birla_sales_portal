@@ -53,7 +53,6 @@ export class JwtInterceptor implements HttpInterceptor {
     private async handleAccess(request: HttpRequest<any>, next: HttpHandler):
         Promise<HttpEvent<any>> {
 
-        console.log(request);
         if (!request.url.includes('getnotificationcount')) {//hide loader for notification api
         this.globalService.showOrShowloadingModel('show');
         }

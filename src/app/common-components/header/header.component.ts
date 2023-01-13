@@ -21,7 +21,6 @@ export class HeaderComponent {
   text: string;
 
   constructor(public menuCtrl: MenuController, public globalService: GlobalService, public navCtrl: NavController, public app: AppComponent, public router: Router) {
- console.log(navCtrl.navigateBack,'nav Detai')
   }
 
   openSideMenu() {
