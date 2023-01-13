@@ -13,19 +13,19 @@
             <div class="form-group ion-text-center" >
               <div class="otp-parent display-flex-content">
               
-                <ion-input #codeBox1 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin1" (keyup)="globalService.onKeyEvent($event,codeBox2);changeInput(1)"
+                <ion-input #codeBox1 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin1" (keyup)="globalService.onKeyEvent($event,codeBox2,codeBox1);changeInput()"
                 formControlName="pin1"
                  ></ion-input>
 
-                <ion-input #codeBox2 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin2" (keyup)="globalService.onKeyEvent($event,codeBox3);changeInput(2)"
+                <ion-input #codeBox2 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin2" (keyup)="globalService.onKeyEvent($event,codeBox3,codeBox1);changeInput()"
                 formControlName="pin2"x 
                   ></ion-input>
 
-                <ion-input #codeBox3 type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin3" (keyup)="globalService.onKeyEvent($event,codeBox4);changeInput(3)"
+                <ion-input #codeBox3 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin3" (keyup)="globalService.onKeyEvent($event,codeBox4,codeBox2);changeInput()"
                 formControlName="pin3"
                   ></ion-input>
 
-                <ion-input #codeBox4 type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin4" (keyup)="globalService.onKeyEvent($event,codeBox4);changeInput(4)"
+                <ion-input #codeBox4 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin4" (keyup)="globalService.onKeyEvent($event,codeBox5,codeBox3);changeInput()"
                 formControlName="pin4"
                   ></ion-input>
                  </div></div></div>
@@ -36,19 +36,19 @@
                         <!--  Old Projects key ups n Focus
                            (keyup)="globalService.onKeyUpEventOTP($event, 3,4,compoIDsecond);checkLength()"
                           (focus)="globalService.onFocusEventOTP(3,compoIDsecond)" -->
-                        <ion-input #codeBox5  type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin4" (keyup)="globalService.onKeyEvent($event,codeBox6);changeInput(5)"
+                        <ion-input #codeBox5 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin4" (keyup)="globalService.onKeyEvent($event,codeBox6,codeBox5);changeInput()"
                         formControlName="pin5"
                         ></ion-input>
          
-                        <ion-input #codeBox6  type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin1" (keyup)="globalService.onKeyEvent($event,codeBox7);changeInput(6)"
+                        <ion-input #codeBox6 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin1" (keyup)="globalService.onKeyEvent($event,codeBox7,codeBox5);changeInput()"
                         formControlName="pin6"
                           ></ion-input>
         
-                        <ion-input #codeBox7  type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin2" (keyup)="globalService.onKeyEvent($event,codeBox8);changeInput(7)"
+                        <ion-input #codeBox7 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin2" (keyup)="globalService.onKeyEvent($event,codeBox8,codeBox6);changeInput()"
                         formControlName="pin7"
                          ></ion-input>
         
-                        <ion-input #codeBox8 type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin3" (keyup)="globalService.onKeyEvent($event,codeBox8);changeInput(8)"
+                        <ion-input #codeBox8 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin3" (keyup)="globalService.onKeyEvent($event,codeBox8,codeBox7);changeInput()"
                         formControlName="pin8"
                           ></ion-input>
                           </div>

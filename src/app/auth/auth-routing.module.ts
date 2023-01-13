@@ -6,6 +6,7 @@ import { AppIntroPage } from './app-intro/app-intro.component';
 import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { SetPinComponent } from './set-pin/set-pin.component';
+import { EnterPinComponent } from './enter-pin/enter-pin.component';
 
 const routes: Routes = [
   {
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path:'set-pin',
     component:SetPinComponent
+  },
+  {
+    path:'enter-pin',
+    component:EnterPinComponent
   }
  
 ];
