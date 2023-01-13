@@ -4,8 +4,12 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
 import * as CryptoJS from 'crypto-js/crypto-js';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, MenuController } from '@ionic/angular';
 import { GET_IP_API_URL } from '../utilities/constants/globals';
+import { ICustomerProject } from '../utilities/constants/commonInterface';
+import { Subject } from 'rxjs';
+import { App } from '@capacitor/app';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -13,7 +17,6 @@ export class GlobalService {
   projectList: any[];
   customerId: number;
   activeSlideIndicator: number;
-  selectedProjectObj: any;
   urls=environment.serverUrl;
   network: any;
   deviceIP: any;
@@ -34,12 +37,26 @@ setPinValue: string;
 isPhoneUnlocked: boolean = false;
 loadingModel: any;
 loadingCtrlOpenCount: number = 0;
-
+selectedProjectObj: ICustomerProject = {
+  customerProjectId: 0,
+  customerName: "",
+  projectImage: "",
+  projectName: "Test",
+  userName: ""
+};
+enteredPin: string; 
+appOpenedOnlyFromNotification: boolean = false;
+notificationMsg: any = null;
+private showNotificationTabSubject = new Subject<any>();
+showNotificationTab = this.showNotificationTabSubject.asObservable();
+clearPinInput = new Subject<any>();
   constructor(
     public _http: HttpClient, 
     public storage: Storage,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public menuCtrl: MenuController,
+    public route: Router,
     ) {}
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
@@ -58,7 +75,49 @@ loadingCtrlOpenCount: number = 0;
     txt.innerHTML = rawHtml;
     return txt.value;
   }
-
+  openNotificationTab() {
+    this.showNotificationTabSubject.next(true);
+}
+clearPinInputs(): void {
+  this.clearPinInput.next(true);
+}
+  async showConfirmationAlertPrompt(title: string, subTitle: string) {
+  console.log(title, subTitle);
+  const alert = this.alertCtrl.create({
+      header: title,
+      subHeader: subTitle,
+      buttons: [
+          {
+              text: "Yes",
+              handler: data => {
+                  this.storage.remove("AccessPin");
+                  if (this.menuCtrl.isOpen()) {
+                      this.menuCtrl.close().then((response: any) => {
+                          this.route.navigate(['/loginwithcustid']);
+                          this.clearAllAddedProjects();
+                      });
+                  } else {
+                    this.route.navigate(['/loginwithcustid']);
+                  }
+              }
+          },
+          {
+              text: "Cancel",
+              role: "cancel",
+              handler: data => {
+                  console.log("Cancel clicked");
+              }
+          }
+      ]
+  });
+  (await alert).present();
+}
+clearAllAddedProjects() {
+  this.storage.remove("ProjectList");
+  this.storage.remove("ProjectCustomerId");
+  this.storage.remove("ProjectCustomerName");
+  this.projectList = [];
+}
   async setInitialProject() {
     let promise = new Promise((resolve, reject) => {
       this.storage
@@ -378,10 +437,16 @@ async checkAccessPin(): Promise<any> {
       });
   }
 
-  onKeyEvent(event,compoid){
-    console.log(typeof event.target.value);
-  
-    if(event.target.value) return compoid.setFocus();
+  onKeyEvent(event,compoid,previd){
+
+    if(event.key == 'Backspace')
+    {
+    
+     previd.setFocus();
+    }
+      else if(event.key !== 'Backspace' && event.target.value){
+        compoid.setFocus();
+      } 
 }
 
 
