@@ -18,16 +18,25 @@ export class EnterPinComponent implements OnInit {
   constructor(public route:Router,public fb: FormBuilder, public globalService: GlobalService, public storage: Storage) {
     this.enterpinGroup = fb.group({
       pin1: fb.control('', Validators.required),
-      pin2: fb.control('', Validators.required),
-      pin3: fb.control('', Validators.required),
-      pin4: fb.control('', Validators.required),
+      pin2: fb.control({value:'',disabled:true}, Validators.required),
+      pin3: fb.control({value:'',disabled:true}, Validators.required),
+      pin4: fb.control({value:'',disabled:true}, Validators.required),
     });
     this.enterpinGroup.valueChanges.subscribe(x => {
       // {value:'',disabled:true}
         // this.enterpinGroup.get('pin2').disable();
         //  this.enterpinGroup.get('pin3').disable();
         //   this.enterpinGroup.get('pin4').disable();
-      
+      if(x.pin1){
+        this.enterpinGroup.get('pin2').enable({onlySelf:true}); 
+      }
+      if(x.pin2)
+      {
+        this.enterpinGroup.get('pin3').enable({onlySelf:true}); 
+      }
+      if(x.pin3){
+        this.enterpinGroup.get('pin4').enable({onlySelf:true}); 
+      }
       if (x.pin1 && x.pin2 && x.pin3 && x.pin4) {
         this.generatedPinColapse = x.pin1 + x.pin2 + x.pin3 + x.pin4
         this.submitted = true;
@@ -62,7 +71,7 @@ export class EnterPinComponent implements OnInit {
             this.globalService.openNotificationTab();
           }, 500);
         }
-        this.route.navigate(['/pages'])
+        this.route.navigate(['/pages/dashboard'])
         this.globalService.isPhoneUnlocked = true;
       } else {
         this.globalService.clearPinInputs();

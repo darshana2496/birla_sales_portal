@@ -9,7 +9,7 @@ import { GET_IP_API_URL } from '../utilities/constants/globals';
 import { ICustomerProject } from '../utilities/constants/commonInterface';
 import { Subject } from 'rxjs';
 import { App } from '@capacitor/app';
-import { Router } from '@angular/router';
+import { Router, RouterStateSnapshot } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -54,6 +54,7 @@ clearPinInput = new Subject<any>();
     public alertCtrl: AlertController,
     public menuCtrl: MenuController,
     public route: Router,
+    public state: RouterStateSnapshot
     ) {}
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
@@ -77,6 +78,22 @@ clearPinInput = new Subject<any>();
 }
 clearPinInputs(): void {
   this.clearPinInput.next(true);
+}
+getProjectDetails() {
+  var tempIdforProject:number=602188;
+  console.log(this.customerId);
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .get(
+              environment.serverUrl + "Project/getprojectdetail/" + tempIdforProject
+              //need to replace tempIdforProject with customerId after merge
+          )
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
 }
   async showConfirmationAlertPrompt(title: string, subTitle: string) {
   console.log(title, subTitle);
@@ -115,6 +132,25 @@ clearAllAddedProjects() {
   this.storage.remove("ProjectCustomerName");
   this.projectList = [];
 }
+addCustomerProjectList(serverObj) {
+  if (serverObj.vcProjectName == null) {
+      serverObj.vcProjectName = "____"
+  }
+
+  if (serverObj.vcImageUrl == null) {
+      serverObj.vcImageUrl = "./assets/imgs/default-fallback-image_2.png";
+  }
+
+  var obj = {
+      customerProjectId: parseInt(serverObj.vcCustomerCode, 10),
+      customerName: serverObj.vcCustomerName,
+      projectName: serverObj.vcProjectName,
+      projectImage: serverObj.vcImageUrl
+  };
+  console.log("this.projectList", this.projectList);
+  this.projectList.push(obj);
+  this.storage.set("ProjectList", this.projectList);
+}
   async setInitialProject() {
     let promise = new Promise((resolve, reject) => {
       this.storage
@@ -152,7 +188,41 @@ clearAllAddedProjects() {
     });
     return promise;
   }
-
+  getCurrentlyActivePage(){
+    return this.state.url
+  }
+  headerSticky(e) {
+    var topPos = e.scrollTop;
+    var page = this.getCurrentlyActivePage();
+    //console.log(page);
+    if (topPos >= 150) {
+        if (page == "AboutBirlaPage") {
+            document
+                .getElementsByTagName("page-about-birla")[0]
+                .getElementsByTagName("app-header")[0]
+                .classList.remove("typ-transparent");
+        }
+        if (page == "CustomerTabsPage") {
+            document
+                .getElementsByTagName("page-customer-tabs")[0]
+                .getElementsByTagName("cm-header")[0]
+                .classList.remove("typ-transparent");
+        }
+    } else {
+        if (page == "AboutBirlaPage") {
+            document
+                .getElementsByTagName("page-about-birla")[0]
+                .getElementsByTagName("app-header")[0]
+                .classList.add("typ-transparent");
+        }
+        if (page == "CustomerTabsPage") {
+            document
+                .getElementsByTagName("page-customer-tabs")[0]
+                .getElementsByTagName("cm-header")[0]
+                .classList.add("typ-transparent");
+        }
+    }
+}
   async validateCustomerLogic(typedText: number) {
     let promise = new Promise((resolve, reject) => {
         var pasedInt = typedText.toString();

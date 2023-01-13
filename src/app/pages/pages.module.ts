@@ -9,6 +9,7 @@ import { PagesRoutingModule } from './pages-routing.module';
 
 import { PagesComponent } from './pages.page';
 import { PrivacyPolicyPageModule } from './privacy-policy/privacy-policy.module';
+import { DefaultImagePipe } from '../utilities/pipes/default-image';
 
 @NgModule({
   imports: [
@@ -18,7 +19,7 @@ import { PrivacyPolicyPageModule } from './privacy-policy/privacy-policy.module'
     CommonComponentsModule,
     PagesRoutingModule,
     PrivacyPolicyPageModule,
-  ],
-  declarations: [PagesComponent, FormLayoutComponent]
+  ],  exports:[DefaultImagePipe],
+  declarations: [PagesComponent, FormLayoutComponent,DefaultImagePipe]
 })
 export class PagesModule {}
