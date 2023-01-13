@@ -10,7 +10,7 @@ import { AnimationOptions } from '@ionic/angular/providers/nav-controller';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   @Input('type') type;
   @Input('typeTitle') typeTitle;
@@ -21,7 +21,9 @@ export class HeaderComponent {
   text: string;
 
   constructor(public menuCtrl: MenuController, public globalService: GlobalService, public navCtrl: NavController, public app: AppComponent, public router: Router) {
- console.log(navCtrl.navigateBack,'nav Detai')
+  }
+  ngOnInit(): void {
+    console.log(this.type,'type check')
   }
 
   openSideMenu() {

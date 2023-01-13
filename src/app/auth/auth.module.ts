@@ -1,3 +1,6 @@
+import { EncryptNumberPipe } from './../utilities/pipes/encrypt-number';
+import { OtpComponent } from './otp/otp.component';
+import { LoginWithCustIdPage } from './login-with-cust-id/login-with-cust-id.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -31,7 +34,15 @@ import { EnterPinComponent } from './enter-pin/enter-pin.component';
     AppIntroPage,
     KnowYourCustIdPage,
     LandingPage,
-    SetPinComponent,OnlyNumberDirective,EnterPinComponent
+    LoginWithCustIdPage,
+    OtpComponent,
+    EncryptNumberPipe,
+    SetPinComponent,
+    OnlyNumberDirective,
+    EnterPinComponent
   ],
+  providers: [
+    EncryptNumberPipe
+  ]
 })
 export class AuthModule { }
