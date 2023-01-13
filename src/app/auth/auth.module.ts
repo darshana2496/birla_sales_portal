@@ -13,6 +13,7 @@ import { KnowYourCustIdPage } from './know-your-cust-id/know-your-cust-id.compon
 import { LandingPage } from './landing/landing.component';
 import { SetPinComponent } from './set-pin/set-pin.component';
 import { OnlyNumberDirective } from '../utilities/directives/only-number.directive';
+import { EnterPinComponent } from './enter-pin/enter-pin.component';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { OnlyNumberDirective } from '../utilities/directives/only-number.directi
     AppIntroPage,
     KnowYourCustIdPage,
     LandingPage,
-    SetPinComponent,OnlyNumberDirective
+    SetPinComponent,OnlyNumberDirective,EnterPinComponent
   ],
 })
 export class AuthModule { }
