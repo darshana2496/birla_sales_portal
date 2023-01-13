@@ -15,7 +15,7 @@ const routes: Routes = [
     children: [
       {
         path: 'dashboard',
-        loadChildren: () => import('./tab1/dashboard.module').then(m => m.DashBoardPageModule)
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashBoardPageModule)
       },
       {
         path: 'tab2',
