@@ -12,6 +12,7 @@ import { RefundCancelationPage } from './refund-cancelation/refund-cancelation.c
 import { PrivacyPolicyPage } from './privacy-policy/privacy-policy.component';
 import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { PagesComponent } from './pages.page';
+import { DefaultImagePipe } from '../utilities/pipes/default-image';
 
 @NgModule({
   imports: [
@@ -21,13 +22,15 @@ import { PagesComponent } from './pages.page';
     CommonComponentsModule,
     PagesRoutingModule,
   ],
+  exports: [DefaultImagePipe],
   declarations: [
-    PagesComponent, 
+    DefaultImagePipe,
+    PagesComponent,
     FormLayoutComponent,
     PrivacyPolicyPage,
     RefundCancelationPage,
     TermNConditionPage,
-    TermsUsePage
-  ]
+    TermsUsePage,
+  ],
 })
 export class PagesModule {}

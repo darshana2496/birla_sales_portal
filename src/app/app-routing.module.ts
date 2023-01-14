@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ExtraOptions, NoPreloading, PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AssetsPreviewComponent } from './common-components/assets-preview/assets-preview.component';
 
 const routes: Routes = [
   {
@@ -9,7 +10,7 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule)
-  }
+  },{path:'asset-preview',component:AssetsPreviewComponent}
 ];
 
 const config: ExtraOptions = {

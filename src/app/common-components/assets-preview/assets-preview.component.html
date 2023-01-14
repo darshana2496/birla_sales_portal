@@ -1,0 +1,27 @@
+<ion-content class="mod-asset-preview">
+
+  <button class="button-link button close-preview" (click)="closePage()">
+    <i class="icon-close"></i>
+  </button>
+
+  <div class="image-container" *ngIf="previewData.fileType === 'jpg' || previewData.fileType === 'png'">
+    <ion-slides pager [options]="slideOpts" #PreviewSlider style="position:absolute">
+      <ion-slide>
+       
+          <img src="{{imageUrl}}" />
+
+      </ion-slide>
+    </ion-slides>
+    <div class="loading-container">
+      <div>
+        <ion-spinner></ion-spinner>
+      </div>
+    </div>
+  </div>
+
+  <div padding id="Preview" class="videoPreview" *ngIf="previewData.fileType === 'video'">
+    <iframe width="100%" height="90%" [src]="trustedVideoUrl ? trustedVideoUrl : null"
+      (load)="trustedVideoUrl ? handleIFrameLoadEvent() : null" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+</ion-content>
