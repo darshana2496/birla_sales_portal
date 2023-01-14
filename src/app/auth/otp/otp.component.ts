@@ -109,6 +109,7 @@ showResendOtpOption() {
             if (response != null) {//when user is logged in 
               // this.navCtrl.push("ModalProjectAddSuccessPage", { 'projectObj': obj })
               console.log("Success page");
+              this.router.navigate(['/tab1'])
             }
             else {
               this.globalService.AcVerifiedAlert();
