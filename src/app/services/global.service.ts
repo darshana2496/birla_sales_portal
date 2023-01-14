@@ -13,7 +13,12 @@ import { GET_IP_API_URL } from '../utilities/constants/globals';
 import { ICustomerProject } from '../utilities/constants/commonInterface';
 import { Subject } from 'rxjs';
 import { App } from '@capacitor/app';
-import { NavigationEnd, NavigationExtras, Router, RouterStateSnapshot } from '@angular/router';
+import {
+  NavigationEnd,
+  NavigationExtras,
+  Router,
+  RouterStateSnapshot,
+} from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -82,40 +87,40 @@ export class GlobalService {
   }
   openNotificationTab() {
     this.showNotificationTabSubject.next(true);
-}
-clearPinInputs(): void {
-  this.clearPinInput.next(true);
-}
-getProjectDetails() {
-  var tempIdforProject:number=602188;
-  console.log(this.customerId);
-  let promise = new Promise((resolve, reject) => {
-      this._http
-          .get(
-              environment.serverUrl + "Project/getprojectdetail/" + this.customerId
-              //need to replace tempIdforProject with customerId after merge
-          )
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
-previewImage(imgUrl: string) {
-  let navParam = {
-      fileType: "jpg",
-      isDownloaded: false,
   }
-  navParam['vcFileUrl'] = imgUrl;
-  let navigationExtras: NavigationExtras = {
-    queryParams: {
-        "data": JSON.stringify(navParam)
-    }
-  };
-  this.route.navigate(['/asset-preview'], navigationExtras);
-  //navParam['vcFileUrl'] = "https://portal.birlaestates.com/Uploads/Layout/A203.JPG";
-}
+  clearPinInputs(): void {
+    this.clearPinInput.next(true);
+  }
+  getProjectDetails() {
+    var tempIdforProject: number = 602188;
+    console.log(this.customerId);
+    let promise = new Promise((resolve, reject) => {
+      this._http
+        .get(
+          environment.serverUrl + 'Project/getprojectdetail/' + this.customerId
+          //need to replace tempIdforProject with customerId after merge
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+  previewImage(imgUrl: string) {
+    let navParam = {
+      fileType: 'jpg',
+      isDownloaded: false,
+    };
+    navParam['vcFileUrl'] = imgUrl;
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        data: JSON.stringify(navParam),
+      },
+    };
+    this.route.navigate(['/asset-preview'], navigationExtras);
+    //navParam['vcFileUrl'] = "https://portal.birlaestates.com/Uploads/Layout/A203.JPG";
+  }
   async showConfirmationAlertPrompt(title: string, subTitle: string) {
     console.log(title, subTitle);
     const alert = this.alertCtrl.create({
@@ -182,14 +187,13 @@ previewImage(imgUrl: string) {
     });
     return promise;
   }
-  getCurrentlyActivePage(){
+  getCurrentlyActivePage() {
     let routerUrl;
     this.route.events.subscribe((res: any) => {
       if (res instanceof NavigationEnd) {
-           
-        routerUrl= res.url;          
-            
-           } });
+        routerUrl = res.url;
+      }
+    });
     return routerUrl;
   }
   headerSticky(e) {
@@ -197,33 +201,33 @@ previewImage(imgUrl: string) {
     var page = this.getCurrentlyActivePage();
     //console.log(page);
     if (topPos >= 150) {
-        if (page == "AboutBirlaPage") {
-            document
-                .getElementsByTagName("page-about-birla")[0]
-                .getElementsByTagName("app-header")[0]
-                .classList.remove("typ-transparent");
-        }
-        if (page == "CustomerTabsPage") {
-            document
-                .getElementsByTagName("page-customer-tabs")[0]
-                .getElementsByTagName("cm-header")[0]
-                .classList.remove("typ-transparent");
-        }
+      if (page == 'AboutBirlaPage') {
+        document
+          .getElementsByTagName('page-about-birla')[0]
+          .getElementsByTagName('app-header')[0]
+          .classList.remove('typ-transparent');
+      }
+      if (page == 'CustomerTabsPage') {
+        document
+          .getElementsByTagName('page-customer-tabs')[0]
+          .getElementsByTagName('cm-header')[0]
+          .classList.remove('typ-transparent');
+      }
     } else {
-        if (page == "AboutBirlaPage") {
-            document
-                .getElementsByTagName("page-about-birla")[0]
-                .getElementsByTagName("app-header")[0]
-                .classList.add("typ-transparent");
-        }
-        if (page == "CustomerTabsPage") {
-            document
-                .getElementsByTagName("page-customer-tabs")[0]
-                .getElementsByTagName("cm-header")[0]
-                .classList.add("typ-transparent");
-        }
+      if (page == 'AboutBirlaPage') {
+        document
+          .getElementsByTagName('page-about-birla')[0]
+          .getElementsByTagName('app-header')[0]
+          .classList.add('typ-transparent');
+      }
+      if (page == 'CustomerTabsPage') {
+        document
+          .getElementsByTagName('page-customer-tabs')[0]
+          .getElementsByTagName('cm-header')[0]
+          .classList.add('typ-transparent');
+      }
     }
-}
+  }
   async validateCustomerLogic(typedText: number) {
     let promise = new Promise((resolve, reject) => {
       var pasedInt = typedText.toString();
