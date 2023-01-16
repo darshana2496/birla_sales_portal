@@ -1,0 +1,85 @@
+//app-select
+.app-select {
+
+    &:hover {
+        --background-hover: transparent;
+    }
+
+    &:focus {
+        --background-focused: transparent;
+    }
+
+    &.item-has-value,
+    &.item-has-focus {
+        .app-field-label {
+            color: #a08349;
+        }
+    }
+
+    ion-select::part(text) {
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #4d4d4f;
+    }
+
+}
+
+
+.app-select-alert {
+    .alert-wrapper {
+        min-width: 80%;
+        max-width: 80%;
+    }
+
+    .alert-head {
+        padding: 2.2rem 2rem;
+    }
+
+    .alert-title {
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        text-transform: uppercase;
+        color: #000000;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .alert-button-group {
+        display: flex;
+        align-items: center;
+
+        .alert-button {
+            width: 50%;
+            margin: 0;
+            text-align: center;
+            color: #840c6f;
+
+            .alert-button-inner {
+                justify-content: center;
+            }
+        }
+    }
+
+    .alert-radio-button {
+        &[aria-checked="true"] {
+            .alert-radio-label {
+                background: #f9f9f9;
+                color: #840c6f;
+            }
+        }
+    }
+
+    .alert-radio-group {
+        .alert-radio-icon {
+            display: none;
+        }
+
+        .alert-radio-label {
+            padding: 1.6rem 2.6rem;
+            color: #840c6f;
+            font-size: 1.6rem;
+            line-height: 1.8rem;
+        }
+    }
+}
