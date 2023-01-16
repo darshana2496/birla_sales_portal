@@ -1,153 +1,158 @@
 .bs-header {
-    text-align: center;
-    box-shadow: 0 1px 30px -6px #bfbfbf;
-    .logo-wrap {
-        width: 86px;
-        padding: 10px;
-        margin: 0 auto;
-        img {
-            width: 100%;
-        }
+  text-align: center;
+  box-shadow: 0 1px 30px -6px #bfbfbf;
+  .logo-wrap {
+    width: 86px;
+    padding: 10px;
+    margin: 0 auto;
+    img {
+      width: 100%;
     }
-    ion-nav.toolbar {
-        display: block;
+  }
+  ion-nav.toolbar {
+    display: block;
+  }
+  .back-button.show-back-button {
+    float: left;
+    margin-top: 10px;
+    padding-left: 0;
+    min-width: 0;
+  }
+  .back-button-icon-md {
+    font-size: 1.6rem;
+    color: $clr-primary;
+  }
+  .toolbar-background-md {
+    background: #ffffff;
+  }
+  .button {
+    &.button-link {
+      font-size: 1.7rem;
+      line-height: 2rem;
     }
-    .back-button.show-back-button {
-        float: left;
-        margin-top: 10px;
-        padding-left: 0;
-        min-width: 0;
-    }
-    .back-button-icon-md {
-        font-size: 1.6rem;
-        color: $clr-primary;
-    }
-    .toolbar-background-md {
-        background: #ffffff;
-    }
-    .button {
-        &.button-link {
-            font-size: 1.7rem;
-            line-height: 2rem;
-            height: auto;
-        }
-    }
+  }
 
-    .close-size-custom{
-        font-size: 1.3rem !important;
-    }
+  .close-size-custom {
+    font-size: 1.3rem !important;
+  }
 }
 
-app-header{
-    .toolbar,
-    .toolbar-ios {
-        min-height: 56px;
+app-header {
+  .toolbar {
+    min-height: 56px;
+  }
+  & ~ .lyt-section {
+    .scroll-content {
+      margin-top: 56px;
     }
-    .toolbar,
-    .toolbar-md {
-        min-height: 56px;
+  }
+}
+
+.header-with-logo {
+  ion-toolbar {
+    --min-height: 80px;
+  }
+  .toolbar {
+    min-height: 80px;
+  }
+  & ~ .lyt-section {
+    .scroll-content {
+      margin-top: 80px;
     }
-    &~.lyt-section {
-        .scroll-content {
-            margin-top: 56px;
-        }
-    }
+  }
 }
 
 .title-default {
-    font-size: 1.2rem;
-    line-height: 2.2rem;
-    font-weight: $font-semi-bold;
-    span {
-        padding: 15px 10px 0;
-        display: block;
-        text-transform: uppercase;
-    }
+  font-size: 1.2rem;
+  line-height: 2.2rem;
+  font-weight: $font-semi-bold;
+  span {
+    // padding: 15px 10px 0;
+    display: block;
+    text-transform: uppercase;
+  }
 }
 
 .menu-btn {
-    color: $clr-primary;
-    font-size: 1.6rem;
-    padding: 10px 0px 0;
-    float: left;
+  color: $clr-primary;
+  font-size: 1.6rem;
+  padding: 10px 0px 0;
+  float: left;
 }
 
 .help-btn {
-    color: $clr-primary;
+  color: $clr-primary;
+  font-size: 1.6rem;
+  padding: 10px 0px 0;
+  float: right;
+  .icon-info {
     font-size: 1.6rem;
-    padding: 10px 0px 0;
-    float: right;
-    .icon-info {
-        font-size: 1.6rem;
-    }
+  }
 }
 
 .notification-btn {
-    color: $clr-primary;
+  color: $clr-primary;
+  font-size: 1.6rem;
+  padding: 10px 0px 0;
+  float: right;
+  .icon-bell-outline {
     font-size: 1.6rem;
-    padding: 10px 0px 0;
-    float: right;
-    .icon-bell-outline {
-        font-size: 1.6rem;
-    }
+  }
 }
 
 .toolbar,
 .toolbar-ios {
-    background: $clr-white;
-    min-height: 80px;
+  background: $clr-white;
+  min-height: 80px;
 }
 
 .header-md::after {
-    background-image: none;
+  background-image: none;
 }
 
 ion-title {
-    position: absolute;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 60%;
-    top: 2rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 60%;
+  top: 2rem;
 }
 
 .cm-img {
-    height: 70px;
-    padding: 10px;
+  height: 70px;
+  padding: 10px;
 }
 
 .typ-transparent {
-    .toolbar-background-md {
-        background: transparent;
+  ion-toolbar {
+    --background: transparent;
+  }
+  .back-button.show-back-button {
+    .ion-md-arrow-back {
+      color: $clr-white;
     }
-    .back-button.show-back-button {
-        .ion-md-arrow-back
-        {
-            color: $clr-white;
-        }
-    }
-    // ion-title {
-    //     display: none;
-    // }
-    .toolbar,
-    .toolbar-ios {
-        background: transparent;
-    }
-    .menu-btn .icon-profile,
-    .notification-btn .icon-download,
-    .notification-btn .icon-bell-outline,
-    .notification-btn .icon-call-outline {
-        color: $clr-white;
-        font-size: 1.6rem;
-    }
-    .toolbar-title-md {
-        color: #ffffff;
-    }
-    .cm-img {
-        height: 56px;
-        padding: 4px;
-    }
-    .bs-header {
-        box-shadow: none;
-    }
+  }
+
+  .toolbar,
+  .toolbar-ios {
+    background: transparent;
+  }
+  .menu-btn .icon-profile,
+  .notification-btn .icon-download,
+  .notification-btn .icon-bell-outline,
+  .notification-btn .icon-call-outline {
+    color: $clr-white;
+    font-size: 1.6rem;
+  }
+  .toolbar-title-md {
+    color: #ffffff;
+  }
+  .cm-img {
+    height: 56px;
+    padding: 4px;
+  }
+  .bs-header {
+    box-shadow: none;
+  }
 }
