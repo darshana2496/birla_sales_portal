@@ -6,6 +6,7 @@ import { PrivacyPolicyPage } from './privacy-policy/privacy-policy.component';
 import { TermsUsePage } from './terms-use/terms-use.component';
 import { TermNConditionPage } from './term-n-condition/term-n-condition.component';
 import { RefundCancelationPage } from './refund-cancelation/refund-cancelation.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,9 @@ const routes: Routes = [
         path: '',
         loadChildren: () =>
           import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+      },
+      {
+        path:'about-birla',component:AboutComponent
       },
       {
         path: 'refundcancel',

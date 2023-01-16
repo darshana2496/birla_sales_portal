@@ -8,7 +8,6 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['notification.page.scss'],
 })
 export class NotificationPage implements OnInit {
-  public static pageName = "NotificationPage";
   notificationList: any = [];
   constructor(public globalService: GlobalService) {}
   ngOnInit(): void {

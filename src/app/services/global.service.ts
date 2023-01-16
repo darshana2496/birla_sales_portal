@@ -1,12 +1,12 @@
 import { Network } from '@capacitor/network';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
 import * as CryptoJS from 'crypto-js/crypto-js';
 import {
   AlertController,
-  LoadingController,
   MenuController,
 } from '@ionic/angular';
 import { GET_IP_API_URL } from '../utilities/constants/globals';
@@ -68,7 +68,7 @@ export class GlobalService {
     public loadingCtrl: LoadingController,
     public menuCtrl: MenuController,
     public route: Router
-  ) {}
+  ) {  }
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
       this._http
@@ -80,6 +80,17 @@ export class GlobalService {
     });
     return promise;
   }
+  getAboutBirlaEstates() {
+    let promise = new Promise((resolve, reject) => {
+        this._http
+            .get(environment.serverUrl + "project/getProjects")
+            .toPromise()
+            .then(response => {
+                resolve(response);
+            });
+    });
+    return promise;
+}
   sanitizeHtml(rawHtml: any) {
     var txt = document.createElement('textarea');
     txt.innerHTML = rawHtml;
@@ -217,9 +228,9 @@ getNotifications() {
   headerSticky(e) {
     var topPos = e.detail.scrollTop;
     if (topPos >= 150) {
-      if (this.currentlyActivePage == 'AboutBirlaPage') {
+      if (this.currentlyActivePage == '/about-birla') {
         document
-          .getElementsByTagName('page-about-birla')[0]
+          .getElementsByTagName('app-about')[0]
           .getElementsByTagName('app-header')[0]
           .classList.remove('typ-transparent');
       }
@@ -230,10 +241,10 @@ getNotifications() {
           .classList.remove('typ-transparent');
       }
     } else {
-      if (this.currentlyActivePage == 'AboutBirlaPage') {
+      if (this.currentlyActivePage == '/about-birla') {
         document
-          .getElementsByTagName('page-about-birla')[0]
-          .getElementsByTagName('app-header')[0]
+        .getElementsByTagName('app-about')[0]
+        .getElementsByTagName('app-header')[0]
           .classList.add('typ-transparent');
       }
       if (this.currentlyActivePage == '/dashboard') {
@@ -309,22 +320,83 @@ getNotifications() {
     return result;
   }
   //loading modal
-  showOrShowloadingModel(action: string) {
-    if (action == 'show') {
-      if (!this.loadingCtrlOpenCount) {
-        this.loadingModel = this.loadingCtrl.create({
-          // content: "<img src='./assets/imgages/loader.gif' alt='loader'>",
-        });
+async fnShowLoader(){
+   await this.loadingCtrl.create({  
+    message:"<img src='../../assets/images/loader.gif' alt='loader'>"     
+    }).then(x=>{
+      // if(data=='show')
+      // {
+        x.present();
+      // }
+    // else{
+      // x.onDidDismiss().then((response) => {
+      //   console.log('Loader dismissed', response);
+      // });
+    // }
+     
+    })
+}
+async fnDismissLoader(){
+  await this.loadingCtrl.dismiss(); 
+  // .then(x=>{
+  //   console.log(x.toString(),'resolve');
+  // }).catch((err)=>{
+  // console.log(err.toString());
+  // });
+}
+async dismiss() {
+  let topLoader = await this.loadingCtrl.getTop();
+  while (topLoader) {
+    if (!(await topLoader.dismiss())) {
+      // throw new Error('Could not dismiss the topmost loader. Aborting...');
+      break
+    }
+    topLoader = await this.loadingCtrl.getTop();
+  }
+}
+async showOrShowloadingModel(action: string) {
+  if (action == 'show') {
+    console.log(' ------Showing----')
+    if (!this.loadingCtrlOpenCount) {
+      // this.loadingModel=this.loadingCtrl.create({  
+      //   message:"<img src='../../assets/images/loader.gif' alt='loader'>"     
+      //   }).then(x=>{
+      //     // x.present();
+      //   });
+      //  this.fnShowLoader();
+    // this.loadingCtrl.create({
+    //       message:"<img src='../../assets/images/loader.gif' alt='loader'>"     
+    //       }).then((response) => {
+    //         response 
+    //   });
         this.loadingCtrlOpenCount++;
-        this.loadingModel.present();
+        // this.loadingModel.present();
+        console.log("this.loadingCtrlOpenCount", this.loadingCtrlOpenCount);
+   
       }
-    } else {
+    } 
+    else {
+      console.log('-----Hidding');
       if (this.loadingCtrlOpenCount) {
-        this.loadingModel.present().then((response: any) => {
-          this.loadingModel.dismiss();
-          this.loadingCtrlOpenCount = 0;
-        });
+      
+      //   this.loadingCtrl.dismiss().then(response => {
+      //     console.log('Loader closed!', response);
+      //     this.loadingCtrlOpenCount = 0;
+      // }).catch((err) => {
+      //   this.loadingCtrlOpenCount = 0;
+      //   this.loadingCtrl.dismiss();
+      //     console.log('Error occured : ', err);
+      // });
+        // this.fnShowLoader('hide');
+        // .then((response) => {
+        //   this.loadingCtrlOpenCount = 0;
+        //   console.log('Loader closed!', response);
+        // }).catch((err) => {
+        //   this.loadingCtrlOpenCount = 0;
+        //   console.log('Error occured : ', err);
+        // });
       }
+
     }
   }
 

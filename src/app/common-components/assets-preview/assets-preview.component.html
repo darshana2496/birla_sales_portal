@@ -5,7 +5,7 @@
   </button>
 
   <div class="image-container" *ngIf="previewData.fileType === 'jpg' || previewData.fileType === 'png'">
-    <ion-slides pager [options]="slideOpts" #PreviewSlider style="position:absolute">
+    <ion-slides pager="false" [options]="slideOpts" #PreviewSlider style="position:absolute">
       <ion-slide>
        
           <img src="{{imageUrl}}" />

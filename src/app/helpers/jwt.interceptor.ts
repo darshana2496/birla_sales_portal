@@ -9,7 +9,6 @@ export class JwtInterceptor implements HttpInterceptor {
 
     constructor(public globalService: GlobalService) { }
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let fromPromise = from(this.handleAccess(request, next))
         // return Observable.fromPromise(this.handleAccess(request, next)).map(response => {
         //     console.log(response);
 
@@ -29,11 +28,12 @@ export class JwtInterceptor implements HttpInterceptor {
         //     }
         //     return Observable.of(error);
         // });
-
+         let fromPromise = from(this.handleAccess(request, next))
         fromPromise.subscribe((response:any)=> {
-            this.globalService.showOrShowloadingModel('hide');
+             this.globalService.showOrShowloadingModel('hide');
             return response;
         }, error => {
+            console.log(error);
             if (error.status == 401 || error.status == 0 || error.status == 500 || error.status == 400 || error.status == 404) {
                 this.globalService.showOrShowloadingModel('hide');
             }
@@ -52,10 +52,9 @@ export class JwtInterceptor implements HttpInterceptor {
 
     private async handleAccess(request: HttpRequest<any>, next: HttpHandler):
         Promise<HttpEvent<any>> {
-
         if (!request.url.includes('getnotificationcount')) {//hide loader for notification api
         this.globalService.showOrShowloadingModel('show');
-        }
+        }    
 
         let changedRequest = request;
         const headerSettings: { [name: string]: string | string[]; } = {};
