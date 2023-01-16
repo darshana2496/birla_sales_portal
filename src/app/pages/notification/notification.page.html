@@ -1,16 +1,19 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [type]="'menu'" [typeTitle]="'pageName'" [pageNameVal]="'Notifications'"></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
+<ion-content  class="lyt-section lyt-doc typ-bg ion-padding">
+  <div class="content-inner">
+      <div class="content no-padding">
+          <div class="vertical-top">
+              <ul class="bs-message-list type-notification" *ngIf="notificationList.length">
+                  <li class="item unread" *ngFor="let notification of notificationList">
+                      <div class="title">{{notification.vcSubject}}</div>
+                      <p class="desc">{{notification.vcMessage}}</p>
+                      <p class="date">{{notification.vcCreatedOn}} | {{notification.vcNotificationTime}}</p>
+                  </li>
+              </ul>  
+              <div class="ion-text-center" *ngIf="!notificationList.length">No notifications found</div>         
+          </div>
+      </div>
+  </div>
 </ion-content>

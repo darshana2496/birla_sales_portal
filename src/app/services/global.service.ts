@@ -122,6 +122,32 @@ export class GlobalService {
     this.route.navigate(['/asset-preview'], navigationExtras);
     //navParam['vcFileUrl'] = "https://portal.birlaestates.com/Uploads/Layout/A203.JPG";
   }
+  updateCustomerNotification() {
+    let obj = {
+        "vcCustomerID":this.customerId
+    }
+
+    let promise = new Promise((resolve, reject) => {
+        this._http
+            .post(environment.serverUrl + "v1/config/updatecustomernotification/", obj)
+            .toPromise()
+            .then(response => {
+                resolve(response);
+            });
+    });
+    return promise;
+}
+getNotifications() {
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .get(environment.serverUrl  + "config/getnotification/" + this.customerId)
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
+}
   async showConfirmationAlertPrompt(title: string, subTitle: string) {
     console.log(title, subTitle);
     const alert = this.alertCtrl.create({
