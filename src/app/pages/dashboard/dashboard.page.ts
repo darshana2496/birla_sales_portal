@@ -175,11 +175,6 @@ export class DashBoard implements OnInit {
       });
   }
 
-  @HostListener('ionScroll', ['$event']) onContentScroll($event) {
-    console.log('CONTENT SCROLLED', $event);
-    // this.domCtrl.read()
-  }
-
   viewImage(imgUrl: string): void {
     console.log(imgUrl);
     if (imgUrl != null || imgUrl.length)
