@@ -14,20 +14,7 @@ import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { PagesComponent } from './pages.page';
 
 @NgModule({
-<<<<<<< HEAD
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    CommonComponentsModule,
-    PagesRoutingModule,
-  ],
- 
   declarations: [
-  
-=======
-  declarations: [
->>>>>>> 01def1e87ec2b3341d490c59937d01018d319fba
     PagesComponent,
     FormLayoutComponent,
     PrivacyPolicyPage,

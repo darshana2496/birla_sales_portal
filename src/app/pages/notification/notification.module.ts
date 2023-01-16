@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NotificationPage } from './notification.page';
 
 import { NotificationPageRoutingModule } from './notification-routing.module';
+import { CommonComponentsModule } from 'src/app/common-components/common-components.module';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { NotificationPageRoutingModule } from './notification-routing.module';
     CommonModule,
     FormsModule,
     NotificationPageRoutingModule,
+    CommonComponentsModule
   ],
   declarations: [NotificationPage],
 })
