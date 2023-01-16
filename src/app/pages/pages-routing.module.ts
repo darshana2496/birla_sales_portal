@@ -6,6 +6,7 @@ import { PrivacyPolicyPage } from './privacy-policy/privacy-policy.component';
 import { TermsUsePage } from './terms-use/terms-use.component';
 import { TermNConditionPage } from './term-n-condition/term-n-condition.component';
 import { RefundCancelationPage } from './refund-cancelation/refund-cancelation.component';
+import { ChangePinComponent } from './change-pin/change-pin.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'formLayout',
         component: FormLayoutComponent,
+      },
+      {
+        path: 'change-pin',
+        component: ChangePinComponent,
       },
     ],
   },

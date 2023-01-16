@@ -5,7 +5,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -34,7 +34,7 @@
 @import "./assets/sass/common/common";
 /* ionic extended */
 
-// @import "./assets/sass/ionic-extended/button";
+@import "./assets/sass/ionic-extended/button";
 @import "./assets/sass/ionic-extended/grid";
 @import "./assets/sass/ionic-extended/alert";
 @import "./assets/sass/ionic-extended/swiper";
@@ -51,7 +51,6 @@
 @import "./assets/sass/base/app-form";
 @import "./assets/sass/base/app-otp-input";
 @import "./assets/sass/base/app-search-bar";
-
 
 /* base */
 
@@ -191,7 +190,6 @@ ion-spinner {
     --box-shadow: none;
     // }
   }
-
 }
 
 .back-btn {

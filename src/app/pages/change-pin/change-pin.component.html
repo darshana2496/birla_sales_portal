@@ -1,0 +1,226 @@
+<app-header
+  [type]="'menu'"
+  [typeTitle]="'pageName'"
+  [pageNameVal]="'CHANGE PIN'"
+>
+</app-header>
+
+<ion-content padding class="lyt-section typ-bg extra-padding">
+  <div class="content-inner">
+    <div class="content">
+      <div class="vertical-middle">
+        <div class="">
+          <form [formGroup]="changePinGroup">
+            <div class="form-group-wrap">
+              <span class="field-label"
+                ><span class="cm-bold">Existing pin</span></span
+              >
+              <div formGroupName="existingPin" class="form-group" text-center>
+                <div class="otp-parent display-flex-content">
+                  <ion-item class="app-otp-input">
+                    <!-- Inputs -->
+                    <ion-input
+                      #codeBox1
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin1"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox2, codeBox1);
+                        changeInput()
+                      "
+                      formControlName="pin1"
+                      required
+                    ></ion-input>
+                    <ion-input
+                      #codeBox2
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin2"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox3, codeBox1);
+                        changeInput()
+                      "
+                      formControlName="pin2"
+                    ></ion-input>
+
+                    <ion-input
+                      #codeBox3
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin3"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox4, codeBox2);
+                        changeInput()
+                      "
+                      formControlName="pin3"
+                    ></ion-input>
+
+                    <ion-input
+                      #codeBox4
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin4"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox5, codeBox3);
+                        changeInput()
+                      "
+                      formControlName="pin4"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-wrap" formGroupName="newPin">
+              <span class="field-label"
+                ><span class="cm-bold">New pin</span></span
+              >
+              <div class="form-group" text-center>
+                <div class="otp-parent display-flex-content">
+                  <ion-item class="app-otp-input">
+                    <!-- Inputs -->
+                    <ion-input
+                      #codeBox5
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin1"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox6, codeBox4);
+                        changeInput()
+                      "
+                      formControlName="pin1"
+                      required
+                    ></ion-input>
+                    <ion-input
+                      #codeBox6
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin2"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox7, codeBox5);
+                        changeInput()
+                      "
+                      formControlName="pin2"
+                    ></ion-input>
+
+                    <ion-input
+                      #codeBox7
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin3"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox8, codeBox6);
+                        changeInput()
+                      "
+                      formControlName="pin3"
+                    ></ion-input>
+
+                    <ion-input
+                      #codeBox8
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin4"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox9, codeBox7);
+                        changeInput()
+                      "
+                      formControlName="pin4"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group-wrap" formGroupName="confirmPin">
+              <span class="field-label"
+                ><span class="cm-bold">Re-enter pin</span></span
+              >
+              <div class="form-group" text-center>
+                <div class="otp-parent display-flex-content">
+                  <ion-item class="app-otp-input">
+                    <!-- Inputs -->
+                    <ion-input
+                      #codeBox9
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin1"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox10, codeBox8);
+                        changeInput()
+                      "
+                      formControlName="pin1"
+                      required
+                    ></ion-input>
+                    <ion-input
+                      #codeBox10
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin2"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox11, codeBox9);
+                        changeInput()
+                      "
+                      formControlName="pin2"
+                    ></ion-input>
+
+                    <ion-input
+                      #codeBox11
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin3"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox12, codeBox10);
+                        changeInput()
+                      "
+                      formControlName="pin3"
+                    ></ion-input>
+
+                    <ion-input
+                      #codeBox12
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="{{ encrypt ? 'tel' : 'password' }}"
+                      maxlength="1"
+                      name="pin4"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox12, codeBox11);
+                        changeInput()
+                      "
+                      formControlName="pin4"
+                    ></ion-input>
+                  </ion-item>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="button-parent" text-center>
+            <ion-button>Proceed</ion-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
