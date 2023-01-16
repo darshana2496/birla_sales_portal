@@ -1,7 +1,7 @@
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, ViewChild } from '@angular/core';
 import { Network } from '@capacitor/network';
-import { NavController, Platform } from '@ionic/angular';
+import { NavController, Platform, MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { GlobalService } from './services/global.service';
 
@@ -19,11 +19,20 @@ export class AppComponent {
     public storage: Storage,
     public globalService: GlobalService,
     public platform: Platform,
-    public router: Router
+    public router: Router,
+    public menuCtrl: MenuController
   ) {
+    storage.create();
     this.router.events.subscribe((event: any) => {
       if (event instanceof NavigationEnd) {
         this.globalService.currentlyActivePage = event.url;
+        this.globalService.checkInternetConnection();
+
+        if (!this.globalService.isAppReviewed) {
+          if (this.globalService.projectList.length) {
+            this.showUserFeedbackPage();
+          }
+        }
       }
     });
 
@@ -36,7 +45,6 @@ export class AppComponent {
       });``
 
     this.globalService.getNetworkCarrierInfo();
-    storage.create();
 
     storage.get('AccessPin').then((val) => {
       this.setInitialPage(val);
@@ -113,16 +121,37 @@ export class AppComponent {
   setInitialPage(pin: any): void {
     this.globalService.setInitialProject(); //used to get list of customerProjects added and get if isAppReviewd
     if (pin != null) {
-      this.rootPage = 'EnterpinPage';
+      this.router.navigate(['enter-pin']);
     } else {
-      //this.globalService.checkAppReview();
       this.storage.get('FirstTimeAppLoad').then((val) => {
         if (val == null) {
-          this.rootPage = 'AppintroPage';
+          this.router.navigate(['AppIntroPage']);
         } else {
-          this.rootPage = 'CustIdPage';
+          this.router.navigate(['loginwithcustid']);
         }
       });
     }
+  }
+
+  async showUserFeedbackPage() {
+    this.globalService.getUserfeedback().then((data) => {
+      if (data < 50 && data > 47) {
+        switch (this.globalService.currentlyActivePage) {
+          case 'ModalAppReviewPage':
+          case 'set-pin':
+          case 'enter-pin':
+          case 'ReportLoginIssuePage':
+          case '/dashboard':
+          case '/vault':
+          case '/payments':
+          case '/notifications':
+            break;
+
+          default:
+            this.router.navigate(['ModalAppReviewPage']);
+            break;
+        }
+      }
+    });
   }
 }

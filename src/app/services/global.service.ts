@@ -60,6 +60,7 @@ export class GlobalService {
   showNotificationTab = this.showNotificationTabSubject.asObservable();
   clearPinInput = new Subject<any>();
   currentlyActivePage: any;
+  isAppReviewed: boolean;
 
   constructor(
     public _http: HttpClient,
@@ -220,9 +221,23 @@ getNotifications() {
         })
         .catch(() => {});
 
-      // this.checkAppReview();
+      this.checkAppReview();
     });
     return promise;
+  }
+
+  //check is app is reviewed or not
+  async checkAppReview() {
+    this.storage
+      .get('AppReviewed')
+      .then((data) => {
+        if (data == null) {
+          this.isAppReviewed = false;
+        } else {
+          this.isAppReviewed = true;
+        }
+      })
+      .catch((data) => {});
   }
 
   headerSticky(e) {
@@ -402,49 +417,9 @@ async showOrShowloadingModel(action: string) {
 
   checkInternetConnection() {
     var connectionType = this.network.connectionType;
-    // if (connectionType == "none") {
-    //     if (this.appCtrl.getRootNavs()[1].getPrevious() != null) {
-    //         if (
-    //             this.appCtrl.getRootNavs()[1].getActive().component.name ==
-    //             "NetworkCheckPage"
-    //         ) {
-    //             console.log("SHOWING NETWORK CHECKER PAGE");
-    //         } else {
-    //             if (this.newtworkPageRemoved) {
-    //                 this.appCtrl.getRootNavs()[1].push("NetworkCheckPage");
-    //                 this.newtworkPageRemoved = false;
-    //             }
-    //         }
-    //     } else {
-    //         if (this.newtworkPageRemoved) {
-    //             this.appCtrl.getRootNavs()[1].push("NetworkCheckPage");
-    //             this.newtworkPageRemoved = false;
-    //         }
-    //     }
-    // } else {
-    //     console.log("this.newtworkPageRemoved", this.newtworkPageRemoved);
-    //     if (!this.newtworkPageRemoved) {
-    //         this.newtworkPageRemoved = true;
-    //         console.log("this.currentActivePageReference");
-    //         console.log(this.currentActivePageReference);
-
-    //         let page = this.appCtrl.getRootNavs()[1].getPrevious();
-    //         console.log(page);
-
-    //         switch (page.component.name) {
-    //             case "TabsPage":
-    //                 this.appCtrl.getRootNavs()[1].pop();
-    //                 this.currentActivePageReference.ionViewWillEnter();
-
-    //                 break;
-
-    //             default:
-    //                 this.appCtrl.getRootNavs()[1].pop();
-
-    //                 break;
-    //         }
-    //     }
-    // }
+    if (connectionType == 'none') {
+      this.route.navigate(['network-check']);
+    }
   }
   decrypt(key, ciphertextB64) {
     var key = CryptoJS.enc.Utf8.parse(key);
@@ -636,5 +611,13 @@ async showOrShowloadingModel(action: string) {
 
     let ref = dom.children.namedItem('pin' + index).children[0];
     return ref;
+  }
+
+  async getUserfeedback() {
+    let promise = new Promise((resolve, reject) => {
+      var x = Math.floor(Math.random() * 100 + 1);
+      resolve(x);
+    });
+    return promise;
   }
 }
