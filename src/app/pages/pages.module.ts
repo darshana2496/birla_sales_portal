@@ -12,25 +12,22 @@ import { RefundCancelationPage } from './refund-cancelation/refund-cancelation.c
 import { PrivacyPolicyPage } from './privacy-policy/privacy-policy.component';
 import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { PagesComponent } from './pages.page';
-import { DefaultImagePipe } from '../utilities/pipes/default-image';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    CommonComponentsModule,
-    PagesRoutingModule,
-  ],
-  exports: [DefaultImagePipe],
   declarations: [
-    DefaultImagePipe,
     PagesComponent,
     FormLayoutComponent,
     PrivacyPolicyPage,
     RefundCancelationPage,
     TermNConditionPage,
     TermsUsePage,
+  ],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    CommonComponentsModule,
+    PagesRoutingModule,
   ],
 })
 export class PagesModule {}

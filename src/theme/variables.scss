@@ -3,7 +3,7 @@ $font-path: "./assets/fonts";
 $app-direction: ltr;
 
 $colors: (
-  primary: #488aff,
+  primary: $clr-primary,
 );
 
 // App iOS Variables
@@ -16,4 +16,3 @@ $spinner-md-crescent-color: $clr-primary;
 $text-input-md-show-focus-highlight: false !default;
 $text-input-md-show-valid-highlight: $text-input-md-show-focus-highlight !default;
 $text-input-md-show-invalid-highlight: $text-input-md-show-focus-highlight !default;
-
