@@ -1,71 +1,91 @@
-<!-- Stacked Input -->
-<ion-item>
-  <ion-label position="stacked">Stacked label</ion-label>
-  <ion-input placeholder="Enter text"></ion-input>
-</ion-item>
 
-<!-- Floating Input -->
-<ion-item>
-  <ion-label position="floating">Floating label</ion-label>
-  <ion-input placeholder="Enter text"></ion-input>
-  <ion-button><span class="icons icon-next"></span></ion-button>
-</ion-item>
-
-<!-- Normal Input -->
-<ion-item>
-  <ion-label position="floating">Floating label</ion-label>
-  <ion-input placeholder="Enter text"></ion-input>
-</ion-item>
-
-
-<!-- Date picker -->
-<ion-item class="ion-no-padding">
-  <ion-label position="stacked" class="label">Date of birth</ion-label>
-  <ion-input type="date" placeholder="dd/mm/yyyy"></ion-input>
-</ion-item>
-
-<!-- Textarea -->
-<ion-item>
-  <ion-label position="stacked">Regular textarea</ion-label>
-  <ion-textarea placeholder="Type something here"></ion-textarea>
-</ion-item>
-
-<!-- Checkbox -->
-<ion-item>
-  <ion-checkbox slot="start"></ion-checkbox>
-  <ion-label>I agree to the terms and conditions</ion-label>
-</ion-item>
-
-<!-- Radio button -->
-<ion-list>
-  <ion-radio-group value="strawberries">
-    <ion-item>
-      <ion-label>Grapes</ion-label>
-      <ion-radio slot="end" value="grapes"></ion-radio>
+  <ion-list class="app-form">
+    <!-- Stacked Input -->
+    <ion-item class="app-form-group">
+      <ion-label class="app-field-label" position="stacked">Stacked label</ion-label>
+      <ion-input class="app-form-control" placeholder="Enter text"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Strawberries</ion-label>
-      <ion-radio slot="end" value="strawberries"></ion-radio>
+    <!-- Floating Input -->
+    <ion-item class="app-form-group">
+      <ion-label class="app-field-label" position="floating">Floating input label</ion-label>
+      <ion-input class="app-form-control" placeholder="Enter text"></ion-input>
+      <ion-button><span class="icons icon-next"></span></ion-button>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Pineapple</ion-label>
-      <ion-radio slot="end" value="pineapple"></ion-radio>
+
+    <!-- Normal Input -->
+    <ion-item class="app-form-group">
+      <ion-label class="app-field-label" position="floating">Floating label</ion-label>
+      <ion-input class="app-form-control" placeholder="Enter text"></ion-input>
     </ion-item>
 
-    <ion-item>
-      <ion-label>Cherries (Disabled)</ion-label>
-      <ion-radio slot="end" value="cherries" [disabled]="true"></ion-radio>
-    </ion-item>
-  </ion-radio-group>
-</ion-list>
 
-<!-- Dropdown -->
-<ion-item>
-  <ion-select interface="popover" placeholder="Select fruit">
-    <ion-select-option value="apples">Apples</ion-select-option>
-    <ion-select-option value="oranges">Oranges</ion-select-option>
-    <ion-select-option value="bananas">Bananas</ion-select-option>
-  </ion-select>
-</ion-item>
+    <!-- Date picker -->
+    <ion-item class="app-form-group">
+      <ion-label class="app-field-label" position="stacked">Date of birth</ion-label>
+      <ion-input class="app-form-control" type="date" placeholder="dd/mm/yyyy"></ion-input>
+      <ion-button><span class="icons icon-next"></span></ion-button>
+    </ion-item>
+
+    <!-- OTP input -->
+    <ion-item class="app-otp-input">
+      <ion-input class="app-form-control" type="number" max="1"></ion-input>
+      <ion-input class="app-form-control" type="number" max="1"></ion-input>
+      <ion-input class="app-form-control" type="number" max="1"></ion-input>
+      <ion-input class="app-form-control" type="number" max="1"></ion-input>
+    </ion-item>
+
+    <!-- Search Input -->
+    <ion-searchbar class="app-search-bar"></ion-searchbar>
+    
+    
+    
+
+    <!-- Textarea -->
+    <!-- <ion-item class="app-form-group">
+      <ion-label position="stacked">Regular textarea</ion-label>
+      <ion-textarea placeholder="Type something here"></ion-textarea>
+    </ion-item> -->
+
+    <!-- Checkbox -->
+    <!-- <ion-item class="app-form-group">
+      <ion-checkbox slot="start"></ion-checkbox>
+      <ion-label>I agree to the terms and conditions</ion-label>
+    </ion-item> -->
+
+    <!-- Radio button -->
+    <!-- <ion-list class="app-form-group">
+      <ion-radio-group value="strawberries">
+        <ion-item>
+          <ion-label>Grapes</ion-label>
+          <ion-radio slot="end" value="grapes"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Strawberries</ion-label>
+          <ion-radio slot="end" value="strawberries"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Pineapple</ion-label>
+          <ion-radio slot="end" value="pineapple"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Cherries (Disabled)</ion-label>
+          <ion-radio slot="end" value="cherries" [disabled]="true"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list> -->
+
+    <!-- Dropdown -->
+    <!-- <ion-item class="app-form-group">
+      <ion-select interface="popover" placeholder="Select fruit">
+        <ion-select-option value="apples">Apples</ion-select-option>
+        <ion-select-option value="oranges">Oranges</ion-select-option>
+        <ion-select-option value="bananas">Bananas</ion-select-option>
+      </ion-select>
+    </ion-item> -->
+
+  </ion-list>

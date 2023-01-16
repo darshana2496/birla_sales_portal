@@ -34,7 +34,7 @@
 @import "./assets/sass/common/common";
 /* ionic extended */
 
-@import "./assets/sass/ionic-extended/button";
+// @import "./assets/sass/ionic-extended/button";
 @import "./assets/sass/ionic-extended/grid";
 @import "./assets/sass/ionic-extended/alert";
 @import "./assets/sass/ionic-extended/swiper";
@@ -46,6 +46,12 @@
 @import "./assets/sass/ionic-extended/segment";
 @import "./assets/sass/ionic-extended/toggle";
 @import "./assets/sass/ionic-extended/toast";
+
+//darshan
+@import "./assets/sass/base/app-form";
+@import "./assets/sass/base/app-otp-input";
+@import "./assets/sass/base/app-search-bar";
+
 
 /* base */
 
@@ -164,15 +170,16 @@ ion-spinner {
   height: 50px !important;
 }
 
-.term-of-use
-{
+.term-of-use {
   margin-top: 2rem;
-p {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #4d4d4f;
+
+  p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #4d4d4f;
+  }
 }
-}
+
 .display-flex-content {
   display: flex;
 }
@@ -180,12 +187,13 @@ p {
 .button-link {
   ion-button {
     // .button-native {
-        --background: transparent;
-        --box-shadow: none;
+    --background: transparent;
+    --box-shadow: none;
     // }
   }
-  
+
 }
-.back-btn{
+
+.back-btn {
   box-shadow: none;
 }
