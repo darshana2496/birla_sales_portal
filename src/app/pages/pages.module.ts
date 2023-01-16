@@ -12,6 +12,7 @@ import { RefundCancelationPage } from './refund-cancelation/refund-cancelation.c
 import { PrivacyPolicyPage } from './privacy-policy/privacy-policy.component';
 import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { PagesComponent } from './pages.page';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PagesComponent } from './pages.page';
     RefundCancelationPage,
     TermNConditionPage,
     TermsUsePage,
+    AboutComponent
   ],
   imports: [
     IonicModule,
