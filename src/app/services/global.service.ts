@@ -135,30 +135,35 @@ export class GlobalService {
   }
   updateCustomerNotification() {
     let obj = {
-        "vcCustomerID":this.customerId
-    }
+      vcCustomerID: this.customerId,
+    };
 
     let promise = new Promise((resolve, reject) => {
-        this._http
-            .post(environment.serverUrl + "v1/config/updatecustomernotification/", obj)
-            .toPromise()
-            .then(response => {
-                resolve(response);
-            });
+      this._http
+        .post(
+          environment.serverUrl + 'v1/config/updatecustomernotification/',
+          obj
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
     });
     return promise;
-}
-getNotifications() {
-  let promise = new Promise((resolve, reject) => {
+  }
+  getNotifications() {
+    let promise = new Promise((resolve, reject) => {
       this._http
-          .get(environment.serverUrl  + "config/getnotification/" + this.customerId)
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
+        .get(
+          environment.serverUrl + 'config/getnotification/' + this.customerId
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
   async showConfirmationAlertPrompt(title: string, subTitle: string) {
     console.log(title, subTitle);
     const alert = this.alertCtrl.create({
@@ -588,6 +593,7 @@ async showOrShowloadingModel(action: string) {
     if (event.key == 'Backspace') {
       previd.setFocus();
     } else if (event.key !== 'Backspace' && event.target.value) {
+      console.log('Next focus', compoid, previd, event.target.value);
       compoid.setFocus();
     }
   }
