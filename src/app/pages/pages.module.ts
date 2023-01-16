@@ -14,14 +14,6 @@ import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { PagesComponent } from './pages.page';
 
 @NgModule({
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    CommonComponentsModule,
-    PagesRoutingModule,
-  ],
-  exports: [],
   declarations: [
     PagesComponent,
     FormLayoutComponent,
@@ -29,6 +21,13 @@ import { PagesComponent } from './pages.page';
     RefundCancelationPage,
     TermNConditionPage,
     TermsUsePage,
+  ],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    CommonComponentsModule,
+    PagesRoutingModule,
   ],
 })
 export class PagesModule {}

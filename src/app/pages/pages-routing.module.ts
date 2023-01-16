@@ -13,30 +13,9 @@ const routes: Routes = [
     component: PagesComponent,
     children: [
       {
-        path: 'dashboard',
+        path: '',
         loadChildren: () =>
-          import('./dashboard/dashboard.module').then(
-            (m) => m.DashBoardPageModule
-          ),
-      },
-      {
-        path: 'vault',
-        loadChildren: () =>
-          import('./vault/vault.module').then((m) => m.VaultPageModule),
-      },
-      {
-        path: 'notifications',
-        loadChildren: () =>
-          import('./notification/notification.module').then(
-            (m) => m.NotificationPageModule
-          ),
-      },
-      {
-        path: 'payments',
-        loadChildren: () =>
-          import('./payments/payments.module').then(
-            (m) => m.PaymentsPageModule
-          ),
+          import('./tabs/tabs.module').then((m) => m.TabsPageModule),
       },
       {
         path: 'refundcancel',

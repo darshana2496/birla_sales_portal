@@ -5,9 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { VaultPage } from './vault.page';
 
 import { VaultPageRoutingModule } from './vault-routing.module';
+import { CommonComponentsModule } from '../../common-components/common-components.module';
 
 @NgModule({
-  imports: [IonicModule, CommonModule, FormsModule, VaultPageRoutingModule],
   declarations: [VaultPage],
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    VaultPageRoutingModule,
+    CommonComponentsModule,
+  ],
 })
 export class VaultPageModule {}

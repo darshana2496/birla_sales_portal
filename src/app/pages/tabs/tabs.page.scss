@@ -1,0 +1,28 @@
+@import "../../../assets/sass/config/variables";
+
+ion-tab-bar {
+  box-shadow: 0px 0px 7px #ccc;
+}
+
+ion-tab-button {
+  ion-icon {
+    margin-bottom: 6px;
+    font-size: 20px;
+    color: $clr-text-color;
+  }
+
+  ion-label {
+    font-size: 9px;
+    color: $clr-text-color;
+  }
+
+  &.tab-selected ion-label {
+    font-size: 10px;
+    color: #c913aa;
+    font-weight: 500;
+  }
+
+  &.tab-selected ion-icon {
+    color: $clr-primary;
+  }
+}

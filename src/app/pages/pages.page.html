@@ -1,23 +1,99 @@
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="dashboard">
-      <ion-icon name="business-outline"></ion-icon>
-      <ion-label>PROJECT</ion-label>
-    </ion-tab-button>
+<ion-menu contentId="mainContent">
+  <ion-content>
+    <div class="top-buttons clearfix">
+      <ion-menu-toggle class="button-link button close-menu">
+        <span class="icon-close"></span>
+      </ion-menu-toggle>
+      <ion-menu-toggle class="button-link button logout" (click)="logout()">
+        <span class="icon-log-out"></span>
+      </ion-menu-toggle>
+    </div>
+    <div class="menu-heading">
+      <div class="name">{{globalService.selectedProjectObj.customerName}}</div>
+      <div class="shape-parent">
+        <img src="./assets/images/heading-shape.png" />
+      </div>
+      <div class="cust-id">
+        Customer ID : {{globalService.selectedProjectObj.customerProjectId}}
+      </div>
+    </div>
 
-    <ion-tab-button tab="vault">
-      <ion-icon name="document-text-outline"></ion-icon>
-      <ion-label>VAULT</ion-label>
-    </ion-tab-button>
+    <div class="bs-slider typ-menu">
+      <ion-slides #Slides>
+        <ion-slide> </ion-slide>
 
-    <ion-tab-button tab="payments">
-      <ion-icon name="card-outline"></ion-icon>
-      <ion-label>PAYMENTS</ion-label>
-    </ion-tab-button>
+        <ion-slide
+          *ngFor="let project of globalService.projectList;let i=index"
+          (click)="selectProject(i,project)"
+          [class.active]="globalService.activeSlideIndicator === i"
+        >
+          <div class="img-parent">
+            <img
+              src="{{project.projectImage}}"
+              onError="this.src='./assets/images/default-fallback-image-profile.png';"
+            />
+          </div>
+          <div class="name">{{project.projectName}}</div>
+        </ion-slide>
 
-    <ion-tab-button tab="notifications">
-      <ion-icon name="notifications-outline"></ion-icon>
-      <ion-label>NOTIFICATIONS</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+        <ion-slide>
+          <ion-button class="button add-button" (click)="addProject()">
+            <i class="icon icon-add"></i>
+          </ion-button>
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <ion-list>
+      <ion-item
+        class="ion-text-center"
+        (click)="openPage('AboutBirlaPage')"
+        [ngClass]="{'active':globalService.currentlyActivePage === 'AboutBirlaPage'}"
+        ><ion-label> About birla estates </ion-label>
+      </ion-item>
+      <ion-item
+        class="ion-text-center"
+        (click)="openPage('HelpSupportPage')"
+        [ngClass]="{'active':globalService.currentlyActivePage === 'HelpSupportPage'}"
+        ><ion-label> Help & support </ion-label>
+      </ion-item>
+      <ion-item
+        class="ion-text-center"
+        (click)="openPage('FeedbackQueryV2Page')"
+        [ngClass]="{'active':globalService.currentlyActivePage === 'FeedbackQueryV2Page'}"
+        ><ion-label> FEEDBACK & QUERY </ion-label>
+      </ion-item>
+      <ion-item
+        class="ion-text-center"
+        (click)="openPage('ResetPinPage')"
+        [ngClass]="{'active':globalService.currentlyActivePage === 'ResetPinPage'}"
+        ><ion-label> Change pin </ion-label>
+      </ion-item>
+      <ion-item
+        class="ion-text-center"
+        (click)="openPage('termuse')"
+        [ngClass]="{'active':globalService.currentlyActivePage === 'termuse'}"
+        ><ion-label> Terms of use </ion-label>
+      </ion-item>
+      <ion-item
+        class="ion-text-center"
+        (click)="openPage('privacypolicy')"
+        [ngClass]="{'active':globalService.currentlyActivePage === 'privacypolicy'}"
+        ><ion-label> PRIVACY POLICY </ion-label>
+      </ion-item>
+      <ion-item
+        class="ion-text-center"
+        (click)="openPage('refundcancel')"
+        [ngClass]="{'active':globalService.currentlyActivePage === 'refundcancel'}"
+        ><ion-label> REFUND & CANCELLATION POLICY </ion-label>
+      </ion-item>
+      <ion-item
+        class="ion-text-center"
+        (click)="openPage('termscondition')"
+        [ngClass]="{'active':globalService.currentlyActivePage === 'termscondition'}"
+        ><ion-label> TERMS & CONDITIONS </ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet id="mainContent" main></ion-router-outlet>
