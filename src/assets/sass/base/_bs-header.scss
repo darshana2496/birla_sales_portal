@@ -138,15 +138,13 @@ ion-title {
   .toolbar-ios {
     background: transparent;
   }
-  .menu-btn .icon-profile,
-  .notification-btn .icon-download,
-  .notification-btn .icon-bell-outline,
-  .notification-btn .icon-call-outline {
+  ion-menu-button .icon-profile,
+  ion-button {
     color: $clr-white;
     font-size: 1.6rem;
   }
-  .toolbar-title-md {
-    color: #ffffff;
+  ion-title {
+    --color: #ffffff;
   }
   .cm-img {
     height: 56px;
