@@ -13,6 +13,7 @@ import { PrivacyPolicyPage } from './privacy-policy/privacy-policy.component';
 import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { ChangePinComponent } from './change-pin/change-pin.component';
 import { PagesComponent } from './pages.page';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PagesComponent } from './pages.page';
     TermNConditionPage,
     ChangePinComponent,
     TermsUsePage,
+    AboutComponent
   ],
   imports: [
     IonicModule,

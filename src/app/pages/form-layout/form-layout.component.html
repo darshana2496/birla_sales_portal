@@ -1,5 +1,5 @@
 
-  <ion-list class="app-form">
+  <ion-list class="app-form temp">
     <!-- Stacked Input -->
     <ion-item class="app-form-group">
       <ion-label class="app-field-label" position="stacked">Stacked label</ion-label>
@@ -38,54 +38,31 @@
 
     <!-- Search Input -->
     <ion-searchbar class="app-search-bar"></ion-searchbar>
+
+    <!-- Button List -->
+    <ion-list>
+      <ion-item>
+        <ion-button class="app-btn btn-default">Default</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-button class="app-btn btn-default" [disabled]="true">Default</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-button class="app-btn btn-link" fill="clear">cheque already dropped?</ion-button>
+      </ion-item>
+    </ion-list>
     
-    
-    
-
-    <!-- Textarea -->
-    <!-- <ion-item class="app-form-group">
-      <ion-label position="stacked">Regular textarea</ion-label>
-      <ion-textarea placeholder="Type something here"></ion-textarea>
-    </ion-item> -->
-
-    <!-- Checkbox -->
-    <!-- <ion-item class="app-form-group">
-      <ion-checkbox slot="start"></ion-checkbox>
-      <ion-label>I agree to the terms and conditions</ion-label>
-    </ion-item> -->
-
-    <!-- Radio button -->
-    <!-- <ion-list class="app-form-group">
-      <ion-radio-group value="strawberries">
-        <ion-item>
-          <ion-label>Grapes</ion-label>
-          <ion-radio slot="end" value="grapes"></ion-radio>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Strawberries</ion-label>
-          <ion-radio slot="end" value="strawberries"></ion-radio>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Pineapple</ion-label>
-          <ion-radio slot="end" value="pineapple"></ion-radio>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>Cherries (Disabled)</ion-label>
-          <ion-radio slot="end" value="cherries" [disabled]="true"></ion-radio>
-        </ion-item>
-      </ion-radio-group>
-    </ion-list> -->
-
-    <!-- Dropdown -->
-    <!-- <ion-item class="app-form-group">
-      <ion-select interface="popover" placeholder="Select fruit">
-        <ion-select-option value="apples">Apples</ion-select-option>
-        <ion-select-option value="oranges">Oranges</ion-select-option>
-        <ion-select-option value="bananas">Bananas</ion-select-option>
+    <!-- Select -->
+    <ion-item class="app-form-group app-select">
+      <ion-label class="app-field-label" position="stacked">Location</ion-label>
+      <ion-select placeholder="Select location" [interfaceOptions]="{cssClass: 'app-select-alert'}">
+        <ion-select-option value="mumbai">Mumbai</ion-select-option>
+        <ion-select-option value="pune">Pune</ion-select-option>
+        <ion-select-option value="nagpur">Nagpur</ion-select-option>
       </ion-select>
-    </ion-item> -->
+    </ion-item>
+    
+
+    
 
   </ion-list>
