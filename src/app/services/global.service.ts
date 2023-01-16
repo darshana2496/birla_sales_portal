@@ -213,43 +213,33 @@ getNotifications() {
     });
     return promise;
   }
-  getCurrentlyActivePage() {
-    let routerUrl;
-    this.route.events.subscribe((res: any) => {
-      if (res instanceof NavigationEnd) {
-        routerUrl = res.url;
-      }
-    });
-    return routerUrl;
-  }
+
   headerSticky(e) {
-    var topPos = e.scrollTop;
-    var page = this.getCurrentlyActivePage();
-    //console.log(page);
+    var topPos = e.detail.scrollTop;
     if (topPos >= 150) {
-      if (page == 'AboutBirlaPage') {
+      if (this.currentlyActivePage == 'AboutBirlaPage') {
         document
           .getElementsByTagName('page-about-birla')[0]
           .getElementsByTagName('app-header')[0]
           .classList.remove('typ-transparent');
       }
-      if (page == 'CustomerTabsPage') {
+      if (this.currentlyActivePage == '/dashboard') {
         document
-          .getElementsByTagName('page-customer-tabs')[0]
-          .getElementsByTagName('cm-header')[0]
+          .getElementsByTagName('app-dashboard')[0]
+          .getElementsByTagName('app-header')[0]
           .classList.remove('typ-transparent');
       }
     } else {
-      if (page == 'AboutBirlaPage') {
+      if (this.currentlyActivePage == 'AboutBirlaPage') {
         document
           .getElementsByTagName('page-about-birla')[0]
           .getElementsByTagName('app-header')[0]
           .classList.add('typ-transparent');
       }
-      if (page == 'CustomerTabsPage') {
+      if (this.currentlyActivePage == '/dashboard') {
         document
-          .getElementsByTagName('page-customer-tabs')[0]
-          .getElementsByTagName('cm-header')[0]
+          .getElementsByTagName('app-dashboard')[0]
+          .getElementsByTagName('app-header')[0]
           .classList.add('typ-transparent');
       }
     }

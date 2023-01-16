@@ -1,3 +1,4 @@
+import { NavigationEnd, Router } from '@angular/router';
 import { Component, ViewChild } from '@angular/core';
 import { Network } from '@capacitor/network';
 import { NavController, Platform } from '@ionic/angular';
@@ -10,29 +11,38 @@ import { GlobalService } from './services/global.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  @ViewChild("myNav") nav: NavController;
+  @ViewChild('myNav') nav: NavController;
 
   rootPage: string;
-  
+
   constructor(
-    public storage: Storage, 
+    public storage: Storage,
     public globalService: GlobalService,
     public platform: Platform,
-    ) {
-      this.globalService.network = Network.getStatus().then(val=> {
-         return val
-      }).catch(err => {
-        return null
+    public router: Router
+  ) {
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        this.globalService.currentlyActivePage = event.url;
+      }
+    });
+
+    this.globalService.network = Network.getStatus()
+      .then((val) => {
+        return val;
       })
+      .catch((err) => {
+        return null;
+      });
 
-      this.globalService.getNetworkCarrierInfo();
-      storage.create();
+    this.globalService.getNetworkCarrierInfo();
+    storage.create();
 
-    storage.get("AccessPin").then(val => {
+    storage.get('AccessPin').then((val) => {
       this.setInitialPage(val);
     });
 
-     //used to check for tabs
+    //used to check for tabs
     // platform.registerBackButtonAction(event => {
     //   let menuBarOpen = this.menuCtrl.isOpen();
 
@@ -103,16 +113,16 @@ export class AppComponent {
   setInitialPage(pin: any): void {
     this.globalService.setInitialProject(); //used to get list of customerProjects added and get if isAppReviewd
     if (pin != null) {
-        this.rootPage = "EnterpinPage";
+      this.rootPage = 'EnterpinPage';
     } else {
-        //this.globalService.checkAppReview();
-        this.storage.get("FirstTimeAppLoad").then(val => {
-            if (val == null) {
-                this.rootPage = "AppintroPage";
-            } else {
-                this.rootPage = "CustIdPage";
-            }
-        });
+      //this.globalService.checkAppReview();
+      this.storage.get('FirstTimeAppLoad').then((val) => {
+        if (val == null) {
+          this.rootPage = 'AppintroPage';
+        } else {
+          this.rootPage = 'CustIdPage';
+        }
+      });
     }
-}
+  }
 }
