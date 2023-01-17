@@ -1,0 +1,47 @@
+<app-header [type]="'menu'" [typeTitle]="'pageName'" [pageNameVal]="'HELP & SUPPORT'"></app-header>
+
+<ion-content class="lyt-section listing typ-bg ion-padding">
+  <div class="content-inner">
+      <div class="content no-padding">
+          <div class="vertical-top">
+              <ion-list class="bs-icon-list list typ2">
+                  <!-- <button ion-item class="item" (click)="goToPage('feedback')">
+                      <div class="name">
+                          <span class="text">FEEDBACK & QUERY</span>
+                      </div>
+                      <span class="icon icon-next"></span>
+                  </button> -->
+                  <button ion-item class="item" (click)="goToPage('faq')">
+                      <div class="name">
+                          <span class="text">FAQS</span>
+                      </div>
+                      <span class="icon icon-next"></span>
+                  </button>
+              </ion-list>
+              <div class="bs-moreInfo">
+                  <span class="note">
+                      Feel free to connect with your relationship manager
+                      <span *ngIf="managerName !== null">{{managerName}}</span>
+                  </span>
+                  <span class="timeStamp" *ngIf="contactTime!==null && contactTime !==''">( {{contactTime}} )</span>
+                  <a class="call" href="tel:{{contactNumber}}">
+                      <span class="icon icon-call"></span>
+                      <span class="num">{{contactNumber}}</span>
+                  </a>
+                  <span *ngIf="managerEmailId !== null">
+                      {{managerEmailId}}
+                  </span>
+                  <app-address-info></app-address-info>
+
+                  <div class="wgt-address-info coperate-office" *ngIf="siteData">
+                      <div class="sub-title">{{siteData.vcName}}</div>
+                      <div class="note">
+                          {{siteData.vcLongAddress}}
+                      </div>
+                      <img [src]='siteLocation' *ngIf="siteLocation && siteLocation !== ''" class="site-img" />
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</ion-content>

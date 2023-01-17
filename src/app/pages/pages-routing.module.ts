@@ -7,6 +7,9 @@ import { TermsUsePage } from './terms-use/terms-use.component';
 import { TermNConditionPage } from './term-n-condition/term-n-condition.component';
 import { RefundCancelationPage } from './refund-cancelation/refund-cancelation.component';
 import { AboutComponent } from './about/about.component';
+import { HelpSupportComponent } from './help-support/help-support.component';
+import { FaqComponent } from './faq/faq.component';
+import { FeedbackQueryComponent } from './feedback-query/feedback-query.component';
 
 const routes: Routes = [
   {
@@ -20,6 +23,15 @@ const routes: Routes = [
       },
       {
         path:'about-birla',component:AboutComponent
+      },
+      {
+        path:'help-support',component:HelpSupportComponent
+      },
+      {
+        path:'faq',component:FaqComponent
+      },
+      {
+        path:'feedback-query',component:FeedbackQueryComponent
       },
       {
         path: 'refundcancel',

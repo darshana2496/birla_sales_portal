@@ -13,6 +13,7 @@ import { GET_IP_API_URL } from '../utilities/constants/globals';
 import { ICustomerProject } from '../utilities/constants/commonInterface';
 import { Subject } from 'rxjs';
 import { App } from '@capacitor/app';
+
 import {
   NavigationEnd,
   NavigationExtras,
@@ -68,7 +69,7 @@ export class GlobalService {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public menuCtrl: MenuController,
-    public route: Router
+    public route: Router,
   ) {  }
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
@@ -91,6 +92,74 @@ export class GlobalService {
             });
     });
     return promise;
+}
+getConfigData() {
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .get(environment.serverUrl + "config/getConfigData")
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
+}
+getRMDetails() {
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .get(environment.serverUrl + "config/getrmdetail/" + this.customerId)
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
+}
+getRegisterOffices() {
+  // https://portalapi.birlaestates.com/api/config/getraisedfeedBack/600014
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .get(environment.serverUrl + "config/getregisteroffices/" + this.customerId)
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
+}
+getAllRaisedFeedback() {
+  // https://portalapi.birlaestates.com/api/config/getraisedfeedBack/600014
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .get(environment.serverUrl + "config/getraisedfeedBack/" + this.customerId)
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
+}
+raiseFeedback(obj: any) {
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .post(environment.serverUrl + "config/raisefeedback ", JSON.stringify(obj))
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
+}
+getFAQ() {
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .get(environment.serverUrl + "config/getFAQs")
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
 }
   sanitizeHtml(rawHtml: any) {
     var txt = document.createElement('textarea');
@@ -243,6 +312,7 @@ getNotifications() {
   headerSticky(e) {
     var topPos = e.detail.scrollTop;
     if (topPos >= 150) {
+      console.log(this.currentlyActivePage,'Route')
       if (this.currentlyActivePage == '/about-birla') {
         document
           .getElementsByTagName('app-about')[0]

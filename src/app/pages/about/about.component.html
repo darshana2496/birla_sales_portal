@@ -1,7 +1,10 @@
 <app-header class="typ-transparent" [type]="'menu'" [typeTitle]="'pageName'" [pageNameVal]="'about birla estates'">
 </app-header>
 
-<ion-content scrollEvents="true" (ionScroll)="globalService.headerSticky($event)">
+<ion-content [fullscreen]="true"
+scrollEvents="true"
+#content
+(ionScroll)="globalService.headerSticky($event)">
   <div class="content-inner">
       <div class="content no-padding">
           <div class="vetical-top">
@@ -37,7 +40,7 @@
                       </ion-slides>
                       <div *ngIf="!projectList.length">{{serverErrorResponse}}</div>
                       <a href="https://www.birlaestates.com/">
-                          <div class="button-parent" text-center>
+                          <div class="button-parent ion-text-center">
                               <button ion-button class="button button-link">visit website</button>
                           </div>
                       </a>

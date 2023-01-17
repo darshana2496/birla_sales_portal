@@ -121,7 +121,7 @@ export class AppComponent {
   setInitialPage(pin: any): void {
     this.globalService.setInitialProject(); //used to get list of customerProjects added and get if isAppReviewd
     if (pin != null) {
-      this.router.navigate(['enter-pin']);
+      // this.router.navigate(['dashboard']);
     } else {
       this.storage.get('FirstTimeAppLoad').then((val) => {
         if (val == null) {
