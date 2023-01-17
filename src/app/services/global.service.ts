@@ -5,10 +5,7 @@ import { LoadingController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
 import * as CryptoJS from 'crypto-js/crypto-js';
-import {
-  AlertController,
-  MenuController,
-} from '@ionic/angular';
+import { AlertController, MenuController } from '@ionic/angular';
 import { GET_IP_API_URL } from '../utilities/constants/globals';
 import { ICustomerProject } from '../utilities/constants/commonInterface';
 import { Subject } from 'rxjs';
@@ -69,8 +66,8 @@ export class GlobalService {
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public menuCtrl: MenuController,
-    public route: Router,
-  ) {  }
+    public route: Router
+  ) {}
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
       this._http
@@ -84,83 +81,90 @@ export class GlobalService {
   }
   getAboutBirlaEstates() {
     let promise = new Promise((resolve, reject) => {
-        this._http
-            .get(environment.serverUrl + "project/getProjects")
-            .toPromise()
-            .then(response => {
-                resolve(response);
-            });
+      this._http
+        .get(environment.serverUrl + 'project/getProjects')
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
     });
     return promise;
-}
-getConfigData() {
-  let promise = new Promise((resolve, reject) => {
+  }
+  getConfigData() {
+    let promise = new Promise((resolve, reject) => {
       this._http
-          .get(environment.serverUrl + "config/getConfigData")
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
-getRMDetails() {
-  let promise = new Promise((resolve, reject) => {
+        .get(environment.serverUrl + 'config/getConfigData')
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+  getRMDetails() {
+    let promise = new Promise((resolve, reject) => {
       this._http
-          .get(environment.serverUrl + "config/getrmdetail/" + this.customerId)
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
-getRegisterOffices() {
-  // https://portalapi.birlaestates.com/api/config/getraisedfeedBack/600014
-  let promise = new Promise((resolve, reject) => {
+        .get(environment.serverUrl + 'config/getrmdetail/' + this.customerId)
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+  getRegisterOffices() {
+    // https://portalapi.birlaestates.com/api/config/getraisedfeedBack/600014
+    let promise = new Promise((resolve, reject) => {
       this._http
-          .get(environment.serverUrl + "config/getregisteroffices/" + this.customerId)
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
-getAllRaisedFeedback() {
-  // https://portalapi.birlaestates.com/api/config/getraisedfeedBack/600014
-  let promise = new Promise((resolve, reject) => {
+        .get(
+          environment.serverUrl + 'config/getregisteroffices/' + this.customerId
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+  getAllRaisedFeedback() {
+    // https://portalapi.birlaestates.com/api/config/getraisedfeedBack/600014
+    let promise = new Promise((resolve, reject) => {
       this._http
-          .get(environment.serverUrl + "config/getraisedfeedBack/" + this.customerId)
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
-raiseFeedback(obj: any) {
-  let promise = new Promise((resolve, reject) => {
+        .get(
+          environment.serverUrl + 'config/getraisedfeedBack/' + this.customerId
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+  raiseFeedback(obj: any) {
+    let promise = new Promise((resolve, reject) => {
       this._http
-          .post(environment.serverUrl + "config/raisefeedback ", JSON.stringify(obj))
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
-getFAQ() {
-  let promise = new Promise((resolve, reject) => {
+        .post(
+          environment.serverUrl + 'config/raisefeedback ',
+          JSON.stringify(obj)
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+  getFAQ() {
+    let promise = new Promise((resolve, reject) => {
       this._http
-          .get(environment.serverUrl + "config/getFAQs")
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
+        .get(environment.serverUrl + 'config/getFAQs')
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
   sanitizeHtml(rawHtml: any) {
     var txt = document.createElement('textarea');
     txt.innerHTML = rawHtml;
@@ -317,7 +321,7 @@ getFAQ() {
   headerSticky(e) {
     var topPos = e.detail.scrollTop;
     if (topPos >= 150) {
-      console.log(this.currentlyActivePage,'Route')
+      console.log(this.currentlyActivePage, 'Route');
       if (this.currentlyActivePage == '/about-birla') {
         document
           .getElementsByTagName('app-about')[0]
@@ -333,8 +337,8 @@ getFAQ() {
     } else {
       if (this.currentlyActivePage == '/about-birla') {
         document
-        .getElementsByTagName('app-about')[0]
-        .getElementsByTagName('app-header')[0]
+          .getElementsByTagName('app-about')[0]
+          .getElementsByTagName('app-header')[0]
           .classList.add('typ-transparent');
       }
       if (this.currentlyActivePage == '/dashboard') {
@@ -410,83 +414,88 @@ getFAQ() {
     return result;
   }
   //loading modal
-async fnShowLoader(){
-   await this.loadingCtrl.create({  
-    message:"<img src='../../assets/images/loader.gif' alt='loader'>"     
-    }).then(x=>{
-      // if(data=='show')
-      // {
-        x.present();
-      // }
-    // else{
-      // x.onDidDismiss().then((response) => {
-      //   console.log('Loader dismissed', response);
-      // });
-    // }
-     
-    })
-}
-async fnDismissLoader(){
-  await this.loadingCtrl.dismiss(); 
-  // .then(x=>{
-  //   console.log(x.toString(),'resolve');
-  // }).catch((err)=>{
-  // console.log(err.toString());
-  // });
-}
-async dismiss() {
-  let topLoader = await this.loadingCtrl.getTop();
-  while (topLoader) {
-    if (!(await topLoader.dismiss())) {
-      // throw new Error('Could not dismiss the topmost loader. Aborting...');
-      break
-    }
-    topLoader = await this.loadingCtrl.getTop();
+  async fnShowLoader(data?: any) {
+    await this.loadingCtrl
+      .create({
+        message: "<img src='../../assets/images/loader.gif' alt='loader'>",
+      })
+      .then((x) => {
+        if (data == 'show') {
+          x.present();
+        } else {
+          x.onDidDismiss().then((response) => {
+            console.log('Loader dismissed', response);
+          });
+        }
+      });
   }
-}
-async showOrShowloadingModel(action: string) {
-  if (action == 'show') {
-    console.log(' ------Showing----')
-    if (!this.loadingCtrlOpenCount) {
-      // this.loadingModel=this.loadingCtrl.create({  
-      //   message:"<img src='../../assets/images/loader.gif' alt='loader'>"     
-      //   }).then(x=>{
-      //     // x.present();
-      //   });
-      //  this.fnShowLoader();
-    // this.loadingCtrl.create({
-    //       message:"<img src='../../assets/images/loader.gif' alt='loader'>"     
-    //       }).then((response) => {
-    //         response 
-    //   });
-        this.loadingCtrlOpenCount++;
-        // this.loadingModel.present();
-        console.log("this.loadingCtrlOpenCount", this.loadingCtrlOpenCount);
-   
+  async fnDismissLoader() {
+    await this.loadingCtrl
+      .dismiss()
+      .then((x) => {
+        console.log(x.toString(), 'resolve');
+      })
+      .catch((err) => {
+        console.log(err.toString());
+      });
+  }
+  async dismiss() {
+    let topLoader = await this.loadingCtrl.getTop();
+    while (topLoader) {
+      if (!(await topLoader.dismiss())) {
+        throw new Error('Could not dismiss the topmost loader. Aborting...');
+        break;
       }
-    } 
-    else {
+      topLoader = await this.loadingCtrl.getTop();
+    }
+  }
+  async showOrShowloadingModel(action: string) {
+    if (action == 'show') {
+      console.log(' ------Showing----');
+      if (!this.loadingCtrlOpenCount) {
+        this.loadingModel = this.loadingCtrl
+          .create({
+            message: "<img src='../../assets/images/loader.gif' alt='loader'>",
+          })
+          .then((x) => {
+            // x.present();
+          });
+        this.fnShowLoader('show');
+        this.loadingCtrl
+          .create({
+            message: "<img src='../../assets/images/loader.gif' alt='loader'>",
+          })
+          .then((response) => {
+            response;
+          });
+        this.loadingCtrlOpenCount++;
+        this.loadingModel.present();
+        console.log('this.loadingCtrlOpenCount', this.loadingCtrlOpenCount);
+      }
+    } else {
       console.log('-----Hidding');
       if (this.loadingCtrlOpenCount) {
-      
-      //   this.loadingCtrl.dismiss().then(response => {
-      //     console.log('Loader closed!', response);
-      //     this.loadingCtrlOpenCount = 0;
-      // }).catch((err) => {
-      //   this.loadingCtrlOpenCount = 0;
-      //   this.loadingCtrl.dismiss();
-      //     console.log('Error occured : ', err);
-      // });
-        // this.fnShowLoader('hide');
-        // .then((response) => {
-        //   this.loadingCtrlOpenCount = 0;
-        //   console.log('Loader closed!', response);
-        // }).catch((err) => {
-        //   this.loadingCtrlOpenCount = 0;
-        //   console.log('Error occured : ', err);
-        // });
+        this.loadingCtrl
+          .dismiss()
+          .then((response) => {
+            console.log('Loader closed!', response);
+            this.loadingCtrlOpenCount = 0;
+          })
+          .catch((err) => {
+            this.loadingCtrlOpenCount = 0;
+            this.loadingCtrl.dismiss();
+            console.log('Error occured : ', err);
+          });
+        this.fnShowLoader('hide')
+          .then((response) => {
+            this.loadingCtrlOpenCount = 0;
+            console.log('Loader closed!', response);
+          })
+          .catch((err) => {
+            this.loadingCtrlOpenCount = 0;
+            console.log('Error occured : ', err);
+          });
       }
-
     }
   }
 
