@@ -37,7 +37,7 @@
 <ng-container *ngIf="type === 'menu'">
   <ion-header class="bs-header">
     <ion-toolbar class="toolbar">
-      <ion-menu-button slot="start" class="button-link button">
+      <ion-menu-button slot="start" class="app-btn btn-link">
         <i class="icon-profile"></i>
       </ion-menu-button>
       <ion-title>
@@ -48,11 +48,7 @@
           <span>{{ pageNameVal }}</span>
         </ng-container>
       </ion-title>
-      <ion-button
-        slot="end"
-        class="button button-link"
-        (click)="contactModal()"
-      >
+      <ion-button slot="end" class="app-btn btn-link" (click)="contactModal()">
         <i class="icon-call-outline"></i>
       </ion-button>
     </ion-toolbar>
@@ -69,7 +65,7 @@
       </ion-title>
       <ion-buttons slot="end" class="notification-btn">
         <ion-button
-          class="button button-link close-size-custom"
+          class="app-btn btn-link close-size-custom"
           (click)="goBack()"
         >
           <i class="icon-close"></i>
@@ -89,7 +85,7 @@
         </ng-container>
       </ion-title>
       <ion-buttons slot="end" class="notification-btn">
-        <ion-button class="button-link button" (click)="contactModal()">
+        <ion-button class="app-btn btn-link" (click)="contactModal()">
           <i class="icon-call-outline"></i>
         </ion-button>
       </ion-buttons>
