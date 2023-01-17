@@ -48,7 +48,6 @@ export class AboutComponent implements OnInit {
 async viewProject(projectLink: string) {
     if (projectLink.length != null)
       if (projectLink.length)
-     
         await Browser.open({ url:projectLink});
         // this.inAppBrowser.create(projectLink, "_system")
   }
