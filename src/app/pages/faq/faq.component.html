@@ -1,0 +1,25 @@
+<app-header [type]="'back'" [typeTitle]="'pageName'" [pageNameVal]="'FAQS'">
+</app-header>
+
+<ion-content class="lyt-section typ-bg ion-padding">
+    <div class="content-inner">
+        <div class="content typ-tabs">
+            <div class="vertical-top ion-text-center" >
+                <div class="lyt-faq" *ngIf="TotalFaqList.length">
+                    <div class="tab-content faq-content active" *ngFor="let faq of TotalFaqList;let j=index">
+                        <ul class="bs-accordian">
+                            <li class="active" [class.active]="j===0">
+                                <h4 class="accord-head" (click)="accordian($event)">{{faq.vcQuestion}}</h4>
+                                <div class="accord-cont">{{faq.vcAnswer}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div text-center class="lyt-faq ion-text-center" *ngIf="!TotalFaqList.length">
+                    No data found.
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

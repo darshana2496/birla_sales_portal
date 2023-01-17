@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class CurrencyDisplayPipe implements PipeTransform {
   transform(amount: string): string {
-    var lastThree = amount.substring(amount.length - 3);
+    var lastThree = amount?.substring(amount.length - 3);
     var otherNumbers = amount.substring(0, amount.length - 3);
     if (otherNumbers != '')
       lastThree = ',' + lastThree;

@@ -14,6 +14,9 @@ import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { ChangePinComponent } from './change-pin/change-pin.component';
 import { PagesComponent } from './pages.page';
 import { AboutComponent } from './about/about.component';
+import { HelpSupportComponent } from './help-support/help-support.component';
+import { FaqComponent } from './faq/faq.component';
+import { FeedbackQueryComponent } from './feedback-query/feedback-query.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { AboutComponent } from './about/about.component';
     TermNConditionPage,
     ChangePinComponent,
     TermsUsePage,
-    AboutComponent
+    AboutComponent,
+    HelpSupportComponent,
+    FaqComponent,
+    FeedbackQueryComponent
   ],
   imports: [
     IonicModule,
@@ -33,6 +39,7 @@ import { AboutComponent } from './about/about.component';
     ReactiveFormsModule,
     CommonComponentsModule,
     PagesRoutingModule,
+    ReactiveFormsModule
   ],
 })
 export class PagesModule {}

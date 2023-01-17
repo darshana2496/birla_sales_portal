@@ -81,6 +81,7 @@
 
 <ng-container *ngIf="type === 'back'">
   <ion-header class="bs-header">
+    <ion-toolbar class="toolbar">
     <ion-nav>
       <ion-title>
         <ng-container *ngIf="typeTitle === 'pageName'">
@@ -93,5 +94,6 @@
         </ion-button>
       </ion-buttons>
     </ion-nav>
+  </ion-toolbar>
   </ion-header>
 </ng-container>
