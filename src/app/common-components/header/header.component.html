@@ -1,29 +1,27 @@
-
 <ng-container *ngIf="type === 'normal'">
-  <ion-header [translucent]="true" class="bs-header">
+  <ion-header [translucent]="true" class="bs-header header-with-logo">
     <ion-toolbar>
       <ng-container *ngIf="backbtn === true">
-      <ion-buttons  class="back-btn" slot="start">
-        <ion-back-button (click)="back()" class="back-btn" icon="chevron-back-outline" >
-         
-        </ion-back-button>
-      </ion-buttons>
-    </ng-container>
-  
-    <ion-nav class="toolbar toolbar-md">
-    
+        <ion-buttons class="back-btn" slot="start">
+          <ion-back-button
+            (click)="back()"
+            class="back-btn"
+            icon="chevron-back-outline"
+          >
+          </ion-back-button>
+        </ion-buttons>
+      </ng-container>
+
+      <ion-nav class="toolbar toolbar-md">
         <ion-title>
-         
           <ng-container *ngIf="typeTitle === 'logo'">
-  
-            <img src="../../../assets/images/logo.svg" class="cm-img">
-  
+            <img src="../../../assets/images/logo.svg" class="cm-img" />
           </ng-container>
           <ng-container *ngIf="typeTitle === 'pageName'">
-            <span>{{pageNameVal}}</span>
+            <span>{{ pageNameVal }}</span>
           </ng-container>
         </ion-title>
-  
+
         <ng-container *ngIf="typeEnd === 'notification'">
           <ion-buttons end class="notification-btn">
             <button class="button-link button" (click)="contactModal()">
@@ -31,68 +29,67 @@
             </button>
           </ion-buttons>
         </ng-container>
-    </ion-nav>
-  </ion-toolbar>
+      </ion-nav>
+    </ion-toolbar>
   </ion-header>
 </ng-container>
 
 <ng-container *ngIf="type === 'menu'">
   <ion-header class="bs-header">
-    <ion-nav>
-      <ion-buttons start class="menu-btn" (click)="openSideMenu()">
-        <button class="button-link button">
-          <i class="icon-profile"></i>
-        </button>
-      </ion-buttons>
+    <ion-toolbar class="toolbar">
+      <ion-menu-button slot="start" class="app-btn btn-link">
+        <i class="icon-profile"></i>
+      </ion-menu-button>
       <ion-title>
         <ng-container *ngIf="typeTitle === 'logo'">
-          <img src="../../..//assets/images/logo.svg" class="cm-img">
+          <img src="../../..//assets/images/logo.svg" class="cm-img" />
         </ng-container>
         <ng-container *ngIf="typeTitle === 'pageName'">
-          <span>{{pageNameVal}}</span>
+          <span>{{ pageNameVal }}</span>
         </ng-container>
       </ion-title>
-      <ion-buttons end class="notification-btn">
-        <button class="button-link button" (click)="contactModal()">
-          <i class="icon-call-outline"></i>
-        </button>
+      <ion-button slot="end" class="app-btn btn-link" (click)="contactModal()">
+        <i class="icon-call-outline"></i>
+      </ion-button>
+    </ion-toolbar>
+  </ion-header>
+</ng-container>
+
+<ng-container *ngIf="type === 'close'">
+  <ion-header [translucent]="true" class="bs-header">
+    <ion-nav class="toolbar toolbar-md">
+      <ion-title>
+        <ng-container>
+          <span>{{ pageNameVal }}</span>
+        </ng-container>
+      </ion-title>
+      <ion-buttons slot="end" class="notification-btn">
+        <ion-button
+          class="app-btn btn-link close-size-custom"
+          (click)="goBack()"
+        >
+          <i class="icon-close"></i>
+        </ion-button>
       </ion-buttons>
     </ion-nav>
   </ion-header>
 </ng-container>
 
-<ng-container *ngIf="type === 'close'">
-    <ion-header [translucent]="true" class="bs-header">
-      
-      <ion-nav class="toolbar toolbar-md">     
-        <ion-title>        
-          <ng-container>
-            <span>{{pageNameVal}}</span>
-          </ng-container>
-        </ion-title>
-        <ion-buttons end class="notification-btn">
-          <button class="button-link button close-size-custom" (click)="goBack()">
-            <i class="icon-close"></i>
-          </button>
-        </ion-buttons>
-      </ion-nav>
-    </ion-header>
-  </ng-container>
-
-  <ng-container *ngIf="type === 'back'">
-    <ion-header class="bs-header">
-      <ion-nav>
-       
-        <ion-title>
-          <ng-container *ngIf="typeTitle === 'pageName'">
-            <span>{{pageNameVal}}</span>
-          </ng-container>
-        </ion-title>
-        <ion-buttons end class="notification-btn">
-          <button class="button-link button" (click)="contactModal()">
-            <i class="icon-call-outline"></i>
-          </button>
-        </ion-buttons>
-      </ion-nav>
-    </ion-header>
-  </ng-container>
+<ng-container *ngIf="type === 'back'">
+  <ion-header class="bs-header">
+    <ion-toolbar class="toolbar">
+    <ion-nav>
+      <ion-title>
+        <ng-container *ngIf="typeTitle === 'pageName'">
+          <span>{{ pageNameVal }}</span>
+        </ng-container>
+      </ion-title>
+      <ion-buttons slot="end" class="notification-btn">
+        <ion-button class="app-btn btn-link" (click)="contactModal()">
+          <i class="icon-call-outline"></i>
+        </ion-button>
+      </ion-buttons>
+    </ion-nav>
+  </ion-toolbar>
+  </ion-header>
+</ng-container>

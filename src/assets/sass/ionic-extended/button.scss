@@ -1,4 +1,3 @@
-
 .button {
   color: $clr-primary;
   --background: $clr-white;
@@ -26,6 +25,8 @@
     height: 2rem;
     font-size: 1.2rem;
     font-weight: $font-semi-bold;
+    --color: $clr-primary;
+
     &.typ-blue {
       color: $clr-blue;
     }
@@ -100,27 +101,27 @@
     padding: 0;
   }
   &.button-progress {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    padding: 0;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.1);
+    .icon {
+      position: relative;
+    }
+    .text {
       position: absolute;
-      top: 15px;
-      right: 10px;
-      padding: 0;
-      border-radius: 50%;
-      background: rgba(0, 0, 0, 0.1);
-      .icon {
-          position: relative;
-      }
-      .text {
-          position: absolute;
-          right: 4px;
-          top: 8px;
-          color: #ffffff;
-          margin-top: 0;
-      }
-      round-progress {
-          width: 25px !important;
-          height: 25px !important;
-          padding: 0 1px 0 0;
-      }
+      right: 4px;
+      top: 8px;
+      color: #ffffff;
+      margin-top: 0;
+    }
+    round-progress {
+      width: 25px !important;
+      height: 25px !important;
+      padding: 0 1px 0 0;
+    }
   }
   //*deep
   &.button-progress-dashboard {

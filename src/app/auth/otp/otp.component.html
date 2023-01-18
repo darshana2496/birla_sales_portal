@@ -1,3 +1,68 @@
-<p>
-  otp works!
-</p>
+<app-header
+  class="typ-transparent"
+  [type]="'normal'"
+  [typeTitle]="'logo'"
+></app-header>
+
+<ion-content [fullscreen]="true" class="lyt-section typ-bg extra-padding">
+  <div class="otp-page-content">
+    <div class="form-cont app-form">
+      <div class="bs-title-desc ion-text-left">
+        <h2 class="title">Hello</h2>
+        <h3 class="sub-title">{{ userDetails.vcName }}</h3>
+        <div class="button-parent">
+          <ion-button class="app-btn btn-link ion-no-padding"
+            >NOT YOU ?</ion-button
+          >
+        </div>
+      </div>
+      <div class="bs-form">
+        <form [formGroup]="otpFormGroup">
+          <span class="field-label"
+            >OTP sent on
+            <span class="cm-bold">{{
+              userDetails.vcContactNo | encryptNumberPipe
+            }}</span>
+            and also on
+            <span class="cm-bold">{{ userDetails.vcEmail }}</span>
+          </span>
+          <ion-item class="app-form-group">
+            <ion-label class="app-field-label" position="floating"
+              >Enter OTP</ion-label
+            >
+            <ion-input
+              class="app-form-control"
+              type="number"
+              formControlName="otp"
+              maxlength="6"
+            ></ion-input>
+            <ion-button (click)="showResendOtpOption()">
+              <span class="icons icon-next"></span>
+            </ion-button>
+            <!-- showResendOtpOption($event) -->
+          </ion-item>
+        </form>
+
+        <!-- resend otp -->
+        <div
+          class="opacity-none ion-text-center"
+          style="margin-top: 2.5rem"
+          [ngClass]="enableResendOtpOption ? 'opacity-full' : ''"
+          *ngIf="enableResendOtpOption"
+        >
+          <ion-button
+            class="app-btn btn-link ion-no-padding"
+            (click)="resendOtpCounter()"
+            >Resend OTP</ion-button
+          >
+          <!-- resendOtpCounter() -->
+        </div>
+
+        <div text-center class="otp-counter">
+          <!-- *ngIf="!enableResendOtpOption && displayMin != ' '" -->
+          {{ displayMin }}:{{ displaySec }}
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

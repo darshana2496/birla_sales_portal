@@ -16,7 +16,6 @@ terms:string;
   getTerms()
   {
     this.global.getTermOfUse().then((resp:any)=>{
-      console.log(resp);
       if (resp.btIsSuccess) {
         this.terms = resp.object.vcvalue;    
       } else {

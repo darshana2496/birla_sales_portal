@@ -1,5 +1,5 @@
-import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { GlobalService } from 'src/app/services/global.service';
@@ -15,51 +15,67 @@ export class LoginWithCustIdPage implements OnInit {
   text: string;
   currentlyActivePage: string;
   typedText: string;
-  constructor(public router: Router, public globalService: GlobalService,public storage:Storage) { }
+  constructor(
+    public router: Router,
+    public globalService: GlobalService,
+    public storage: Storage,
+    public navCtrl: NavController
+  ) {}
 
-  ngOnInit() {
-  }
-  getUser(){
+  ngOnInit() {}
+  getUser() {
     console.log(this.storage);
   }
-  inputBtn(){
+  inputBtn() {
     var text;
     if (this.typedText != undefined) {
       text = parseInt(this.typedText, 10);
-      this.typedText = "";
+      this.typedText = '';
 
-      this.globalService.validateCustomerLogic(text).then((response: any) => {
-        if(response.statusMessage=='Invalid Customer'){
+      this.globalService
+        .validateCustomerLogic(text)
+        .then((response: any) => {
+          if (response.statusMessage == 'Invalid Customer') {
+          } else {
+            var decryptedContactNo = this.globalService.decrypt(
+              this.encryptSecretKey,
+              response.object.vcContactNo
+            );
+            var decryptedEmail = this.globalService.decrypt(
+              this.encryptSecretKey,
+              response.object.vcEmail
+            );
+            var decryptedName = this.globalService.decrypt(
+              this.encryptSecretKey,
+              response.object.vcName
+            );
+          }
 
-        }
-        else{
-          var decryptedContactNo = this.globalService.decrypt(this.encryptSecretKey, response.object.vcContactNo)
-          var decryptedEmail = this.globalService.decrypt(this.encryptSecretKey, response.object.vcEmail)
-          var decryptedName = this.globalService.decrypt(this.encryptSecretKey, response.object.vcName)
-        }
-        
+          this.validateCustData = {
+            vcContactNo: decryptedContactNo,
+            vcEmail: decryptedEmail,
+            vcName: decryptedName,
+          };
 
-        this.validateCustData = {
-          vcContactNo: decryptedContactNo,
-          vcEmail: decryptedEmail,
-          vcName: decryptedName
-        }
+          let navigationExtras: NavigationExtras = {
+            queryParams: this.validateCustData,
+          };
 
+          if (response.btIsSuccess) {
+            response['object']['otp'] = response.vcTitle;
+            // this.navCtrl.push("ValidateCustIdPage", { "serverResponse": this.validateCustData });
+            this.navCtrl.navigateForward('otp', navigationExtras);
+          } else {
+            this.globalService.universalAlert('', response.statusMessage, 'Ok');
+          }
+        })
+        .catch((response: any) => {
+          console.log(response);
+        });
 
-        if (response.btIsSuccess) {
-          response["object"]["otp"] = response.vcTitle;
-        } else {
-          this.globalService.universalAlert("", response.statusMessage, "Ok");
-        }
-      }
-      ).catch((response: any) => {
-        console.log(response);
-      });
-
-      this.router.navigate(['/otp'])
-
+      this.router.navigate(['/otp']);
     }
+    // this.router.navigate(['/otp'])
   }
-  inputChanged(event){
-  }
+  inputChanged(event) {}
 }

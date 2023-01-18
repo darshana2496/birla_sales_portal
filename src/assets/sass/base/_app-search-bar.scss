@@ -1,0 +1,27 @@
+//app-search-bar
+.app-search-bar {
+    padding: 0;
+    --box-shadow: none;
+    border: 1px solid #d2d2d2;
+    border-radius: 8px;
+    overflow: hidden;
+
+    .searchbar-input {
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        font-weight: 600;
+    }
+
+    .searchbar-input-container {
+        padding-top: 1.033rem;
+        padding-bottom: 1.033rem;
+
+        .searchbar-search-icon {
+            color: #e2e2e2;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
+
+}

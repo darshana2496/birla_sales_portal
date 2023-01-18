@@ -1,3 +1,5 @@
+import { EncryptNumberPipe } from './../utilities/pipes/encrypt-number';
+import { OtpComponent } from './otp/otp.component';
 import { LoginWithCustIdPage } from './login-with-cust-id/login-with-cust-id.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
@@ -12,7 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { AppIntroPage } from './app-intro/app-intro.component';
 import { KnowYourCustIdPage } from './know-your-cust-id/know-your-cust-id.component';
 import { LandingPage } from './landing/landing.component';
-
+import { SetPinComponent } from './set-pin/set-pin.component';
+import { OnlyNumberDirective } from '../utilities/directives/only-number.directive';
+import { EnterPinComponent } from './enter-pin/enter-pin.component';
 
 @NgModule({
   imports: [
@@ -21,15 +25,21 @@ import { LandingPage } from './landing/landing.component';
     CommonModule,
     FormsModule,
     AuthRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
-    AuthComponent, 
+    AuthComponent,
     LoginComponent,
     AppIntroPage,
     KnowYourCustIdPage,
     LandingPage,
-    LoginWithCustIdPage
+    LoginWithCustIdPage,
+    OtpComponent,
+    EncryptNumberPipe,
+    SetPinComponent,
+    OnlyNumberDirective,
+    EnterPinComponent,
   ],
+  providers: [EncryptNumberPipe],
 })
-export class AuthModule { }
+export class AuthModule {}

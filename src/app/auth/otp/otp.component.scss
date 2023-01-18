@@ -1,0 +1,19 @@
+@import "../../../assets/sass/config/variables";
+
+.otp-page-content {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+
+  .form-cont {
+    .field-label {
+      font-size: 1.4rem;
+      line-height: 2rem;
+      color: $clr-black;
+      font-weight: 500;
+      margin-bottom: 11px;
+      display: block;
+    }
+  }
+}

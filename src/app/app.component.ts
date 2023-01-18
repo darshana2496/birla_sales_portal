@@ -1,6 +1,7 @@
+import { NavigationEnd, Router } from '@angular/router';
 import { Component, ViewChild } from '@angular/core';
 import { Network } from '@capacitor/network';
-import { NavController, Platform } from '@ionic/angular';
+import { NavController, Platform, MenuController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { GlobalService } from './services/global.service';
 
@@ -10,29 +11,46 @@ import { GlobalService } from './services/global.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-  @ViewChild("myNav") nav: NavController;
+  @ViewChild('myNav') nav: NavController;
 
   rootPage: string;
-  
+
   constructor(
-    public storage: Storage, 
+    public storage: Storage,
     public globalService: GlobalService,
     public platform: Platform,
-    ) {
-      this.globalService.network = Network.getStatus().then(val=> {
-         return val
-      }).catch(err => {
-        return null
+    public router: Router,
+    public menuCtrl: MenuController
+  ) {
+    storage.create();
+    this.router.events.subscribe((event: any) => {
+      if (event instanceof NavigationEnd) {
+        this.globalService.currentlyActivePage = event.url;
+        this.globalService.checkInternetConnection();
+
+        if (!this.globalService.isAppReviewed) {
+          if (this.globalService.projectList.length) {
+            this.showUserFeedbackPage();
+          }
+        }
+      }
+    });
+
+    this.globalService.network = Network.getStatus()
+      .then((val) => {
+        return val;
       })
+      .catch((err) => {
+        return null;
+      });``
 
-      this.globalService.getNetworkCarrierInfo();
-      storage.create();
+    this.globalService.getNetworkCarrierInfo();
 
-    storage.get("AccessPin").then(val => {
+    storage.get('AccessPin').then((val) => {
       this.setInitialPage(val);
     });
 
-     //used to check for tabs
+    //used to check for tabs
     // platform.registerBackButtonAction(event => {
     //   let menuBarOpen = this.menuCtrl.isOpen();
 
@@ -103,17 +121,37 @@ export class AppComponent {
   setInitialPage(pin: any): void {
     this.globalService.setInitialProject(); //used to get list of customerProjects added and get if isAppReviewd
     if (pin != null) {
-        this.rootPage = "EnterpinPage";
+      // this.router.navigate(['dashboard']);
     } else {
-        //this.globalService.checkAppReview();
-        this.storage.get("FirstTimeAppLoad").then(val => {
-            console.log("FirstTimeAppLoad=", val);
-            if (val == null) {
-                this.rootPage = "AppintroPage";
-            } else {
-                this.rootPage = "CustIdPage";
-            }
-        });
+      this.storage.get('FirstTimeAppLoad').then((val) => {
+        if (val == null) {
+          this.router.navigate(['AppIntroPage']);
+        } else {
+          this.router.navigate(['loginwithcustid']);
+        }
+      });
     }
-}
+  }
+
+  async showUserFeedbackPage() {
+    this.globalService.getUserfeedback().then((data) => {
+      if (data < 50 && data > 47) {
+        switch (this.globalService.currentlyActivePage) {
+          case 'ModalAppReviewPage':
+          case 'set-pin':
+          case 'enter-pin':
+          case 'ReportLoginIssuePage':
+          case '/dashboard':
+          case '/vault':
+          case '/payments':
+          case '/notifications':
+            break;
+
+          default:
+            this.router.navigate(['ModalAppReviewPage']);
+            break;
+        }
+      }
+    });
+  }
 }

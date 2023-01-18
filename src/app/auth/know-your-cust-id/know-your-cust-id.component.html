@@ -1,51 +1,87 @@
-<app-header class="typ-transparent" [type]="'normal'" [typeTitle]="'logo'"></app-header>
+<app-header
+  class="typ-transparent"
+  [type]="'normal'"
+  [typeTitle]="'logo'"
+></app-header>
 
 <ion-content [fullscreen]="true" class="lyt-section typ-bg">
-        <div class="content">
-          <div class="">
-              <h3 class="page-title">Know your Customer ID</h3>
-              <h4 class="sub-title ion-text-left">You are one steps away from getting your User ID</h4>
+  <div class="content-inner lyt-section typ-bg">
+    <div class="content">
+      <div class="form-cont app-form">
+        <div class="bs-title-desc ion-text-start">
+          <h3 class="page-title">Know your Customer ID</h3>
+          <h4 class="sub-title">
+            You are one steps away from getting your User ID
+          </h4>
+        </div>
+        <form class="form-wrapper" [formGroup]="knowCustIdForm">
+          <ion-item class="app-form-group">
+            <ion-label position="floating" class="app-field-label"
+              >Pan number</ion-label
+            >
+            <ion-input
+              class="app-form-control"
+              type="text"
+              placeholder="Pan number"
+              formControlName="panNo"
+            ></ion-input>
+          </ion-item>
+          <div
+            class="error-msg"
+            *ngIf="f['panNo'].touched && f['panNo'].errors"
+          >
+            <p *ngIf="f['panNo'].errors['required']">Enter Pan Number</p>
           </div>
-          <form class="form-wrapper" [formGroup]="knowCustIdForm">
-            <div class="form-group">
-              <ion-item class="ion-no-padding">
-                <ion-label position="stacked" class="label">Pan number</ion-label>
-                <ion-input type="text" placeholder="Pan number" formControlName="panNo"></ion-input>
-              </ion-item>
-                <div class="error-msg" *ngIf="f['panNo'].touched && f['panNo'].errors">
-                  <p *ngIf="f['panNo'].errors['required']">Enter Pan Number</p>
-                </div>
-            </div>
-            <div class="form-group">
-              <ion-item class="ion-no-padding">
-                <ion-label position="stacked" class="label">Date of birth</ion-label>
-                <ion-input type="date" placeholder="dd/mm/yyyy" formControlName="dob"></ion-input>
-              </ion-item>
-              <div class="error-msg" *ngIf="f['dob'].touched && f['dob'].errors">
-                <p *ngIf="f['dob'].errors['required']">Enter Date Of Birth</p>
-              </div>
-            </div>
-          </form>
+          <ion-item class="app-form-group">
+            <ion-label position="floating" class="app-field-label"
+              >Date of birth</ion-label
+            >
+            <ion-input
+              type="date"
+              class="app-form-control"
+              placeholder="dd/mm/yyyy"
+              formControlName="dob"
+            ></ion-input>
+          </ion-item>
+          <div class="error-msg" *ngIf="f['dob'].touched && f['dob'].errors">
+            <p *ngIf="f['dob'].errors['required']">Enter Date Of Birth</p>
+          </div>
+        </form>
 
-          <div class="button-cont">
-              <ion-button class="button" (click)="submitCustId()">Submit</ion-button>
-          </div>
+        <div class="button-cont">
+          <ion-button class="app-btn btn-default" (click)="submitCustId()"
+            >Submit</ion-button
+          >
+        </div>
       </div>
+    </div>
+  </div>
 </ion-content>
 
-
 <div class="bs-modal typ-appReview" *ngIf="showCustIdModal">
-    <div class="modal-wrap">
-        <div class="head">
-            <h2 class="title" *ngIf="success">Your Customer Id is <span class="cm-line-break"> {{custIds}}</span></h2>
-            <h2 class="title" *ngIf="!success">{{errorMsg}}</h2>
-        </div>
-
-        <div class="footer">
-            <div class="act-wrap">
-                <ion-button class="button button-link" *ngIf="!success" (click)="tryAgain()">Try Again</ion-button>
-                <ion-button class="button button-link" *ngIf="success" (click)="backToLogin()">Back to login</ion-button>
-            </div>
-        </div>
+  <div class="modal-wrap">
+    <div class="head">
+      <h2 class="title" *ngIf="success">
+        Your Customer Id is <span class="cm-line-break"> {{ custIds }}</span>
+      </h2>
+      <h2 class="title" *ngIf="!success">{{ errorMsg }}</h2>
     </div>
+
+    <div class="footer">
+      <div class="act-wrap">
+        <ion-button
+          class="app-btn btn-link"
+          *ngIf="!success"
+          (click)="tryAgain()"
+          >Try Again</ion-button
+        >
+        <ion-button
+          class="app-btn btn-link"
+          *ngIf="success"
+          (click)="backToLogin()"
+          >Back to login</ion-button
+        >
+      </div>
+    </div>
+  </div>
 </div>

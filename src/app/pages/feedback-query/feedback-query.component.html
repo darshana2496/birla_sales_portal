@@ -1,0 +1,84 @@
+<app-header [type]="'back'" [typeTitle]="'pageName'" [pageNameVal]="'FEEDBACK & QUERY'">
+</app-header>
+
+<ion-content  class="lyt-section typ-bg ion-padding">
+  <div class="content">
+    <div class="content no-padding" *ngIf="!serverError">
+
+      <ion-segment class="segment segment-md" [(ngModel)]="CustomerSegment" (ionChange)="segmentChanged($event)">
+        <ion-segment-button class="segment-button segment-activated" value="myFeedback">
+          My Feedback & Query
+        </ion-segment-button>
+        <ion-segment-button class="segment-button segment-activated" value="sendFeedback">
+          Send Feedback
+        </ion-segment-button>
+      </ion-segment>
+
+      <div [ngSwitch]="CustomerSegment" class="tab-content ion-padding">
+        <div *ngSwitchCase="'myFeedback'">
+          <ng-container *ngIf="myaddedFeedbacks.length else noData">
+            <div class="cont">
+              <div class="document-list">
+                <ion-list>
+                  <div class="bs-doc" *ngFor="let feedbackQuery of myaddedFeedbacks;let i=index">
+                    <ion-item class="iconwithtext">
+                      <div class="icon">
+                        <img src="../../../assets/images/customer-portal_Stamp.svg" alt="customer-portal_TDS">
+                      </div>
+                      <div class="text">
+                        <h2 class="title">{{feedbackQuery.name}}</h2>
+                        <h3 class="time-stamp">Request raised on {{feedbackQuery.creationDateTime}}</h3>
+                        <div class="status-type">
+                          <span>Status : {{feedbackQuery.serviceRequestUserLifeCycleStatusCodeText}}</span>
+                        </div>
+                      </div>
+                    </ion-item>
+                  </div>
+                </ion-list>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #noData>
+            <div text-center>No feedback or query found</div>
+          </ng-template>
+        </div>
+
+        <div *ngSwitchCase="'sendFeedback'">
+          <div class="content-inner">
+            <div class="content">
+              <div class="vertical-top ion-text-center" >
+                <div class="bs-notice">
+                  <form [formGroup]="myform" (ngSubmit)="onSubmit()">
+                    <div class="bs-form">
+                      <div class="form-group typ-band bot-space">
+                        <ion-item>
+                          <ion-label position="floating">Choose subject</ion-label>
+                          <ion-select name="query" formControlName="query">
+                            <ion-select-option value="121">General Query</ion-select-option>
+                            <ion-select-option value="101">Complaint </ion-select-option>
+                            <ion-select-option value="111">Request </ion-select-option>
+                          </ion-select>
+                        </ion-item>
+                      </div>
+                      <div class="form-group typ-band addOn bot-space">
+                        <ion-item>
+                          <ion-label position="floating">Feedback</ion-label>
+                          <ion-textarea name="feedback" formControlName="feedback"></ion-textarea>
+                        </ion-item>
+                      </div>
+                    </div>
+                    <div class="button-parent" text-center>
+                      <ion-button [disabled]="!enable" type="submit">Submit
+                      </ion-button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

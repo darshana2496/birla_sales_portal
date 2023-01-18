@@ -1,0 +1,314 @@
+<app-header
+  class="typ-transparent"
+  [type]="'menu'"
+  [typeTitle]="'pageName'"
+  [pageNameVal]="projectName"
+></app-header>
+
+<ion-content
+  [fullscreen]="true"
+  scrollEvents="true"
+  #content
+  (ionScroll)="globalService.headerSticky($event)"
+>
+  <div class="vetical-top">
+    <div class="lyt-banner typ-slider">
+      <div class="loading-img-container">
+        <div></div>
+      </div>
+      <ion-slides pager [options]="slideOpts">
+        <ion-slide *ngFor="let projectImage of projectImages">
+          <img
+            src="{{projectImage|defaultImagePipe}}"
+            onError="this.src='../../../assets/images/default-fallback-image_2.png';"
+          />
+        </ion-slide>
+      </ion-slides>
+    </div>
+
+    <div class="lyt-dashboard" style="width: 100vw">
+      <ng-container *ngIf="projectStages.length">
+        <div
+          class="bs-icon-desc typ-construct w-100"
+          *ngIf="estimationCompletionDate && estimationCompletionDate !== ''"
+        >
+          <div class="icon typ-possession"></div>
+          <span class="date">{{estimationCompletionDate}}</span>
+          <span class="desc">Estimated Completion</span>
+        </div>
+      </ng-container>
+
+      <!-- your dream home section -->
+      <div *ngIf="projectStages.length">
+        <div class="bs-project-info">
+          <div class="desc">{{projectDescription}}</div>
+          <h3 class="title">Your dream home</h3>
+          <div
+            class="floor-plan"
+            *ngIf="floorPlanImg!==null"
+            (click)="viewImage(floorPlanImg)"
+          >
+            <img
+              src="{{floorPlanImg}}"
+              onError="this.src='../../../assets/images/default-fallback-image_2.png';"
+              class="cm-img-responsive"
+            />
+          </div>
+          <div class="details-parent">
+            <ion-grid class="grid">
+              <ion-row class="ion-text-center row">
+                <ion-col class="col" size="6">
+                  <div class="mod-project-details">
+                    <div class="head">Apartment/Unit Type</div>
+                    <div class="data">{{apartmentType}}</div>
+                  </div>
+                </ion-col>
+                <ion-col class="col" size="6">
+                  <div class="mod-project-details">
+                    <div class="head">Floor</div>
+                    <div class="data">{{buildingFloor}}</div>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-text-center row">
+                <ion-col class="col" size="6">
+                  <div class="mod-project-details">
+                    <div class="head">Total Usable Area</div>
+                    <div class="data">{{apartmentSize}} Sq. Mtrs.</div>
+                  </div>
+                </ion-col>
+                <ion-col class="col" size="6">
+                  <div class="mod-project-details">
+                    <div class="head">Tower/Zone/Pocket</div>
+                    <div class="data">{{apartmentWing}}</div>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-text-center row">
+                <ion-col class="col" size="6">
+                  <div class="mod-project-details">
+                    <div class="head">Unit</div>
+                    <div class="data">{{unit}}</div>
+                  </div>
+                </ion-col>
+                <ion-col class="col" size="6">
+                  <div class="mod-project-details">
+                    <div class="head">Agreement Value</div>
+                    <div class="data">
+                      <i class="icon-inr rs-symbol"></i
+                      >{{aggrementValue|currencyDisplay}}
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <!-- <ion-row>
+                    <ion-col col-6>
+                      <div class="mod-project-details">
+                        <div class="head">
+                          Tower/Wing/Pocket Code
+                        </div>
+                        <div class="data">
+                          {{towerCode}}
+                        </div>
+                      </div>
+                    </ion-col>
+                  </ion-row> -->
+            </ion-grid>
+          </div>
+          <h3 class="title">Life that awaits you</h3>
+        </div>
+      </div>
+
+      <!-- bloglist -->
+      <!-- <h3 class="blog-list title">Life that awaits you</h3> -->
+      <div class="bs-slider typ-project" *ngIf="projectStages.length">
+        <ion-slides pager="false" [options]="slideOpts2">
+          <ion-slide *ngFor="let blog of blogsList">
+            <div class="loading-gif"></div>
+            <div class="name">{{blog.vcName}}</div>
+            <div class="img-parent">
+              <div class="loading-gif"></div>
+              <img
+                src="{{blog.vcImageUrl|defaultImagePipe}}"
+                onError="this.src='../../../assets/images/default-fallback-image_2.png';"
+                class="cm-img-responsive"
+              />
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+
+      <!-- construction section -->
+      <div class="lyt-construction">
+        <h3 class="title" *ngIf="projectStages.length">
+          Construction progress
+        </h3>
+
+        <ion-slides
+          #ProjectStagesSlides
+          class="tabs-list"
+          pager="false"
+          [options]="slideOpts3"
+        >
+          <ion-slide *ngFor="let stage of projectStages;let i=index">
+            <div
+              class="tab-btn"
+              [ngClass]="{
+                  'completed':stage.stageCompleted,
+                  'active':stage.btIsActive,
+                  'disabled':!stage.btIsActive && !stage.stageCompleted
+                }"
+              (click)="showSegment(i,stage.vcName)"
+            >
+              <div class="bs-icon-desc typ-construct">
+                <!-- <div class="icon" [ngClass]="{
+                      'typ-excava':stage.vcName === 'Excavation',
+                      'typ-plinth':stage.vcName === 'Plinth',
+                      'typ-slab':stage.vcName === 'Slab'}"></div> -->
+                <div class="icon typ-plinth"></div>
+                <span class="date">{{stage.vcDate}}</span>
+                <span class="desc">{{stage.vcName}}</span>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides>
+
+        <div
+          class="selected-stage"
+          *ngIf="selectedConstructionPhase.length && showConstructionProgressDetails"
+        >
+          {{selectedConstructionPhase}}
+        </div>
+
+        <!-- SLIDES -->
+        <div>
+          <div
+            class="tab-content active"
+            *ngIf="projectStages.length && showConstructionProgressDetails"
+          >
+            <div id="anchorName2" class="prj-stage-img">
+              <img
+                src="{{constructionStageImg}}"
+                class="cm-img-responsive"
+                (click)="viewImage(constructionStageImg)"
+              />
+            </div>
+            <div class="bs-slider typ-project">
+              <ion-slides pager [options]="slideOpts2">
+                <ion-slide
+                  *ngFor="let video of constructionVideoList.videoList"
+                  (click)="playVideo(video)"
+                >
+                  <div class="name">{{video.vcTitle}}</div>
+                  <div class="img-parent">
+                    <img src="{{video.previewImg}}" class="cm-img-responsive" />
+                  </div>
+                </ion-slide>
+              </ion-slides>
+            </div>
+            <!-- <p class="slide-desc">{{constructionVideoList.vcDescription}}</p> -->
+          </div>
+        </div>
+      </div>
+
+      <!-- your dream home section -->
+      <div *ngIf="!projectStages.length">
+        <div class="bs-project-info">
+          <div class="desc">{{projectDescription}}</div>
+          <h3 class="title">Your dream home</h3>
+          <div
+            class="floor-plan"
+            *ngIf="floorPlanImg!==null"
+            (click)="viewImage(floorPlanImg)"
+          >
+            <img
+              src="{{floorPlanImg}}"
+              onError="this.src='../../../assets/images/default-fallback-image_2.png';"
+              class="cm-img-responsive"
+            />
+          </div>
+          <div class="details-parent">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-6>
+                  <div class="mod-project-details">
+                    <div class="head">Apartment/Unit Type</div>
+                    <div class="data">{{apartmentType}}</div>
+                  </div>
+                </ion-col>
+                <ion-col col-6>
+                  <div class="mod-project-details">
+                    <div class="head">Floor</div>
+                    <div class="data">{{buildingFloor}}</div>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>
+                  <div class="mod-project-details">
+                    <div class="head">Total Usable Area</div>
+                    <div class="data">{{apartmentSize}} Sq. Mtrs.</div>
+                  </div>
+                </ion-col>
+                <ion-col col-6>
+                  <div class="mod-project-details">
+                    <div class="head">Tower/Zone/Pocket</div>
+                    <div class="data">{{apartmentWing}}</div>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>
+                  <div class="mod-project-details">
+                    <div class="head">Unit</div>
+                    <div class="data">{{unit}}</div>
+                  </div>
+                </ion-col>
+                <ion-col col-6>
+                  <div class="mod-project-details">
+                    <div class="head">Agreement Value</div>
+                    <div class="data">
+                      <i class="icon-inr rs-symbol"></i
+                      >{{aggrementValue|currencyDisplay}}
+                    </div>
+                  </div>
+                </ion-col>
+              </ion-row>
+              <!-- <ion-row>
+                    <ion-col col-6>
+                      <div class="mod-project-details">
+                        <div class="head">
+                          Tower/Wing/Pocket Code
+                        </div>
+                        <div class="data">
+                          {{towerCode}}
+                        </div>
+                      </div>
+                    </ion-col>
+                  </ion-row> -->
+            </ion-grid>
+          </div>
+          <h3 class="title">Life that awaits you</h3>
+        </div>
+      </div>
+
+      <!-- bloglist -->
+      <div class="bs-slider typ-project" *ngIf="!projectStages.length">
+        <ion-slides pager [options]="slideOpts2">
+          <ion-slide *ngFor="let blog of blogsList">
+            <div class="loading-gif"></div>
+            <div class="name">{{blog.vcName}}</div>
+            <div class="img-parent">
+              <div class="loading-gif"></div>
+              <img
+                src="{{blog.vcImageUrl|defaultImagePipe}}"
+                onError="this.src='../../../assets/images/default-fallback-image_2.png';"
+                class="cm-img-responsive"
+              />
+            </div>
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,62 +1,74 @@
-import { TermsUsePage } from './terms-use/terms-use.component';
-import { TermNConditionPage } from './term-n-condition/term-n-condition.component';
-import { RefundCancelationPage } from './refund-cancelation/refund-cancelation.component';
-import { PrivacyPolicyPage } from './privacy-policy/privacy-policy.component';
 import { FormLayoutComponent } from './form-layout/form-layout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PagesComponent } from './pages.page';
-
+import { PrivacyPolicyPage } from './privacy-policy/privacy-policy.component';
+import { TermsUsePage } from './terms-use/terms-use.component';
+import { TermNConditionPage } from './term-n-condition/term-n-condition.component';
+import { RefundCancelationPage } from './refund-cancelation/refund-cancelation.component';
+import { ChangePinComponent } from './change-pin/change-pin.component';
+import { AboutComponent } from './about/about.component';
+import { HelpSupportComponent } from './help-support/help-support.component';
+import { FaqComponent } from './faq/faq.component';
+import { FeedbackQueryComponent } from './feedback-query/feedback-query.component';
 
 const routes: Routes = [
   {
-    path: 'pages',
+    path: '',
     component: PagesComponent,
     children: [
       {
-        path: 'tab1',
-        loadChildren: () => import('./tab1/tab1.module').then(m => m.Tab1PageModule)
+        path: '',
+        loadChildren: () =>
+          import('./tabs/tabs.module').then((m) => m.TabsPageModule),
       },
       {
-        path: 'tab2',
-        loadChildren: () => import('./tab2/tab2.module').then(m => m.Tab2PageModule)
+        path: 'about-birla',
+        component: AboutComponent,
       },
       {
-        path: 'tab3',
-        loadChildren: () => import('./tab3/tab3.module').then(m => m.Tab3PageModule)
+        path: 'help-support',
+        component: HelpSupportComponent,
       },
       {
-      path:'refundcancel',
-      component: RefundCancelationPage
+        path: 'faq',
+        component: FaqComponent,
+      },
+      {
+        path: 'feedback-query',
+        component: FeedbackQueryComponent,
+      },
+      {
+        path: 'refundcancel',
+        component: RefundCancelationPage,
       },
       {
         path: 'termscondition',
-        component: TermNConditionPage
+        component: TermNConditionPage,
       },
       {
         path: 'termuse',
-        component: TermsUsePage
+        component: TermsUsePage,
       },
       {
-        path:'privacypolicy',
-        component: PrivacyPolicyPage
+        path: 'privacypolicy',
+        component: PrivacyPolicyPage,
       },
       {
-        path:'formLayout',
-        component: FormLayoutComponent      
+        path: 'formLayout',
+        component: FormLayoutComponent,
       },
-    ]
+      {
+        path: 'change-pin',
+        component: ChangePinComponent,
+      },
+    ],
   },
-
   {
     path: '',
-    redirectTo: '/tab1',
-    pathMatch: 'full'
+    redirectTo: '/dashboard',
+    pathMatch: 'full',
   },
- 
-
-
-
 ];
 
 @NgModule({

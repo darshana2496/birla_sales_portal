@@ -1,0 +1,52 @@
+<app-header class="typ-transparent" [type]="'menu'" [typeTitle]="'pageName'" [pageNameVal]="'about birla estates'">
+</app-header>
+
+<ion-content [fullscreen]="true"
+scrollEvents="true"
+#content
+(ionScroll)="globalService.headerSticky($event)">
+  <div class="content-inner">
+      <div class="content no-padding">
+          <div class="vetical-top">
+              <div class="lyt-banner">
+                  <span class="title">LIFE Designed&trade;</span>
+                  <img src="../../../assets/images/about-banner1.png">
+              </div>
+              <div class="lyt-dashboard">
+                  <div class="bs-project-info">
+                      <div class="desc">
+                          LifeDesigned™ is our guiding philosophy of drawing inspiration from and influencing the
+                          lives we touch through our built environments which are meticulously perfected to
+                          understand, nurture and enrich your life from now till forever
+                      </div>
+                      <h3 class="title" *ngIf="projectList.length">Our live projects</h3>
+                  </div>
+                  <div class="bs-slider typ-project typ2" *ngIf="projectList.length">
+                      <ion-slides pager="false" [options]="slideOpts2">
+                          <ion-slide *ngFor="let project of projectList" (click)="viewProject(project.vcUrl)">
+                              <div class="mod-project">
+                                  <span class="tag"><span class="icon-flat"></span></span>
+                                  <img src="{{project.vcImageUrl}}" onError="this.src='./assets/imgs/default-fallback-image_2.png';" alt="thumbnail">
+                                  <div class="title">
+                                      <h3 *ngFor="let name of project.vcProjectName ">
+                                          {{name}}
+                                          <span class="cm-line-break"></span>
+                                      </h3>
+                                  </div>
+                                  <span class="location">{{project.vcLocation}}</span>
+                                  <span class="icon-next"></span>
+                              </div>
+                          </ion-slide>
+                      </ion-slides>
+                      <div *ngIf="!projectList.length">{{serverErrorResponse}}</div>
+                      <a href="https://www.birlaestates.com/">
+                          <div class="button-parent ion-text-center">
+                              <button ion-button class="button button-link">visit website</button>
+                          </div>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</ion-content>

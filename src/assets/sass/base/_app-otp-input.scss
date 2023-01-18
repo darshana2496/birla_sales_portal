@@ -1,0 +1,39 @@
+//app-otp-input
+
+ion-item.app-otp-input::part(native) {
+  padding-left: 0;
+  border: none;
+  caret-color: $clr-black;
+}
+
+.app-otp-input {
+  display: flex;
+  margin-left: -1rem;
+  width: 100%;
+  --background: transparent;
+
+  &.item-has-focus {
+    --highlight-background: transparent;
+  }
+
+  .app-form-control {
+    max-width: 6rem;
+    height: 6rem;
+    --background: $clr-white;
+    --color: $clr-black;
+    text-align: center;
+    font-size: 3.6rem;
+    line-height: 3.8rem;
+    border-radius: 0.3rem;
+    border: 1px solid #e2e2e2;
+    margin: 2rem 1rem;
+
+    &:part(native) {
+      padding-left: 0;
+    }
+
+    &.has-focus {
+      box-shadow: 0px 0px 13px 4px #00000026;
+    }
+  }
+}

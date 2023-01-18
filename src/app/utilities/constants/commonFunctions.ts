@@ -5,7 +5,6 @@ export class CommonFunctions {
     }
   
     onKeyUpEventOTP(event:any, index:any, repeat:any) {
-      console.log(event);
       const eventCode = event.which || event.keyCode;
       if (event.target.value.length === 1) {
         if (index !== repeat) {
@@ -13,7 +12,6 @@ export class CommonFunctions {
         } else {
           (<HTMLInputElement>this.getCodeBoxElement(index)).blur();
           // Submit code
-          console.log('submit code');
         }
       }
       if (eventCode === 8 && index !== 1) {
@@ -35,7 +33,6 @@ export class CommonFunctions {
   
     //makes header transparent to opaque
     headerSticky(e:any) {
-      // console.log(e);
       var topPos = e.scrollTop;
       if (topPos >= 150) {
         document.getElementsByTagName('cm-header')[0].classList.remove('typ-transparent');
