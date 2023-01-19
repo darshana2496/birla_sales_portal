@@ -8,15 +8,12 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./landing.component.scss'],
 })
 export class LandingPage implements OnInit {
+  constructor(public storage: Storage, public router: Router) {}
 
-  constructor(public storage: Storage,public router: Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   gotoCustIdPage() {
-    this.storage.set("FirstTimeAppLoad", false);
-    this.router.navigate(['/loginwithcustid'])
+    this.storage.set('FirstTimeAppLoad', false);
+    this.router.navigate(['/loginwithcustid']);
   }
-
 }

@@ -27,13 +27,16 @@ const routes: Routes = [
         component: AboutComponent,
       },
       {
-        path:'help-support',component:HelpSupportComponent
+        path: 'help-support',
+        component: HelpSupportComponent,
       },
       {
-        path:'faq',component:FaqComponent
+        path: 'faq',
+        component: FaqComponent,
       },
       {
-        path:'feedback-query',component:FeedbackQueryComponent
+        path: 'feedback-query',
+        component: FeedbackQueryComponent,
       },
       {
         path: 'refundcancel',

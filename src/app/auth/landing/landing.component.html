@@ -1,4 +1,8 @@
-<app-header class="typ-transparent" [type]="'normal'" [typeTitle]="'logo'"></app-header>
+<app-header
+  class="typ-transparent"
+  [type]="'normal'"
+  [typeTitle]="'logo'"
+></app-header>
 
 <ion-content [fullscreen]="true" class="bs-appIntro typ-landing">
   <div class="introSlider">
@@ -10,11 +14,15 @@
     </div>
   </div>
   <div class="button-parent" text-center>
-    <div class="ion-text-center ion-align-vertical ">
-      <ion-button class="button" (click)="gotoCustIdPage()">I am an owner</ion-button>
+    <div class="ion-text-center ion-align-vertical">
+      <ion-button class="app-btn btn-default" (click)="gotoCustIdPage()"
+        >I am an owner</ion-button
+      >
     </div>
     <div class="ion-align-vertical ion-text-center">
-      <ion-button class="button button-link" (click)="gotoCustIdPage()">Continue as guest</ion-button>
+      <ion-button class="app-btn btn-link" (click)="gotoCustIdPage()"
+        >Continue as guest</ion-button
+      >
     </div>
   </div>
 </ion-content>

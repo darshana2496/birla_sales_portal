@@ -1,593 +1,383 @@
-// .bs-form {
-//     .form-group {
-//         position: relative;
-//         .label-floating {
-//             // -webkit-transform: translate3d(13px, 29px, 10px);
-//             // transform: translate3d(13px, 29px, 10px);
-//         }
-//         .item-input-has-value .label-floating,
-//         .input-has-value .label-floating {
-//             -webkit-transform: translate3d(0, 0, 0) scale(0.8);
-//             transform: translate3d(0, 0, 0) scale(0.8);
-//             @include opacity(1);
-//             color: #000;
-//         }
+// .list-md .item-input.item-input-has-focus:last-child,
+// .list-md .item-input.input-has-focus:last-child
+// .item-input-has-focus .label-md[floating],
+// .input-has-focus .label-md[floating]
+.bs-form {
+  .form-group {
+    position: relative;
+    .label-md[floating] {
+      -webkit-transform: translate3d(13px, 29px, 10px);
+      transform: translate3d(13px, 29px, 10px);
+    }
+    .item-inner {
+      padding-right: 0;
+      border: 0;
+    }
+    .item-md.item-input.item-input-has-focus .item-inner,
+    .item-md.item-input.input-has-focus .item-inner {
+      border: 0;
+      box-shadow: none;
+    }
+    .item-input-has-value .label-md[floating],
+    .input-has-value .label-md[floating] {
+      -webkit-transform: translate3d(0, 0, 0) scale(0.8);
+      transform: translate3d(0, 0, 0) scale(0.8);
+      @include opacity(1);
+      color: #000;
+    }
+    .item-input {
+      border: 0;
+      padding-right: 0;
+      padding-left: 8px;
+      background: transparent;
+      &.item-input-has-focus,
+      &.input-has-focus {
+        .label-md[floating] {
+          -webkit-transform: translate3d(0, 0, 0) scale(0.8);
+          transform: translate3d(0, 0, 0) scale(0.8);
+          color: $clr-text-color;
+          color: #000;
+        }
+        .item-inner {
+          padding-right: 0;
+          border: 0;
+        }
+        .item-md.item-input.item-input-has-focus .item-inner,
+        .item-md.item-input.input-has-focus .item-inner {
+          border: 0;
+          box-shadow: none;
+        }
+        .item-input {
+          border: 0;
+          padding-right: 0;
+          padding-left: 8px;
+          background: transparent;
+          &.item-input-has-focus,
+          &.input-has-focus {
+            .label-md[floating] {
+              -webkit-transform: translate3d(0, 0, 0) scale(0.8);
+              transform: translate3d(0, 0, 0) scale(0.8);
+              color: $clr-text-color;
+            }
+            &:last-child {
+              box-shadow: none;
+              border: inherit;
+            }
+          }
+          ion-input {
+            &.error-input {
+              .text-input {
+                border-color: $clr-red;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.typ-area {
+      label {
+        font-size: 1rem;
+        color: $clr-black;
+        font-weight: $font-medium;
+        display: block;
+        padding-bottom: 7px;
+      }
+      textarea {
+        background: $clr-white;
+        border: 1px solid $clr-border;
+        border-radius: 3px;
+        padding: 20px 10px;
+      }
+    }
+    &.typ-band {
+      background: $clr-white;
+      border: 1px solid #d2d2d2;
+      border-radius: 4px;
+      padding: 6px 0px;
+      &.active {
+        box-shadow: 0px 0px 13px 4px #00000026;
+        .button {
+          .button-inner {
+            .icons {
+              color: $clr-primary;
+            }
+          }
+        }
+      }
+      .label-md[floating] {
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+        color: #999999;
+        font-weight: $font-semi-bold;
+        text-transform: uppercase;
+        -webkit-transform: translate3d(6px, 14px, 10px);
+        transform: translate3d(6px, 14px, 10px);
+        position: relative;
+        z-index: 2;
+      }
+      .text-input {
+        border: none;
+        padding-left: 6px;
+        text-transform: uppercase;
+        font-weight: $font-semi-bold;
+      }
+      .item-input.item-input-has-focus .label-md[floating],
+      .item-input.input-has-focus .label-md[floating],
+      .item-input-has-value .label-md[floating],
+      .input-has-value .label-md[floating] {
+        -webkit-transform: translate3d(6px, 0, 0) scale(0.8);
+        transform: translate3d(6px, 0, 0) scale(0.8);
+        color: #a08349;
+      }
+      .button {
+        .button-inner {
+          .icons {
+            font-size: 1.6rem;
+            line-height: 1.6rem;
+            color: #e2e2e2;
+          }
+        }
+      }
+      .item-md {
+        &.item-select {
+          padding-left: 8px;
+          .select-text {
+            padding-left: 6px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #4d4d4f;
+          }
+        }
+      }
+      &.bot-space {
+        margin-bottom: 20px;
+      }
+    }
+    &.addOn {
+      padding-right: 50px;
+      position: relative;
+      .button-parent {
+        position: absolute;
+        margin: 0;
+        right: 0;
+        top: 0;
+        height: 100%;
+        .button {
+          background: transparent;
+          box-shadow: none;
+          height: 100%;
+          padding: 0 20px;
+          margin: 0;
+        }
+      }
+    }
+    &.typ-file {
+      position: relative;
+      ion-input {
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .item-select {
+      .select-icon {
+        .select-icon-inner {
+          border: none;
+          &:after {
+            content: "w";
+            font-family: "cp" !important;
+            font-size: 1.4rem;
+            line-height: 1.6rem;
+            position: relative;
+            top: -18px;
+            left: -18px;
+          }
+        }
+      }
+    }
+    ion-textarea {
+      line-height: 1.4rem;
+    }
+    &.typ-uploads {
+      display: block;
+      height: 70px;
+      padding: 13px 50px 13px 16px;
+      .img-wrap {
+        float: left;
+        margin-right: 10px;
+        border: 1px solid $clr-footer-link;
+        vertical-align: middle;
+        width: 43px;
+        height: 43px;
+      }
+      .file-name {
+        font-size: 1.4rem;
+        line-height: 4.5rem;
+        color: $clr-text-color;
+        display: inline-block;
+        font-weight: $font-semi-bold;
+        text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+      }
+      .status-bar {
+        position: absolute;
+        top: 0;
+        right: 0;
+        z-index: 2;
+        .icon-button {
+          &.button-progress {
+            top: 20px;
+            right: 10px;
+            .round-progress {
+              width: 20px !important;
+              height: 20px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+  .field-label {
+    font-size: 1.4rem;
+    line-height: 2rem;
+    color: $clr-black;
+    font-weight: $font-medium;
+    margin-bottom: 11px;
+    display: block;
+  }
+  .button-parent {
+    margin-top: 30px;
+    &.typ-link {
+      margin-top: 16px;
+    }
+  }
+  .text-input {
+    border: 1px solid $clr-border;
+    line-height: 3.8rem;
+    border-radius: 3px;
+    padding-left: 10px;
+    font-size: 1.6rem;
+    color: $clr-text-color;
+    background: $clr-white;
+    margin: 0;
+  }
+  .otp-parent {
+    text-align: left;
+    ion-input {
+      display: inline;
+      &:first-child {
+        .text-input {
+          margin-left: 0;
+        }
+      }
+      &:last-child {
+        .text-input {
+          margin-right: 0;
+        }
+      }
+    }
+    .text-input {
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      padding: 0;
+      display: inline-block;
+      margin: 0 2.4%;
+      font-size: 3.6rem;
+      -webkit-text-security: disc !important;
+      &:focus {
+        box-shadow: 0px 0px 13px 4px #00000026;
+      }
+    }
+    .error {
+      text-align: center;
+    }
+  }
+  .lbl-inpt {
+    color: $clr-black;
+    font-weight: $font-regular;
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+    display: block;
+    text-align: left;
+    padding: 0 9px;
+  }
+  .error {
+    color: $clr-red;
+    font-weight: $font-regular;
+    font-size: 1.1rem;
+    display: block;
+    text-align: left;
+    padding: 0 0 0 15px;
+  }
+  .select-date-btn {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    font-size: 1.2rem;
+    color: #999;
+  }
+  &.typ-note {
+    max-width: 220px;
+    margin: 0 auto;
+  }
+  &.type-otp {
+    .form-group-parent {
+      margin-bottom: 20px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    .form-group {
+      display: inline-block;
+      text-align: left;
+      .otp-lable {
+        font-weight: $font-medium;
+        color: #000;
+        font-size: 1rem;
+        margin-bottom: 5px;
+        display: block;
+      }
+    }
+  }
+  .form-title {
+    font-size: 2.4rem;
+    line-height: 2.6rem;
+    color: $clr-black;
+    font-weight: $font-extra-bold;
+    margin-bottom: 30px;
+  }
+  .form-group-wrap {
+    margin-bottom: 20px;
+    &.last {
+      margin-bottom: 0;
+    }
+  }
+}
 
-//         .item-input {
-//             border: 0;
-//             padding-right: 0;
-//             padding-left: 8px;
-//             background: transparent;
-//             &.item-input-has-focus,
-//             &.input-has-focus {
-//                 .label-floating {
-//                     -webkit-transform: translate3d(0, 0, 0) scale(0.8);
-//                     transform: translate3d(0, 0, 0) scale(0.8);
-//                     color: $clr-text-color;
-//                     color: #000;
-//                 }
-//                 .item-inner {
-//                     padding-right: 0;
-//                     border: 0;
-//                 }
-//                 .item-input {
-//                     border: 0;
-//                     padding-right: 0;
-//                     padding-left: 8px;
-//                     background: transparent;
-//                     &.item-input-has-focus,
-//                     &.input-has-focus {
-//                         .label-floating {
-//                             -webkit-transform: translate3d(0, 0, 0) scale(0.8);
-//                             transform: translate3d(0, 0, 0) scale(0.8);
-//                             color: $clr-text-color;
-//                         }
-//                         &:last-child {
-//                             box-shadow: none;
-//                             border: inherit;
-//                         }
-//                     }
-//                     ion-input {
-//                         &.error-input {
-//                             .native-input, .sc-ion-input-ios {
-//                                 border-color: $clr-red;
-//                             }
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//         &.typ-area {
-//             label {
-//                 font-size: 1rem;
-//                 color: $clr-black;
-//                 font-weight: $font-medium;
-//                 display: block;
-//                 padding-bottom: 7px;
-//             }
-//             textarea {
-//                 background: $clr-white;
-//                 border: 1px solid $clr-border;
-//                 border-radius: 3px;
-//                 padding: 20px 10px;
-//             }
-//         }
-//         &.typ-band {
-//             background: $clr-white;
-//             border: 1px solid #d2d2d2;
-//             border-radius: 4px;
-//             padding: 6px 0px;
-//             &.active {
-//                 box-shadow: 0px 0px 13px 4px #00000026;
-//                 .button {
-//                     .button-inner {
-//                         .icons {
-//                             color: $clr-primary
-//                         }
-//                     }
-//                 }
-//             }
-//             .label-floating {
-//                 font-size: 1.4rem;
-//                 line-height: 1.4rem;
-//                 color: #999999;
-//                 font-weight: $font-semi-bold;
-//                 text-transform: uppercase;
-//                 -webkit-transform: translate3d(6px, 14px, 10px);
-//                 transform: translate3d(6px, 14px, 10px);
-//                 position: relative;
-//                 z-index: 2;
-//             }
-//             .native-input .sc-ion-input-ios {
-//                 border: none;
-//                 padding-left: 6px;
-//                 text-transform: uppercase;
-//                 font-weight: $font-semi-bold;
-//             }
-//             .item-input.item-input-has-focus .label-floating,
-//             .item-input.input-has-focus .label-floating,
-//             .item-input-has-value .label-floating,
-//             .input-has-value .label-floating {
-//                 -webkit-transform: translate3d(6px, 0, 0) scale(0.8);
-//                 transform: translate3d(6px, 0, 0) scale(0.8);
-//                 color: #a08349;
-//             }
-//             .button {
-//                 .button-inner {
-//                     .icons {
-//                         font-size: 1.6rem;
-//                         line-height: 1.6rem;
-//                         color: #e2e2e2;
-//                     }
-//                 }
-//             }
-//             .item-interactive {
-//                 &.item-select {
-//                     padding-left: 8px;
-//                     .select-text {
-//                         padding-left: 6px;
-//                         text-transform: uppercase;
-//                         font-weight: 600;
-//                         color: #4d4d4f;
-//                     }
-//                 }
-//             }
-//             &.bot-space {
-//                 margin-bottom: 20px;
-//             }
-//         }
-//         &.addOn {
-//             padding-right: 50px;
-//             position: relative;
-//             .button-parent {
-//                 position: absolute;
-//                 margin: 0;
-//                 right: 0;
-//                 top: 0;
-//                 height: 100%;
-//                 .button {
-//                     background: transparent;
-//                     box-shadow: none;
-//                     height: 100%;
-//                     padding: 0 20px;
-//                     margin: 0;
-//                 }
-//             }
-//         }
-//         &.typ-file {
-//             position: relative;
-//             ion-input {
-//                 visibility: hidden;
-//                 position: absolute;
-//                 left: 0;
-//                 right: 0;
-//                 top: 0;
-//                 width: 100%;
-//                 height: 100%;
-//             }
-//         }
-//         .item-select {
-//             .select-icon {
-//                 .select-icon-inner {
-//                     border: none;
-//                     &:after {
-//                         content: 'w';
-//                         font-family: "cp" !important;
-//                         font-size: 1.4rem;
-//                         line-height: 1.6rem;
-//                         position: relative;
-//                         top: -18px;
-//                         left: -18px;
-//                     }
-//                 }
-//             }
-//         }
-//         ion-textarea {
-//             line-height: 1.4rem;
-//         }
-//         &.typ-uploads {
-//             display: block;
-//             height: 70px;
-//             padding: 13px 50px 13px 16px;
-//             .img-wrap {
-//                 float: left;
-//                 margin-right: 10px;
-//                 border: 1px solid $clr-footer-link;
-//                 vertical-align: middle;
-//                 width: 43px;
-//                 height: 43px;
-//             }
-//             .file-name {
-//                 font-size: 1.4rem;
-//                 line-height: 4.5rem;
-//                 color: $clr-text-color;
-//                 display: inline-block;
-//                 font-weight: $font-semi-bold;
-//                 text-transform: uppercase;
-//                 white-space: nowrap;
-//                 overflow: hidden;
-//                 text-overflow: ellipsis;
-//                 max-width: 150px;
-//             }
-//             .status-bar {
-//                 position: absolute;
-//                 top: 0;
-//                 right: 0;
-//                 z-index: 2;
-//                 .icon-button {
-//                     &.button-progress {
-//                         top: 20px;
-//                         right: 10px;
-//                         .round-progress {
-//                             width: 20px !important;
-//                             height: 20px !important;
-//                         }
-//                     }
-//                 }
-//             }
+.bs-form .form-group.typ-band textarea.text-input {
+  resize: none;
+  line-height: 1.8rem;
+  height: 80px;
+  margin-top: 8px;
+  background: transparent;
+}
 
-//             &:last-child {
-//               box-shadow: none;
-//               border: inherit;
-//             }
-//           }
-
-//           ion-input {
-//             &.error-input {
-//               .text-input {
-//                 border-color: $clr-red;
-//               }
-//             }
-//           }
-//         }
-//       }
-    
-
-//     &.typ-area {
-//       label {
-//         font-size: 1rem;
-//         color: $clr-black;
-//         font-weight: $font-medium;
-//         display: block;
-//     }
-//     .button-parent {
-//         margin-top: 30px;
-//         &.typ-link {
-//             margin-top: 16px;
-//         }
-//     }
-//     .native-input,.sc-ion-input-ios {
-//         border: 1px solid $clr-border;
-//         line-height: 3.8rem;
-//         border-radius: 3px;
-//         padding-left: 10px;
-//         font-size: 1.6rem;
-//         color: $clr-text-color;
-//         background: $clr-white;
-//         border: 1px solid $clr-border;
-//         border-radius: 3px;
-//         padding: 20px 10px;
-//       }
-//     }
-//     .otp-parent {
-//         text-align: left;
-//         ion-input {
-//             display: inline;
-//             &:first-child {
-//                 .native-input,.sc-ion-input-ios {
-//                     margin-left: 0;
-//                 }
-//             }
-//             &:last-child {
-//                 .native-input,.sc-ion-input-ios {
-//                     margin-right: 0;
-//                 }
-//             }
-//           }
-//         }
-//         .native-input,.sc-ion-input-ios {
-//             width: 60px;
-//             height: 60px;
-//             text-align: center;
-//             padding: 0;
-//             display: inline-block;
-//             margin: 0 2.4%;
-//             font-size: 3.6rem;
-//             -webkit-text-security: disc !important;
-//             &:focus {
-//                 box-shadow: 0px 0px 13px 4px #00000026;
-//             }
-//         }
-      
-
-//       .item-md {
-//         &.item-select {
-//           padding-left: 8px;
-
-//           .select-text {
-//             padding-left: 6px;
-//             text-transform: uppercase;
-//             font-weight: 600;
-//             color: #4d4d4f;
-//           }
-//         }
-//       }
-
-//       &.bot-space {
-//         margin-bottom: 20px;
-//       }
-    
-
-//     &.addOn {
-//       padding-right: 50px;
-//       position: relative;
-
-//       .button-parent {
-//         position: absolute;
-//         margin: 0;
-//         right: 0;
-//         top: 0;
-//         height: 100%;
-
-//         .button {
-//           background: transparent;
-//           box-shadow: none;
-//           height: 100%;
-//           padding: 0 20px;
-//           margin: 0;
-//         }
-//       }
-//     }
-
-//     &.typ-file {
-//       position: relative;
-
-//       ion-input {
-//         visibility: hidden;
-//         position: absolute;
-//         left: 0;
-//         right: 0;
-//         top: 0;
-//         width: 100%;
-//         height: 100%;
-//       }
-//     }
-
-//     .item-select {
-//       .select-icon {
-//         .select-icon-inner {
-//           border: none;
-
-//           &:after {
-//             content: 'w';
-//             font-family: "cp" !important;
-//             font-size: 1.4rem;
-//             line-height: 1.6rem;
-//             position: relative;
-//             top: -18px;
-//             left: -18px;
-//           }
-//         }
-//       }
-//     }
-
-//     ion-textarea {
-//       line-height: 1.4rem;
-//     }
-
-//     &.typ-uploads {
-//       display: block;
-//       height: 70px;
-//       padding: 13px 50px 13px 16px;
-
-//       .img-wrap {
-//         float: left;
-//         margin-right: 10px;
-//         border: 1px solid $clr-footer-link;
-//         vertical-align: middle;
-//         width: 43px;
-//         height: 43px;
-//       }
-
-//       .file-name {
-//         font-size: 1.4rem;
-//         line-height: 4.5rem;
-//         color: $clr-text-color;
-//         display: inline-block;
-//         font-weight: $font-semi-bold;
-//         text-transform: uppercase;
-//         white-space: nowrap;
-//         overflow: hidden;
-//         text-overflow: ellipsis;
-//         max-width: 150px;
-//       }
-
-//       .status-bar {
-//         position: absolute;
-//         top: 0;
-//         right: 0;
-//         z-index: 2;
-
-//         .icon-button {
-//           &.button-progress {
-//             top: 20px;
-//             right: 10px;
-
-//             .round-progress {
-//               width: 20px !important;
-//               height: 20px !important;
-//             }
-//           }
-//         }
-//       }
-//     }
-  
-
-//   .field-label {
-//     font-size: 1.4rem;
-//     line-height: 2rem;
-//     color: $clr-black;
-//     font-weight: $font-medium;
-//     margin-bottom: 11px;
-//     display: block;
-//   }
-
-//   .button-parent {
-//     margin-top: 30px;
-
-//     &.typ-link {
-//       margin-top: 16px;
-//     }
-//   }
-
-//   .text-input {
-//     border: 1px solid $clr-border;
-//     line-height: 3.8rem;
-//     border-radius: 3px;
-//     padding-left: 10px;
-//     font-size: 1.6rem;
-//     color: $clr-text-color;
-//     background: $clr-white;
-//     margin: 0;
-//   }
-
-//   .otp-parent {
-//     text-align: left;
-
-//     ion-input {
-//       display: inline;
-
-//       border: none;
-//       outline: none;
-
-//       &:first-child {
-//         .text-input {
-//           margin-left: 0;
-//         }
-//       }
-
-//       &:last-child {
-//         .text-input {
-//           margin-right: 0;
-//         }
-//       }
-//     }
-
-//     .text-input {
-//       width: 60px;
-//       height: 60px;
-//       text-align: center;
-//       padding: 0;
-//       display: inline-block;
-//       margin: 0 2.4%;
-//       font-size: 3.6rem;
-//       -webkit-text-security: disc !important;
-
-//       &:focus {
-//         box-shadow: 0px 0px 13px 4px #00000026;
-//       }
-//     }
-
-//     .error {
-//       text-align: center;
-//     }
-//   }
-
-//   .lbl-inpt {
-//     color: $clr-black;
-//     font-weight: $font-regular;
-//     font-size: 1.2rem;
-//     line-height: 2.2rem;
-//     display: block;
-//     text-align: left;
-//     padding: 0 9px;
-//   }
-
-//   .error {
-//     color: $clr-red;
-//     font-weight: $font-regular;
-//     font-size: 1.1rem;
-//     display: block;
-//     text-align: left;
-//     padding: 0 0 0 15px;
-//   }
-
-//   .select-date-btn {
-//     position: absolute;
-//     right: 15px;
-//     bottom: 10px;
-//     font-size: 1.2rem;
-//     color: #999;
-//   }
-
-//   &.typ-note {
-//     max-width: 220px;
-//     margin: 0 auto;
-//   }
-
-//   &.type-otp {
-//     .form-group-parent {
-//       margin-bottom: 20px;
-
-//       &:last-child {
-//         margin-bottom: 0;
-//       }
-//     }
-
-//     .form-group {
-//       display: inline-block;
-//       text-align: left;
-
-//       .otp-lable {
-//         font-weight: $font-medium;
-//         color: #000;
-//         font-size: 1.0rem;
-//         margin-bottom: 5px;
-//         display: block;
-//       }
-//     }
-//   }
-
-//   .form-title {
-//     font-size: 2.4rem;
-//     line-height: 2.6rem;
-//     color: $clr-black;
-//     font-weight: $font-extra-bold;
-//     margin-bottom: 30px;
-//   }
-
-//   .form-group-wrap {
-//     margin-bottom: 20px;
-
-//     &.last {
-//       margin-bottom: 0;
-//     }
-//   }
-
-
-// .bs-form .form-group.typ-band textarea.native-input {
-//     resize: none;
-//     line-height: 1.8rem;
-//     height: 80px;
-//     margin-top: 8px;
-//     background: transparent;
-// }
-// @media only screen and (max-width: 360px) {
-//     .bs-form {
-//         .otp-parent {
-//             .native-input,.sc-ion-input-ios {
-//                 width: 50px;
-//                 height: 50px;
-//                 margin: 0 2%;
-//             }
-//         }
-//     }
-// }
-
-// .label-stacked.sc-ion-label-ios-h {
-//     font-size: 1.4rem;
-//     line-height: 1.4rem;
-//     color: $form-label;
-//     text-transform: uppercase;
-//     margin-bottom: 11px;
-// }
+@media only screen and (max-width: 360px) {
+  .bs-form {
+    .otp-parent {
+      .text-input {
+        width: 50px;
+        height: 50px;
+        margin: 0 2%;
+      }
+    }
+  }
+}

@@ -1,51 +1,101 @@
-<app-header class="typ-transparent" [type]="'normal'" [typeTitle]="'logo'"></app-header>
+<app-header
+  class="typ-transparent"
+  [type]="'normal'"
+  [typeTitle]="'logo'"
+></app-header>
 
-<ion-content  class="lyt-section typ-bg ion-padding">
+<ion-content class="lyt-section typ-bg">
   <div class="content-inner">
     <div class="content">
-      <div class="form-cont">
+      <div class="form-cont app-form">
         <div class="bs-form">
-          <div class="bs-title-desc ion-text-left" >
+          <div class="bs-title-desc ion-text-left">
             <h2 class="title">Hello</h2>
-            <h3 class="sub-title">Welcome {{globalService.selectedProjectObj.customerName}}</h3>
+            <h3 class="sub-title">
+              Welcome {{ globalService.selectedProjectObj.customerName }}
+            </h3>
           </div>
           <div class="form-group-wrap">
             <span class="field-label">
-              <span class="cm-bold">Enter your 4 digit pin</span></span>
-            <div class="form-group ion-text-center" >
-              <form [formGroup]="enterpinGroup" validate>
-              <div class="otp-parent display-flex-content">
-              
-                <ion-input #codeBox1 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin1" (keyup)="globalService.onKeyEvent($event,codeBox2,codeBox1);changeInput()"
-                formControlName="pin1" required
-                 ></ion-input>
-                 <!-- [disabled]="enterpinGroup.get('pin1').errors" -->
-                 <!-- [disabled]="formErr['pin1'].errors['required']" -->
-                 <ion-input #codeBox2  appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin2" (keyup)="globalService.onKeyEvent($event,codeBox3,codeBox1);changeInput()"
-                formControlName="pin2" 
+              <span class="cm-bold">Enter your 4 digit pin</span></span
+            >
+            <div class="form-group ion-text-center">
+              <form [formGroup]="enterpinGroup">
+                <ion-item class="app-otp-input">
+                  <ion-input
+                    class="app-form-control"
+                    #codeBox1
+                    appOnlyNumber
+                    type="{{ encrypt ? 'tel' : 'password' }}"
+                    maxlength="1"
+                    name="pin1"
+                    (keyup)="
+                      globalService.onKeyEvent($event, codeBox2, codeBox1);
+                      changeInput()
+                    "
+                    formControlName="pin1"
+                    required
+                  ></ion-input>
+                  <!-- [disabled]="enterpinGroup.get('pin1').errors" -->
+                  <!-- [disabled]="formErr['pin1'].errors['required']" -->
+                  <ion-input
+                    #codeBox2
+                    class="app-form-control"
+                    appOnlyNumber
+                    type="{{ encrypt ? 'tel' : 'password' }}"
+                    maxlength="1"
+                    name="pin2"
+                    (keyup)="
+                      globalService.onKeyEvent($event, codeBox3, codeBox1);
+                      changeInput()
+                    "
+                    formControlName="pin2"
                   ></ion-input>
 
-                <ion-input #codeBox3 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin3" (keyup)="globalService.onKeyEvent($event,codeBox4,codeBox2);changeInput()"
-                formControlName="pin3" 
+                  <ion-input
+                    #codeBox3
+                    class="app-form-control"
+                    appOnlyNumber
+                    type="{{ encrypt ? 'tel' : 'password' }}"
+                    maxlength="1"
+                    name="pin3"
+                    (keyup)="
+                      globalService.onKeyEvent($event, codeBox4, codeBox2);
+                      changeInput()
+                    "
+                    formControlName="pin3"
                   ></ion-input>
 
-                <ion-input #codeBox4 appOnlyNumber type="{{encrypt ? 'tel' : 'password' }}" maxlength="1" name="pin4" (keyup)="globalService.onKeyEvent($event,codeBox4,codeBox3);changeInput()"
-                formControlName="pin4"></ion-input>
+                  <ion-input
+                    #codeBox4
+                    class="app-form-control"
+                    appOnlyNumber
+                    type="{{ encrypt ? 'tel' : 'password' }}"
+                    maxlength="1"
+                    name="pin4"
+                    (keyup)="
+                      globalService.onKeyEvent($event, codeBox4, codeBox3);
+                      changeInput()
+                    "
+                    formControlName="pin4"
+                  ></ion-input>
+                </ion-item>
+                <div class="button-parent ion-text-center">
+                  <ion-button
+                    [disabled]="!submitted"
+                    (click)="fnValidatePin()"
+                    class="app-btn btn-default"
+                    >PROCEED</ion-button
+                  >
                 </div>
-                  <div class="button-parent ion-text-center">
-                    <ion-button [disabled]="!submitted" (click)="fnValidatePin()" class="button" >PROCEED</ion-button>
-                  </div>
-                  <div class="button-parent typ-link ion-text-center" >
-                    <button class="button button-link" (click)="fnForgetPin()" ion-button>FORGET PIN</button>
-
-                  
+                <div class="button-parent typ-link ion-text-center">
+                  <ion-button class="app-btn btn-link" (click)="fnForgetPin()">
+                    FORGET PIN
+                  </ion-button>
                 </div>
-               </form>
-              
+              </form>
             </div>
           </div>
-          
-          
         </div>
       </div>
     </div>

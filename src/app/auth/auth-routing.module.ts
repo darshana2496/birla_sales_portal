@@ -17,53 +17,52 @@ const routes: Routes = [
     children: [
       {
         path: 'AppIntroPage',
-        component: AppIntroPage
+        component: AppIntroPage,
       },
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
       },
       {
         path: 'know-your-cust-id',
-        component: KnowYourCustIdPage
+        component: KnowYourCustIdPage,
       },
       {
         path: 'landing',
-        component: LandingPage
+        component: LandingPage,
       },
       {
-        path:'loginwithcustid',
-        component: LoginWithCustIdPage
+        path: 'loginwithcustid',
+        component: LoginWithCustIdPage,
       },
       {
-        path:'otp',
-        component: OtpComponent
+        path: 'otp',
+        component: OtpComponent,
       },
       {
-        path:'set-pin',
-        component:SetPinComponent
+        path: 'set-pin',
+        component: SetPinComponent,
       },
       {
-        path:'enter-pin',
-        component:EnterPinComponent
+        path: 'enter-pin',
+        component: EnterPinComponent,
       },
       {
         path: '',
         redirectTo: 'AppIntroPage',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
-    ]
+    ],
   },
   {
     path: '',
     redirectTo: 'AppIntroPage',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
- 
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AuthRoutingModule { }
+export class AuthRoutingModule {}

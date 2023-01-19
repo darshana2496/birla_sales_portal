@@ -1,68 +1,80 @@
+<ion-list class="app-form temp">
+  <!-- Stacked Input -->
+  <ion-item class="app-form-group">
+    <ion-label class="app-field-label" position="stacked"
+      >Stacked label</ion-label
+    >
+    <ion-input class="app-form-control" placeholder="Enter text"></ion-input>
+  </ion-item>
 
-  <ion-list class="app-form temp">
-    <!-- Stacked Input -->
-    <ion-item class="app-form-group">
-      <ion-label class="app-field-label" position="stacked">Stacked label</ion-label>
-      <ion-input class="app-form-control" placeholder="Enter text"></ion-input>
+  <!-- Floating Input -->
+  <ion-item class="app-form-group">
+    <ion-label class="app-field-label" position="floating"
+      >Floating input label</ion-label
+    >
+    <ion-input class="app-form-control" placeholder="Enter text"></ion-input>
+    <ion-button><span class="icons icon-next"></span></ion-button>
+  </ion-item>
+
+  <!-- Normal Input -->
+  <ion-item class="app-form-group">
+    <ion-label class="app-field-label" position="floating"
+      >Floating label</ion-label
+    >
+    <ion-input class="app-form-control" placeholder="Enter text"></ion-input>
+  </ion-item>
+
+  <!-- Date picker -->
+  <ion-item class="app-form-group">
+    <ion-label class="app-field-label" position="stacked"
+      >Date of birth</ion-label
+    >
+    <ion-input
+      class="app-form-control"
+      type="date"
+      placeholder="dd/mm/yyyy"
+    ></ion-input>
+    <!-- <ion-button><span class="icons icon-next"></span></ion-button> -->
+  </ion-item>
+
+  <!-- OTP input -->
+  <ion-item class="app-otp-input">
+    <ion-input class="app-form-control" type="number" max="1"></ion-input>
+    <ion-input class="app-form-control" type="number" max="1"></ion-input>
+    <ion-input class="app-form-control" type="number" max="1"></ion-input>
+    <ion-input class="app-form-control" type="number" max="1"></ion-input>
+  </ion-item>
+
+  <!-- Search Input -->
+  <ion-searchbar class="app-search-bar"></ion-searchbar>
+
+  <!-- Button List -->
+  <ion-list>
+    <ion-item>
+      <ion-button class="app-btn btn-default">Default</ion-button>
     </ion-item>
-
-    <!-- Floating Input -->
-    <ion-item class="app-form-group">
-      <ion-label class="app-field-label" position="floating">Floating input label</ion-label>
-      <ion-input class="app-form-control" placeholder="Enter text"></ion-input>
-      <ion-button><span class="icons icon-next"></span></ion-button>
+    <ion-item>
+      <ion-button class="app-btn btn-default" [disabled]="true"
+        >Default</ion-button
+      >
     </ion-item>
-
-
-    <!-- Normal Input -->
-    <ion-item class="app-form-group">
-      <ion-label class="app-field-label" position="floating">Floating label</ion-label>
-      <ion-input class="app-form-control" placeholder="Enter text"></ion-input>
+    <ion-item>
+      <ion-button class="app-btn btn-link" fill="clear"
+        >cheque already dropped?</ion-button
+      >
     </ion-item>
-
-
-    <!-- Date picker -->
-    <ion-item class="app-form-group">
-      <ion-label class="app-field-label" position="stacked">Date of birth</ion-label>
-      <ion-input class="app-form-control" type="date" placeholder="dd/mm/yyyy"></ion-input>
-      <ion-button><span class="icons icon-next"></span></ion-button>
-    </ion-item>
-
-    <!-- OTP input -->
-    <ion-item class="app-otp-input">
-      <ion-input class="app-form-control" type="number" max="1"></ion-input>
-      <ion-input class="app-form-control" type="number" max="1"></ion-input>
-      <ion-input class="app-form-control" type="number" max="1"></ion-input>
-      <ion-input class="app-form-control" type="number" max="1"></ion-input>
-    </ion-item>
-
-    <!-- Search Input -->
-    <ion-searchbar class="app-search-bar"></ion-searchbar>
-
-    <!-- Button List -->
-    <ion-list>
-      <ion-item>
-        <ion-button class="app-btn btn-default">Default</ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-button class="app-btn btn-default" [disabled]="true">Default</ion-button>
-      </ion-item>
-      <ion-item>
-        <ion-button class="app-btn btn-link" fill="clear">cheque already dropped?</ion-button>
-      </ion-item>
-    </ion-list>
-    
-    <!-- Select -->
-    <ion-item class="app-form-group app-select">
-      <ion-label class="app-field-label" position="stacked">Location</ion-label>
-      <ion-select placeholder="Select location" [interfaceOptions]="{cssClass: 'app-select-alert'}">
-        <ion-select-option value="mumbai">Mumbai</ion-select-option>
-        <ion-select-option value="pune">Pune</ion-select-option>
-        <ion-select-option value="nagpur">Nagpur</ion-select-option>
-      </ion-select>
-    </ion-item>
-    
-
-    
-
   </ion-list>
+
+  <!-- Select -->
+  <ion-item class="app-form-group app-select">
+    <ion-label class="app-field-label" position="stacked">Location</ion-label>
+    <ion-select
+      placeholder="Select location"
+      [interfaceOptions]="{ cssClass: 'app-select-alert' }"
+    >
+      <ion-select-option value="mumbai">Mumbai</ion-select-option>
+      <ion-select-option value="pune">Pune</ion-select-option>
+      <ion-select-option value="nagpur">Nagpur</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list>

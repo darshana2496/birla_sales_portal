@@ -18,7 +18,6 @@ import { SetPinComponent } from './set-pin/set-pin.component';
 import { OnlyNumberDirective } from '../utilities/directives/only-number.directive';
 import { EnterPinComponent } from './enter-pin/enter-pin.component';
 
-
 @NgModule({
   imports: [
     IonicModule,
@@ -26,10 +25,10 @@ import { EnterPinComponent } from './enter-pin/enter-pin.component';
     CommonModule,
     FormsModule,
     AuthRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
-    AuthComponent, 
+    AuthComponent,
     LoginComponent,
     AppIntroPage,
     KnowYourCustIdPage,
@@ -39,10 +38,8 @@ import { EnterPinComponent } from './enter-pin/enter-pin.component';
     EncryptNumberPipe,
     SetPinComponent,
     OnlyNumberDirective,
-    EnterPinComponent
+    EnterPinComponent,
   ],
-  providers: [
-    EncryptNumberPipe
-  ]
+  providers: [EncryptNumberPipe],
 })
-export class AuthModule { }
+export class AuthModule {}

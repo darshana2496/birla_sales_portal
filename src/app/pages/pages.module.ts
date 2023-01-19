@@ -30,7 +30,7 @@ import { FeedbackQueryComponent } from './feedback-query/feedback-query.componen
     AboutComponent,
     HelpSupportComponent,
     FaqComponent,
-    FeedbackQueryComponent
+    FeedbackQueryComponent,
   ],
   imports: [
     IonicModule,
@@ -39,7 +39,7 @@ import { FeedbackQueryComponent } from './feedback-query/feedback-query.componen
     ReactiveFormsModule,
     CommonComponentsModule,
     PagesRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
 })
 export class PagesModule {}

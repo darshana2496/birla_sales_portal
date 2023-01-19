@@ -25,10 +25,9 @@
   .toolbar-background-md {
     background: #ffffff;
   }
-  .button {
-    &.button-link {
-      font-size: 1.7rem;
-      line-height: 2rem;
+  .app-btn {
+    &.btn-link {
+      --color: $clr-white;
     }
   }
 
@@ -138,11 +137,16 @@ ion-title {
   .toolbar-ios {
     background: transparent;
   }
-  ion-menu-button .icon-profile,
+  ion-menu-button .icon-profile {
+    color: $clr-white;
+    font-size: 1.6rem;
+  }
+
   ion-button {
     color: $clr-white;
     font-size: 1.6rem;
   }
+
   ion-title {
     color: $clr-white;
   }
