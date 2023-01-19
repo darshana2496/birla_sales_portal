@@ -556,52 +556,74 @@ openDownloadedFile(navParam: any, mimeType: string) {
     if (action == 'show') {
       console.log(' ------Showing----');
       if (!this.loadingCtrlOpenCount) {
-        this.loadingModel = this.loadingCtrl
-          .create({
-            message: "<img src='../../assets/images/loader.gif' alt='loader'>",
-          })
-          .then((x) => {
-            // x.present();
-          });
-        this.fnShowLoader('show');
-        this.loadingCtrl
-          .create({
-            message: "<img src='../../assets/images/loader.gif' alt='loader'>",
-          })
-          .then((response) => {
-            response;
-          });
+        // this.loadingModel = this.loadingCtrl
+        //   .create({
+        //     message: "<img src='../../assets/images/loader.gif' alt='loader'>",
+        //   })
+        //   .then((x) => {
+        //      x.present();
+        //   });
+        this.fnShowLoader('hide');
+        // this.loadingCtrl
+        //   .create({
+        //     message: "<img src='../../assets/images/loader.gif' alt='loader'>",
+        //   })
+        //   .then((response) => {
+        //     response;
+        //   });
         this.loadingCtrlOpenCount++;
-        this.loadingModel.present();
+        // this.loadingModel.present();
         console.log('this.loadingCtrlOpenCount', this.loadingCtrlOpenCount);
       }
     } else {
       console.log('-----Hidding');
       if (this.loadingCtrlOpenCount) {
-        this.loadingCtrl
-          .dismiss()
-          .then((response) => {
-            console.log('Loader closed!', response);
-            this.loadingCtrlOpenCount = 0;
-          })
-          .catch((err) => {
-            this.loadingCtrlOpenCount = 0;
-            this.loadingCtrl.dismiss();
-            console.log('Error occured : ', err);
-          });
+        // this.loadingCtrl
+        //   .dismiss()
+        //   .then((response) => {
+        //     console.log('Loader closed!', response);
+        //     this.loadingCtrlOpenCount = 0;
+        //   })
+        //   .catch((err) => {
+        //     this.loadingCtrlOpenCount = 0;
+        //     this.loadingCtrl.dismiss();
+        //     console.log('Error occured : ', err);
+        //   });
         this.fnShowLoader('hide')
-          .then((response) => {
-            this.loadingCtrlOpenCount = 0;
-            console.log('Loader closed!', response);
-          })
-          .catch((err) => {
-            this.loadingCtrlOpenCount = 0;
-            console.log('Error occured : ', err);
-          });
+          // .then((response) => {
+          //   this.loadingCtrlOpenCount = 0;
+          //   console.log('Loader closed!', response);
+          // })
+          // .catch((err) => {
+          //   this.loadingCtrlOpenCount = 0;
+          //   console.log('Error occured : ', err);
+          // });
       }
     }
   }
-
+  dropChequeLocations(obj) {
+    let promise = new Promise((resolve, reject) => {
+        this._http
+            .post(environment.serverUrl+ "Payment/postchequedropdetail", obj)
+            .toPromise()
+            .then(response => {
+                resolve(response);
+            });
+    });
+    return promise;
+}
+getPaymentData() {
+  let promise = new Promise((resolve, reject) => {
+      let obj = { vcCustomerID: this.encryptData(this.customerId) };
+      this._http
+          .post(environment.serverUrl+ "Payment/customerpaymentdetail", obj)
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
+}
   checkInternetConnection() {
     var connectionType = this.network.connectionType;
     if (connectionType == 'none') {

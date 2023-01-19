@@ -6,16 +6,17 @@ import { VaultPage } from './vault.page';
 
 import { VaultPageRoutingModule } from './vault-routing.module';
 import { CommonComponentsModule } from '../../common-components/common-components.module';
-import { SearchFilterPipe } from 'src/app/utilities/pipes/search-filter';
+import { PipesModule } from 'src/app/utilities/pipes/pipes.module';
+
 
 @NgModule({
-  declarations: [VaultPage,SearchFilterPipe],
+  declarations: [VaultPage],
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
     VaultPageRoutingModule,
-    CommonComponentsModule,
+    CommonComponentsModule,PipesModule
   ],
 })
 export class VaultPageModule {}

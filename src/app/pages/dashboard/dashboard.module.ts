@@ -8,6 +8,7 @@ import { DashBoardRoutingModule } from './dashboard-routing.module';
 import { CommonComponentsModule } from 'src/app/common-components/common-components.module';
 import { DefaultImagePipe } from 'src/app/utilities/pipes/default-image';
 import { CurrencyDisplayPipe } from 'src/app/utilities/pipes/currency-display';
+import { PipesModule } from 'src/app/utilities/pipes/pipes.module';
 
 
 @NgModule({
@@ -15,9 +16,9 @@ import { CurrencyDisplayPipe } from 'src/app/utilities/pipes/currency-display';
     IonicModule,
     CommonModule,
     FormsModule,
-    DashBoardRoutingModule,CommonComponentsModule
+    DashBoardRoutingModule,CommonComponentsModule,PipesModule
   ],
-  exports: [DefaultImagePipe,CurrencyDisplayPipe],
-  declarations: [DashBoard,DefaultImagePipe,CurrencyDisplayPipe]
+ 
+  declarations: [DashBoard]
 })
 export class DashBoardPageModule {}

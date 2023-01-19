@@ -17,6 +17,7 @@ import { LandingPage } from './landing/landing.component';
 import { SetPinComponent } from './set-pin/set-pin.component';
 import { OnlyNumberDirective } from '../utilities/directives/only-number.directive';
 import { EnterPinComponent } from './enter-pin/enter-pin.component';
+import { PipesModule } from '../utilities/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { EnterPinComponent } from './enter-pin/enter-pin.component';
     FormsModule,
     AuthRoutingModule,
     ReactiveFormsModule,
+    PipesModule
   ],
   declarations: [
     AuthComponent,
@@ -35,7 +37,7 @@ import { EnterPinComponent } from './enter-pin/enter-pin.component';
     LandingPage,
     LoginWithCustIdPage,
     OtpComponent,
-    EncryptNumberPipe,
+    
     SetPinComponent,
     OnlyNumberDirective,
     EnterPinComponent,
