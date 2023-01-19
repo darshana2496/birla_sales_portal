@@ -1,7 +1,7 @@
 import { Network } from '@capacitor/network';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
 import * as CryptoJS from 'crypto-js/crypto-js';
@@ -35,7 +35,11 @@ export class GlobalService {
     userName: 'CPAppbirlaestate',
     password: 'CPAppbirla!@#123',
   };
-
+  tdsFilterObject: any = {
+    documentType: "",
+    startDate: "",
+    endDate: ""
+};
   //razorPayAuth data
   razorPayAuth = {
     vcKeyId: '',
@@ -54,6 +58,7 @@ export class GlobalService {
     projectName: 'Test',
     userName: '',
   };
+  downloadCollateral: any;
   enteredPin: string;
   appOpenedOnlyFromNotification: boolean = false;
   notificationMsg: any = null;
@@ -70,6 +75,7 @@ export class GlobalService {
     public loadingCtrl: LoadingController,
     public menuCtrl: MenuController,
     public route: Router,
+    public toastCtrl: ToastController,
   ) {  }
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
@@ -82,6 +88,20 @@ export class GlobalService {
     });
     return promise;
   }
+  vaultBirlaUploads(obj) {
+    let promise = new Promise((resolve, reject) => {
+        this._http
+            .post(
+                environment.serverUrl + "Uploads/getuploadeddocument",
+                JSON.stringify(obj)
+            )
+            .toPromise()
+            .then(response => {
+                resolve(response);
+            });
+    });
+    return promise;
+}
   getAboutBirlaEstates() {
     let promise = new Promise((resolve, reject) => {
         this._http
@@ -132,6 +152,22 @@ getAllRaisedFeedback() {
   let promise = new Promise((resolve, reject) => {
       this._http
           .get(environment.serverUrl + "config/getraisedfeedBack/" + this.customerId)
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
+}
+vaultMyUploads() {
+  console.log(this.customerId);
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .get(
+              environment.serverUrl +
+              "Uploads/getuseruploadedddocument/" +
+              this.customerId
+          )
           .toPromise()
           .then(response => {
               resolve(response);
@@ -202,6 +238,75 @@ getFAQ() {
     this.route.navigate(['/asset-preview'], navigationExtras);
     //navParam['vcFileUrl'] = "https://portal.birlaestates.com/Uploads/Layout/A203.JPG";
   }
+  showDownloadToast(message: string,navParam: any,duration: number,position: string) {
+    let showToastMsg = navParam == null || navParam.fileType == "xlsx" || navParam.fileType == "xls" ? false : true;
+    let pos;
+    switch(position){
+      case'top':
+      pos= 'top'
+      break;
+      case 'bottom':
+      pos='bottom'
+      break;
+      case 'middle':
+      pos='middle'
+      break;
+    }
+    this.downloadCollateral = this.toastCtrl.create({
+        message: message,
+        duration: duration,      
+        position: pos,
+    }).then(x=>{
+      x.present();
+      x.onDidDismiss().then((resolve)=>{
+          return console.log(resolve)
+      })
+    })
+    // this.downloadCollateral.present();
+
+    // this.downloadCollateral.onDidDismiss((data, role) => {
+    //     //role can be backdrop or close
+    //     console.log("navParam", navParam);
+
+    //     if (role == "close") {
+    //         console.log("view clicked");
+
+    //         switch (navParam.fileType) {
+    //             case "jpeg":
+    //             case "jpg":
+    //             case "png":
+    //               this.route.navigate(['/asset-preview'], navParam);
+    //                 // this.appCtrl.getRootNavs()[1].push("AssetPreviewPage", { previewData: navParam });
+    //                 break;
+    //             case "docx":
+    //             case "doc":
+    //                 this.openDownloadedFile(navParam, "application/msword");
+    //                 break;
+    //             case "pdf":
+    //                 this.openDownloadedFile(navParam, "application/pdf");
+    //                 break;
+    //             default:
+    //                 break;
+    //         }
+    //     } else {
+    //         console.log("normal close");
+    //     }
+    // });
+}
+openDownloadedFile(navParam: any, mimeType: string) {
+  // this.fileOpener.open(navParam.nativeUrl, mimeType)
+  //     .then((response: any) => {
+  //         console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+  //         console.log(response);
+  //     })
+  //     .catch((response: any) => {
+  //         console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+  //         console.log(response);
+  //         if (response.status == 9) {
+  //             this.showDownloadToast("No app found to open this file", null, 3000, "top");
+  //         }
+  //     });
+}
   updateCustomerNotification() {
     let obj = {
       vcCustomerID: this.customerId,
