@@ -174,6 +174,30 @@ vaultMyUploads() {
   });
   return promise;
 }
+getCheckDropLocations() {
+  
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .get(environment.serverUrl+ "Payment/getchequedroplocations/" + this.customerId)
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
+}
+getChequeDropLocation() {
+  console.log("this.globalService.selectedProjectObj", this.selectedProjectObj);
+  let promise = new Promise((resolve, reject) => {
+      this._http
+          .get(environment.serverUrl+ "Payment/getchequedroplocations/" + this.selectedProjectObj.customerProjectId)
+          .toPromise()
+          .then(response => {
+              resolve(response);
+          });
+  });
+  return promise;
+}
 raiseFeedback(obj: any) {
   let promise = new Promise((resolve, reject) => {
       this._http
