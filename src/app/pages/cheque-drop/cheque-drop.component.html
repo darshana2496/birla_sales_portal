@@ -1,0 +1,36 @@
+<app-header [backbtn]="true" [type]="'normal'" [typeTitle]="'pageName'" [pageNameVal]="'Cheque Drop'"></app-header>
+
+<ion-content class="lyt-section tabs typ-bg-uploads ion-padding" >
+  <div class="content-inner"> 
+    <div class="content ">
+      <div class="vertical-top">
+
+        <div text-center *ngIf="!dropLocationList.length">
+          No Location Avaliable
+        </div>
+
+        <ul class="bs-location" *ngIf="dropLocationList.length">
+          <li class="item" *ngFor="let location of dropLocationList">
+            <div class="share-parent">
+              <ion-button class="button button-link" (click)="share(location)">
+                <i class="icon icon-share"></i>
+              </ion-button>
+            </div>
+            <div class="info">
+              <div class="name">
+                {{location.vcName}}
+              </div>
+              <div class="location">
+                {{location.vcLocation}}
+              </div>
+              <div class="address">
+                {{location.vcDescription}}
+              </div>
+            </div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </div>
+</ion-content>

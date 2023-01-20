@@ -6,6 +6,8 @@ import { VaultPage } from './vault.page';
 
 import { VaultPageRoutingModule } from './vault-routing.module';
 import { CommonComponentsModule } from '../../common-components/common-components.module';
+import { PipesModule } from 'src/app/utilities/pipes/pipes.module';
+
 
 @NgModule({
   declarations: [VaultPage],
@@ -14,7 +16,7 @@ import { CommonComponentsModule } from '../../common-components/common-component
     CommonModule,
     FormsModule,
     VaultPageRoutingModule,
-    CommonComponentsModule,
+    CommonComponentsModule,PipesModule
   ],
 })
 export class VaultPageModule {}

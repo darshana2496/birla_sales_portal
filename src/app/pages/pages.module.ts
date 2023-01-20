@@ -17,6 +17,10 @@ import { AboutComponent } from './about/about.component';
 import { HelpSupportComponent } from './help-support/help-support.component';
 import { FaqComponent } from './faq/faq.component';
 import { FeedbackQueryComponent } from './feedback-query/feedback-query.component';
+import { ChequeDropComponent } from './cheque-drop/cheque-drop.component';
+import { MakePaymentComponent } from './make-payment/make-payment.component';
+import { ChequeDetailDropComponent } from './cheque-detail-drop/cheque-detail-drop.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +35,9 @@ import { FeedbackQueryComponent } from './feedback-query/feedback-query.componen
     HelpSupportComponent,
     FaqComponent,
     FeedbackQueryComponent,
+    ChequeDropComponent,
+    MakePaymentComponent,
+    ChequeDetailDropComponent,
   ],
   imports: [
     IonicModule,
@@ -41,5 +48,6 @@ import { FeedbackQueryComponent } from './feedback-query/feedback-query.componen
     PagesRoutingModule,
     ReactiveFormsModule,
   ],
+
 })
 export class PagesModule {}
