@@ -40,7 +40,7 @@ export class ThankYouModalComponent implements OnInit {
       console.log(x,'Device Innfo');
       this.deviceModel=x.model;
       this.devicePlatform=x.platform;
-      this.deviceSerial=x.webViewVersion
+      this.deviceSerial=""
       this.deviceVersion=x.osVersion
       this.deviceManu=x.manufacturer
     })
