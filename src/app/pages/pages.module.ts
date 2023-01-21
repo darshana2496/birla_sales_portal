@@ -20,6 +20,8 @@ import { FeedbackQueryComponent } from './feedback-query/feedback-query.componen
 import { ChequeDropComponent } from './cheque-drop/cheque-drop.component';
 import { MakePaymentComponent } from './make-payment/make-payment.component';
 import { ChequeDetailDropComponent } from './cheque-detail-drop/cheque-detail-drop.component';
+import { CallsComponent } from './calls/calls.component';
+import { ThankYouModalComponent } from './thank-you-modal/thank-you-modal.component';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { ChequeDetailDropComponent } from './cheque-detail-drop/cheque-detail-dr
     ChequeDropComponent,
     MakePaymentComponent,
     ChequeDetailDropComponent,
+    CallsComponent,
+    ThankYouModalComponent
   ],
   imports: [
     IonicModule,

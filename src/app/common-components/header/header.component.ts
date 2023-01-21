@@ -32,12 +32,16 @@ export class HeaderComponent implements OnInit {
   }
 
   goBack(): void {
-    this.navCtrl.pop();
+    let animations:AnimationOptions={
+      animated: true,
+      animationDirection: "back"
+    }
+    this.navCtrl.back(animations)
   }
 
   contactModal(): void {
     // this.app.getRootNavs()[1].push("CallPage");
-    this.router.navigate(['/callPage'])
+    this.router.navigate(['/calls'])
   }
   back(){
     let animations:AnimationOptions={

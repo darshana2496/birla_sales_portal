@@ -1,0 +1,28 @@
+<app-header [type]="'close'" [typeTitle]="'pageName'" [pageNameVal]="'Need help'">
+</app-header>
+<ion-content class="ion-padding bs-modal typ-call">
+  <!-- href="tel:{{managerContactNo}}" -->
+  <a href="tel:{{managerContactNo}}">
+  <div class="modal-wrap">
+      <div class="bs-call">
+          <div class="text-info">
+              <label class="text">Relationship Manager</label>
+              <span class="info" *ngIf="managerName !== null">{{managerName}}</span>
+              <span text-center class="info" *ngIf="managerName === null">-</span>
+          </div>
+          <div class="text-info">
+              <label class="text">Mobile No.</label>
+              <span class="info" *ngIf="managerContactNo !== null">{{managerContactNo}}</span>
+              <span text-center class="info" *ngIf="managerContactNo === null">-</span>
+          </div>
+          <div class="text-info rm-email">
+              <label class="text">Email Id</label>
+              <span class="info" *ngIf="managerEmailId !== null">{{managerEmailId}}</span>
+              <span text-center class="info" *ngIf="managerEmailId === null">-</span>
+          </div>
+          <span class="icon icon-call"></span>
+      </div>
+ 
+    </div>
+  </a>
+</ion-content>

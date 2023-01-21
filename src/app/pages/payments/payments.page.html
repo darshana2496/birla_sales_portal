@@ -65,7 +65,7 @@
           </div>
           <ul class="bs-button-group ion-text-center">
             <li class="item">
-              <ion-button (click)="dropCheque()" class="button">CHEQUE DROP LOCATIONS</ion-button>
+              <ion-button (click)="dropCheque()" class="app-btn btn-default">CHEQUE DROP LOCATIONS</ion-button>
             </li>
             <!-- commented for first build -->
             <!-- <li class="item">
@@ -73,10 +73,10 @@
             </li> -->
             <li class="item"
               *ngIf="pendingData.vcTotaloutstanding !== null && pendingData.vcTotaloutstanding !== 'N/A' && pendingData.vcTotaloutstanding">
-              <ion-button (click)="makePayment()" [disabled]="!disableBtn" class="button">PAY ONLINE</ion-button>
+              <ion-button (click)="makePayment()" [disabled]="!disableBtn" class="app-btn btn-default">PAY ONLINE</ion-button>
             </li>
             <li class="item">
-              <ion-button class="button button-link" (click)="chequeDetailpage()">CHEQUE ALREADY DROPPED ?</ion-button>
+              <ion-button class="app-btn btn-link" (click)="chequeDetailpage()">CHEQUE ALREADY DROPPED ?</ion-button>
 
               <!-- <common-text-button [pageData]="addDropLocation"></common-text-button> -->
             </li>
