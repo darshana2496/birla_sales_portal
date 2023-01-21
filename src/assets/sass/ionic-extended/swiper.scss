@@ -21,22 +21,27 @@
 .date-slider {
     width: 100vw;
     margin: 0 -15px;
+
     .title {
         font-size: 1.2rem;
         color: $clr-black;
         font-weight: $font-extra-bold;
         padding-bottom: 10px;
         text-transform: uppercase;
+
         &:last-of-type {
             padding-bottom: 20px;
         }
     }
+
     ion-slides {
         margin-bottom: 50px;
     }
+
     .swiper-slide {
         width: auto;
     }
+
     .button-parent {
         margin-top: 140px;
     }
@@ -48,12 +53,15 @@
     bottom: 0;
     right: 0;
     left: 0;
+
     ion-slide {
         padding: 28px;
-        height: 110vh;
+        height: 112vh;
     }
+
     .swiper-pagination {
         bottom: 70px;
+
         .swiper-pagination-bullet {
             background: #565452;
         }

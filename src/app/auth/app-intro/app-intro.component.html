@@ -1,12 +1,11 @@
-<ion-header>
-  <app-header
-    class="typ-transparent"
-    [type]="'normal'"
-    [typeTitle]="'logo'"
-  ></app-header>
-</ion-header>
-
 <ion-content class="bs-appIntro">
+  <ion-header class="app-intro-logo-wrap">
+    <app-header
+      class="typ-transparent"
+      [type]="'normal'"
+      [typeTitle]="'logo'"
+    ></app-header>
+  </ion-header>
   <div class="introSlider">
     <ion-slides pager [options]="slideOpts">
       <ion-slide class="introSlider1">
@@ -38,12 +37,13 @@
       </ion-slide>
     </ion-slides>
   </div>
+  <div class="ion-text-center skipButton">
+    <ion-button
+      class="app-btn btn-link"
+      [routerLink]="['/landing']"
+      [slot]="'end'"
+      >Skip</ion-button
+    >
+  </div>
 </ion-content>
-<div class="ion-text-center skipButton">
-  <ion-button
-    class="app-btn btn-link"
-    [routerLink]="['/landing']"
-    [slot]="'end'"
-    >Skip</ion-button
-  >
-</div>
+
