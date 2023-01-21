@@ -19,9 +19,9 @@
 
       <div class="head">
         <div class="search-bar">
-          <ion-item>
-            <ion-label position="fixed"><span class="icon icon-search"></span></ion-label>
-            <ion-input type="text" placeholder="Search" [(ngModel)]="searchText"></ion-input>
+          <ion-item class="app-form-group"> 
+            <ion-label class="app-field-label" position="floating"><span class="icon icon-search"></span></ion-label>
+            <ion-input class="app-form-control" type="text" placeholder="Search" [(ngModel)]="searchText"></ion-input>
           </ion-item>
         </div>
         <!-- <div class="act-btn">
@@ -49,9 +49,12 @@
                   <!-- <icon-button [buttonType]="'share'" [allSlidesData]="adminUploadedDocs" [pageData]="adminDocs"
                     [pageName]="'vault'">
                   </icon-button> -->
-                  <ion-button (click)="action(adminDocs)">
-                    <span class="icon" class="icon-share">
-                    </span>
+                  <ion-button class="app-btn btn-default" (click)="action(adminDocs)">
+                    <ion-icon name="share-social-outline"></ion-icon>
+                    <!-- <ion-icon slot="start" name="share"></ion-icon> -->
+                    <!-- <span class="icon" class="icon-share">
+                    </span> -->
+
                   </ion-button>
              
 

@@ -57,7 +57,8 @@
 
 <ng-container *ngIf="type === 'close'">
   <ion-header [translucent]="true" class="bs-header">
-    <ion-nav class="toolbar toolbar-md">
+    <ion-toolbar>
+    <ion-nav >
       <ion-title>
         <ng-container>
           <span>{{ pageNameVal }}</span>
@@ -72,6 +73,7 @@
         </ion-button>
       </ion-buttons>
     </ion-nav>
+    </ion-toolbar>
   </ion-header>
 </ng-container>
 

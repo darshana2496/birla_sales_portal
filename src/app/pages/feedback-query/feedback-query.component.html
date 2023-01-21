@@ -50,9 +50,9 @@
                   <form [formGroup]="myform" (ngSubmit)="onSubmit()">
                     <div class="bs-form">
                       <div class="form-group typ-band bot-space">
-                        <ion-item>
-                          <ion-label position="floating">Choose subject</ion-label>
-                          <ion-select name="query" formControlName="query">
+                        <ion-item class="app-form-group app-select">
+                          <ion-label class="app-field-label" position="stacked">Choose subject</ion-label>
+                          <ion-select [interfaceOptions]="{ cssClass: 'app-select-alert' }" name="query" formControlName="query">
                             <ion-select-option value="121">General Query</ion-select-option>
                             <ion-select-option value="101">Complaint </ion-select-option>
                             <ion-select-option value="111">Request </ion-select-option>
@@ -61,13 +61,13 @@
                       </div>
                       <div class="form-group typ-band addOn bot-space">
                         <ion-item>
-                          <ion-label position="floating">Feedback</ion-label>
-                          <ion-textarea name="feedback" formControlName="feedback"></ion-textarea>
+                          <ion-label class="app-field-label" position="floating">Feedback</ion-label>
+                          <ion-textarea class="app-form-control" name="feedback" formControlName="feedback"></ion-textarea>
                         </ion-item>
                       </div>
                     </div>
                     <div class="button-parent" text-center>
-                      <ion-button [disabled]="!enable" type="submit">Submit
+                      <ion-button class="app-btn btn-default" [disabled]="!enable" type="submit">Submit
                       </ion-button>
                     </div>
                   </form>
