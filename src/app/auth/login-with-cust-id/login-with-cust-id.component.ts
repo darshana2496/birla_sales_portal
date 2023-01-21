@@ -23,9 +23,7 @@ export class LoginWithCustIdPage implements OnInit {
   ) {}
 
   ngOnInit() {}
-  getUser() {
-    console.log(this.storage);
-  }
+
   inputBtn() {
     var text;
     if (this.typedText != undefined) {

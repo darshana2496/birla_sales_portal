@@ -61,7 +61,6 @@ export class ChangePinComponent implements OnInit {
     });
 
     this.changePinGroup.get('existingPin').valueChanges.subscribe((val) => {
-      console.log('Pin change', val);
       if (val.pin1) {
         this.changePinGroup
           .get('existingPin')
@@ -89,7 +88,6 @@ export class ChangePinComponent implements OnInit {
     });
 
     this.changePinGroup.get('newPin').valueChanges.subscribe((val) => {
-      console.log('Pin change', val);
       if (val.pin1) {
         this.changePinGroup
           .get('newPin')
@@ -117,7 +115,6 @@ export class ChangePinComponent implements OnInit {
     });
 
     this.changePinGroup.get('confirmPin').valueChanges.subscribe((val) => {
-      console.log('Pin change', val);
       if (val.pin1) {
         this.changePinGroup
           .get('confirmPin')

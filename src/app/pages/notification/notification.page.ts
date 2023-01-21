@@ -11,23 +11,22 @@ export class NotificationPage implements OnInit {
   notificationList: any = [];
   constructor(public globalService: GlobalService) {}
   ngOnInit(): void {
-    this.globalService.getNotifications().then((response: any) => {
-      if (response.btIsSuccess) {
-        this.notificationList = response.object;
-        this.updateNotification();
-      }
-      else {
-        this.notificationList = [];
-      }
-    }).catch((response: any) => {
-
-    })
+    this.globalService
+      .getNotifications()
+      .then((response: any) => {
+        if (response.btIsSuccess) {
+          this.notificationList = response.object;
+          this.updateNotification();
+        } else {
+          this.notificationList = [];
+        }
+      })
+      .catch((response: any) => {});
   }
   updateNotification() {
-    this.globalService.updateCustomerNotification().then((response:any) => {
-      console.log(response);
-    }).catch((response: any)=> {
-
-    })
+    this.globalService
+      .updateCustomerNotification()
+      .then((response: any) => {})
+      .catch((response: any) => {});
   }
 }

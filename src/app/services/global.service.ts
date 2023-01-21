@@ -46,8 +46,6 @@ export class GlobalService {
   oneSignalPlayerId: string;
   setPinValue: string;
   isPhoneUnlocked: boolean = false;
-  loadingModel: any;
-  loadingCtrlOpenCount: number = 0;
   selectedProjectObj: ICustomerProject = {
     customerProjectId: 0,
     customerName: '',
@@ -64,8 +62,7 @@ export class GlobalService {
   clearPinInput = new Subject<any>();
   currentlyActivePage: any;
   isAppReviewed: boolean;
-  isShowingLoader: any;
-  loader: any;
+  isShowingLoader: boolean;
 
   constructor(
     public _http: HttpClient,
@@ -163,7 +160,6 @@ export class GlobalService {
     return promise;
   }
   vaultMyUploads() {
-    console.log(this.customerId);
     let promise = new Promise((resolve, reject) => {
       this._http
         .get(
@@ -194,10 +190,6 @@ export class GlobalService {
     return promise;
   }
   getChequeDropLocation() {
-    console.log(
-      'this.globalService.selectedProjectObj',
-      this.selectedProjectObj
-    );
     let promise = new Promise((resolve, reject) => {
       this._http
         .get(
@@ -250,7 +242,6 @@ export class GlobalService {
   }
   getProjectDetails() {
     var tempIdforProject: number = 602188;
-    console.log(this.customerId);
     let promise = new Promise((resolve, reject) => {
       this._http
         .get(
@@ -311,7 +302,7 @@ export class GlobalService {
       .then((x) => {
         x.present();
         x.onDidDismiss().then((resolve) => {
-          return console.log(resolve);
+          return;
         });
       });
     // this.downloadCollateral.present();
@@ -348,12 +339,8 @@ export class GlobalService {
   openDownloadedFile(navParam: any, mimeType: string) {
     // this.fileOpener.open(navParam.nativeUrl, mimeType)
     //     .then((response: any) => {
-    //         console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    //         console.log(response);
     //     })
     //     .catch((response: any) => {
-    //         console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-    //         console.log(response);
     //         if (response.status == 9) {
     //             this.showDownloadToast("No app found to open this file", null, 3000, "top");
     //         }
@@ -391,7 +378,6 @@ export class GlobalService {
     return promise;
   }
   async showConfirmationAlertPrompt(title: string, subTitle: string) {
-    console.log(title, subTitle);
     const alert = this.alertCtrl.create({
       header: title,
       subHeader: subTitle,
@@ -413,9 +399,7 @@ export class GlobalService {
         {
           text: 'Cancel',
           role: 'cancel',
-          handler: (data) => {
-            console.log('Cancel clicked');
-          },
+          handler: (data) => {},
         },
       ],
     });
@@ -474,7 +458,6 @@ export class GlobalService {
   headerSticky(e) {
     var topPos = e.detail.scrollTop;
     if (topPos >= 150) {
-      console.log(this.currentlyActivePage, 'Route');
       if (this.currentlyActivePage == '/about-birla') {
         document
           .getElementsByTagName('app-about')[0]
@@ -566,81 +549,32 @@ export class GlobalService {
 
     return result;
   }
-  //loading modal
-  async fnShowLoader() {
-    await this.loadingCtrl
-      .create({
-        message: "<img src='../../assets/images/loader.gif' alt='loader'>",
-        duration: 40000,
-      })
-      .then((x) => {
-        this.loadingCtrlOpenCount++;
-        console.log('loading count', this.loadingCtrlOpenCount);
-        return x.present();
-      })
-      .catch((e) => console.log(e));
-  }
 
-  async fnDismissLoader() {
-    await this.loadingCtrl
-      .dismiss()
-      .then((x) => {
-        console.log(x.toString(), 'resolve');
+  async showLoader() {
+    this.isShowingLoader = true;
+    // console.log('Inside Show Loader', this.loader);
+
+    return await this.loadingCtrl
+      .create({
+        message: "<img src='../assets/images/loader.gif' alt='loader'>",
+        // duration: 5000,
       })
-      .catch((err) => {
-        console.log(err.toString());
+      .then((a) => {
+        a.present().then(() => {
+          if (!this.isShowingLoader) {
+            a.dismiss().then(() => console.log('abort presenting'));
+          }
+        });
       });
   }
 
-  async showOrShowloadingModel(action: string) {
-    if (action == 'show') {
-      console.log(' ------Showing----');
-      if (this.loadingCtrlOpenCount == 0) {
-        this.fnShowLoader();
-        console.log('this.loadingCtrlOpenCount', this.loadingCtrlOpenCount);
-      }
-    } else {
-      console.log('-----Hidding');
-      if (this.loadingCtrlOpenCount > 0) {
-        this.fnDismissLoader();
-        this.loadingCtrlOpenCount = 0;
-      }
-    }
-  }
-
-  async showLoader() {
-    if (!this.isShowingLoader) {
-      this.isShowingLoader = true;
-      console.log('Show Loader');
-      this.loader = await this.loadingCtrl
-        .create({
-          message: "<img src='../../assets/images/loader.gif' alt='loader'>",
-          duration: 10000,
-        })
-        .then((loader) => {
-          console.log('Present Loader');
-          loader.present();
-        })
-        .catch((e) => console.log(e));
-
-      this.loadingCtrl
-        .getTop()
-        .then((loader) => {
-          console.log('loaderrrr', loader);
-        })
-        .catch((loader) => console.log(loader));
-    }
-  }
-
   async hideLoader() {
-    if (this.loader) {
-      setTimeout(() => {
-        this.loader.dismiss();
-        this.loader = null;
-        this.isShowingLoader = false;
-        console.log('Hide Loader');
-      }, 0);
-    }
+    this.isShowingLoader = false;
+
+    return await this.loadingCtrl
+      .dismiss()
+      .then(() => {})
+      .catch((e) => console.log('Error while dismiss', e));
   }
 
   dropChequeLocations(obj) {
@@ -688,16 +622,13 @@ export class GlobalService {
         {
           text: text,
           role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          },
+          handler: () => {},
         },
       ],
     });
     alert.present();
   }
   onKeyUpEventOTP(event, index, repeat, uniqueComponentNameId) {
-    console.log(event, index, repeat, uniqueComponentNameId);
     const eventCode = event.which || event.keyCode;
     if (event.target.value.length === 1) {
       if (index !== repeat) {
@@ -709,7 +640,6 @@ export class GlobalService {
           this.getCodeBoxElement(index, uniqueComponentNameId)
         )).blur();
         // Submit code
-        console.log('submit code');
       }
     }
     if (!event.target.value.length) {
@@ -829,7 +759,6 @@ export class GlobalService {
         //     text: "TRY AGAIN",
         //     handler: () => {
         //         this.appCtrl.getRootNavs()[1].setRoot("CustIdPage");
-        //         console.log("Agree clicked");
         //     }
         // }
       ],
@@ -840,7 +769,6 @@ export class GlobalService {
     if (event.key == 'Backspace') {
       previd.setFocus();
     } else if (event.key !== 'Backspace' && event.target.value) {
-      console.log('Next focus', compoid, previd, event.target.value);
       compoid.setFocus();
     }
   }
@@ -858,9 +786,7 @@ export class GlobalService {
     }
   }
   getCodeBoxElement(index: number, uniqueComponentNameId: string) {
-    //console.log(index, uniqueComponentNameId);
     let dom = document.getElementById(uniqueComponentNameId);
-    //console.log(dom);
 
     let ref = dom.children.namedItem('pin' + index).children[0];
     return ref;

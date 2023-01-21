@@ -1,145 +1,148 @@
 // bs-doc
 .bs-doc {
-    margin-bottom: 20px;
-    position: relative;
-    width: 100%;
-    float: left;
-    min-height: 66px;
+  margin-bottom: 20px;
+  position: relative;
+  width: 100%;
+  float: left;
+  min-height: 66px;
+  .iconwithtext {
+    background: $clr-white;
+    box-shadow: 0 0 10px 0px #d4d4d4;
+    border-radius: 6px;
+    display: block;
+    padding: 11px 20px;
+    .icon {
+      // width: 24px;
+      display: inline-block;
+      margin-right: 20px;
+      vertical-align: middle;
+      img {
+        // width: 100%;
+        min-width: 2rem;
+        max-width: 2rem;
+      }
+    }
+    .text {
+      display: inline-block;
+      vertical-align: middle;
+      .title {
+        font-size: 1.2rem;
+        line-height: 1.2rem;
+        color: #4d4d4f;
+        font-weight: $font-bold;
+        margin-bottom: 10px;
+        display: block;
+        //max-width: 23rem;
+      }
+      .time-stamp {
+        font-size: 1rem;
+        line-height: 1rem;
+        color: #a08349;
+        font-weight: $font-semi-bold;
+        margin: 0;
+      }
+    }
+    .item-inner {
+      border: none;
+      .input-wrapper {
+        .label-md {
+          margin: 0;
+          white-space: initial;
+          display: flex !important;
+        }
+      }
+    }
+  }
+  ion-item-sliding {
+    display: initial;
+    overflow: initial;
+    position: absolute;
+  }
+  &.with-cta {
+    background: $clr-white;
+    box-shadow: 0 0 10px 0px #d4d4d4;
+    border-radius: 6px;
+    display: block;
+    padding: 20px;
     .iconwithtext {
-        background: $clr-white;
-        box-shadow: 0 0 10px 0px #d4d4d4;
-        border-radius: 6px;
-        display: block;
-        padding: 11px 20px;
-        .icon {
-            // width: 24px;
-            display: inline-block;
-            margin-right: 20px;
-            vertical-align: middle;
-            img {
-                // width: 100%;
-                min-width: 2rem;
-                max-width: 2rem;
-            }
-        }
-        .text {
-            display: inline-block;
-            vertical-align: middle;
-            .title {
-                font-size: 1.2rem;
-                line-height: 1.2rem;
-                color: #4d4d4f;
-                font-weight: $font-bold;
-                margin-bottom: 10px;
-                display: block;
-                //max-width: 23rem;
-            }
-            .time-stamp {
-                font-size: 1rem;
-                line-height: 1rem;
-                color: #a08349;
-                font-weight: $font-semi-bold;
-                margin: 0;
-            }
-        }
-        .item-inner {
-            border: none;
-            .input-wrapper {
-                .label-md {
-                    margin: 0;
-                    white-space: initial;
-                    display: flex !important;
-                }
-            }
-        }
+      box-shadow: none;
+      padding: 0px 0 20px;
     }
-    ion-item-sliding {
-        display: initial;
-        overflow: initial;
-        position: absolute;
+    .act-wrap {
+      border-top: 1px solid #e2e2e2;
+      padding-top: 20px;
+      .button {
+        box-shadow: none;
+        font-weight: $font-semi-bold;
+        font-size: 1.4rem;
+        line-height: 1.4rem;
+        border-right: 1px solid #e2e2e2;
+        border-left: 1px solid transparent;
+        margin: 0;
+        &:nth-child(1) {
+          width: 57%;
+        }
+        &:nth-child(2) {
+          width: 20%;
+        }
+        &:nth-child(3) {
+          width: 20%;
+          border: 1px solid transparent;
+        }
+        .button-inner {
+          .icon {
+            font-size: 1.6rem;
+            line-height: 1.6rem;
+          }
+        }
+      }
     }
-    &.with-cta {
-        background: $clr-white;
-        box-shadow: 0 0 10px 0px #d4d4d4;
-        border-radius: 6px;
-        display: block;
-        padding: 20px;
-        .iconwithtext {
-            box-shadow: none;
-            padding: 0px 0 20px;
-        }
-        .act-wrap {
-            border-top: 1px solid #e2e2e2;
-            padding-top: 20px;
-            .button {
-                box-shadow: none;
-                font-weight: $font-semi-bold;
-                font-size: 1.4rem;
-                line-height: 1.4rem;
-                border-right: 1px solid #e2e2e2;
-                border-left: 1px solid transparent;
-                margin: 0;
-                &:nth-child(1) {
-                    width: 57%;
-                }
-                &:nth-child(2) {
-                    width: 20%;
-                }
-                &:nth-child(3) {
-                    width: 20%;
-                    border: 1px solid transparent;
-                }
-                .button-inner {
-                    .icon {
-                        font-size: 1.6rem;
-                        line-height: 1.6rem;
-                    }
-                }
-            }
-        }
+  }
+  &.approved {
+    position: relative;
+    &:after {
+      font-family: "cp" !important;
+      position: absolute;
+      content: "B";
+      font-size: 1.8rem;
+      line-height: 1.8rem;
+      color: #b3b3b3;
+      right: 2.6rem;
+      top: 50%;
+      transform: translateY(-50%);
     }
-    &.approved {
-        position: relative;
-        &:after {
-            font-family: "cp" !important;
-            position: absolute;
-            content: "B";
-            font-size: 1.8rem;
-            line-height: 1.8rem;
-            color: #b3b3b3;
-            right: 2.6rem;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-        .iconwithtext {
-            padding-right: 75px;
-        }
+    .iconwithtext {
+      padding-right: 75px;
     }
+  }
 }
 
 .list-md {
-    .bs-doc {
-        ion-item-options {
-            border: none;
-            background: rgba(255, 255, 255, 1);
-            border-radius: 6px;
-            .button {
-                width: 80px;
-                height: 66%;
-                transform: translateY(-50%);
-                top: 50%;
-                background: transparent;
-                &:nth-child(1) {
-                    border-right: 1px solid #e2e2e2;
-                }
-                .icon {
-                    font-size: 1.6rem;
-                    line-height: 1.6rem;
-                }
-            }
+  .bs-doc {
+    ion-item-options {
+      border: none;
+      background: rgba(255, 255, 255, 1);
+      border-radius: 6px;
+      .button {
+        width: 80px;
+        height: 66%;
+        transform: translateY(0%);
+        top: 50%;
+        --background: transparent;
+        --box-shadow: none;
+        --border: none;
+        color: $clr-primary;
+        &:nth-child(1) {
+          border-right: 1px solid #e2e2e2;
         }
-        ion-item-sliding {
-            background-color: transparent;
+        .icon {
+          font-size: 1.6rem;
+          line-height: 1.6rem;
         }
+      }
     }
+    ion-item-sliding {
+      background-color: transparent;
+    }
+  }
 }

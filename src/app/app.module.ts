@@ -9,28 +9,27 @@ import { AppComponent } from './app.component';
 import { AuthenticationService } from './services/authentication.service';
 import { DateFormatPipe } from './utilities/pipes/date-format.pipe';
 import { TimeInMinsFormatPipe } from './utilities/pipes/time-in-mins.pipe';
-import {  HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { IonicStorageModule } from '@ionic/storage-angular';
-
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
   ],
   providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     DateFormatPipe,
     TimeInMinsFormatPipe,
-    AuthenticationService
+    AuthenticationService,
+    SocialSharing,
   ],
   bootstrap: [AppComponent],
 })
