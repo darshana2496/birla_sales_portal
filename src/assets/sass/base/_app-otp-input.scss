@@ -28,6 +28,10 @@ ion-item.app-otp-input::part(native) {
     border: 1px solid #e2e2e2;
     margin: 2rem 1rem;
 
+    .native-input {
+      padding: 1rem;
+    }
+
     &:part(native) {
       padding-left: 0;
     }
