@@ -59,6 +59,8 @@ export class GlobalService {
   clearPinInput = new Subject<any>();
   currentlyActivePage: any;
   isAppReviewed: boolean;
+  isShowingLoader: any;
+  loader: any;
 
   constructor(
     public _http: HttpClient,
@@ -414,21 +416,20 @@ export class GlobalService {
     return result;
   }
   //loading modal
-  async fnShowLoader(data?: any) {
+  async fnShowLoader() {
     await this.loadingCtrl
       .create({
         message: "<img src='../../assets/images/loader.gif' alt='loader'>",
+        duration: 40000,
       })
       .then((x) => {
-        if (data == 'show') {
-          x.present();
-        } else {
-          x.onDidDismiss().then((response) => {
-            console.log('Loader dismissed', response);
-          });
-        }
-      });
+        this.loadingCtrlOpenCount++;
+        console.log('loading count', this.loadingCtrlOpenCount);
+        return x.present();
+      })
+      .catch((e) => console.log(e));
   }
+
   async fnDismissLoader() {
     await this.loadingCtrl
       .dismiss()
@@ -439,63 +440,55 @@ export class GlobalService {
         console.log(err.toString());
       });
   }
-  async dismiss() {
-    let topLoader = await this.loadingCtrl.getTop();
-    while (topLoader) {
-      if (!(await topLoader.dismiss())) {
-        throw new Error('Could not dismiss the topmost loader. Aborting...');
-        break;
-      }
-      topLoader = await this.loadingCtrl.getTop();
-    }
-  }
+
   async showOrShowloadingModel(action: string) {
     if (action == 'show') {
       console.log(' ------Showing----');
-      if (!this.loadingCtrlOpenCount) {
-        this.loadingModel = this.loadingCtrl
-          .create({
-            message: "<img src='../../assets/images/loader.gif' alt='loader'>",
-          })
-          .then((x) => {
-            // x.present();
-          });
-        this.fnShowLoader('show');
-        this.loadingCtrl
-          .create({
-            message: "<img src='../../assets/images/loader.gif' alt='loader'>",
-          })
-          .then((response) => {
-            response;
-          });
-        this.loadingCtrlOpenCount++;
-        this.loadingModel.present();
+      if (this.loadingCtrlOpenCount == 0) {
+        this.fnShowLoader();
         console.log('this.loadingCtrlOpenCount', this.loadingCtrlOpenCount);
       }
     } else {
       console.log('-----Hidding');
-      if (this.loadingCtrlOpenCount) {
-        this.loadingCtrl
-          .dismiss()
-          .then((response) => {
-            console.log('Loader closed!', response);
-            this.loadingCtrlOpenCount = 0;
-          })
-          .catch((err) => {
-            this.loadingCtrlOpenCount = 0;
-            this.loadingCtrl.dismiss();
-            console.log('Error occured : ', err);
-          });
-        this.fnShowLoader('hide')
-          .then((response) => {
-            this.loadingCtrlOpenCount = 0;
-            console.log('Loader closed!', response);
-          })
-          .catch((err) => {
-            this.loadingCtrlOpenCount = 0;
-            console.log('Error occured : ', err);
-          });
+      if (this.loadingCtrlOpenCount > 0) {
+        this.fnDismissLoader();
+        this.loadingCtrlOpenCount = 0;
       }
+    }
+  }
+
+  async showLoader() {
+    if (!this.isShowingLoader) {
+      this.isShowingLoader = true;
+      console.log('Show Loader');
+      this.loader = await this.loadingCtrl
+        .create({
+          message: "<img src='../../assets/images/loader.gif' alt='loader'>",
+          duration: 10000,
+        })
+        .then((loader) => {
+          console.log('Present Loader');
+          loader.present();
+        })
+        .catch((e) => console.log(e));
+
+      this.loadingCtrl
+        .getTop()
+        .then((loader) => {
+          console.log('loaderrrr', loader);
+        })
+        .catch((loader) => console.log(loader));
+    }
+  }
+
+  async hideLoader() {
+    if (this.loader) {
+      setTimeout(() => {
+        this.loader.dismiss();
+        this.loader = null;
+        this.isShowingLoader = false;
+        console.log('Hide Loader');
+      }, 0);
     }
   }
 

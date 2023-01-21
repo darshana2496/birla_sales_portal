@@ -29,7 +29,10 @@ export class AppComponent {
         this.globalService.checkInternetConnection();
 
         if (!this.globalService.isAppReviewed) {
-          if (this.globalService.projectList.length) {
+          if (
+            this.globalService.projectList &&
+            this.globalService.projectList.length
+          ) {
             this.showUserFeedbackPage();
           }
         }
@@ -42,7 +45,8 @@ export class AppComponent {
       })
       .catch((err) => {
         return null;
-      });``
+      });
+    ``;
 
     this.globalService.getNetworkCarrierInfo();
 
