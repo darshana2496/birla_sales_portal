@@ -1,0 +1,87 @@
+<app-header [backbtn]="true" [type]="'normal'" [typeTitle]="'pageName'" [pageNameVal]="'Cheque Drop Details'"></app-header>
+
+<ion-content class="lyt-section typ-bg extra-padding ion-padding">
+  <div class="content-inner">
+    <div class="content">
+      <div class="vertical-middle">
+
+        <form [formGroup]="myform">
+          <div class="bs-form">
+
+            <div class="form-group typ-band bot-space">
+              <ion-item>
+                <ion-label position="floating">Location</ion-label>
+                <ion-select name="location" formControlName="location" required>
+                  <ion-select-option value="{{loc.intLocationID}}" *ngFor="let loc of dropLocationList">{{loc.vcLocation}}</ion-select-option>
+              
+                </ion-select>
+              </ion-item>
+
+              <!-- <ion-item>
+                <ion-label position="floating">Location </ion-label>
+                <ion-select  name="location" formControlName="location" required>
+                  <ion-select-option value="{{loc.intLocationID}}" *ngFor="let loc of dropLocationList">{{loc.vcLocation}}</ion-select-option>
+                </ion-select>
+              </ion-item> -->
+              <!-- <div class="error opacity-none" *ngIf="myform.get('location').errors">
+                Location Select
+              </div> -->
+              
+              <!-- [ngClass]="{'opacity-full':myform.get('location').errors?.required && (myform.get('location').dirty || myform.get('location').touched)}" 
+              [class.opacity-full]="myform.get('location').errors && (myform.get('location').dirty || myform.get('location').touched"-->
+             <!-- <span>myform.get('location').errors</span> -->
+              <div class="error opacity-none"
+              [ngClass]="{'opacity-full':(myform.get('location').errors && (myform.get('location').dirty || myform.get('location').touched) )}"
+                >Location is required.</div>
+            </div>
+            <!-- (click)="showModal()" -->
+            <div class="form-group typ-band bot-space"  id="open-modal" expand="block" >
+              <ion-item>
+                <ion-label position="floating">Date</ion-label>
+                <!-- <ion-datetime-button datetime="datetime"></ion-datetime-button>-->
+                <ion-input required type="text" name="date" formControlName="date" readonly="true">
+                </ion-input>
+              </ion-item>
+              <div class="error opacity-none"
+                [ngClass]="{'opacity-full': (myform.get('date').errors && (myform.get('date').dirty || myform.get('date').touched))}">Date is
+                required.</div>
+            </div>
+            <div class="form-group typ-band ">
+              <ion-item>
+                <ion-label position="floating">Cheque Number</ion-label>
+                <ion-input required type="text" value="" name="chequeNo" formControlName="chequeNo"></ion-input>
+              </ion-item>
+              <div class="error opacity-none"
+                [ngClass]="{'opacity-full':(myform.get('chequeNo').errors && (myform.get('chequeNo').dirty || myform.get('chequeNo').touched) )}">Cheque no. is
+                required.</div>
+            </div>
+            <div class="button-parent ion-text-center">
+              <!-- [disabled]="f.valid" -->
+              <ion-button class="button ion-text-center" [disabled]="!myform.valid" (click)="validationErrorMsg()" >PROCEED</ion-button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+      <ion-modal #modal id="example-modal" trigger="open-modal"  [presentingElement]="presentingElement">
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-title>Select Date</ion-title>
+              <ion-buttons slot="end">
+                <ion-button (click)="modal.dismiss()">Close</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-header>
+          <ion-content>
+            <!-- <p class="ion-padding-horizontal"></p> -->
+            <ion-item>
+              <ion-datetime (ionChange)="onTermsChanged($event)" [(ngModel)]="selectedDate"></ion-datetime>
+              <!-- <ion-checkbox id="terms"  [checked]="canDismiss"></ion-checkbox> -->
+            </ion-item>
+          </ion-content>
+        </ng-template>
+      </ion-modal> 
+    </div>
+  </div>
+</ion-content>

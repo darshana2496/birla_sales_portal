@@ -11,6 +11,9 @@ import { AboutComponent } from './about/about.component';
 import { HelpSupportComponent } from './help-support/help-support.component';
 import { FaqComponent } from './faq/faq.component';
 import { FeedbackQueryComponent } from './feedback-query/feedback-query.component';
+import { ChequeDropComponent } from './cheque-drop/cheque-drop.component';
+import { MakePaymentComponent } from './make-payment/make-payment.component';
+import { ChequeDetailDropComponent } from './cheque-detail-drop/cheque-detail-drop.component';
 
 const routes: Routes = [
   {
@@ -33,6 +36,14 @@ const routes: Routes = [
       {
         path: 'faq',
         component: FaqComponent,
+      },
+      {
+        path:'cheque-drop',component:ChequeDropComponent
+      },
+      {
+        path:'make-payment',component:MakePaymentComponent},
+      {
+        path:'cheque-detail-drop',component:ChequeDetailDropComponent
       },
       {
         path: 'feedback-query',

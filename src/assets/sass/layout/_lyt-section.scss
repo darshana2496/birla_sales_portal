@@ -58,7 +58,7 @@
 
     &.bg-color {
         // background: #fafafa;
-        background: url(../../images/topShadow.png) repeat-x 0 56px;
+        --background: url(../../images/topShadow.png) repeat-x 0 0px;
     }
 
     &.typ-steps {
