@@ -120,6 +120,17 @@ export class GlobalService {
     });
     return promise;
   }
+  postFeedback(obj: any) {
+    let promise = new Promise((resolve, reject) => {
+        this._http
+            .post(environment.serverUrl+ "config/raisefeedback", JSON.stringify(obj))
+            .toPromise()
+            .then(response => {
+                resolve(response);
+            });
+    });
+    return promise;
+}
   getRMDetails() {
     let promise = new Promise((resolve, reject) => {
       this._http

@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/services/global.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-know-your-cust-id',
@@ -14,9 +15,10 @@ export class KnowYourCustIdPage implements OnInit {
   custIds: string;
   showCustIdModal: boolean = false;
   success: boolean;
+  presentingElement = null;
   errorMsg: string = '';
   knowCustIdForm: FormGroup;
-
+  selectedDate:any;
   constructor(public globalService: GlobalService, public router: Router, public fb: FormBuilder) {
     // this.globalService.currentActivePageReference = this;
     this.knowCustIdForm = this.fb.group({
@@ -27,7 +29,18 @@ export class KnowYourCustIdPage implements OnInit {
 
   ngOnInit() {
   }
-
+  onTermsChanged(event: Event) {
+    if(this.selectedDate != undefined){
+      
+      let startDate = formatDate(this.selectedDate,"dd-MM-yyyy",'en-US');
+  console.log(this.selectedDate,"Selected",startDate)
+  this.knowCustIdForm.controls['dob'].setValue(startDate)    
+    }
+  else{
+  
+  }
+  
+    }
   public get f() {
     return this.knowCustIdForm.controls;
   }

@@ -26,18 +26,20 @@
               formControlName="panNo"
             ></ion-input>
           </ion-item>
-          <div
+          <div 
             class="error-msg"
             *ngIf="f['panNo'].touched && f['panNo'].errors"
           >
             <p *ngIf="f['panNo'].errors['required']">Enter Pan Number</p>
           </div>
-          <ion-item class="app-form-group">
+          <ion-item class="app-form-group" id="open-modal" expand="block">
             <ion-label position="floating" class="app-field-label"
+              
               >Date of birth</ion-label
             >
             <ion-input
-              type="date"
+              type="text"
+              readonly="true"
               class="app-form-control"
               placeholder="dd/mm/yyyy"
               formControlName="dob"
@@ -56,6 +58,25 @@
       </div>
     </div>
   </div>
+  <ion-modal #modal id="example-modal" trigger="open-modal"  [presentingElement]="presentingElement">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Select Date</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="modal.dismiss()">Close</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <!-- <p class="ion-padding-horizontal"></p> -->
+        <ion-item>
+          <ion-datetime (ionChange)="onTermsChanged($event)" [(ngModel)]="selectedDate"></ion-datetime>
+          <!-- <ion-checkbox id="terms"  [checked]="canDismiss"></ion-checkbox> -->
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal> 
 </ion-content>
 
 <div class="bs-modal typ-appReview" *ngIf="showCustIdModal">

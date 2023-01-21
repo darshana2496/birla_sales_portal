@@ -16,11 +16,12 @@
     <div class="lyt-upload" style="padding: 16px">
       <div class="head">
         <div class="search-bar">
-          <ion-item>
-            <ion-label position="fixed"
+          <ion-item class="app-form-group">
+            <ion-label class="app-field-label" position="floating"
               ><span class="icon icon-search"></span
             ></ion-label>
             <ion-input
+              class="app-form-control"
               type="text"
               placeholder="Search"
               [(ngModel)]="searchText"
@@ -36,11 +37,7 @@
             *ngFor="let adminDocs of adminUploadedDocs | searchFilterPipe :searchText;let i=index"
           >
             <ion-item-sliding #slidingItem>
-              <ion-item
-                lines="none"
-                class="iconwithtext"
-                (click)="viewDocs(adminDocs)"
-              >
+              <ion-item class="iconwithtext" (click)="viewDocs(adminDocs)">
                 <div class="icon">
                   <img
                     src="../../../assets/images/customer-portal_TDS.svg"
@@ -55,11 +52,17 @@
                 </div>
               </ion-item>
               <ion-item-options side="end" class="act-wrap">
+                <!-- <icon-button [buttonType]="'share'" [allSlidesData]="adminUploadedDocs" [pageData]="adminDocs"
+                    [pageName]="'vault'">
+                  </icon-button> -->
                 <ion-button
-                  class="button-progress-dashboard"
+                  class="app-btn btn-default"
                   (click)="shareDoc(adminDocs)"
                 >
-                  <span class="icon icon-share"> </span>
+                  <ion-icon name="share-social-outline"></ion-icon>
+                  <!-- <ion-icon slot="start" name="share"></ion-icon> -->
+                  <!-- <span class="icon" class="icon-share">
+                    </span> -->
                 </ion-button>
               </ion-item-options>
             </ion-item-sliding>
