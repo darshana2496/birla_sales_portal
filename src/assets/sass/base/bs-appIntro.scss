@@ -5,11 +5,13 @@
         right: 0;
         left: 0;
     }
+
     &.typ-landing {
 
         --background: url(../../images/intro4.jpg) no-repeat 0 0 transparent;
 
         background-size: cover;
+
         .introSlider {
             .mod-appintro {
                 position: absolute;
@@ -17,8 +19,33 @@
                 right: 0;
                 left: 0;
                 transform: translateY(50%);
+
                 .title {
                     text-align: center;
+                }
+            }
+        }
+    }
+
+    .app-intro-logo-wrap {
+        height: 80px;
+
+        app-header {
+            height: 100%;
+
+            .bs-header {
+                height: 100%;
+
+                ion-toolbar {
+                    height: 100%;
+
+                    &::shadow {
+                        .toolbar-container {
+                            height: 100% !important;
+                        }
+                    }
+
+
                 }
             }
         }
