@@ -7,6 +7,7 @@ import { VaultPage } from './vault.page';
 import { VaultPageRoutingModule } from './vault-routing.module';
 import { CommonComponentsModule } from '../../common-components/common-components.module';
 import { PipesModule } from 'src/app/utilities/pipes/pipes.module';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 
 @NgModule({
@@ -18,5 +19,6 @@ import { PipesModule } from 'src/app/utilities/pipes/pipes.module';
     VaultPageRoutingModule,
     CommonComponentsModule,PipesModule
   ],
+  providers:[SocialSharing]
 })
 export class VaultPageModule {}
