@@ -2,6 +2,10 @@
   text-align: center;
   box-shadow: 0 1px 30px -6px #bfbfbf;
 
+  &.header-ios ion-toolbar:last-of-type {
+    --border-width: 0;
+  }
+
   .header-background {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
@@ -60,7 +64,7 @@ app-header {
     top: 15px;
   }
 
-  & ~ .lyt-section {
+  &~.lyt-section {
     .scroll-content {
       margin-top: 56px;
     }
@@ -79,7 +83,7 @@ app-header {
     top: 0;
   }
 
-  & ~ .lyt-section {
+  &~.lyt-section {
     .scroll-content {
       margin-top: 80px;
     }
@@ -155,6 +159,11 @@ ion-title {
 .typ-transparent {
   ion-toolbar {
     --background: transparent;
+  }
+
+  .bs-header {
+    position: relative;
+    top: 20px;
   }
 
   .back-button.show-back-button {

@@ -23,6 +23,7 @@ import { ChequeDetailDropComponent } from './cheque-detail-drop/cheque-detail-dr
 import { CallsComponent } from './calls/calls.component';
 import { ThankYouModalComponent } from './thank-you-modal/thank-you-modal.component';
 import { AddProjectComponent } from './add-project/add-project.component';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @NgModule({
   imports: [
@@ -53,5 +54,6 @@ import { AddProjectComponent } from './add-project/add-project.component';
     ThankYouModalComponent,
     AddProjectComponent
   ],
+  providers:[SocialSharing]
 })
 export class PagesModule {}

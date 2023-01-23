@@ -13,70 +13,121 @@ export class SetPinComponent implements OnInit {
   encrypt: boolean = true;
   submitted: boolean;
   generatedPinColapse: number;
+  setfirstPin='';
+  setSecondPin='';
   constructor(public route:Router,public globalService: GlobalService, public fb: FormBuilder, public storage: Storage) {
     this.pinGroup = fb.group({
-      pin1: fb.control('', Validators.required),
-      pin2: fb.control({value:'',disabled:true}, Validators.required),
-      pin3: fb.control({value:'',disabled:true}, Validators.required),
-      pin4: fb.control({value:'',disabled:true}, Validators.required),
-      pin5: fb.control({value:'',disabled:true}, Validators.required),
-      pin6: fb.control({value:'',disabled:true}, Validators.required),
-      pin7: fb.control({value:'',disabled:true}, Validators.required),
-      pin8: fb.control({value:'',disabled:true}, Validators.required),
+        firstPin:fb.group({
+          pin1: fb.control('', Validators.required),
+          pin2: fb.control({value:'',disabled:true}, Validators.required),
+          pin3: fb.control({value:'',disabled:true}, Validators.required),
+          pin4: fb.control({value:'',disabled:true}, Validators.required),
+        }),
+        secondPin:fb.group({
+          pin1: fb.control('', Validators.required),
+          pin2: fb.control({value:'',disabled:true}, Validators.required),
+          pin3: fb.control({value:'',disabled:true}, Validators.required),
+          pin4: fb.control({value:'',disabled:true}, Validators.required),
+        }),
     })
-
-    this.pinGroup.valueChanges.subscribe(val => {
+    this.pinGroup.get('firstPin').valueChanges.subscribe(val=>{
       if(val.pin1){
-        this.pinGroup.get('pin2').enable({onlySelf:true}); 
+        this.pinGroup.get('firstPin')
+        .get('pin2').enable({onlySelf:true}); 
       }
       if(val.pin2)
       {
-        this.pinGroup.get('pin3').enable({onlySelf:true}); 
+        this.pinGroup.get('firstPin')
+        .get('pin3').enable({onlySelf:true}); 
       }
       if(val.pin3){
-        this.pinGroup.get('pin4').enable({onlySelf:true}); 
+        this.pinGroup.get('firstPin')
+        .get('pin4').enable({onlySelf:true}); 
       }
-      if(val.pin4){
-        this.pinGroup.get('pin5').enable({onlySelf:true}); 
+      if (val.pin1 && val.pin2 && val.pin3 && val.pin4){
+
+        let existingPin = val.pin1 + val.pin2 + val.pin3 + val.pin4;
+        this.setfirstPin=existingPin;
+        console.log(this.setfirstPin,'first group');
       }
-      if(val.pin5){
-        this.pinGroup.get('pin6').enable({onlySelf:true}); 
+    });
+    this.pinGroup.get('secondPin').valueChanges.subscribe((val)=>{
+      if(val.pin1){
+        this.pinGroup.get('secondPin')
+        .get('pin2').enable({onlySelf:true}); 
       }
-      if(val.pin6){
-        this.pinGroup.get('pin7').enable({onlySelf:true}); 
+      if(val.pin2)
+      {
+        this.pinGroup.get('secondPin')
+        .get('pin3').enable({onlySelf:true}); 
       }
-      if(val.pin7){
-        this.pinGroup.get('pin8').enable({onlySelf:true}); 
+      if(val.pin3){
+        this.pinGroup.get('secondPin')
+        .get('pin4').enable({onlySelf:true}); 
       }
-    if (val.pin1 && val.pin2 && val.pin3 && val.pin4 && val.pin5 && val.pin6 && val.pin7 && val.pin8) {
-      this.generatedPinColapse = val.pin1 + val.pin2 + val.pin3 + val.pin4;
-      if ((val.pin1 == val.pin5) && (val.pin2 == val.pin6) && (val.pin3 == val.pin7) && (val.pin4 == val.pin8)) {
-        this.submitted = true;
+      if (val.pin1 && val.pin2 && val.pin3 && val.pin4){
+
+        let existingPin = val.pin1 + val.pin2 + val.pin3 + val.pin4;
+        this.setSecondPin=existingPin;
+        console.log(this.setSecondPin,'Second Pin')
+        if(this.isPinMatching(this.setfirstPin,this.setSecondPin)){
+          // this.pinGroup.get('secondPin').updateValueAndValidity();
+          this.submitted = true;
+        }
+        else{
+         
+          this.pinGroup.get('secondPin').setErrors({ match: false });
+        }
       }
-      else {
+      else{
         this.submitted = false;
       }
-    }
-    else {
-      this.submitted = false;
-    }
-   
-    })
+     
+    });
   }
 
   ngOnInit() {
-
-
+    this.isPinMatching('same','same')
   }
+  isPinMatching(pin1: any, pin2: any) {
+    if (pin1 == pin2) {
+      console.log('Pin Matched fn')
+      return true;
+       
+    } else {
+      console.log('Pin Not Matched fn')
+      return false;
+    }
+  }
+
+  // isPinDifferent(pin1: any, pin2: any) {
+  //   if (pin1 != pin2) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
   changeInput() {
     this.encrypt = false;
   }
-  get formErr() { return this.pinGroup.controls }
+  get formErr() { 
+    if(this.isPinMatching(this.setfirstPin,this.setSecondPin))
+    {
+      this.pinGroup.get('secondPin').updateValueAndValidity();
+      this.submitted = true;
+      console.log('Pin Matched')
+    }
+    else{
+      console.log('Pin Not Matched') 
+      this.submitted = false;
+      this.pinGroup.get('secondPin').setErrors({ match: false });
+    }
+    return this.pinGroup.controls }
   checkLength(): void {
 
   }
   fnsetPin() {
-    this.globalService.setPinValue = this.generatedPinColapse.toString();
+    this.globalService.setPinValue = this.setfirstPin.toString();
     this.storage.set("AccessPin", this.globalService.setPinValue);
     this.globalService.setInitialProject();
     this.globalService.isPhoneUnlocked = true;
