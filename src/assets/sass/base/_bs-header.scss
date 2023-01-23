@@ -52,7 +52,7 @@ app-header {
     min-height: 56px;
   }
 
-  &~.lyt-section {
+  & ~ .lyt-section {
     .scroll-content {
       margin-top: 56px;
     }
@@ -68,7 +68,7 @@ app-header {
     min-height: 80px;
   }
 
-  &~.lyt-section {
+  & ~ .lyt-section {
     .scroll-content {
       margin-top: 80px;
     }

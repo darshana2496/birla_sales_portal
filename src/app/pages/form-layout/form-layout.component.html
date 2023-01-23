@@ -8,7 +8,7 @@
   </ion-item>
 
   <!-- Floating Input -->
-  <ion-item class="app-form-group">
+  <ion-item class="app-form-group" lines="none">
     <ion-label class="app-field-label" position="floating"
       >Floating input label</ion-label
     >
@@ -17,7 +17,7 @@
   </ion-item>
 
   <!-- Normal Input -->
-  <ion-item class="app-form-group">
+  <ion-item class="app-form-group" lines="none">
     <ion-label class="app-field-label" position="floating"
       >Floating label</ion-label
     >
@@ -25,7 +25,7 @@
   </ion-item>
 
   <!-- Date picker -->
-  <ion-item class="app-form-group">
+  <ion-item class="app-form-group" lines="none">
     <ion-label class="app-field-label" position="stacked"
       >Date of birth</ion-label
     >
@@ -38,7 +38,7 @@
   </ion-item>
 
   <!-- OTP input -->
-  <ion-item class="app-otp-input">
+  <ion-item class="app-otp-input" lines="none">
     <ion-input class="app-form-control" type="number" max="1"></ion-input>
     <ion-input class="app-form-control" type="number" max="1"></ion-input>
     <ion-input class="app-form-control" type="number" max="1"></ion-input>
@@ -50,15 +50,15 @@
 
   <!-- Button List -->
   <ion-list>
-    <ion-item>
+    <ion-item lines="none">
       <ion-button class="app-btn btn-default">Default</ion-button>
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <ion-button class="app-btn btn-default" [disabled]="true"
         >Default</ion-button
       >
     </ion-item>
-    <ion-item>
+    <ion-item lines="none">
       <ion-button class="app-btn btn-link" fill="clear"
         >cheque already dropped?</ion-button
       >
@@ -66,7 +66,7 @@
   </ion-list>
 
   <!-- Select -->
-  <ion-item class="app-form-group app-select">
+  <ion-item lines="none" class="app-form-group app-select">
     <ion-label class="app-field-label" position="stacked">Location</ion-label>
     <ion-select
       placeholder="Select location"
