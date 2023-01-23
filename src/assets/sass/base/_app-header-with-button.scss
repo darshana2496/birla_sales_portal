@@ -1,0 +1,16 @@
+//app-header-with-button
+.app-header-with-button {
+
+    .header-with-logo .toolbar {
+        min-height: 59px;
+    }
+
+
+    ion-toolbar {
+        height: 59px;
+        background: #ffffff;
+        display: flex;
+    }
+
+
+}

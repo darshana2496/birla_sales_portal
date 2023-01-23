@@ -1,6 +1,6 @@
 .lyt-section {
     &.typ-bg {
-        --background: url(../../images/mainbg.jpg)0 -60% / 103% 92% no-repeat;
+        --background: url(../../images/mainbg.jpg)0 -60% / 103% 92% no-repeat #f9f9f9;
         background-size: cover;
     }
 
@@ -52,13 +52,13 @@
     }
 
     &.typ-bg-uploads-img {
-        background: url(../../images/bgVault.jpg) no-repeat center center;
+        background: url(../../images/bgVault.jpg) no-repeat center center #f9f9f9;
         background-size: cover;
     }
 
     &.bg-color {
         // background: #fafafa;
-        --background: url(../../images/topShadow.png) repeat-x 0 0px;
+        --background: url(../../images/topShadow.png) repeat-x 0 0px #ffffff;
     }
 
     &.typ-steps {
@@ -75,14 +75,15 @@
                 .title {
                     margin-bottom: 3px !important;
                 }
-               .status-type{
-                font-size: 1rem;
-                line-height: 1rem;
-                color: #840c6f;
-                font-weight: 600;
-                margin: 0;
-                margin-top: 3px !important;
-               }
+
+                .status-type {
+                    font-size: 1rem;
+                    line-height: 1rem;
+                    color: #840c6f;
+                    font-weight: 600;
+                    margin: 0;
+                    margin-top: 3px !important;
+                }
             }
         }
     }
