@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
-  selector: 'app-tabs',
+  selector: 'app-pages',
   templateUrl: 'pages.page.html',
   styleUrls: ['pages.page.scss'],
 })

@@ -144,6 +144,17 @@
                     ></ion-input>
                   </ion-item>
                 </div>
+                <div
+                  class="error"
+                  *ngIf="f['newPin'].touched && f['newPin'].invalid"
+                >
+                  <div
+                    class="error-message"
+                    *ngIf="!f['newPin'].errors['match']"
+                  >
+                    Entered pin should not match with old pin.
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -212,12 +223,27 @@
                     ></ion-input>
                   </ion-item>
                 </div>
+                <div
+                  class="error"
+                  *ngIf="f['confirmPin'].touched && f['confirmPin'].invalid"
+                >
+                  <div
+                    class="error-message"
+                    *ngIf="!f['confirmPin'].errors['match']"
+                  >
+                    Entered pin does not match with new pin.
+                  </div>
+                </div>
               </div>
             </div>
           </form>
 
           <div class="button-parent ion-text-center">
-            <ion-button class="app-btn btn-default">Proceed</ion-button>
+            <ion-button
+              [disabled]="changePinGroup.invalid"
+              class="app-btn btn-default"
+              >Proceed</ion-button
+            >
           </div>
         </div>
       </div>

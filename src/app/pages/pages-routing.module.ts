@@ -40,18 +40,24 @@ const routes: Routes = [
         component: FaqComponent,
       },
       {
-        path:'cheque-drop',component:ChequeDropComponent
+        path: 'cheque-drop',
+        component: ChequeDropComponent,
       },
       {
-        path:'thank-modal',component:ThankYouModalComponent
+        path: 'thank-modal',
+        component: ThankYouModalComponent,
       },
       {
-        path:'make-payment',component:MakePaymentComponent},
-      {
-        path:'cheque-detail-drop',component:ChequeDetailDropComponent
+        path: 'make-payment',
+        component: MakePaymentComponent,
       },
       {
-        path:'calls',component:CallsComponent
+        path: 'cheque-detail-drop',
+        component: ChequeDetailDropComponent,
+      },
+      {
+        path: 'calls',
+        component: CallsComponent,
       },
       {
         path: 'feedback-query',

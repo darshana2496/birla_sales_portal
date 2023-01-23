@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController, NavParams } from '@ionic/angular';
 import { AnimationOptions } from '@ionic/angular/providers/nav-controller';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 @Component({
@@ -21,14 +21,13 @@ export class AssetsPreviewComponent implements OnInit {
   };
   constructor(
     public activatedRoute: ActivatedRoute,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    private navParams: NavParams,
+    private modalCtrl: ModalController
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe((params) => {
-      this.previewData = JSON.parse(params['data']);
-    });
-    //  this.previewData=this.activatedRoute.snapshot.paramMap.get('modelName');
+    this.previewData = this.navParams.data;
     if (
       this.previewData.fileType == 'jpg' ||
       this.previewData.fileType == 'png'
@@ -51,11 +50,7 @@ export class AssetsPreviewComponent implements OnInit {
     // }
   }
   closePage(): void {
-    let animations: AnimationOptions = {
-      animated: true,
-      animationDirection: 'back',
-    };
-    this.navCtrl.back(animations);
+    this.modalCtrl.dismiss();
   }
   handleIFrameLoadEvent(): void {
     //this.globalService.hideLoadingModel();

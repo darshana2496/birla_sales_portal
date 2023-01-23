@@ -1,7 +1,12 @@
+import { AssetsPreviewComponent } from './../common-components/assets-preview/assets-preview.component';
 import { Network } from '@capacitor/network';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoadingController, ToastController } from '@ionic/angular';
+import {
+  LoadingController,
+  ModalController,
+  ToastController,
+} from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
 import * as CryptoJS from 'crypto-js/crypto-js';
@@ -17,6 +22,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
+import { ThankYouModalComponent } from '../pages/thank-you-modal/thank-you-modal.component';
 @Injectable({
   providedIn: 'root',
 })
@@ -71,7 +77,8 @@ export class GlobalService {
     public loadingCtrl: LoadingController,
     public menuCtrl: MenuController,
     public route: Router,
-    public toastCtrl: ToastController
+    public toastCtrl: ToastController,
+    public modalCtrl: ModalController
   ) {}
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
@@ -122,15 +129,18 @@ export class GlobalService {
   }
   postFeedback(obj: any) {
     let promise = new Promise((resolve, reject) => {
-        this._http
-            .post(environment.serverUrl+ "config/raisefeedback", JSON.stringify(obj))
-            .toPromise()
-            .then(response => {
-                resolve(response);
-            });
+      this._http
+        .post(
+          environment.serverUrl + 'config/raisefeedback',
+          JSON.stringify(obj)
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
     });
     return promise;
-}
+  }
   getRMDetails() {
     let promise = new Promise((resolve, reject) => {
       this._http
@@ -270,15 +280,9 @@ export class GlobalService {
     let navParam = {
       fileType: 'jpg',
       isDownloaded: false,
+      vcFileUrl: imgUrl,
     };
-    navParam['vcFileUrl'] = imgUrl;
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        data: JSON.stringify(navParam),
-      },
-    };
-    this.route.navigate(['/asset-preview'], navigationExtras);
-    //navParam['vcFileUrl'] = "https://portal.birlaestates.com/Uploads/Layout/A203.JPG";
+    this.showPreviewImageModal(navParam);
   }
   showDownloadToast(
     message: string,
@@ -809,5 +813,20 @@ export class GlobalService {
       resolve(x);
     });
     return promise;
+  }
+
+  async showThankyouModal() {
+    const modal = this.modalCtrl.create({
+      component: ThankYouModalComponent,
+    });
+    return (await modal).present();
+  }
+
+  async showPreviewImageModal(props) {
+    const modal = this.modalCtrl.create({
+      component: AssetsPreviewComponent,
+      componentProps: props,
+    });
+    return (await modal).present();
   }
 }
