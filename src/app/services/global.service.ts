@@ -59,6 +59,7 @@ export class GlobalService {
     projectName: 'Test',
     userName: '',
   };
+  logCustomerDetail:any;
   downloadCollateral: any;
   enteredPin: string;
   appOpenedOnlyFromNotification: boolean = false;
@@ -729,11 +730,12 @@ export class GlobalService {
   }
 
   //A/c verified alert
-  AcVerifiedAlert() {
-    const alert = this.alertCtrl.create({
+  async AcVerifiedAlert() {
+    const alert =await this.alertCtrl.create({
       header: 'ACCOUNT VERIFIED',
       cssClass: 'ac-verify normal',
     });
+    alert.present();
   }
 
   //add project to list, which is used in side menu and acc. to selected slider(project) api calls are done
