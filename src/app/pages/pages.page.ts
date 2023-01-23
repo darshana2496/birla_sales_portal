@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { IonSlides, MenuController } from '@ionic/angular';
 import { GlobalService } from './../services/global.service';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -10,6 +10,16 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['pages.page.scss'],
 })
 export class PagesComponent {
+  @ViewChild(IonSlides) slides: IonSlides;
+
+  slideOpts = {
+    initialSlide: 0,
+    slidesPerView: 2,
+    coverflowEffect: {
+      depth: 0,
+    },
+  };
+
   constructor(
     public globalService: GlobalService,
     public storage: Storage,
