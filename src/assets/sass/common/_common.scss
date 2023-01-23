@@ -100,8 +100,13 @@
   padding: 20px 0 !important;
 
   .desc {
-    color: $clr-primary !important;
+    color: $clr-primary  !important;
   }
+}
+
+.app-list-padding {
+  padding: 1rem;
+  margin: -1rem;
 }
 
 // .typ-transparent {

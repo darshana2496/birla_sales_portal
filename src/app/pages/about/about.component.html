@@ -1,7 +1,9 @@
 <app-header class="typ-transparent" [type]="'menu'" [typeTitle]="'pageName'" [pageNameVal]="'about birla estates'">
 </app-header>
 
-<ion-content [fullscreen]="true"
+<ion-content 
+class="app-lyt-about"
+[fullscreen]="true"
 scrollEvents="true"
 #content
 (ionScroll)="globalService.headerSticky($event)">
