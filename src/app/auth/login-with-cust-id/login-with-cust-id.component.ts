@@ -54,15 +54,11 @@ export class LoginWithCustIdPage implements OnInit {
             vcEmail: decryptedEmail,
             vcName: decryptedName,
           };
-
-          let navigationExtras: NavigationExtras = {
-            queryParams: this.validateCustData,
-          };
-
           if (response.btIsSuccess) {
             response['object']['otp'] = response.vcTitle;
+            this.globalService.logCustomerDetail=this.validateCustData
             // this.navCtrl.push("ValidateCustIdPage", { "serverResponse": this.validateCustData });
-            this.navCtrl.navigateForward('otp', navigationExtras);
+            this.router.navigate(['/otp']);
           } else {
             this.globalService.universalAlert('', response.statusMessage, 'Ok');
           }
@@ -71,7 +67,7 @@ export class LoginWithCustIdPage implements OnInit {
           console.log(response);
         });
 
-      this.router.navigate(['/otp']);
+
     }
     // this.router.navigate(['/otp'])
   }

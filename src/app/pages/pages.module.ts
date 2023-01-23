@@ -22,6 +22,7 @@ import { MakePaymentComponent } from './make-payment/make-payment.component';
 import { ChequeDetailDropComponent } from './cheque-detail-drop/cheque-detail-drop.component';
 import { CallsComponent } from './calls/calls.component';
 import { ThankYouModalComponent } from './thank-you-modal/thank-you-modal.component';
+import { AddProjectComponent } from './add-project/add-project.component';
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import { ThankYouModalComponent } from './thank-you-modal/thank-you-modal.compon
     ChequeDetailDropComponent,
     CallsComponent,
     ThankYouModalComponent,
+    AddProjectComponent
   ],
 })
 export class PagesModule {}

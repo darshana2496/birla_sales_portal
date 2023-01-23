@@ -16,6 +16,7 @@ import { MakePaymentComponent } from './make-payment/make-payment.component';
 import { ChequeDetailDropComponent } from './cheque-detail-drop/cheque-detail-drop.component';
 import { CallsComponent } from './calls/calls.component';
 import { ThankYouModalComponent } from './thank-you-modal/thank-you-modal.component';
+import { AddProjectComponent } from './add-project/add-project.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,9 @@ const routes: Routes = [
       {
         path: 'help-support',
         component: HelpSupportComponent,
+      },
+      {
+        path:'add-project',component:AddProjectComponent
       },
       {
         path: 'faq',
