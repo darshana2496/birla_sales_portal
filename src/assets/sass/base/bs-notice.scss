@@ -1,6 +1,7 @@
 //bs-notice
 .bs-notice {
     display: block;
+
     .bg-sprite {
         &.bg-referFriend {
             width: 120px;
@@ -11,35 +12,43 @@
             margin: 0 auto 23px;
         }
     }
+
     .form-title {
         font-size: 1.8rem;
         line-height: 2rem;
         margin-bottom: 28px;
     }
+
     .field-label {
         margin-bottom: 38px;
     }
+
     &.typ-reward {
         .form-title {
             margin-bottom: 16px;
         }
+
         .field-label {
             margin-bottom: 0;
         }
+
         .img {
             margin: 30px auto;
             width: 70%;
+
             img {
                 width: 100%;
             }
         }
     }
+
     &.typ-noReward {
         .form-title {
             font-size: 2.4rem;
             line-height: 2.6rem;
             margin-bottom: 0;
         }
+
         .bg-noReward {
             width: 75px;
             height: 75px;
@@ -48,8 +57,15 @@
             background-size: 86px;
             background-position: center 0px;
         }
+
         .field-label {
             margin-bottom: 28px;
         }
+    }
+
+    .app-form {
+        padding: 1rem 1rem;
+        width: 100%;
+        margin: 0 -1rem;
     }
 }
