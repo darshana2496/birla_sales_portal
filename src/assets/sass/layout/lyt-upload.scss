@@ -1,19 +1,24 @@
 // lyt-upload
 .lyt-upload {
   background: white;
+
   .head {
     margin-bottom: 30px;
+
     .search-bar {
       width: 100%;
       display: inline-block;
       border: 1px solid #d2d2d2;
       border-radius: 6px;
       padding: 1px;
+
       .item-md {
         padding-left: 0;
+
         .item-inner {
           border-bottom: none;
           padding-right: 0;
+
           .text-input-md {
             font-size: 1.2rem;
             line-height: 1.2rem;
@@ -21,6 +26,7 @@
           }
         }
       }
+
       .item-input {
         .label-md {
           max-width: 10%;
@@ -31,23 +37,28 @@
           color: #e2e2e2;
         }
       }
+
       .item-md.item-input.item-input-has-focus .item-inner,
       .item-md.item-input.input-has-focus .item-inner {
         box-shadow: none;
         border: none;
       }
     }
+
     .search-bar-blogs {
       width: 86%;
       display: inline-block;
       border: 1px solid #d2d2d2;
       border-radius: 6px;
       padding: 1px;
+
       .item-md {
         padding-left: 0;
+
         .item-inner {
           border-bottom: none;
           padding-right: 0;
+
           .text-input-md {
             font-size: 1.2rem;
             line-height: 1.2rem;
@@ -55,6 +66,7 @@
           }
         }
       }
+
       .item-input {
         .label-md {
           max-width: 10%;
@@ -65,21 +77,25 @@
           color: #e2e2e2;
         }
       }
+
       .item-md.item-input.item-input-has-focus .item-inner,
       .item-md.item-input.input-has-focus .item-inner {
         box-shadow: none;
         border: none;
       }
     }
+
     .act-btn {
       width: 12%;
       display: inline-block;
       text-align: right;
       vertical-align: top;
+
       .button {
         background: none;
         box-shadow: none;
         padding: 0 0 0 1.1em;
+
         .button-inner {
           .icon {
             font-size: 2rem;
@@ -90,17 +106,21 @@
       }
     }
   }
+
   .cont {
     display: block;
+
     .doc-note {
       font-size: 1.2rem;
       line-height: 1.4rem;
       text-align: right;
       margin-bottom: 1.1rem;
+
       .star {
         color: $clr-primary;
       }
     }
+
     // display: block;
     // position: absolute;
     // top: 20%;
@@ -111,5 +131,18 @@
     // padding: 5px;
     // .document-list{
     // }
+  }
+
+  .doc-list-wrap {
+    padding: 1rem;
+  }
+
+  ion-item-options {
+    border: none;
+  }
+
+  .card-list {
+    padding-top: 1rem;
+    margin-top: -1rem;
   }
 }

@@ -31,7 +31,8 @@
       </div>
 
       <div class="cont">
-        <ion-list class="card-list">
+        <div class="document-list">
+          <ion-list class="card-list">
           <div
             class="bs-doc"
             *ngFor="let adminDocs of adminUploadedDocs | searchFilterPipe :searchText;let i=index"
@@ -60,7 +61,7 @@
                     [pageName]="'vault'">
                   </icon-button> -->
                 <ion-button
-                  class="app-btn btn-default"
+                  class="app-btn btn-icon"
                   (click)="shareDoc(adminDocs)"
                 >
                   <ion-icon name="share-social-outline"></ion-icon>
@@ -78,6 +79,7 @@
             No documents found.
           </div>
         </ion-list>
+        </div>
       </div>
     </div>
   </div>

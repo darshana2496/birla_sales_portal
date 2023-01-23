@@ -1,26 +1,26 @@
 <app-header [type]="'menu'" [typeTitle]="'pageName'" [pageNameVal]="'FEEDBACK & QUERY'"></app-header>
 
-<ion-content  class="lyt-section typ-bg ion-padding">
-  <div class="content">
-    <div class="content no-padding" *ngIf="!serverError">
+<ion-content  class="lyt-section typ-bg tabs feedbackQuery2">
+  <div class="content-inner">
+    <div class="content no-padding app-tab" *ngIf="!serverError">
 
-      <ion-segment class="segment segment-md" [(ngModel)]="CustomerSegment" (ionChange)="segmentChanged($event)">
-        <ion-segment-button class="segment-button segment-activated" value="myFeedback">
+      <ion-segment class="app-tab-nav" [(ngModel)]="CustomerSegment" (ionChange)="segmentChanged($event)">
+        <ion-segment-button class="app-tab-nav-item" value="myFeedback">
           My Feedback & Query
         </ion-segment-button>
-        <ion-segment-button class="segment-button segment-activated" value="sendFeedback">
+        <ion-segment-button class="app-tab-nav-item" value="sendFeedback">
           Send Feedback
         </ion-segment-button>
       </ion-segment>
 
-      <div [ngSwitch]="CustomerSegment" class="tab-content ion-padding">
+      <div [ngSwitch]="CustomerSegment" class="tab-content ion-padding app-tab-content">
         <div *ngSwitchCase="'myFeedback'">
           <ng-container *ngIf="myaddedFeedbacks.length else noData">
             <div class="cont">
               <div class="document-list">
-                <ion-list>
+                <ion-list class="app-list-padding">
                   <div class="bs-doc" *ngFor="let feedbackQuery of myaddedFeedbacks;let i=index">
-                    <ion-item class="iconwithtext">
+                    <ion-item class="iconwithtext" lines="none">
                       <div class="icon">
                         <img src="../../../assets/images/customer-portal_Stamp.svg" alt="customer-portal_TDS">
                       </div>
@@ -48,24 +48,29 @@
               <div class="vertical-top ion-text-center" >
                 <div class="bs-notice">
                   <form [formGroup]="myform" (ngSubmit)="onSubmit()">
-                    <div class="bs-form">
-                      <div class="form-group typ-band bot-space">
-                        <ion-item class="app-form-group app-select">
-                          <ion-label class="app-field-label" position="stacked">Choose subject</ion-label>
-                          <ion-select [interfaceOptions]="{ cssClass: 'app-select-alert' }" name="query" formControlName="query">
-                            <ion-select-option value="121">General Query</ion-select-option>
-                            <ion-select-option value="101">Complaint </ion-select-option>
-                            <ion-select-option value="111">Request </ion-select-option>
-                          </ion-select>
-                        </ion-item>
-                      </div>
-                      <div class="form-group typ-band addOn bot-space">
-                        <ion-item>
-                          <ion-label class="app-field-label" position="floating">Feedback</ion-label>
-                          <ion-textarea class="app-form-control" name="feedback" formControlName="feedback"></ion-textarea>
-                        </ion-item>
-                      </div>
-                    </div>
+                    <ion-list class="app-form">
+                    
+                      <ion-item class="app-form-group app-select" lines="none">
+                        <ion-label class="app-field-label" position="stacked">Choose subject</ion-label>
+                        <ion-select
+                          placeholder="Choose subject"
+                          [interfaceOptions]="{ cssClass: 'app-select-alert' }"
+                          name="query" formControlName="query"
+                        >
+                          <ion-select-option value="121">General Query</ion-select-option>
+                          <ion-select-option value="101">Complaint </ion-select-option>
+                          <ion-select-option value="111">Request </ion-select-option>
+                        </ion-select>
+                      </ion-item>
+
+                      <ion-item class="app-form-group" lines="none">
+                        <ion-label class="app-field-label" position="floating"
+                          >Feedback</ion-label
+                        >
+                        <ion-textarea class="app-form-control" name="feedback" formControlName="feedback"></ion-textarea>
+                      </ion-item>
+
+                    </ion-list>
                     <div class="button-parent" text-center>
                       <ion-button class="app-btn btn-default" [disabled]="!enable" type="submit">Submit
                       </ion-button>
