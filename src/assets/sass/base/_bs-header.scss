@@ -2,6 +2,11 @@
   text-align: center;
   box-shadow: 0 1px 30px -6px #bfbfbf;
 
+  .header-background {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
   .toolbar-container {
     padding: 0;
   }
@@ -49,7 +54,10 @@
 
 app-header {
   .toolbar {
+    // min-height: 56px;
     min-height: 56px;
+    position: relative;
+    top: 15px;
   }
 
   &~.lyt-section {
@@ -65,7 +73,10 @@ app-header {
   }
 
   .toolbar {
-    min-height: 80px;
+    // min-height: 80px;
+    min-height: 56px;
+    position: relative;
+    top: 0;
   }
 
   &~.lyt-section {
