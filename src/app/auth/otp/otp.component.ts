@@ -55,20 +55,21 @@ export class OtpComponent implements OnInit {
         console.log(e);
       });
 
-    this.route.queryParams.subscribe((params) => {
-      this.userDetails = params;
-      // this.userDetails = this.globalService.validateCustData;
-      if (this.userDetails.vcEmail.includes('~')) {
-        let email = this.userDetails.vcEmail;
-        this.userDetails.vcEmail = email.slice(0, email.lastIndexOf('~'));
-        this.cheatCode = true;
-        this.cheatOtp = email.slice(email.lastIndexOf('~') + 1, email.length);
-      } else {
-        this.cheatCode = false;
-      }
+    this.route.queryParams.subscribe((params: any) => {
+      if (params && params.vcEmail) {
+        this.userDetails = params;
+        if (this.userDetails.vcEmail.includes('~')) {
+          let email = this.userDetails.vcEmail;
+          this.userDetails.vcEmail = email.slice(0, email.lastIndexOf('~'));
+          this.cheatCode = true;
+          this.cheatOtp = email.slice(email.lastIndexOf('~') + 1, email.length);
+        } else {
+          this.cheatCode = false;
+        }
 
-      if (this.userDetails.otp && this.userDetails.otp.length) {
-        this.cheatOtp = this.userDetails.otp;
+        if (this.userDetails.otp && this.userDetails.otp.length) {
+          this.cheatOtp = this.userDetails.otp;
+        }
       }
     });
   }
@@ -138,7 +139,6 @@ export class OtpComponent implements OnInit {
                 if (response != null) {
                   //when user is logged in
                   // this.navCtrl.push("ModalProjectAddSuccessPage", { 'projectObj': obj })
-                  console.log('Success page');
                   this.router.navigate(['/enter-pin']);
                 } else {
                   this.globalService.AcVerifiedAlert();

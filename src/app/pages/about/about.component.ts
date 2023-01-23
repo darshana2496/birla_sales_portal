@@ -20,35 +20,36 @@ export class AboutComponent implements OnInit {
   };
   projectList: any = [];
   serverErrorResponse: string;
-  constructor(public globalService: GlobalService) { }
+  constructor(public globalService: GlobalService) {}
 
   ngOnInit() {
     this.aboutBirla();
   }
-  aboutBirla(){
-    this.globalService.getAboutBirlaEstates().then((response: any) => {
-      console.log(response);
-      if (response.btIsSuccess) {
-        let data = response.object;
-        this.projectList = data;
-        for (let i = 0; i < this.projectList.length; i++) {
-          let obj = this.projectList[i];
-          obj.intCompletedPercent = 50;
-          let commaString = obj.vcProjectName.replace(' ', ',');
-          obj.vcProjectName = commaString.split(',');
+  aboutBirla() {
+    this.globalService
+      .getAboutBirlaEstates()
+      .then((response: any) => {
+        if (response.btIsSuccess) {
+          let data = response.object;
+          this.projectList = data;
+          for (let i = 0; i < this.projectList.length; i++) {
+            let obj = this.projectList[i];
+            obj.intCompletedPercent = 50;
+            let commaString = obj.vcProjectName.replace(' ', ',');
+            obj.vcProjectName = commaString.split(',');
+          }
+        } else {
+          this.projectList = [];
+          this.serverErrorResponse = response.statusMessage;
         }
-      } else {
-        this.projectList = [];
-        this.serverErrorResponse = response.statusMessage;
-      }
-    }).catch((response: any) => {
-      console.log(response);
-    });
+      })
+      .catch((response: any) => {
+        console.log(response);
+      });
   }
-async viewProject(projectLink: string) {
+  async viewProject(projectLink: string) {
     if (projectLink.length != null)
-      if (projectLink.length)
-        await Browser.open({ url:projectLink});
-        // this.inAppBrowser.create(projectLink, "_system")
+      if (projectLink.length) await Browser.open({ url: projectLink });
+    // this.inAppBrowser.create(projectLink, "_system")
   }
 }

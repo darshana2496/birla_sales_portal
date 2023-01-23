@@ -54,9 +54,7 @@ export class EnterPinComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    console.log(this.formErr['pin1'].errors['required'], 'error check');
-  }
+  ngOnInit() {}
   changeInput() {
     this.encrypt = false;
   }

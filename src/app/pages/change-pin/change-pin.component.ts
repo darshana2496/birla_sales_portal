@@ -15,6 +15,9 @@ import { Component, OnInit } from '@angular/core';
 export class ChangePinComponent implements OnInit {
   encrypt: boolean;
   changePinGroup: FormGroup;
+  newPin: string = '';
+  confirmPin: string = '';
+  existingPin: any;
 
   constructor(public globalService: GlobalService, public fb: FormBuilder) {
     this.changePinGroup = this.fb.group({
@@ -61,7 +64,6 @@ export class ChangePinComponent implements OnInit {
     });
 
     this.changePinGroup.get('existingPin').valueChanges.subscribe((val) => {
-      console.log('Pin change', val);
       if (val.pin1) {
         this.changePinGroup
           .get('existingPin')
@@ -85,11 +87,20 @@ export class ChangePinComponent implements OnInit {
           .get('newPin')
           .get('pin1')
           .enable({ onlySelf: true });
+      }
+
+      if (val.pin1 && val.pin2 && val.pin3 && val.pin4) {
+        let existingPin = val.pin1 + val.pin2 + val.pin3 + val.pin4;
+        this.existingPin = existingPin;
+        if (!this.isPinDifferent(this.existingPin, this.newPin)) {
+          this.changePinGroup.get('newPin').setErrors({ match: false });
+        } else {
+          this.changePinGroup.get('newPin').updateValueAndValidity();
+        }
       }
     });
 
     this.changePinGroup.get('newPin').valueChanges.subscribe((val) => {
-      console.log('Pin change', val);
       if (val.pin1) {
         this.changePinGroup
           .get('newPin')
@@ -114,10 +125,24 @@ export class ChangePinComponent implements OnInit {
           .get('pin1')
           .enable({ onlySelf: true });
       }
+
+      if (val.pin1 && val.pin2 && val.pin3 && val.pin4) {
+        let newPin = val.pin1 + val.pin2 + val.pin3 + val.pin4;
+        this.newPin = newPin;
+        if (!this.isPinMatching(this.newPin, this.confirmPin)) {
+          this.changePinGroup.get('confirmPin').setErrors({ match: false });
+        } else {
+          this.changePinGroup.get('confirmPin').updateValueAndValidity();
+        }
+        if (!this.isPinDifferent(this.existingPin, this.newPin)) {
+          this.changePinGroup.get('newPin').setErrors({ match: false });
+        } else {
+          this.changePinGroup.get('newPin').updateValueAndValidity();
+        }
+      }
     });
 
     this.changePinGroup.get('confirmPin').valueChanges.subscribe((val) => {
-      console.log('Pin change', val);
       if (val.pin1) {
         this.changePinGroup
           .get('confirmPin')
@@ -135,11 +160,38 @@ export class ChangePinComponent implements OnInit {
           .get('confirmPin')
           .get('pin4')
           .enable({ onlySelf: true });
+      }
+      if (val.pin1 && val.pin2 && val.pin3 && val.pin4) {
+        let confirmPin = val.pin1 + val.pin2 + val.pin3 + val.pin4;
+        this.confirmPin = confirmPin;
+        if (!this.isPinMatching(this.newPin, this.confirmPin)) {
+          this.changePinGroup.get('confirmPin').setErrors({ match: false });
+        }
       }
     });
   }
 
   ngOnInit() {}
+
+  get f() {
+    return this.changePinGroup.controls;
+  }
+
+  isPinMatching(pin1: any, pin2: any) {
+    if (pin1 == pin2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isPinDifferent(pin1: any, pin2: any) {
+    if (pin1 != pin2) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   changeInput() {
     this.encrypt = false;

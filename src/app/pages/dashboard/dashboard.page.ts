@@ -79,7 +79,6 @@ export class DashBoard implements OnInit {
     this.globalService
       .getProjectDetails()
       .then((response: any) => {
-        console.log(response);
         var activeStageIndex;
 
         if (response.btIsSuccess) {
@@ -136,7 +135,6 @@ export class DashBoard implements OnInit {
 
               for (let j = 0; j < videoList.length; j++) {
                 let videoLink = videoList[j].vcLink;
-                console.log('video link', videoLink);
                 let watchLink = videoLink.slice(
                   videoLink.lastIndexOf('=') + 1,
                   videoLink.length
@@ -152,22 +150,15 @@ export class DashBoard implements OnInit {
           this.projectDescription = obj.vcDescription;
           this.blogsList = obj.customerProjectDetail_BlogsList;
 
-          console.log(this.blogsList);
-          console.log(this.floorPlanImg);
-
           this.constructionVideoList = this.projectStages[0]; //set initial video list
-          console.log('this.constructionVideoList', this.constructionVideoList);
 
           setTimeout(() => {
             //this.projectImagesSlides.slideTo(1, 0);
-            console.log(this.projectStages.length);
             if (this.projectStages.length <= 3) {
               this.ProjectStagesSlides.slideTo(0, 0);
               this.ProjectStagesSlides.lockSwipes(true);
             }
           }, 100);
-        } else {
-          console.log('No project avaliable');
         }
       })
       .catch((response: any) => {
@@ -176,16 +167,13 @@ export class DashBoard implements OnInit {
   }
 
   viewImage(imgUrl: string): void {
-    console.log(imgUrl);
     if (imgUrl != null || imgUrl.length)
       this.globalService.previewImage(imgUrl);
   }
   playVideo(videoDetails: any): void {
-    console.log(videoDetails);
     videoDetails.fileType = 'video';
   }
   showSegment(index: number, stageName: string): void {
-    console.log(index, stageName, this.showConstructionProgressDetails);
     this.selectedConstructionPhase = stageName;
     this.constructionVideoList = this.projectStages[index];
     this.constructionStageImg = this.projectStages[index].vcImageUrl;

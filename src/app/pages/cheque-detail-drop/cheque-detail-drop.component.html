@@ -9,14 +9,12 @@
           <div class="bs-form">
 
             <div class="form-group typ-band bot-space">
-              <ion-item>
-                <ion-label position="floating">Location</ion-label>
-                <ion-select name="location" formControlName="location" required>
-                  <ion-select-option value="{{loc.intLocationID}}" *ngFor="let loc of dropLocationList">{{loc.vcLocation}}</ion-select-option>
-              
+              <ion-item class="app-form-group app-select">
+                <ion-label class="app-field-label" position="floating">Location</ion-label>
+                <ion-select [interfaceOptions]="{ cssClass: 'app-select-alert' }" name="location" formControlName="location" required>
+                  <ion-select-option value="{{loc.intLocationID}}" *ngFor="let loc of dropLocationList">{{loc.vcLocation}}</ion-select-option>            
                 </ion-select>
               </ion-item>
-
               <!-- <ion-item>
                 <ion-label position="floating">Location </ion-label>
                 <ion-select  name="location" formControlName="location" required>
@@ -36,10 +34,10 @@
             </div>
             <!-- (click)="showModal()" -->
             <div class="form-group typ-band bot-space"  id="open-modal" expand="block" >
-              <ion-item>
-                <ion-label position="floating">Date</ion-label>
+              <ion-item class="app-form-group">
+                <ion-label class="app-field-label" position="floating">Date</ion-label>
                 <!-- <ion-datetime-button datetime="datetime"></ion-datetime-button>-->
-                <ion-input required type="text" name="date" formControlName="date" readonly="true">
+                <ion-input class="app-form-control" required type="text" name="date" formControlName="date" readonly="true">
                 </ion-input>
               </ion-item>
               <div class="error opacity-none"
@@ -47,9 +45,9 @@
                 required.</div>
             </div>
             <div class="form-group typ-band ">
-              <ion-item>
-                <ion-label position="floating">Cheque Number</ion-label>
-                <ion-input required type="text" value="" name="chequeNo" formControlName="chequeNo"></ion-input>
+              <ion-item class="app-form-group">
+                <ion-label class="app-field-label" position="floating">Cheque Number</ion-label>
+                <ion-input class="app-form-control" required type="text" value="" name="chequeNo" formControlName="chequeNo"></ion-input>
               </ion-item>
               <div class="error opacity-none"
                 [ngClass]="{'opacity-full':(myform.get('chequeNo').errors && (myform.get('chequeNo').dirty || myform.get('chequeNo').touched) )}">Cheque no. is

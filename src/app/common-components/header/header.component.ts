@@ -11,20 +11,22 @@ import { AnimationOptions } from '@ionic/angular/providers/nav-controller';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-
   @Input('type') type;
   @Input('typeTitle') typeTitle;
   @Input('typeEnd') typeEnd;
   @Input('pageNameVal') pageNameVal;
-  @Input() backbtn= false;
+  @Input() backbtn = false;
 
   text: string;
 
-  constructor(public menuCtrl: MenuController, public globalService: GlobalService, public navCtrl: NavController, public app: AppComponent, public router: Router) {
-  }
-  ngOnInit(): void {
-    console.log(this.type,'type check')
-  }
+  constructor(
+    public menuCtrl: MenuController,
+    public globalService: GlobalService,
+    public navCtrl: NavController,
+    public app: AppComponent,
+    public router: Router
+  ) {}
+  ngOnInit(): void {}
 
   openSideMenu() {
     // this.globalService.currentlyActivePage = this.navCtrl.getActive().id;
@@ -32,18 +34,22 @@ export class HeaderComponent implements OnInit {
   }
 
   goBack(): void {
-    this.navCtrl.pop();
+    let animations: AnimationOptions = {
+      animated: true,
+      animationDirection: 'back',
+    };
+    this.navCtrl.back(animations);
   }
 
   contactModal(): void {
     // this.app.getRootNavs()[1].push("CallPage");
-    this.router.navigate(['/callPage'])
+    this.router.navigate(['/calls']);
   }
-  back(){
-    let animations:AnimationOptions={
+  back() {
+    let animations: AnimationOptions = {
       animated: true,
-      animationDirection: "back"
-    }
-    this.navCtrl.back(animations)
+      animationDirection: 'back',
+    };
+    this.navCtrl.back(animations);
   }
 }

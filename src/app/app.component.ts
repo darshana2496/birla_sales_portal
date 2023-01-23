@@ -1,7 +1,13 @@
+import { ThankYouModalComponent } from './pages/thank-you-modal/thank-you-modal.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, ViewChild } from '@angular/core';
 import { Network } from '@capacitor/network';
-import { NavController, Platform, MenuController } from '@ionic/angular';
+import {
+  NavController,
+  Platform,
+  MenuController,
+  ModalController,
+} from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { GlobalService } from './services/global.service';
 
@@ -20,7 +26,8 @@ export class AppComponent {
     public globalService: GlobalService,
     public platform: Platform,
     public router: Router,
-    public menuCtrl: MenuController
+    public menuCtrl: MenuController,
+    public modalCtrl: ModalController
   ) {
     storage.create();
     this.router.events.subscribe((event: any) => {
@@ -29,7 +36,10 @@ export class AppComponent {
         this.globalService.checkInternetConnection();
 
         if (!this.globalService.isAppReviewed) {
-          if (this.globalService.projectList.length) {
+          if (
+            this.globalService.projectList &&
+            this.globalService.projectList.length
+          ) {
             this.showUserFeedbackPage();
           }
         }
@@ -42,7 +52,8 @@ export class AppComponent {
       })
       .catch((err) => {
         return null;
-      });``
+      });
+    ``;
 
     this.globalService.getNetworkCarrierInfo();
 
@@ -137,9 +148,8 @@ export class AppComponent {
     this.globalService.getUserfeedback().then((data) => {
       if (data < 50 && data > 47) {
         switch (this.globalService.currentlyActivePage) {
-          case 'ModalAppReviewPage':
-          case 'set-pin':
-          case 'enter-pin':
+          case '/set-pin':
+          case '/enter-pin':
           case 'ReportLoginIssuePage':
           case '/dashboard':
           case '/vault':
@@ -148,7 +158,7 @@ export class AppComponent {
             break;
 
           default:
-            this.router.navigate(['ModalAppReviewPage']);
+            this.globalService.showThankyouModal();
             break;
         }
       }
