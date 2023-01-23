@@ -31,7 +31,8 @@
       </div>
 
       <div class="cont">
-        <ion-list class="card-list">
+        <div class="document-list">
+          <ion-list class="card-list">
           <div
             class="bs-doc"
             *ngFor="let adminDocs of adminUploadedDocs | searchFilterPipe :searchText;let i=index"
@@ -78,6 +79,7 @@
             No documents found.
           </div>
         </ion-list>
+        </div>
       </div>
     </div>
   </div>
