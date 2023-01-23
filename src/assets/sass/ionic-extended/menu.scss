@@ -3,23 +3,17 @@ ion-menu {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#840c6f+0,500546+100 */
   --background: rgb(132, 12, 111);
   /* Old browsers */
-  --background: -moz-linear-gradient(
-    top,
-    rgba(132, 12, 111, 1) 0%,
-    rgba(80, 5, 70, 1) 100%
-  );
+  --background: -moz-linear-gradient(top,
+      rgba(132, 12, 111, 1) 0%,
+      rgba(80, 5, 70, 1) 100%);
   /* FF3.6-15 */
-  --background: -webkit-linear-gradient(
-    top,
-    rgba(132, 12, 111, 1) 0%,
-    rgba(80, 5, 70, 1) 100%
-  );
+  --background: -webkit-linear-gradient(top,
+      rgba(132, 12, 111, 1) 0%,
+      rgba(80, 5, 70, 1) 100%);
   /* Chrome10-25,Safari5.1-6 */
-  --background: linear-gradient(
-    to bottom,
-    rgba(132, 12, 111, 1) 0%,
-    rgba(80, 5, 70, 1) 100%
-  );
+  --background: linear-gradient(to bottom,
+      rgba(132, 12, 111, 1) 0%,
+      rgba(80, 5, 70, 1) 100%);
   /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#840c6f', endColorstr='#500546', GradientType=0);
   /* IE6-9 */
@@ -30,6 +24,8 @@ ion-menu {
     --width: 100%;
     --background: url(../../images/bb-bg.png) no-repeat top 50% center;
   }
+
+
 
   .close-menu {
     color: $clr-white;
@@ -118,4 +114,8 @@ ion-menu {
       font-size: 1rem;
     }
   }
+}
+
+ion-list.list-ios {
+  background: transparent;
 }

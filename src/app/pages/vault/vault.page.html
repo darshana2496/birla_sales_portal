@@ -31,10 +31,10 @@
 
       <div class="cont">
         <div class="document-list">
-          <ion-list>
+          <ion-list class="doc-list-wrap">
 
             <div class="bs-doc" *ngFor="let adminDocs of adminUploadedDocs | searchFilterPipe :searchText;let i=index">
-              <ion-item-sliding #slidingItem >
+              <ion-item-sliding #slidingItem lines="none">
                 <ion-item lines="none" class="iconwithtext" (click)="viewDocs(adminDocs)">
                   <div class="icon">
                     <img src="../../../assets/images/customer-portal_TDS.svg" alt="customer-portal_TDS">
@@ -44,12 +44,12 @@
                     <h3 class="time-stamp">uploaded on {{adminDocs.vcUploadedOn}}</h3>
                   </div>
                 </ion-item>
-                <ion-item-options side="end" class="act-wrap">
+                <ion-item-options side="end" class="act-wrap" lines="none">
 
                   <!-- <icon-button [buttonType]="'share'" [allSlidesData]="adminUploadedDocs" [pageData]="adminDocs"
                     [pageName]="'vault'">
                   </icon-button> -->
-                  <ion-button (click)="action(adminDocs)">
+                  <ion-button (click)="action(adminDocs)" class="app-btn btn-icon">
                     <span class="icon" class="icon-share">
                     </span>
                   </ion-button>

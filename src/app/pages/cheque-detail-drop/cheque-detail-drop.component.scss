@@ -1,26 +1,28 @@
 .lyt-section.typ-bg {
-    --background: url('../../../assets/images/mainbg.jpg')19% 0% / 106% 101% no-repeat;
-    background-size: cover;
+  --background: url('../../../assets/images/mainbg.jpg')19% 0% / 106% 101% no-repeat #f9f9f9;
+  background-size: cover;
 }
+
 ion-modal {
-    --height: 50%;
-    --width:90% ;
-    --width: fit-content;
+  --height: 50%;
+  --width: 90%;
+  --width: fit-content;
   --min-width: 290px;
-  
-    --border-radius: 6px;
-    --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
-  }
- 
-  ion-modal::part(backdrop) {
-    // background: rgba(209, 213, 219);
-    opacity: 1;
-  }
-  
-  ion-modal ion-toolbar {
-    --background:#840c6f;
-    --color: white;
-  }
+
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+
+ion-modal::part(backdrop) {
+  // background: rgba(209, 213, 219);
+  opacity: 1;
+}
+
+ion-modal ion-toolbar {
+  --background: #840c6f;
+  --color: white;
+}
+
 //   .calendar-day {
 //     &.calendar-day-active{
 //         &:after{
@@ -30,7 +32,7 @@ ion-modal {
 //     }
 //   }
 
-  :host .calendar-day.calendar-day-active::after{
-    width: 20px;
-            height: 20px;
-  }
+:host .calendar-day.calendar-day-active::after {
+  width: 20px;
+  height: 20px;
+}

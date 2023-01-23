@@ -5,19 +5,19 @@
 ></app-header>
 <ion-content class="lyt-section typ-bg tabs">
   <div class="content-inner">
-    <div class="content no-padding" *ngIf="!serverError">
-      <ion-segment [(ngModel)]="CustomerSegment">
-        <ion-segment-button value="next">
+    <div class="content no-padding app-tab" *ngIf="!serverError">
+      <ion-segment [(ngModel)]="CustomerSegment" class="app-tab-nav">
+        <ion-segment-button value="next" class="app-tab-nav-item">
           Pending
         </ion-segment-button>
-        <ion-segment-button value="future">
+        <ion-segment-button value="future" class="app-tab-nav-item">
           Future
         </ion-segment-button>
-        <ion-segment-button value="past">
+        <ion-segment-button value="past" class="app-tab-nav-item">
           Past
         </ion-segment-button>
       </ion-segment>
-      <div [ngSwitch]="CustomerSegment" class="tab-content">
+      <div [ngSwitch]="CustomerSegment" class="tab-content app-tab-content">
 
         <div *ngSwitchCase="'next'">
           <div class="bs-payment-info">
@@ -180,7 +180,7 @@
           <div class="lyt-payment-future">
             <ion-list class="bs-amount-info-sliding" *ngFor="let payment of pastData;let i=index">
               <ion-item-sliding>
-                <ion-item>
+                <ion-item class="payment-item">
                   <div class="number">
                     {{i+1}}
                   </div>

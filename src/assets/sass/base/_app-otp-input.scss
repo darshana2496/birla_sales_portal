@@ -11,6 +11,7 @@ ion-item.app-otp-input::part(native) {
   margin-left: -1rem;
   width: 100%;
   --background: transparent;
+  overflow: visible;
 
   &.item-has-focus {
     --highlight-background: transparent;
@@ -18,6 +19,7 @@ ion-item.app-otp-input::part(native) {
 
   .app-form-control {
     max-width: 6rem;
+    min-width: 6rem;
     height: 6rem;
     --background: #ffffff;
     --color: $clr-black;
@@ -27,6 +29,10 @@ ion-item.app-otp-input::part(native) {
     border-radius: 0.3rem;
     border: 1px solid #e2e2e2;
     margin: 2rem 1rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
 
     .native-input {
       padding: 1rem;
