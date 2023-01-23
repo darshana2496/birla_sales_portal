@@ -10,7 +10,7 @@
         font-size: 1.2rem;
         text-transform: uppercase;
         font-weight: 800;
-        padding: 4px 10px;
+        padding: 1px 10px 4px 10px;
         color: #b2b2b2;
 
         &.segment-button-checked {
@@ -30,6 +30,7 @@
             --padding-bottom: 4px;
             --padding-start: 10px;
             color: #333333;
+            height: 5.1rem;
         }
 
 
