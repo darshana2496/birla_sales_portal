@@ -1,30 +1,37 @@
 .bs-header {
   text-align: center;
   box-shadow: 0 1px 30px -6px #bfbfbf;
+
   .logo-wrap {
     width: 86px;
     padding: 10px;
     margin: 0 auto;
+
     img {
       width: 100%;
     }
   }
+
   ion-nav.toolbar {
     display: block;
   }
+
   .back-button.show-back-button {
     float: left;
     margin-top: 10px;
     padding-left: 0;
     min-width: 0;
   }
+
   .back-button-icon-md {
     font-size: 1.6rem;
     color: $clr-primary;
   }
+
   .toolbar-background-md {
     background: #ffffff;
   }
+
   .app-btn {
     &.btn-link {
       --color: $clr-white;
@@ -40,7 +47,8 @@ app-header {
   .toolbar {
     min-height: 56px;
   }
-  & ~ .lyt-section {
+
+  &~.lyt-section {
     .scroll-content {
       margin-top: 56px;
     }
@@ -51,10 +59,12 @@ app-header {
   ion-toolbar {
     // --min-height: 80px;
   }
+
   .toolbar {
     min-height: 80px;
   }
-  & ~ .lyt-section {
+
+  &~.lyt-section {
     .scroll-content {
       margin-top: 80px;
     }
@@ -65,6 +75,7 @@ app-header {
   font-size: 1.2rem;
   line-height: 2.2rem;
   font-weight: $font-semi-bold;
+
   span {
     // padding: 15px 10px 0;
     display: block;
@@ -84,6 +95,7 @@ app-header {
   font-size: 1.6rem;
   padding: 10px 0px 0;
   float: right;
+
   .icon-info {
     font-size: 1.6rem;
   }
@@ -94,6 +106,7 @@ app-header {
   font-size: 1.6rem;
   padding: 10px 0px 0;
   float: right;
+
   .icon-bell-outline {
     font-size: 1.6rem;
   }
@@ -115,7 +128,7 @@ ion-title {
   right: 0;
   margin: 0 auto;
   width: 60%;
-  top: 2rem;
+  top: 0;
 }
 
 .cm-img {
@@ -127,6 +140,7 @@ ion-title {
   ion-toolbar {
     --background: transparent;
   }
+
   .back-button.show-back-button {
     .ion-md-arrow-back {
       color: $clr-white;
@@ -137,6 +151,7 @@ ion-title {
   .toolbar-ios {
     background: transparent;
   }
+
   ion-menu-button .icon-profile {
     color: $clr-white;
     font-size: 1.6rem;
@@ -150,10 +165,12 @@ ion-title {
   ion-title {
     color: $clr-white;
   }
+
   .cm-img {
     height: 56px;
     padding: 4px;
   }
+
   .bs-header {
     box-shadow: none;
   }

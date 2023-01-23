@@ -19,7 +19,7 @@
 
       <div class="head">
         <div class="search-bar">
-          <ion-item>
+          <ion-item lines="none">
             <ion-label position="fixed"><span class="icon icon-search"></span></ion-label>
             <ion-input type="text" placeholder="Search" [(ngModel)]="searchText"></ion-input>
           </ion-item>
@@ -34,8 +34,8 @@
           <ion-list>
 
             <div class="bs-doc" *ngFor="let adminDocs of adminUploadedDocs | searchFilterPipe :searchText;let i=index">
-              <ion-item-sliding #slidingItem>
-                <ion-item class="iconwithtext" (click)="viewDocs(adminDocs)">
+              <ion-item-sliding #slidingItem >
+                <ion-item lines="none" class="iconwithtext" (click)="viewDocs(adminDocs)">
                   <div class="icon">
                     <img src="../../../assets/images/customer-portal_TDS.svg" alt="customer-portal_TDS">
                   </div>
