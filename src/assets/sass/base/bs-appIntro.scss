@@ -57,3 +57,7 @@
         }
     }
 }
+
+ion-content.bs-appIntro::part(background) {
+    background-size: cover;
+}
