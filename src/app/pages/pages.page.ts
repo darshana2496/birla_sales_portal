@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
-  selector: 'app-tabs',
+  selector: 'app-pages',
   templateUrl: 'pages.page.html',
   styleUrls: ['pages.page.scss'],
 })
@@ -19,7 +19,6 @@ export class PagesComponent {
 
   //when slider is selected
   selectProject(index: number, projectObj: any) {
-    console.log(index, projectObj);
     this.globalService.customerId = projectObj.customerProjectId.toString(); //used in api calls
     this.globalService.activeSlideIndicator = index;
     this.globalService.selectedProjectObj = projectObj;

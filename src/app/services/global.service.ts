@@ -1,7 +1,12 @@
+import { AssetsPreviewComponent } from './../common-components/assets-preview/assets-preview.component';
 import { Network } from '@capacitor/network';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoadingController, ToastController } from '@ionic/angular';
+import {
+  LoadingController,
+  ModalController,
+  ToastController,
+} from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { environment } from '../environments/environment';
 import * as CryptoJS from 'crypto-js/crypto-js';
@@ -17,6 +22,7 @@ import {
   Router,
   RouterStateSnapshot,
 } from '@angular/router';
+import { ThankYouModalComponent } from '../pages/thank-you-modal/thank-you-modal.component';
 @Injectable({
   providedIn: 'root',
 })
@@ -33,10 +39,10 @@ export class GlobalService {
     password: 'CPAppbirla!@#123',
   };
   tdsFilterObject: any = {
-    documentType: "",
-    startDate: "",
-    endDate: ""
-};
+    documentType: '',
+    startDate: '',
+    endDate: '',
+  };
   //razorPayAuth data
   razorPayAuth = {
     vcKeyId: '',
@@ -46,8 +52,6 @@ export class GlobalService {
   oneSignalPlayerId: string;
   setPinValue: string;
   isPhoneUnlocked: boolean = false;
-  loadingModel: any;
-  loadingCtrlOpenCount: number = 0;
   selectedProjectObj: ICustomerProject = {
     customerProjectId: 0,
     customerName: '',
@@ -64,6 +68,7 @@ export class GlobalService {
   clearPinInput = new Subject<any>();
   currentlyActivePage: any;
   isAppReviewed: boolean;
+  isShowingLoader: boolean;
 
   constructor(
     public _http: HttpClient,
@@ -73,7 +78,8 @@ export class GlobalService {
     public menuCtrl: MenuController,
     public route: Router,
     public toastCtrl: ToastController,
-  ) {  }
+    public modalCtrl: ModalController
+  ) {}
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
       this._http
@@ -87,18 +93,18 @@ export class GlobalService {
   }
   vaultBirlaUploads(obj) {
     let promise = new Promise((resolve, reject) => {
-        this._http
-            .post(
-                environment.serverUrl + "Uploads/getuploadeddocument",
-                JSON.stringify(obj)
-            )
-            .toPromise()
-            .then(response => {
-                resolve(response);
-            });
+      this._http
+        .post(
+          environment.serverUrl + 'Uploads/getuploadeddocument',
+          JSON.stringify(obj)
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
     });
     return promise;
-}
+  }
   getAboutBirlaEstates() {
     let promise = new Promise((resolve, reject) => {
       this._http
@@ -123,15 +129,18 @@ export class GlobalService {
   }
   postFeedback(obj: any) {
     let promise = new Promise((resolve, reject) => {
-        this._http
-            .post(environment.serverUrl+ "config/raisefeedback", JSON.stringify(obj))
-            .toPromise()
-            .then(response => {
-                resolve(response);
-            });
+      this._http
+        .post(
+          environment.serverUrl + 'config/raisefeedback',
+          JSON.stringify(obj)
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
     });
     return promise;
-}
+  }
   getRMDetails() {
     let promise = new Promise((resolve, reject) => {
       this._http
@@ -161,56 +170,63 @@ export class GlobalService {
     // https://portalapi.birlaestates.com/api/config/getraisedfeedBack/600014
     let promise = new Promise((resolve, reject) => {
       this._http
-          .get(environment.serverUrl + "config/getraisedfeedBack/" + this.customerId)
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
-vaultMyUploads() {
-  console.log(this.customerId);
-  let promise = new Promise((resolve, reject) => {
+        .get(
+          environment.serverUrl + 'config/getraisedfeedBack/' + this.customerId
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+  vaultMyUploads() {
+    let promise = new Promise((resolve, reject) => {
       this._http
-          .get(
-              environment.serverUrl +
-              "Uploads/getuseruploadedddocument/" +
-              this.customerId
-          )
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
-getCheckDropLocations() {
-  
-  let promise = new Promise((resolve, reject) => {
+        .get(
+          environment.serverUrl +
+            'Uploads/getuseruploadedddocument/' +
+            this.customerId
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+  getCheckDropLocations() {
+    let promise = new Promise((resolve, reject) => {
       this._http
-          .get(environment.serverUrl+ "Payment/getchequedroplocations/" + this.customerId)
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
-getChequeDropLocation() {
-  console.log("this.globalService.selectedProjectObj", this.selectedProjectObj);
-  let promise = new Promise((resolve, reject) => {
+        .get(
+          environment.serverUrl +
+            'Payment/getchequedroplocations/' +
+            this.customerId
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+  getChequeDropLocation() {
+    let promise = new Promise((resolve, reject) => {
       this._http
-          .get(environment.serverUrl+ "Payment/getchequedroplocations/" + this.selectedProjectObj.customerProjectId)
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
-raiseFeedback(obj: any) {
-  let promise = new Promise((resolve, reject) => {
+        .get(
+          environment.serverUrl +
+            'Payment/getchequedroplocations/' +
+            this.selectedProjectObj.customerProjectId
+        )
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+  raiseFeedback(obj: any) {
+    let promise = new Promise((resolve, reject) => {
       this._http
         .post(
           environment.serverUrl + 'config/raisefeedback ',
@@ -247,7 +263,6 @@ raiseFeedback(obj: any) {
   }
   getProjectDetails() {
     var tempIdforProject: number = 602188;
-    console.log(this.customerId);
     let promise = new Promise((resolve, reject) => {
       this._http
         .get(
@@ -265,40 +280,46 @@ raiseFeedback(obj: any) {
     let navParam = {
       fileType: 'jpg',
       isDownloaded: false,
+      vcFileUrl: imgUrl,
     };
-    navParam['vcFileUrl'] = imgUrl;
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-        data: JSON.stringify(navParam),
-      },
-    };
-    this.route.navigate(['/asset-preview'], navigationExtras);
-    //navParam['vcFileUrl'] = "https://portal.birlaestates.com/Uploads/Layout/A203.JPG";
+    this.showPreviewImageModal(navParam);
   }
-  showDownloadToast(message: string,navParam: any,duration: number,position: string) {
-    let showToastMsg = navParam == null || navParam.fileType == "xlsx" || navParam.fileType == "xls" ? false : true;
+  showDownloadToast(
+    message: string,
+    navParam: any,
+    duration: number,
+    position: string
+  ) {
+    let showToastMsg =
+      navParam == null ||
+      navParam.fileType == 'xlsx' ||
+      navParam.fileType == 'xls'
+        ? false
+        : true;
     let pos;
-    switch(position){
-      case'top':
-      pos= 'top'
-      break;
+    switch (position) {
+      case 'top':
+        pos = 'top';
+        break;
       case 'bottom':
-      pos='bottom'
-      break;
+        pos = 'bottom';
+        break;
       case 'middle':
-      pos='middle'
-      break;
+        pos = 'middle';
+        break;
     }
-    this.downloadCollateral = this.toastCtrl.create({
+    this.downloadCollateral = this.toastCtrl
+      .create({
         message: message,
-        duration: duration,      
+        duration: duration,
         position: pos,
-    }).then(x=>{
-      x.present();
-      x.onDidDismiss().then((resolve)=>{
-          return console.log(resolve)
       })
-    })
+      .then((x) => {
+        x.present();
+        x.onDidDismiss().then((resolve) => {
+          return;
+        });
+      });
     // this.downloadCollateral.present();
 
     // this.downloadCollateral.onDidDismiss((data, role) => {
@@ -329,21 +350,17 @@ raiseFeedback(obj: any) {
     //         console.log("normal close");
     //     }
     // });
-}
-openDownloadedFile(navParam: any, mimeType: string) {
-  // this.fileOpener.open(navParam.nativeUrl, mimeType)
-  //     .then((response: any) => {
-  //         console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-  //         console.log(response);
-  //     })
-  //     .catch((response: any) => {
-  //         console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
-  //         console.log(response);
-  //         if (response.status == 9) {
-  //             this.showDownloadToast("No app found to open this file", null, 3000, "top");
-  //         }
-  //     });
-}
+  }
+  openDownloadedFile(navParam: any, mimeType: string) {
+    // this.fileOpener.open(navParam.nativeUrl, mimeType)
+    //     .then((response: any) => {
+    //     })
+    //     .catch((response: any) => {
+    //         if (response.status == 9) {
+    //             this.showDownloadToast("No app found to open this file", null, 3000, "top");
+    //         }
+    //     });
+  }
   updateCustomerNotification() {
     let obj = {
       vcCustomerID: this.customerId,
@@ -376,7 +393,6 @@ openDownloadedFile(navParam: any, mimeType: string) {
     return promise;
   }
   async showConfirmationAlertPrompt(title: string, subTitle: string) {
-    console.log(title, subTitle);
     const alert = this.alertCtrl.create({
       header: title,
       subHeader: subTitle,
@@ -398,9 +414,7 @@ openDownloadedFile(navParam: any, mimeType: string) {
         {
           text: 'Cancel',
           role: 'cancel',
-          handler: (data) => {
-            console.log('Cancel clicked');
-          },
+          handler: (data) => {},
         },
       ],
     });
@@ -459,7 +473,6 @@ openDownloadedFile(navParam: any, mimeType: string) {
   headerSticky(e) {
     var topPos = e.detail.scrollTop;
     if (topPos >= 150) {
-      console.log(this.currentlyActivePage, 'Route');
       if (this.currentlyActivePage == '/about-birla') {
         document
           .getElementsByTagName('app-about')[0]
@@ -551,114 +564,58 @@ openDownloadedFile(navParam: any, mimeType: string) {
 
     return result;
   }
-  //loading modal
-  async fnShowLoader(data?: any) {
-    await this.loadingCtrl
+
+  async showLoader() {
+    this.isShowingLoader = true;
+    // console.log('Inside Show Loader', this.loader);
+
+    return await this.loadingCtrl
       .create({
-        message: "<img src='../../assets/images/loader.gif' alt='loader'>",
+        message: "<img src='../assets/images/loader.gif' alt='loader'>",
+        // duration: 5000,
       })
-      .then((x) => {
-        if (data == 'show') {
-          x.present();
-        } else {
-          x.onDidDismiss().then((response) => {
-            console.log('Loader dismissed', response);
-          });
-        }
+      .then((a) => {
+        a.present().then(() => {
+          if (!this.isShowingLoader) {
+            a.dismiss().then(() => console.log('abort presenting'));
+          }
+        });
       });
   }
-  async fnDismissLoader() {
-    await this.loadingCtrl
+
+  async hideLoader() {
+    this.isShowingLoader = false;
+
+    return await this.loadingCtrl
       .dismiss()
-      .then((x) => {
-        console.log(x.toString(), 'resolve');
-      })
-      .catch((err) => {
-        console.log(err.toString());
-      });
+      .then(() => {})
+      .catch((e) => console.log('Error while dismiss', e));
   }
-  async dismiss() {
-    let topLoader = await this.loadingCtrl.getTop();
-    while (topLoader) {
-      if (!(await topLoader.dismiss())) {
-        throw new Error('Could not dismiss the topmost loader. Aborting...');
-        break;
-      }
-      topLoader = await this.loadingCtrl.getTop();
-    }
-  }
-  async showOrShowloadingModel(action: string) {
-    if (action == 'show') {
-      console.log(' ------Showing----');
-      if (!this.loadingCtrlOpenCount) {
-        // this.loadingModel = this.loadingCtrl
-        //   .create({
-        //     message: "<img src='../../assets/images/loader.gif' alt='loader'>",
-        //   })
-        //   .then((x) => {
-        //      x.present();
-        //   });
-        this.fnShowLoader('hide');
-        // this.loadingCtrl
-        //   .create({
-        //     message: "<img src='../../assets/images/loader.gif' alt='loader'>",
-        //   })
-        //   .then((response) => {
-        //     response;
-        //   });
-        this.loadingCtrlOpenCount++;
-        // this.loadingModel.present();
-        console.log('this.loadingCtrlOpenCount', this.loadingCtrlOpenCount);
-      }
-    } else {
-      console.log('-----Hidding');
-      if (this.loadingCtrlOpenCount) {
-        // this.loadingCtrl
-        //   .dismiss()
-        //   .then((response) => {
-        //     console.log('Loader closed!', response);
-        //     this.loadingCtrlOpenCount = 0;
-        //   })
-        //   .catch((err) => {
-        //     this.loadingCtrlOpenCount = 0;
-        //     this.loadingCtrl.dismiss();
-        //     console.log('Error occured : ', err);
-        //   });
-        this.fnShowLoader('hide')
-          // .then((response) => {
-          //   this.loadingCtrlOpenCount = 0;
-          //   console.log('Loader closed!', response);
-          // })
-          // .catch((err) => {
-          //   this.loadingCtrlOpenCount = 0;
-          //   console.log('Error occured : ', err);
-          // });
-      }
-    }
-  }
+
   dropChequeLocations(obj) {
     let promise = new Promise((resolve, reject) => {
-        this._http
-            .post(environment.serverUrl+ "Payment/postchequedropdetail", obj)
-            .toPromise()
-            .then(response => {
-                resolve(response);
-            });
+      this._http
+        .post(environment.serverUrl + 'Payment/postchequedropdetail', obj)
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
     });
     return promise;
-}
-getPaymentData() {
-  let promise = new Promise((resolve, reject) => {
+  }
+  getPaymentData() {
+    let promise = new Promise((resolve, reject) => {
       let obj = { vcCustomerID: this.encryptData(this.customerId) };
       this._http
-          .post(environment.serverUrl+ "Payment/customerpaymentdetail", obj)
-          .toPromise()
-          .then(response => {
-              resolve(response);
-          });
-  });
-  return promise;
-}
+        .post(environment.serverUrl + 'Payment/customerpaymentdetail', obj)
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+
   checkInternetConnection() {
     var connectionType = this.network.connectionType;
     if (connectionType == 'none') {
@@ -680,16 +637,13 @@ getPaymentData() {
         {
           text: text,
           role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          },
+          handler: () => {},
         },
       ],
     });
     alert.present();
   }
   onKeyUpEventOTP(event, index, repeat, uniqueComponentNameId) {
-    console.log(event, index, repeat, uniqueComponentNameId);
     const eventCode = event.which || event.keyCode;
     if (event.target.value.length === 1) {
       if (index !== repeat) {
@@ -701,7 +655,6 @@ getPaymentData() {
           this.getCodeBoxElement(index, uniqueComponentNameId)
         )).blur();
         // Submit code
-        console.log('submit code');
       }
     }
     if (!event.target.value.length) {
@@ -821,7 +774,6 @@ getPaymentData() {
         //     text: "TRY AGAIN",
         //     handler: () => {
         //         this.appCtrl.getRootNavs()[1].setRoot("CustIdPage");
-        //         console.log("Agree clicked");
         //     }
         // }
       ],
@@ -832,7 +784,6 @@ getPaymentData() {
     if (event.key == 'Backspace') {
       previd.setFocus();
     } else if (event.key !== 'Backspace' && event.target.value) {
-      console.log('Next focus', compoid, previd, event.target.value);
       compoid.setFocus();
     }
   }
@@ -850,9 +801,7 @@ getPaymentData() {
     }
   }
   getCodeBoxElement(index: number, uniqueComponentNameId: string) {
-    //console.log(index, uniqueComponentNameId);
     let dom = document.getElementById(uniqueComponentNameId);
-    //console.log(dom);
 
     let ref = dom.children.namedItem('pin' + index).children[0];
     return ref;
@@ -864,5 +813,20 @@ getPaymentData() {
       resolve(x);
     });
     return promise;
+  }
+
+  async showThankyouModal() {
+    const modal = this.modalCtrl.create({
+      component: ThankYouModalComponent,
+    });
+    return (await modal).present();
+  }
+
+  async showPreviewImageModal(props) {
+    const modal = this.modalCtrl.create({
+      component: AssetsPreviewComponent,
+      componentProps: props,
+    });
+    return (await modal).present();
   }
 }

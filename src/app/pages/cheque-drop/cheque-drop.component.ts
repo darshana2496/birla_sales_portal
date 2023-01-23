@@ -10,14 +10,12 @@ import { GlobalService } from 'src/app/services/global.service';
 export class ChequeDropComponent implements OnInit {
   dropLocationList: any = [];
   serverResponseMsg: string;
-  constructor( public globalService: GlobalService) { }
+  constructor(public globalService: GlobalService) {}
 
-  ngOnInit() 
-  {
+  ngOnInit() {
     this.globalService
       .getCheckDropLocations()
       .then((response: any) => {
-        console.log(response);
         if (response.btIsSuccess) {
           let obj = response.object;
           this.dropLocationList = obj;
@@ -30,16 +28,11 @@ export class ChequeDropComponent implements OnInit {
       });
   }
   share(data) {
-    console.log(data);
     let obj =
-      "Location: " + data.vcLocation + ". Description: " + data.vcDescription;
+      'Location: ' + data.vcLocation + '. Description: ' + data.vcDescription;
     Share.share({
-      title:'Office Detail',
-      text:obj,
-      
-    }
-        
-        )
-     
+      title: 'Office Detail',
+      text: obj,
+    });
   }
 }

@@ -23,8 +23,16 @@ import { ChequeDetailDropComponent } from './cheque-detail-drop/cheque-detail-dr
 import { CallsComponent } from './calls/calls.component';
 import { ThankYouModalComponent } from './thank-you-modal/thank-you-modal.component';
 
-
 @NgModule({
+  imports: [
+    IonicModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonComponentsModule,
+    PagesRoutingModule,
+    ReactiveFormsModule,
+  ],
   declarations: [
     PagesComponent,
     FormLayoutComponent,
@@ -41,17 +49,7 @@ import { ThankYouModalComponent } from './thank-you-modal/thank-you-modal.compon
     MakePaymentComponent,
     ChequeDetailDropComponent,
     CallsComponent,
-    ThankYouModalComponent
+    ThankYouModalComponent,
   ],
-  imports: [
-    IonicModule,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    CommonComponentsModule,
-    PagesRoutingModule,
-    ReactiveFormsModule,
-  ],
-
 })
 export class PagesModule {}
