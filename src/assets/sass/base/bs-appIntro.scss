@@ -29,6 +29,8 @@
 
     .app-intro-logo-wrap {
         height: 80px;
+        position: relative;
+        top: 25px;
 
         app-header {
             height: 100%;
@@ -46,6 +48,10 @@
                     }
 
 
+                }
+
+                &.header-ios ion-toolbar:last-of-type {
+                    --border-width: 0;
                 }
             }
         }

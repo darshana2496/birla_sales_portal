@@ -2,6 +2,7 @@
 
 .mod-asset-preview {
   --background: $clr-black;
+
   .image-container {
     height: 100%;
     position: relative;
@@ -15,14 +16,17 @@
       transform: translate(0%, -50%);
     }
   }
+
   .loading-container {
     color: $clr-white;
     position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
+
     div {
       margin: auto;
     }
   }
+
 }

@@ -30,6 +30,9 @@
     .alert-wrapper {
         min-width: 80%;
         max-width: 80%;
+        background: #fff;
+        box-shadow: 0 0 17px -3px #909090;
+        border-radius: 0;
     }
 
     .alert-head {
@@ -43,6 +46,7 @@
         color: #000000;
         font-weight: 600;
         text-align: center;
+        margin-top: 0;
     }
 
     .alert-button-group {
@@ -81,5 +85,9 @@
             font-size: 1.6rem;
             line-height: 1.8rem;
         }
+    }
+
+    .alert-message.sc-ion-alert-ios:empty {
+        padding-bottom: 0;
     }
 }

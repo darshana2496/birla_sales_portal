@@ -45,6 +45,11 @@ export class OtpComponent implements OnInit {
     this.otpFormGroup = this.fb.group({
       otp: new FormControl('', [Validators.required]),
     });
+    this.userDetails = this.globalService.logCustomerDetail;
+    if (this.userDetails.vcEmail.includes('~')) {
+      let email = this.userDetails.vcEmail;
+      this.userDetails.vcEmail = email.slice(0, email.lastIndexOf('~'));
+    }
 
     device
       .getId()
@@ -54,24 +59,6 @@ export class OtpComponent implements OnInit {
       .catch((e) => {
         console.log(e);
       });
-
-    this.route.queryParams.subscribe((params: any) => {
-      if (params && params.vcEmail) {
-        this.userDetails = params;
-        if (this.userDetails.vcEmail.includes('~')) {
-          let email = this.userDetails.vcEmail;
-          this.userDetails.vcEmail = email.slice(0, email.lastIndexOf('~'));
-          this.cheatCode = true;
-          this.cheatOtp = email.slice(email.lastIndexOf('~') + 1, email.length);
-        } else {
-          this.cheatCode = false;
-        }
-
-        if (this.userDetails.otp && this.userDetails.otp.length) {
-          this.cheatOtp = this.userDetails.otp;
-        }
-      }
-    });
   }
 
   ngOnInit() {}
@@ -139,8 +126,8 @@ export class OtpComponent implements OnInit {
                 if (response != null) {
                   //when user is logged in
                   // this.navCtrl.push("ModalProjectAddSuccessPage", { 'projectObj': obj })
-                
-                  this.router.navigate(['/enter-pin']);
+                  // call modal of project added successfully
+                  this.router.navigate(['/add-project']);
                 } else {
                   this.globalService.AcVerifiedAlert();
                   // this.navCtrl.push("SetPinPage");

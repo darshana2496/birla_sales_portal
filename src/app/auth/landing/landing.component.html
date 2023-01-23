@@ -1,10 +1,11 @@
-<app-header
-  class="typ-transparent"
-  [type]="'normal'"
-  [typeTitle]="'logo'"
-></app-header>
-
-<ion-content [fullscreen]="true" class="bs-appIntro typ-landing">
+<ion-content class="bs-appIntro typ-landing">
+  <ion-header class="app-intro-logo-wrap">
+    <app-header
+      class="typ-transparent"
+      [type]="'normal'"
+      [typeTitle]="'logo'"
+    ></app-header>
+  </ion-header>
   <div class="introSlider">
     <div class="mod-appintro">
       <h2 class="title">
