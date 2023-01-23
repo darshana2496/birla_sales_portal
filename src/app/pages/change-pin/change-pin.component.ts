@@ -6,6 +6,7 @@ import {
 } from '@angular/forms';
 import { GlobalService } from 'src/app/services/global.service';
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-change-pin',
@@ -18,8 +19,15 @@ export class ChangePinComponent implements OnInit {
   newPin: string = '';
   confirmPin: string = '';
   existingPin: any;
+  accessPin: any;
 
-  constructor(public globalService: GlobalService, public fb: FormBuilder) {
+  constructor(
+    public globalService: GlobalService,
+    public fb: FormBuilder,
+    public storage: Storage
+  ) {
+    this.storage.get('AccessPin').then((val) => (this.accessPin = val));
+
     this.changePinGroup = this.fb.group({
       existingPin: this.fb.group({
         pin1: new FormControl('', [Validators.required]),
@@ -92,10 +100,14 @@ export class ChangePinComponent implements OnInit {
       if (val.pin1 && val.pin2 && val.pin3 && val.pin4) {
         let existingPin = val.pin1 + val.pin2 + val.pin3 + val.pin4;
         this.existingPin = existingPin;
-        if (!this.isPinDifferent(this.existingPin, this.newPin)) {
-          this.changePinGroup.get('newPin').setErrors({ match: false });
+        if (this.existingPin == this.accessPin) {
+          if (!this.isPinDifferent(this.existingPin, this.newPin)) {
+            this.changePinGroup.get('newPin').setErrors({ match: false });
+          } else {
+            this.changePinGroup.get('newPin').updateValueAndValidity();
+          }
         } else {
-          this.changePinGroup.get('newPin').updateValueAndValidity();
+          this.changePinGroup.get('existingPin').setErrors({ match: false });
         }
       }
     });
@@ -195,5 +207,12 @@ export class ChangePinComponent implements OnInit {
 
   changeInput() {
     this.encrypt = false;
+  }
+
+  proceed() {
+    if (this.changePinGroup) {
+      this.storage.set('AccessPin', this.newPin);
+      this.globalService.universalAlert('', 'New PIN set successfully', 'Ok');
+    }
   }
 }

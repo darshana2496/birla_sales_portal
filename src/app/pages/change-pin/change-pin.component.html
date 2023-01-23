@@ -76,6 +76,18 @@
                     ></ion-input>
                   </ion-item>
                 </div>
+
+                <div
+                  class="error"
+                  *ngIf="f['existingPin'].touched && f['existingPin'].invalid"
+                >
+                  <div
+                    class="error-message"
+                    *ngIf="!f['existingPin'].errors['match']"
+                  >
+                    Entered pin does not match with old pin.
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -240,6 +252,7 @@
 
           <div class="button-parent ion-text-center">
             <ion-button
+              (click)="proceed()"
               [disabled]="changePinGroup.invalid"
               class="app-btn btn-default"
               >Proceed</ion-button

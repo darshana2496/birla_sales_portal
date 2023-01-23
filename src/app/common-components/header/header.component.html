@@ -4,6 +4,7 @@
       <ng-container *ngIf="backbtn === true">
         <ion-buttons class="back-btn" slot="start">
           <ion-back-button
+            text=""
             (click)="back()"
             class="back-btn"
             icon="chevron-back-outline"
@@ -58,21 +59,21 @@
 <ng-container *ngIf="type === 'close'">
   <ion-header [translucent]="true" class="bs-header">
     <ion-toolbar>
-    <ion-nav >
-      <ion-title>
-        <ng-container>
-          <span>{{ pageNameVal }}</span>
-        </ng-container>
-      </ion-title>
-      <ion-buttons slot="end" class="notification-btn">
-        <ion-button
-          class="app-btn btn-link close-size-custom"
-          (click)="goBack()"
-        >
-          <i class="icon-close"></i>
-        </ion-button>
-      </ion-buttons>
-    </ion-nav>
+      <ion-nav>
+        <ion-title>
+          <ng-container>
+            <span>{{ pageNameVal }}</span>
+          </ng-container>
+        </ion-title>
+        <ion-buttons slot="end" class="notification-btn">
+          <ion-button
+            class="app-btn btn-link close-size-custom"
+            (click)="goBack()"
+          >
+            <i class="icon-close"></i>
+          </ion-button>
+        </ion-buttons>
+      </ion-nav>
     </ion-toolbar>
   </ion-header>
 </ng-container>
@@ -80,18 +81,18 @@
 <ng-container *ngIf="type === 'back'">
   <ion-header class="bs-header">
     <ion-toolbar class="toolbar">
-    <ion-nav>
-      <ion-title>
-        <ng-container *ngIf="typeTitle === 'pageName'">
-          <span>{{ pageNameVal }}</span>
-        </ng-container>
-      </ion-title>
-      <ion-buttons slot="end" class="notification-btn">
-        <ion-button class="app-btn btn-link" (click)="contactModal()">
-          <i class="icon-call-outline"></i>
-        </ion-button>
-      </ion-buttons>
-    </ion-nav>
-  </ion-toolbar>
+      <ion-nav>
+        <ion-title>
+          <ng-container *ngIf="typeTitle === 'pageName'">
+            <span>{{ pageNameVal }}</span>
+          </ng-container>
+        </ion-title>
+        <ion-buttons slot="end" class="notification-btn">
+          <ion-button class="app-btn btn-link" (click)="contactModal()">
+            <i class="icon-call-outline"></i>
+          </ion-button>
+        </ion-buttons>
+      </ion-nav>
+    </ion-toolbar>
   </ion-header>
 </ng-container>
