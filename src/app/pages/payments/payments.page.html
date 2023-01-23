@@ -18,65 +18,85 @@
         </ion-segment-button>
       </ion-segment>
       <div [ngSwitch]="CustomerSegment" class="tab-content app-tab-content">
-
         <div *ngSwitchCase="'next'">
           <div class="bs-payment-info">
             <ul class="list">
               <li class="item">
-                <div class="text">
-                  * Total Invoice Raised
-                </div>
+                <div class="text">* Total Invoice Raised</div>
                 <div class="date">
-                  <i class="icon-inr"></i>{{pendingData.vcTotalinvoiceraised|currencyDisplay}}
+                  <i class="icon-inr"></i
+                  >{{pendingData.vcTotalinvoiceraised|currencyDisplay}}
                 </div>
                 <div class="amount">
-                  (<i class="icon-inr"></i>{{pendingData.vcTotalinvoiceraisedconverted}})
+                  (<i class="icon-inr"></i
+                  >{{pendingData.vcTotalinvoiceraisedconverted}})
                 </div>
                 <div class="includin-tax-txt">* Including taxes</div>
               </li>
               <li class="item">
-                <div class="text">
-                  Total Amount Received
-                </div>
+                <div class="text">Total Amount Received</div>
                 <div class="date">
-                  <i class="icon-inr"></i>{{pendingData.vcTotalreceived|currencyDisplay}}
+                  <i class="icon-inr"></i
+                  >{{pendingData.vcTotalreceived|currencyDisplay}}
                 </div>
                 <div class="amount">
-                  (<i class="icon-inr"></i>{{pendingData.vcTotalreceivedconverted}})
+                  (<i class="icon-inr"></i
+                  >{{pendingData.vcTotalreceivedconverted}})
                 </div>
               </li>
               <li class="item">
-                <div class="text">
-                  Total Outstanding Amount
-                </div>
+                <div class="text">Total Outstanding Amount</div>
                 <div class="date">
-                   <i class="icon-inr"
-                    *ngIf="pendingData.vcTotaloutstanding !== null || pendingData.vcTotaloutstanding"></i>{{pendingData.vcTotaloutstanding|currencyDisplay}}
+                  <i
+                    class="icon-inr"
+                    *ngIf="pendingData.vcTotaloutstanding !== null || pendingData.vcTotaloutstanding"
+                  ></i
+                  >{{pendingData.vcTotaloutstanding|currencyDisplay}}
                 </div>
-                <div class="date" *ngIf="pendingData.vcTotaloutstanding === null || !pendingData.vcTotaloutstanding">
+                <div
+                  class="date"
+                  *ngIf="pendingData.vcTotaloutstanding === null || !pendingData.vcTotaloutstanding"
+                >
                   -
                 </div>
-                <div class="amount" *ngIf="pendingData.vcTotaloutstanding !== null || pendingData.vcTotaloutstanding">
-                  (<i class="icon-inr"
-                    *ngIf="!pendingData.vcTotaloutstandingconverted.includes('Currently')"></i>{{pendingData.vcTotaloutstandingconverted}})
+                <div
+                  class="amount"
+                  *ngIf="pendingData.vcTotaloutstanding !== null || pendingData.vcTotaloutstanding"
+                >
+                  (<i
+                    class="icon-inr"
+                    *ngIf="!pendingData.vcTotaloutstandingconverted.includes('Currently')"
+                  ></i
+                  >{{pendingData.vcTotaloutstandingconverted}})
                 </div>
               </li>
             </ul>
           </div>
           <ul class="bs-button-group ion-text-center">
             <li class="item">
-              <ion-button (click)="dropCheque()" class="app-btn btn-default">CHEQUE DROP LOCATIONS</ion-button>
+              <ion-button (click)="dropCheque()" class="app-btn btn-default"
+                >CHEQUE DROP LOCATIONS</ion-button
+              >
             </li>
             <!-- commented for first build -->
             <!-- <li class="item">
               <common-button [pageData]="payOnline"></common-button>
             </li> -->
-            <li class="item"
-              *ngIf="pendingData.vcTotaloutstanding !== null && pendingData.vcTotaloutstanding !== 'N/A' && pendingData.vcTotaloutstanding">
-              <ion-button (click)="makePayment()" [disabled]="!disableBtn" class="app-btn btn-default">PAY ONLINE</ion-button>
+            <li
+              class="item"
+              *ngIf="pendingData.vcTotaloutstanding !== null && pendingData.vcTotaloutstanding !== 'N/A' && pendingData.vcTotaloutstanding"
+            >
+              <ion-button
+                (click)="makePayment()"
+                [disabled]="!disableBtn"
+                class="app-btn btn-default"
+                >PAY ONLINE</ion-button
+              >
             </li>
             <li class="item">
-              <ion-button class="app-btn btn-link" (click)="chequeDetailpage()">CHEQUE ALREADY DROPPED ?</ion-button>
+              <ion-button class="app-btn btn-link" (click)="chequeDetailpage()"
+                >CHEQUE ALREADY DROPPED ?</ion-button
+              >
 
               <!-- <common-text-button [pageData]="addDropLocation"></common-text-button> -->
             </li>
@@ -93,41 +113,39 @@
               <div class="bs-payment-info">
                 <ul class="list">
                   <li class="item">
-                    <div class="text">
-                      Total Installments Coming up
-                    </div>
+                    <div class="text">Total Installments Coming up</div>
                     <div class="date">
                       {{futureData.intTotalpendinginstallment}}
                     </div>
                   </li>
                   <li class="item">
-                    <div class="text">
-                      * Total Amount Payable
-                    </div>
+                    <div class="text">* Total Amount Payable</div>
                     <div class="date">
-                      <i class="icon-inr"></i>{{futureData.vcTotalamountpayable|currencyDisplay}}
+                      <i class="icon-inr"></i
+                      >{{futureData.vcTotalamountpayable|currencyDisplay}}
                     </div>
                     <div class="amount">
-                      (<i class="icon-inr"></i>{{futureData.vcTotalamountpayableconverted}})
+                      (<i class="icon-inr"></i
+                      >{{futureData.vcTotalamountpayableconverted}})
                     </div>
                   </li>
                 </ul>
               </div>
-              <div class="bs-amount-info"
-                *ngFor="let payment of futureData.customerPortal_SubFuturePaymentModelList;let i=index">
-                <div class="number">
-                  {{i+1}}
-                </div>
+              <div
+                class="bs-amount-info"
+                *ngFor="let payment of futureData.customerPortal_SubFuturePaymentModelList;let i=index"
+              >
+                <div class="number">{{i+1}}</div>
                 <ion-grid class="top-section grid">
                   <ion-row class="row">
                     <ion-col class="col" size="5">
                       <ul class="info-list">
                         <li class="item has-star">
-                          <div class="title">
-                            Percentage
-                          </div>
+                          <div class="title">Percentage</div>
                           <div>
-                            <span class="date">{{payment.vcPaymentpercent}} %</span>
+                            <span class="date"
+                              >{{payment.vcPaymentpercent}} %</span
+                            >
                           </div>
                         </li>
                       </ul>
@@ -135,14 +153,15 @@
                     <ion-col class="col" size="7">
                       <ul class="info-list">
                         <li class="item has-star">
-                          <div class="title">
-                            Amount payable
-                          </div>
+                          <div class="title">Amount payable</div>
                           <div class="display-flexing">
-                            <span class="date"><i class="icon-inr"
-                                style="font-size: 11px;"></i>{{payment.vcAmountpayable|currencyDisplay}}</span>
+                            <span class="date"
+                              ><i class="icon-inr" style="font-size: 11px"></i
+                              >{{payment.vcAmountpayable|currencyDisplay}}</span
+                            >
                             <div class="amount">
-                              (<i class="icon-inr"></i>{{payment.vcaAmountpayableconverted}})
+                              (<i class="icon-inr"></i
+                              >{{payment.vcaAmountpayableconverted}})
                             </div>
                           </div>
                         </li>
@@ -152,13 +171,9 @@
                 </ion-grid>
                 <ion-grid class="grid bottom-section">
                   <ion-row class="row">
-                    <ion-col class="col" size="12" >
-                      <div class="title has-star">
-                        Description
-                      </div>
-                      <div class="data">
-                        {{payment.vcDescription}}
-                      </div>
+                    <ion-col class="col" size="12">
+                      <div class="title has-star">Description</div>
+                      <div class="data">{{payment.vcDescription}}</div>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
@@ -166,41 +181,35 @@
             </div>
             <div class="paymet-note">
               <div>
-                <span class="star">*</span><span class="note"> Payment dates are subject to change.</span>
+                <span class="star">*</span
+                ><span class="note"> Payment dates are subject to change.</span>
               </div>
               <div>
-                <span class="star">*</span><span class="note"> All Amounts are Excluding Taxes.</span>
+                <span class="star">*</span
+                ><span class="note"> All Amounts are Excluding Taxes.</span>
               </div>
             </div>
-
           </div>
         </div>
 
         <div *ngSwitchCase="'past'">
           <div class="lyt-payment-future">
-            <ion-list class="bs-amount-info-sliding" *ngFor="let payment of pastData;let i=index">
+            <ion-list
+              class="bs-amount-info-sliding"
+              *ngFor="let payment of pastData;let i=index"
+            >
               <ion-item-sliding>
-                <ion-item class="payment-item">
-                  <div class="number">
-                    {{i+1}}
-                  </div>
+                <ion-item lines="none" class="payment-item">
+                  <div class="number">{{i+1}}</div>
                   <ion-grid class="grid ion-margin-start">
-                    <div class="number">
-                      {{i+1}}
-                    </div>
+                    <div class="number">{{i+1}}</div>
                     <ion-row class="row top-section">
                       <ion-col class="col" size="6">
-                        <div class="title">
-                          Paid on
-                        </div>
-                        <div class="date-amount">
-                          {{payment.vcPaymentDate}}
-                        </div>
+                        <div class="title">Paid on</div>
+                        <div class="date-amount">{{payment.vcPaymentDate}}</div>
                       </ion-col>
                       <ion-col class="col" size="6">
-                        <div class="title">
-                          Amount paid
-                        </div>
+                        <div class="title">Amount paid</div>
                         <div class="date-amount">
                           <i class="icon icon-inr"></i>
                           <span>{{payment.vcAmountpaid|currencyDisplay}}</span>
@@ -209,20 +218,12 @@
                     </ion-row>
                     <ion-row class="bottom-section row">
                       <ion-col class="col" size="6">
-                        <div class="title">
-                          Pymt. mode
-                        </div>
-                        <div class="data">
-                          {{payment.vcPaymentMode}}
-                        </div>
+                        <div class="title">Pymt. mode</div>
+                        <div class="data">{{payment.vcPaymentMode}}</div>
                       </ion-col>
                       <ion-col class="col" size="6">
-                        <div class="title">
-                          Instrument No.
-                        </div>
-                        <div class="data">
-                          {{payment.vcChequeDetail}}
-                        </div>
+                        <div class="title">Instrument No.</div>
+                        <div class="data">{{payment.vcChequeDetail}}</div>
                       </ion-col>
                     </ion-row>
                   </ion-grid>
@@ -231,11 +232,8 @@
                 <ion-item-options side="end">
                   <div class="button-group">
                     <div class="inner-button-group">
-                      
                       <ion-button (click)="shareFile()">
-                        <span class="icon" class="icon-share">
-                         
-                        </span>
+                        <span class="icon" class="icon-share"> </span>
                       </ion-button>
                     </div>
                   </div>
@@ -243,16 +241,12 @@
               </ion-item-sliding>
             </ion-list>
 
-            <div *ngIf="!pastData.length ion-text-center">
-              No records found
-            </div>
+            <div *ngIf="!pastData.length ion-text-center">No records found</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="content ion-text-center" *ngIf="serverError">
-      No data found
-    </div>
+    <div class="content ion-text-center" *ngIf="serverError">No data found</div>
   </div>
 </ion-content>

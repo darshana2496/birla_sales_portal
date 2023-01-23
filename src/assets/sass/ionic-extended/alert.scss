@@ -1,128 +1,144 @@
 ion-backdrop {
-    -webkit-filter: blur(3px);
-    filter: blur(3px);
-    background: rgb(255, 255, 255);
-    opacity: 0.9 !important;
+  -webkit-filter: blur(3px);
+  filter: blur(3px);
+  background: rgb(255, 255, 255);
+  opacity: 0.9 !important;
 }
 
 .alert-md .alert-title {
-    text-align: center;
-    font-size: 1.2rem;
-    line-height: 2.2rem;
-    color: $clr-black;
-    font-weight: $font-semi-bold;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 2.2rem;
+  color: $clr-black;
+  font-weight: $font-semi-bold;
 }
 
 .alert-md .alert-sub-title {
-    text-align: center;
-    font-size: 1.4rem;
-    line-height: 2.2rem;
-    color: $clr-text-color;
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 2.2rem;
+  color: $clr-text-color;
 }
 
 .alert-md .alert-button-group {
-    text-align: center;
-    margin: 0 auto;
-    padding: 8px;
-    border-top: 1px solid $clr-border;
-    width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  padding: 8px;
+  border-top: 1px solid $clr-border;
+  width: 100%;
 }
 
 .alert-md .alert-button {
-    text-align: center;
-    margin: 0 auto;
-    color: $clr-primary;
+  text-align: center;
+  margin: 0 auto;
+  color: $clr-primary;
 }
 
-.alert-md.ac-verify {
-    .alert-head {
-        padding: 79px 24px;
-        &:before {
-            content: '';
-            display: block;
-            width: 108px;
-            height: 40px;
-            background: url(../../images/sprite2.svg) no-repeat center;
-            margin: 0 auto 18px;
-            background-size: 100px;
-            background-position: 3px -302px;
-        }
+.ac-verify {
+  .alert-head {
+    padding: 79px 24px;
+    &:before {
+      content: "";
+      display: block;
+      width: 108px;
+      height: 40px;
+      background: url(../../images/sprite2.svg) no-repeat center;
+      margin: 0 auto 18px;
+      background-size: 100px;
+      background-position: 3px -302px;
     }
-    .alert-button-group {
-        display: none;
-    }
+  }
+  .alert-button-group {
+    display: none;
+  }
+  .alert-wrapper {
+    box-shadow: 0 0px 23px rgb(171 171 171 / 40%);
+    background: #ffffff;
+    border-radius: 5px;
+  }
+  .alert-title {
+    text-align: center;
+    font-size: 1.2rem;
+    line-height: 2.2rem;
+    color: #000000;
+    font-weight: 600;
+    font-family: "Montserrat";
+  }
+  .alert-message.sc-ion-alert-ios:empty {
+    padding-bottom: 0;
+  }
 }
 
 .alert-md {
-    &.vertical-bottom {
-        .alert-wrapper {
-            bottom: 0;
-            position: absolute;
-            width: 100%;
-            max-width: 100%;
-            border-radius: 0;
-            box-shadow: 0 0px 15px rgba(68, 68, 68, 0.4);
-            background: $clr-white;
-        }
-        .alert-message {
-            text-align: center;
-        }
-        .alert-button-group {
-            .alert-button:first-child {
-                position: relative;
-                overflow: initial;
-                &:after {
-                    content: "";
-                    height: 100%;
-                    width: 1px;
-                    background: #e2e2e2;
-                    position: absolute;
-                    right: -23px;
-                    top: 0;
-                    z-index: 31;
-                }
-            }
-        }
+  &.vertical-bottom {
+    .alert-wrapper {
+      bottom: 0;
+      position: absolute;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 0;
+      box-shadow: 0 0px 15px rgba(68, 68, 68, 0.4);
+      background: $clr-white;
     }
-    &.normal {
-        .alert-wrapper {
-            max-width: 88%;
-            box-shadow: 0 0px 23px rgba(171, 171, 171, 0.4);
-            background: $clr-white;
-            border-radius: 5px;
-        }
+    .alert-message {
+      text-align: center;
     }
-    &.select-alert {
-        .alert-wrapper {
-            box-shadow: 0 0 17px -3px #909090;
-            max-width: 80%;
-            min-width: 80%;
-            background-color: #fff;
-            .alert-title {
-                font-size: 1.2rem;
-                line-height: 1.4rem;
-                color: #000000;
-                font-weight: $font-semi-bold;
-                text-transform: uppercase;
-            }
-            .alert-tappable {
-                border-bottom: 1px solid #f7f7f7;
-                .button-inner {
-                    .alert-radio-icon {
-                        display: none;
-                    }
-                    .alert-radio-label {
-                        font-size: 1.6rem;
-                        line-height: 1.8rem;
-                    }
-                }
-                &[aria-checked=true] {
-                    .alert-radio-label {
-                        background: #f9f9f9;
-                        color: $clr-primary;
-                    }
-                }
-            }
+    .alert-button-group {
+      .alert-button:first-child {
+        position: relative;
+        overflow: initial;
+        &:after {
+          content: "";
+          height: 100%;
+          width: 1px;
+          background: #e2e2e2;
+          position: absolute;
+          right: -23px;
+          top: 0;
+          z-index: 31;
         }
+      }
     }
+  }
+  &.normal {
+    .alert-wrapper {
+      max-width: 88%;
+      box-shadow: 0 0px 23px rgba(171, 171, 171, 0.4);
+      background: $clr-white;
+      border-radius: 5px;
+    }
+  }
+  &.select-alert {
+    .alert-wrapper {
+      box-shadow: 0 0 17px -3px #909090;
+      max-width: 80%;
+      min-width: 80%;
+      background-color: #fff;
+      .alert-title {
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        color: #000000;
+        font-weight: $font-semi-bold;
+        text-transform: uppercase;
+      }
+      .alert-tappable {
+        border-bottom: 1px solid #f7f7f7;
+        .button-inner {
+          .alert-radio-icon {
+            display: none;
+          }
+          .alert-radio-label {
+            font-size: 1.6rem;
+            line-height: 1.8rem;
+          }
+        }
+        &[aria-checked="true"] {
+          .alert-radio-label {
+            background: #f9f9f9;
+            color: $clr-primary;
+          }
+        }
+      }
+    }
+  }
 }

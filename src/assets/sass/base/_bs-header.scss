@@ -60,7 +60,7 @@ app-header {
     top: 15px;
   }
 
-  &~.lyt-section {
+  & ~ .lyt-section {
     .scroll-content {
       margin-top: 56px;
     }
@@ -79,7 +79,7 @@ app-header {
     top: 0;
   }
 
-  &~.lyt-section {
+  & ~ .lyt-section {
     .scroll-content {
       margin-top: 80px;
     }
