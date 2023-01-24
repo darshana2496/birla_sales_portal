@@ -144,16 +144,18 @@ export class VaultPage implements OnInit {
   }
 
   shareDoc(data) {
+
     this.globalService.showDownloadToast('Please wait..', null, 2000, 'top');
+    this.globalService.showLoader();
     let currentFiledata = data;
     this.socialShare
       .share(null, null, currentFiledata.vcFileUrl, null)
       .then((response: any) => {
-        this.globalService.showLoader();
+        this.globalService.hideLoader();
       })
       .catch((error: any) => {
         console.log(error);
-        this.globalService.hideLoader();
+        
       });
   }
 }

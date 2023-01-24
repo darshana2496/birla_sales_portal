@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { GlobalService } from 'src/app/services/global.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { formatDate } from '@angular/common';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-know-your-cust-id',
@@ -19,7 +20,8 @@ export class KnowYourCustIdPage implements OnInit {
   errorMsg: string = '';
   knowCustIdForm: FormGroup;
   selectedDate:any;
-  constructor(public globalService: GlobalService, public router: Router, public fb: FormBuilder) {
+ canDismiss:boolean =false;
+  constructor(private modalCtrl: ModalController,public globalService: GlobalService, public router: Router, public fb: FormBuilder) {
     // this.globalService.currentActivePageReference = this;
     this.knowCustIdForm = this.fb.group({
       dob: new FormControl('', [Validators.required]),
@@ -29,16 +31,18 @@ export class KnowYourCustIdPage implements OnInit {
 
   ngOnInit() {
   }
-  onTermsChanged(event: Event) {
+  async onTermsChanged(event: Event) {
     if(this.selectedDate != undefined){
       
       let startDate = formatDate(this.selectedDate,"dd-MM-yyyy",'en-US');
   console.log(this.selectedDate,"Selected",startDate)
-  this.knowCustIdForm.controls['dob'].setValue(startDate)    
+  this.knowCustIdForm.controls['dob'].setValue(startDate) 
+  const modal = await this.modalCtrl.getTop();
+      this.canDismiss=true
     }
-  else{
-  
-  }
+    else{
+      this.canDismiss=false
+    }
   
     }
   public get f() {
