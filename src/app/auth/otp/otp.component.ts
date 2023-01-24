@@ -127,7 +127,8 @@ export class OtpComponent implements OnInit {
                   //when user is logged in
                   // this.navCtrl.push("ModalProjectAddSuccessPage", { 'projectObj': obj })
                   // call modal of project added successfully
-                  this.router.navigate(['/add-project']);
+                  this.router.navigate(['/enter-pin']);
+                  // this.router.navigate(['/add-project']);
                 } else {
                   this.globalService.AcVerifiedAlert();
                   // this.navCtrl.push("SetPinPage");

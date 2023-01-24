@@ -22,7 +22,11 @@ ion-modal ion-toolbar {
   --background: #840c6f;
   --color: white;
 }
-
+.sc-ion-buttons-md-h
+{
+  background: white;
+  border-radius: 200px;
+}
 //   .calendar-day {
 //     &.calendar-day-active{
 //         &:after{

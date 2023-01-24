@@ -15,6 +15,7 @@ export class SetPinComponent implements OnInit {
   generatedPinColapse: number;
   setfirstPin='';
   setSecondPin='';
+  samplecheck:boolean;
   constructor(public route:Router,public globalService: GlobalService, public fb: FormBuilder, public storage: Storage) {
     this.pinGroup = fb.group({
         firstPin:fb.group({
@@ -31,6 +32,7 @@ export class SetPinComponent implements OnInit {
         }),
     })
     this.pinGroup.get('firstPin').valueChanges.subscribe(val=>{
+      // this.samplecheck=val.pin1.controls
       if(val.pin1){
         this.pinGroup.get('firstPin')
         .get('pin2').enable({onlySelf:true}); 
@@ -87,8 +89,14 @@ export class SetPinComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isPinMatching('same','same')
+  console.log(this.formErr['controls'],'form err',this.ferr['pin1'].dirty)
   }
+  get ferr(){
+    return ((this.pinGroup.get('firstPin') as FormGroup).controls)
+    }
+    get ferr2(){
+      return ((this.pinGroup.get('secondPin') as FormGroup).controls)
+    }
   isPinMatching(pin1: any, pin2: any) {
     if (pin1 == pin2) {
       console.log('Pin Matched fn')
@@ -111,17 +119,6 @@ export class SetPinComponent implements OnInit {
     this.encrypt = false;
   }
   get formErr() { 
-    if(this.isPinMatching(this.setfirstPin,this.setSecondPin))
-    {
-      this.pinGroup.get('secondPin').updateValueAndValidity();
-      this.submitted = true;
-      console.log('Pin Matched')
-    }
-    else{
-      console.log('Pin Not Matched') 
-      this.submitted = false;
-      this.pinGroup.get('secondPin').setErrors({ match: false });
-    }
     return this.pinGroup.controls }
   checkLength(): void {
 

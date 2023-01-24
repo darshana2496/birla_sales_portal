@@ -31,10 +31,11 @@ export class ChequeDropComponent implements OnInit {
   share(data) {
     let obj =
       'Location: ' + data.vcLocation + '. Description: ' + data.vcDescription;
+      this.globalService.showLoader();
     this.socialShare
       .share(obj, data.vcName, null, null)
       .then((response: any) => {
-        
+          this.globalService.hideLoader();
       })
       .catch((error: any) => {
         console.log(error);
