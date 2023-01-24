@@ -106,9 +106,7 @@
                   'opacity-full':
                     myform.get('chequeNo').errors &&
                     (myform.get('chequeNo').dirty ||
-                      myform.get('chequeNo').touched)
-                }"
-              >
+                      myform.get('chequeNo').touched)}">
                 Cheque no. is required.
               </div>
             </div>
@@ -128,6 +126,7 @@
         #modal
         id="example-modal"
         trigger="open-modal"
+        [canDismiss]="canDismiss"
         [presentingElement]="presentingElement"
       >
         <ng-template>
@@ -142,7 +141,7 @@
           <ion-content>
             <!-- <p class="ion-padding-horizontal"></p> -->
             <ion-item>
-              <ion-datetime
+              <ion-datetime presentation="date"
                 (ionChange)="onTermsChanged($event)"
                 [(ngModel)]="selectedDate"
               ></ion-datetime>

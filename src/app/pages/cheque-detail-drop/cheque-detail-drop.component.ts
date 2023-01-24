@@ -78,42 +78,15 @@ export class ChequeDetailDropComponent implements OnInit {
           );
           this.myform.reset();
         } else {
-          //  data= {
-          //     "flag": false,
-          //     "data": response.vcDescription
-          //   }
-          //   this.obj=data
+        
         }
       })
       .catch((response: any) => {
         console.log(response, 'response error');
       });
 
-    // if (data.flag) {
-    //   this.myform.reset();
-    // } else {
-    // }
   }
-  showModal() {
-    this.dateModal = true;
-  }
-  // showDate(): void {
-  //   this.datepicker
-  //     .show({
-  //       date: new Date(),
-  //       mode: "date",
-  //       androidTheme: this.datepicker.ANDROID_THEMES.THEME_HOLO_DARK
-  //     })
-  //     .then(
-  //       date => {
-  //         let startDate = moment(date).format("DD-MM-YYYY");
-  //         this.myform.controls["date"].setValue(startDate);
-  //       },
-  //       err => {
-  //         console.log("Error occurred while getting date: ", err);
-  //       }
-  //     );
-  // }
+
 }
 export class ResDataType {
   public flag: boolean;
