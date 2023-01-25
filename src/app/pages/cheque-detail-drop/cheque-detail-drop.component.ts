@@ -14,7 +14,7 @@ export class ChequeDetailDropComponent implements OnInit {
   selectedDate: any;
   canDismiss = false;
   presentingElement = null;
-  obj: ResDataType;
+ 
   isSelected = true;
   constructor(public globalService: GlobalService, public fb: FormBuilder) {
     this.myform = fb.group({
@@ -25,7 +25,6 @@ export class ChequeDetailDropComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.obj = new ResDataType();
 
     this.globalService
       .getChequeDropLocation()
@@ -53,6 +52,9 @@ export class ChequeDetailDropComponent implements OnInit {
   setDropLoc() {
     let dropLocation = this.dropLocationList[0].intLocationID;
     this.myform.controls['location'].setValue(dropLocation);
+  }
+  compareWith(o1, o2) {
+    return o1 && o2 ? o1.id === o2.id : o1 === o2;
   }
   get f() {
     return this.myform.controls;
@@ -84,11 +86,8 @@ export class ChequeDetailDropComponent implements OnInit {
       .catch((response: any) => {
         console.log(response, 'response error');
       });
-
+      this.compareWith
   }
 
 }
-export class ResDataType {
-  public flag: boolean;
-  public data: string;
-}
+

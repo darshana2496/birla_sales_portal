@@ -831,6 +831,12 @@ async showaddedProjectModal(data){
   });
   return (await modal).present();
 } 
+  // async showThanksModal(){
+  //   const modal = this.modalCtrl.create({
+  //     component: ThankYouModalComponent
+  //   });
+  //   return (await modal).present();
+  // }
   async showPreviewImageModal(props) {
     const modal = this.modalCtrl.create({
       component: AssetsPreviewComponent,

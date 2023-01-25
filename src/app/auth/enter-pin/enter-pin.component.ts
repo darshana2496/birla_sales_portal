@@ -66,7 +66,6 @@ export class EnterPinComponent implements OnInit {
       if (this.globalService.enteredPin == data) {
         //also used in app.comp setInitialPage()
         this.globalService.setInitialProject().then((response: any) => {});
-
         if (this.globalService.notificationMsg != null) {
           this.globalService.appOpenedOnlyFromNotification = true;
           setTimeout(() => {

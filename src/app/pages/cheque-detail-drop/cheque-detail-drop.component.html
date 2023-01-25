@@ -13,17 +13,14 @@
           <div class="bs-form">
             <div class="form-group typ-band bot-space">
               <ion-item lines="none" class="app-form-group app-select">
-                <ion-label class="app-field-label" position="floating"
-                  >Location</ion-label
-                >
+                <ion-label class="app-field-label" position="floating">Location</ion-label>
                 <ion-select
-                  [interfaceOptions]="{ cssClass: 'app-select-alert' }"
+                text="Hello" okText="Ok" cancelText="Dismiss" multiple="true"
                   name="location"
                   formControlName="location"
-                  required
-                >
-                  <ion-select-option
-                    value="{{ loc.intLocationID }}"
+                  [compareWith]="compareWith">
+                  <ion-select-option selected="true"
+                    value="{{loc.intLocationID }}"
                     *ngFor="let loc of dropLocationList"
                     >{{ loc.vcLocation }}</ion-select-option
                   >

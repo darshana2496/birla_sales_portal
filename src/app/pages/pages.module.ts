@@ -32,7 +32,6 @@ import { PipesModule } from '../utilities/pipes/pipes.module';
     IonicModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     CommonComponentsModule,
     PagesRoutingModule,
     ReactiveFormsModule,

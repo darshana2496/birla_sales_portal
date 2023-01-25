@@ -68,28 +68,25 @@ export class SetPinComponent implements OnInit {
         .get('pin4').enable({onlySelf:true}); 
       }
       if (val.pin1 && val.pin2 && val.pin3 && val.pin4){
-
         let existingPin = val.pin1 + val.pin2 + val.pin3 + val.pin4;
         this.setSecondPin=existingPin;
-        console.log(this.setSecondPin,'Second Pin')
+        console.log(this.setSecondPin,'Second Pin');
         if(this.isPinMatching(this.setfirstPin,this.setSecondPin)){
           // this.pinGroup.get('secondPin').updateValueAndValidity();
           this.submitted = true;
         }
         else{
-         
           this.pinGroup.get('secondPin').setErrors({ match: false });
         }
       }
       else{
         this.submitted = false;
       }
-     
     });
   }
 
   ngOnInit() {
-  console.log(this.formErr['controls'],'form err',this.ferr['pin1'].dirty)
+  console.log(this.formErr['secondPin'],'fn get error')
   }
   get ferr(){
     return ((this.pinGroup.get('firstPin') as FormGroup).controls)
@@ -128,6 +125,6 @@ export class SetPinComponent implements OnInit {
     this.storage.set("AccessPin", this.globalService.setPinValue);
     this.globalService.setInitialProject();
     this.globalService.isPhoneUnlocked = true;
-    this.route.navigate(['/enter-pin']);
+    this.route.navigate(['/dashboard']);
   }
 }
