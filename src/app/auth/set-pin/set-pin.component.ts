@@ -9,101 +9,89 @@ import { Router } from '@angular/router';
   styleUrls: ['./set-pin.component.scss'],
 })
 export class SetPinComponent implements OnInit {
-  pinGroup: FormGroup;  
+  pinGroup: FormGroup;
   encrypt: boolean = true;
   submitted: boolean;
   generatedPinColapse: number;
-  setfirstPin='';
-  setSecondPin='';
-  samplecheck:boolean;
-  constructor(public route:Router,public globalService: GlobalService, public fb: FormBuilder, public storage: Storage) {
+  setfirstPin = '';
+  setSecondPin = '';
+  samplecheck: boolean;
+  constructor(
+    public route: Router,
+    public globalService: GlobalService,
+    public fb: FormBuilder,
+    public storage: Storage
+  ) {
     this.pinGroup = fb.group({
-        firstPin:fb.group({
-          pin1: fb.control('', Validators.required),
-          pin2: fb.control({value:'',disabled:true}, Validators.required),
-          pin3: fb.control({value:'',disabled:true}, Validators.required),
-          pin4: fb.control({value:'',disabled:true}, Validators.required),
-        }),
-        secondPin:fb.group({
-          pin1: fb.control('', Validators.required),
-          pin2: fb.control({value:'',disabled:true}, Validators.required),
-          pin3: fb.control({value:'',disabled:true}, Validators.required),
-          pin4: fb.control({value:'',disabled:true}, Validators.required),
-        }),
-    })
-    this.pinGroup.get('firstPin').valueChanges.subscribe(val=>{
+      firstPin: fb.group({
+        pin1: fb.control('', Validators.required),
+        pin2: fb.control({ value: '', disabled: true }, Validators.required),
+        pin3: fb.control({ value: '', disabled: true }, Validators.required),
+        pin4: fb.control({ value: '', disabled: true }, Validators.required),
+      }),
+      secondPin: fb.group({
+        pin1: fb.control('', Validators.required),
+        pin2: fb.control({ value: '', disabled: true }, Validators.required),
+        pin3: fb.control({ value: '', disabled: true }, Validators.required),
+        pin4: fb.control({ value: '', disabled: true }, Validators.required),
+      }),
+    });
+    this.pinGroup.get('firstPin').valueChanges.subscribe((val) => {
       // this.samplecheck=val.pin1.controls
-      if(val.pin1){
-        this.pinGroup.get('firstPin')
-        .get('pin2').enable({onlySelf:true}); 
+      if (val.pin1) {
+        this.pinGroup.get('firstPin').get('pin2').enable({ onlySelf: true });
       }
-      if(val.pin2)
-      {
-        this.pinGroup.get('firstPin')
-        .get('pin3').enable({onlySelf:true}); 
+      if (val.pin2) {
+        this.pinGroup.get('firstPin').get('pin3').enable({ onlySelf: true });
       }
-      if(val.pin3){
-        this.pinGroup.get('firstPin')
-        .get('pin4').enable({onlySelf:true}); 
+      if (val.pin3) {
+        this.pinGroup.get('firstPin').get('pin4').enable({ onlySelf: true });
       }
-      if (val.pin1 && val.pin2 && val.pin3 && val.pin4){
-
+      if (val.pin1 && val.pin2 && val.pin3 && val.pin4) {
         let existingPin = val.pin1 + val.pin2 + val.pin3 + val.pin4;
-        this.setfirstPin=existingPin;
-        console.log(this.setfirstPin,'first group');
+        this.setfirstPin = existingPin;
       }
     });
-    this.pinGroup.get('secondPin').valueChanges.subscribe((val)=>{
-      if(val.pin1){
-        this.pinGroup.get('secondPin')
-        .get('pin2').enable({onlySelf:true}); 
+    this.pinGroup.get('secondPin').valueChanges.subscribe((val) => {
+      if (val.pin1) {
+        this.pinGroup.get('secondPin').get('pin2').enable({ onlySelf: true });
       }
-      if(val.pin2)
-      {
-        this.pinGroup.get('secondPin')
-        .get('pin3').enable({onlySelf:true}); 
+      if (val.pin2) {
+        this.pinGroup.get('secondPin').get('pin3').enable({ onlySelf: true });
       }
-      if(val.pin3){
-        this.pinGroup.get('secondPin')
-        .get('pin4').enable({onlySelf:true}); 
+      if (val.pin3) {
+        this.pinGroup.get('secondPin').get('pin4').enable({ onlySelf: true });
       }
-      if (val.pin1 && val.pin2 && val.pin3 && val.pin4){
-
+      if (val.pin1 && val.pin2 && val.pin3 && val.pin4) {
         let existingPin = val.pin1 + val.pin2 + val.pin3 + val.pin4;
-        this.setSecondPin=existingPin;
-        console.log(this.setSecondPin,'Second Pin')
-        if(this.isPinMatching(this.setfirstPin,this.setSecondPin)){
+        this.setSecondPin = existingPin;
+        console.log(this.setSecondPin, 'Second Pin');
+        if (this.isPinMatching(this.setfirstPin, this.setSecondPin)) {
           // this.pinGroup.get('secondPin').updateValueAndValidity();
           this.submitted = true;
-        }
-        else{
-         
+        } else {
           this.pinGroup.get('secondPin').setErrors({ match: false });
         }
-      }
-      else{
+      } else {
         this.submitted = false;
       }
-     
     });
   }
 
-  ngOnInit() {
-  console.log(this.formErr['controls'],'form err',this.ferr['pin1'].dirty)
+  ngOnInit() {}
+  get firstGroup() {
+    return (this.pinGroup.get('firstPin') as FormGroup).controls;
   }
-  get ferr(){
-    return ((this.pinGroup.get('firstPin') as FormGroup).controls)
-    }
-    get ferr2(){
-      return ((this.pinGroup.get('secondPin') as FormGroup).controls)
-    }
+
+  get secondGroup() {
+    return (this.pinGroup.get('secondPin') as FormGroup).controls;
+  }
   isPinMatching(pin1: any, pin2: any) {
     if (pin1 == pin2) {
-      console.log('Pin Matched fn')
+      console.log('Pin Matched fn');
       return true;
-       
     } else {
-      console.log('Pin Not Matched fn')
+      console.log('Pin Not Matched fn');
       return false;
     }
   }
@@ -118,16 +106,24 @@ export class SetPinComponent implements OnInit {
   changeInput() {
     this.encrypt = false;
   }
-  get formErr() { 
-    return this.pinGroup.controls }
-  checkLength(): void {
-
+  get formErr() {
+    return this.pinGroup.controls;
   }
+  checkLength(): void {}
   fnsetPin() {
     this.globalService.setPinValue = this.setfirstPin.toString();
-    this.storage.set("AccessPin", this.globalService.setPinValue);
+    this.storage.set('AccessPin', this.globalService.setPinValue);
     this.globalService.setInitialProject();
     this.globalService.isPhoneUnlocked = true;
     this.route.navigate(['/enter-pin']);
+  }
+
+  toggleInputType(formControl, nextid, prevId) {
+    if (formControl.pristine) {
+      return 'number';
+    } else {
+      nextid.focus();
+      return 'password';
+    }
   }
 }

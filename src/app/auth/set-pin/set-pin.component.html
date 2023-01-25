@@ -9,65 +9,139 @@
           <h2 class="form-title">Set your pin</h2>
           <form [formGroup]="pinGroup" (ngSubmit)="fnsetPin()">
             <div class="form-group-wrap">
-              <span class="field-label"><span class="cm-bold">enter pin</span></span>
+              <span class="field-label"
+                ><span class="cm-bold">enter pin</span></span
+              >
               <div formGroupName="firstPin" class="form-group ion-text-center">
                 <div class="otp-parent display-flex-content">
                   <ion-item lines="none" class="app-otp-input">
-                    <ion-input #codeBox1 class="app-form-control" appOnlyNumber
-                      type="{{this.ferr['pin1'].dirty ? 'password' : 'tel'}}" maxlength="1" name="pin1" (keyup)="
-                        globalService.onKeyEvent($event, codeBox2, codeBox1)  " formControlName="pin1"
-                      required></ion-input>
+                    <ion-input
+                      #codeBox1
+                      class="app-form-control"
+                      type="password"
+                      inputmode="numeric"
+                      [maxlength]="1"
+                      name="pin1"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox2, codeBox1)
+                      "
+                      formControlName="pin1"
+                    ></ion-input>
 
-                    <ion-input #codeBox2 class="app-form-control" appOnlyNumber
-                      type="{{ this.ferr['pin2'].dirty ? 'password' : 'tel'}}" maxlength="1" name="pin2" (keyup)="
-                        globalService.onKeyEvent($event, codeBox3, codeBox1);
-                        changeInput()
-                      " formControlName="pin2" x></ion-input>
+                    <ion-input
+                      #codeBox2
+                      class="app-form-control"
+                      type="password"
+                      inputmode="numeric"
+                      [maxlength]="1"
+                      name="pin2"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox3, codeBox1)
+                      "
+                      formControlName="pin2"
+                    ></ion-input>
 
-                    <ion-input #codeBox3 class="app-form-control" appOnlyNumber
-                      type="{{ this.ferr['pin3'].dirty ? 'password' : 'tel'}}" maxlength="1" name="pin3" (keyup)="
-                        globalService.onKeyEvent($event, codeBox4, codeBox2);
-                        changeInput()
-                      " formControlName="pin3"></ion-input>
+                    <ion-input
+                      #codeBox3
+                      class="app-form-control"
+                      type="password"
+                      inputmode="numeric"
+                      [maxlength]="1"
+                      name="pin3"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox4, codeBox2)
+                      "
+                      formControlName="pin3"
+                    ></ion-input>
 
-                    <ion-input #codeBox4 class="app-form-control" appOnlyNumber
-                      type="{{ this.ferr['pin4'].dirty ? 'password' : 'tel'}}" maxlength="1" name="pin4" (keyup)="
-                        globalService.onKeyEvent($event, codeBox5, codeBox3);
-                        changeInput()
-                      " formControlName="pin4"></ion-input>
+                    <ion-input
+                      #codeBox4
+                      class="app-form-control"
+                      type="password"
+                      inputmode="numeric"
+                      [maxlength]="1"
+                      name="pin4"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox5, codeBox3)
+                      "
+                      formControlName="pin4"
+                    ></ion-input>
                   </ion-item>
                 </div>
               </div>
             </div>
             <div class="form-group-wrap">
-              <span class="field-label"><span class="cm-bold">re-enter pin</span></span>
+              <span class="field-label"
+                ><span class="cm-bold">re-enter pin</span></span
+              >
               <div formGroupName="secondPin" class="form-group ion-text-center">
                 <div class="otp-parent display-flex-content">
                   <ion-item lines="none" class="app-otp-input">
-                    <ion-input class="app-form-control" #codeBox5 appOnlyNumber
-                      type="{{ this.ferr2['pin1'].dirty ? 'password' : 'tel'}}" maxlength="1" name="pin11" (keyup)="
-                        globalService.onKeyEvent($event, codeBox6, codeBox5);
-                        changeInput()" formControlName="pin1"></ion-input>
+                    <ion-input
+                      class="app-form-control"
+                      #codeBox5
+                      appOnlyNumber
+                      type="password"
+                      inputmode="numeric"
+                      maxlength="1"
+                      name="pin11"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox6, codeBox5)
+                      "
+                      formControlName="pin1"
+                    ></ion-input>
 
-                    <ion-input #codeBox6 class="app-form-control" appOnlyNumber
-                      type="{{ this.ferr2['pin2'].dirty ? 'password' : 'tel'}}" maxlength="1" name="pin22" (keyup)="
-                        globalService.onKeyEvent($event, codeBox7, codeBox5);
-                        changeInput()" formControlName="pin2"></ion-input>
+                    <ion-input
+                      #codeBox6
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="password"
+                      inputmode="numeric"
+                      maxlength="1"
+                      name="pin22"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox7, codeBox5)
+                      "
+                      formControlName="pin2"
+                    ></ion-input>
 
-                    <ion-input #codeBox7 class="app-form-control" appOnlyNumber
-                      type="{{ this.ferr2['pin3'].dirty ? 'password' : 'tel'}}" maxlength="1" name="pin33" (keyup)="
-                        globalService.onKeyEvent($event, codeBox8, codeBox6);
-                        changeInput()" formControlName="pin3"></ion-input>
+                    <ion-input
+                      #codeBox7
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="password"
+                      inputmode="numeric"
+                      maxlength="1"
+                      name="pin33"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox8, codeBox6)
+                      "
+                      formControlName="pin3"
+                    ></ion-input>
 
-                    <ion-input #codeBox8 class="app-form-control" appOnlyNumber
-                      type="{{ this.ferr2['pin4'].dirty ? 'password' : 'tel'}}" maxlength="1" name="pin44" (keyup)="
-                        globalService.onKeyEvent($event, codeBox8, codeBox7);
-                        changeInput()" formControlName="pin4"></ion-input>
+                    <ion-input
+                      #codeBox8
+                      class="app-form-control"
+                      appOnlyNumber
+                      type="password"
+                      inputmode="numeric"
+                      maxlength="1"
+                      name="pin44"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox8, codeBox7)
+                      "
+                      formControlName="pin4"
+                    ></ion-input>
                   </ion-item>
                   <!-- <span ngIf="f['secondPin'].errors['match']">Pin NOt Match</span> -->
                 </div>
                 <div class="button-parent ion-text-center">
-                  <ion-button [disabled]="!submitted" class="app-btn btn-default" type="submit">PROCEED</ion-button>
+                  <ion-button
+                    [disabled]="!submitted"
+                    class="app-btn btn-default"
+                    type="submit"
+                    >PROCEED</ion-button
+                  >
                 </div>
               </div>
             </div>

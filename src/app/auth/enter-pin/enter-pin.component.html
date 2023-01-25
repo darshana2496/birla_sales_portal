@@ -26,12 +26,12 @@
                     class="app-form-control"
                     #codeBox1
                     appOnlyNumber
-                    type="{{ encrypt ? 'tel' : 'password' }}"
+                    type="password"
+                    inputmode="numeric"
                     maxlength="1"
                     name="pin1"
                     (keyup)="
-                      globalService.onKeyEvent($event, codeBox2, codeBox1);
-                      changeInput()
+                      globalService.onKeyEvent($event, codeBox2, codeBox1)
                     "
                     formControlName="pin1"
                     required
@@ -42,12 +42,12 @@
                     #codeBox2
                     class="app-form-control"
                     appOnlyNumber
-                    type="{{ encrypt ? 'tel' : 'password' }}"
+                    type="password"
+                    inputmode="numeric"
                     maxlength="1"
                     name="pin2"
                     (keyup)="
-                      globalService.onKeyEvent($event, codeBox3, codeBox1);
-                      changeInput()
+                      globalService.onKeyEvent($event, codeBox3, codeBox1)
                     "
                     formControlName="pin2"
                   ></ion-input>
@@ -56,12 +56,12 @@
                     #codeBox3
                     class="app-form-control"
                     appOnlyNumber
-                    type="{{ encrypt ? 'tel' : 'password' }}"
+                    type="password"
+                    inputmode="numeric"
                     maxlength="1"
                     name="pin3"
                     (keyup)="
-                      globalService.onKeyEvent($event, codeBox4, codeBox2);
-                      changeInput()
+                      globalService.onKeyEvent($event, codeBox4, codeBox2)
                     "
                     formControlName="pin3"
                   ></ion-input>
@@ -70,12 +70,12 @@
                     #codeBox4
                     class="app-form-control"
                     appOnlyNumber
-                    type="{{ encrypt ? 'tel' : 'password' }}"
+                    type="password"
+                    inputmode="numeric"
                     maxlength="1"
                     name="pin4"
                     (keyup)="
-                      globalService.onKeyEvent($event, codeBox4, codeBox3);
-                      changeInput()
+                      globalService.onKeyEvent($event, codeBox4, codeBox3)
                     "
                     formControlName="pin4"
                   ></ion-input>
