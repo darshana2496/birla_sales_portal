@@ -133,6 +133,7 @@
                       formControlName="pin4"
                     ></ion-input>
                   </ion-item>
+
                   <!-- <span ngIf="f['secondPin'].errors['match']">Pin NOt Match</span> -->
                 </div>
                 <div class="button-parent ion-text-center">
@@ -144,6 +145,27 @@
                   >
                 </div>
               </div>
+            </div>
+            <div
+              class="error"
+              *ngIf="
+                formErr['secondPin'].touched && formErr['secondPin'].invalid
+              "
+            >
+              <div
+                class="error-message"
+                *ngIf="!formErr['secondPin'].errors['match']"
+              >
+                Entered pin does not match with Above pin.
+              </div>
+            </div>
+            <div class="button-parent ion-text-center">
+              <ion-button
+                [disabled]="!submitted"
+                class="app-btn btn-default"
+                type="submit"
+                >PROCEED</ion-button
+              >
             </div>
           </form>
         </div>

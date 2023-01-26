@@ -115,7 +115,7 @@ export class SetPinComponent implements OnInit {
     this.storage.set('AccessPin', this.globalService.setPinValue);
     this.globalService.setInitialProject();
     this.globalService.isPhoneUnlocked = true;
-    this.route.navigate(['/enter-pin']);
+    this.route.navigate(['/dashboard']);
   }
 
   toggleInputType(formControl, nextid, prevId) {

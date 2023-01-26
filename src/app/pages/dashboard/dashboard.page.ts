@@ -75,6 +75,7 @@ export class DashBoard implements OnInit {
     public domCtrl: DomController
   ) {}
   ngOnInit(): void {
+   
     this.showConstructionProgressDetails = false;
     this.globalService
       .getProjectDetails()
@@ -101,19 +102,6 @@ export class DashBoard implements OnInit {
             obj.vcEstimationCompletionDate != null
           )
             this.estimationCompletionDate = obj.vcEstimationCompletionDate;
-
-          // if (this.estimationCompletionDate != null || this.estimatedCompletion.length) {
-          //   let eDate = moment('31 Dec 2020', "DD MMM YYYY");
-          //   let now = moment();
-          //   console.log(eDate, now);
-          //   if (now > eDate) {
-          //     console.log("date is past");
-          //   } else {
-          //     console.log("date is future");
-          //     this.showEstimationCompletionDate = true;
-          //   }
-          // }
-
           if (obj.customerProjectDetail_StagesList.length) {
             this.projectStages = obj.customerProjectDetail_StagesList;
 

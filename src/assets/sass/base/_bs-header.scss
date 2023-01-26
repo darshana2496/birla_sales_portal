@@ -40,6 +40,13 @@
     font-size: 1.6rem;
     color: $clr-primary;
   }
+  .back-btn {
+    box-shadow: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 
   .toolbar-background-md {
     background: #ffffff;
@@ -61,7 +68,7 @@ app-header {
     // min-height: 56px;
     min-height: 56px;
     position: relative;
-    top: 15px;
+    // top: 15px;
   }
 
   &~.lyt-section {
@@ -69,6 +76,14 @@ app-header {
       margin-top: 56px;
     }
   }
+  .back-btn {
+    box-shadow: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
 }
 
 .header-with-logo {
@@ -163,7 +178,7 @@ ion-title {
 
   .bs-header {
     position: relative;
-    top: 20px;
+    // top: 20px;
   }
 
   .back-button.show-back-button {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { AnimationOptions } from '@ionic/angular/providers/nav-controller';
 import { Storage } from '@ionic/storage';
 import { Device as device } from '@capacitor/device';
@@ -19,7 +19,7 @@ export class ThankYouModalComponent implements OnInit {
   deviceModel:any;
   deviceSerial:any;
   deviceManu:any;
-  constructor(public navCtrl: NavController, public globalService: GlobalService, public storage: Storage,public fb:FormBuilder) {
+  constructor(private modalCtrl: ModalController,public navCtrl: NavController, public globalService: GlobalService, public storage: Storage,public fb:FormBuilder) {
     this.myform=fb.group({
       exp: fb.control('',Validators.required),
       comment:fb.control('',Validators.required),
@@ -57,7 +57,7 @@ export class ThankYouModalComponent implements OnInit {
       console.log(e);
     });
   }
-  submitData() {  
+  async submitData() {  
     
 
     let object = {
@@ -85,19 +85,24 @@ export class ThankYouModalComponent implements OnInit {
     //   animationDirection: "back"
     // }
     // this.navCtrl.back(animations)
+   
       } else {
 
       }
     }).catch((response: any) => {
       console.log(response);
     })
+    const modal = await this.modalCtrl.getTop();
+    modal.dismiss()
   }
-  closePage(){
-    let animations:AnimationOptions={
-      animated: true,
-      animationDirection: "back"
-    }
-    this.navCtrl.back(animations)
+ async closePage(){
+    // let animations:AnimationOptions={
+    //   animated: true,
+    //   animationDirection: "back"
+    // }
+    // this.navCtrl.back(animations)
+    const modal = await this.modalCtrl.getTop();
+    modal.dismiss()
   }
 
 }
