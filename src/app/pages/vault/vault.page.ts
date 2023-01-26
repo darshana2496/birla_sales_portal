@@ -45,6 +45,7 @@ export class VaultPage implements OnInit {
     this.activeItemSliding = null;
     this.isSlideOpen = false;
     this.resetListCount();
+    this.globalService.showThankyouModal();
   }
 
   vaultBirlaUploads(): void {

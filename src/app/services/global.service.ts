@@ -23,6 +23,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import { ThankYouModalComponent } from '../pages/thank-you-modal/thank-you-modal.component';
+import { AddedProjectSuccessComponent } from '../pages/added-project-success/added-project-success.component';
 @Injectable({
   providedIn: 'root',
 })
@@ -823,7 +824,19 @@ export class GlobalService {
     });
     return (await modal).present();
   }
-
+async showaddedProjectModal(data){
+  const modal = this.modalCtrl.create({
+    component:AddedProjectSuccessComponent,
+      componentProps:{values:data}
+  });
+  return (await modal).present();
+} 
+  // async showThanksModal(){
+  //   const modal = this.modalCtrl.create({
+  //     component: ThankYouModalComponent
+  //   });
+  //   return (await modal).present();
+  // }
   async showPreviewImageModal(props) {
     const modal = this.modalCtrl.create({
       component: AssetsPreviewComponent,

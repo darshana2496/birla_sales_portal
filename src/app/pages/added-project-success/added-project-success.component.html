@@ -1,0 +1,14 @@
+<ion-content padding class="bs-modal typ-inviteSent typ-success">
+  <div class="modal-wrap">
+      <div class="tower-wrap">
+          <img src="{{values.vcImageUrl|defaultImagePipe}}" alt="building img">
+      </div>
+      <h3 class="title">PROJECT SUCCESSFULLY ADDED</h3>
+      <p class="desc">Now you can check updates for {{values.vcProjectName}} and enjoy the experience.</p>
+      <div class="footer">
+          <div class="act-wrap">
+              <button class="app-btn btn-link" ion-button (click)="close()">done</button>
+          </div>
+      </div>
+  </div>
+</ion-content>

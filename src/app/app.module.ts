@@ -13,6 +13,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     AppRoutingModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
+    ReactiveFormsModule,FormsModule
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },

@@ -24,16 +24,18 @@ import { CallsComponent } from './calls/calls.component';
 import { ThankYouModalComponent } from './thank-you-modal/thank-you-modal.component';
 import { AddProjectComponent } from './add-project/add-project.component';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { AddedProjectSuccessComponent } from './added-project-success/added-project-success.component';
+import { PipesModule } from '../utilities/pipes/pipes.module';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     CommonComponentsModule,
     PagesRoutingModule,
     ReactiveFormsModule,
+    PipesModule
   ],
   declarations: [
     PagesComponent,
@@ -52,7 +54,8 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
     ChequeDetailDropComponent,
     CallsComponent,
     ThankYouModalComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    AddedProjectSuccessComponent
   ],
   providers:[SocialSharing]
 })
