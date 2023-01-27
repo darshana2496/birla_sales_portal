@@ -46,7 +46,7 @@ export class OtpComponent implements OnInit {
       otp: new FormControl('', [Validators.required]),
     });
     this.userDetails = this.globalService.logCustomerDetail;
-    if (this.userDetails.vcEmail.includes('~')) {
+    if (this.userDetails && this.userDetails.vcEmail.includes('~')) {
       let email = this.userDetails.vcEmail;
       this.userDetails.vcEmail = email.slice(0, email.lastIndexOf('~'));
     }

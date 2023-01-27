@@ -44,7 +44,7 @@
         </form>
 
         <!-- resend otp -->
-        <div
+        <!-- <div
           class="opacity-none ion-text-center"
           style="margin-top: 2.5rem"
           [ngClass]="enableResendOtpOption ? 'opacity-full' : ''"
@@ -55,13 +55,11 @@
             (click)="resendOtpCounter()"
             >Resend OTP</ion-button
           >
-          <!-- resendOtpCounter() -->
-        </div>
+        </div> -->
 
-        <div text-center class="otp-counter">
-          <!-- *ngIf="!enableResendOtpOption && displayMin != ' '" -->
+        <!-- <div text-center class="otp-counter" *ngIf="!enableResendOtpOption && displayMin != ' '">
           {{ displayMin }}:{{ displaySec }}
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

@@ -60,7 +60,7 @@ export class GlobalService {
     projectName: 'Test',
     userName: '',
   };
-  logCustomerDetail:any;
+  logCustomerDetail: any;
   downloadCollateral: any;
   enteredPin: string;
   appOpenedOnlyFromNotification: boolean = false;
@@ -732,7 +732,7 @@ export class GlobalService {
 
   //A/c verified alert
   async AcVerifiedAlert() {
-    const alert =await this.alertCtrl.create({
+    const alert = await this.alertCtrl.create({
       header: 'ACCOUNT VERIFIED',
       cssClass: 'ac-verify normal',
     });
@@ -783,11 +783,29 @@ export class GlobalService {
     });
   }
 
-  onKeyEvent(event, compoid, previd) {
+  onKeyEvent(event: any, compoid, previd) {
+    // if (event.target.value) {
+    //   event.target.type = 'password';
+    // } else {
+    //   event.target.type = 'tel';
+    // }
+    // alert(event.target.value);
     if (event.key == 'Backspace') {
       previd.setFocus();
     } else if (event.key !== 'Backspace' && event.target.value) {
       compoid.setFocus();
+      console.log(compoid);
+      // (compoid);
+      // event.preventDefault();
+    }
+  }
+
+  onKeyDownEvent(event: any) {
+    // alert(event.key);
+    if (event.target.value) {
+      event.target.type = 'password';
+    } else {
+      event.target.type = 'tel';
     }
   }
 
