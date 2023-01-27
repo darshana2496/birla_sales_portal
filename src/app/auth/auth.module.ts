@@ -18,6 +18,7 @@ import { SetPinComponent } from './set-pin/set-pin.component';
 import { OnlyNumberDirective } from '../utilities/directives/only-number.directive';
 import { EnterPinComponent } from './enter-pin/enter-pin.component';
 import { PipesModule } from '../utilities/pipes/pipes.module';
+import { Device } from '@awesome-cordova-plugins/device/ngx';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { PipesModule } from '../utilities/pipes/pipes.module';
     FormsModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
   ],
   declarations: [
     AuthComponent,
@@ -37,11 +38,11 @@ import { PipesModule } from '../utilities/pipes/pipes.module';
     LandingPage,
     LoginWithCustIdPage,
     OtpComponent,
-    
+
     SetPinComponent,
     OnlyNumberDirective,
     EnterPinComponent,
   ],
-  providers: [EncryptNumberPipe],
+  providers: [EncryptNumberPipe, Device],
 })
 export class AuthModule {}
