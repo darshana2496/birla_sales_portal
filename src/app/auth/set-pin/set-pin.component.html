@@ -17,10 +17,11 @@
                   <ion-item lines="none" class="app-otp-input">
                     <ion-input
                       #codeBox1
+                      appOnlyNumber
                       class="app-form-control"
                       type="password"
                       inputmode="numeric"
-                      [maxlength]="1"
+                      maxlength="1"
                       name="pin1"
                       (keyup)="
                         globalService.onKeyEvent($event, codeBox2, codeBox1)
@@ -30,10 +31,11 @@
 
                     <ion-input
                       #codeBox2
+                      appOnlyNumber
                       class="app-form-control"
                       type="password"
                       inputmode="numeric"
-                      [maxlength]="1"
+                      maxlength="1"
                       name="pin2"
                       (keyup)="
                         globalService.onKeyEvent($event, codeBox3, codeBox1)
@@ -43,10 +45,11 @@
 
                     <ion-input
                       #codeBox3
+                      appOnlyNumber
                       class="app-form-control"
                       type="password"
                       inputmode="numeric"
-                      [maxlength]="1"
+                      maxlength="1"
                       name="pin3"
                       (keyup)="
                         globalService.onKeyEvent($event, codeBox4, codeBox2)
@@ -56,10 +59,11 @@
 
                     <ion-input
                       #codeBox4
+                      appOnlyNumber
                       class="app-form-control"
                       type="password"
                       inputmode="numeric"
-                      [maxlength]="1"
+                      maxlength="1"
                       name="pin4"
                       (keyup)="
                         globalService.onKeyEvent($event, codeBox5, codeBox3)

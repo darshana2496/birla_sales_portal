@@ -10,12 +10,9 @@ import { Router } from '@angular/router';
 })
 export class SetPinComponent implements OnInit {
   pinGroup: FormGroup;
-  encrypt: boolean = true;
   submitted: boolean;
-  generatedPinColapse: number;
   setfirstPin = '';
   setSecondPin = '';
-  samplecheck: boolean;
   constructor(
     public route: Router,
     public globalService: GlobalService,
@@ -37,7 +34,6 @@ export class SetPinComponent implements OnInit {
       }),
     });
     this.pinGroup.get('firstPin').valueChanges.subscribe((val) => {
-      // this.samplecheck=val.pin1.controls
       if (val.pin1) {
         this.pinGroup.get('firstPin').get('pin2').enable({ onlySelf: true });
       }
@@ -103,13 +99,11 @@ export class SetPinComponent implements OnInit {
   //     return false;
   //   }
   // }
-  changeInput() {
-    this.encrypt = false;
-  }
+
   get formErr() {
     return this.pinGroup.controls;
   }
-  checkLength(): void {}
+
   fnsetPin() {
     this.globalService.setPinValue = this.setfirstPin.toString();
     this.storage.set('AccessPin', this.globalService.setPinValue);
