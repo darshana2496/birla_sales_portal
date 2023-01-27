@@ -11,6 +11,7 @@ import {
 import { Storage } from '@ionic/storage-angular';
 import { GlobalService } from './services/global.service';
 import OneSignal from 'onesignal-cordova-plugin';
+import { map, timer } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent {
   @ViewChild('myNav') nav: NavController;
 
   rootPage: string;
+  timerSubscription: any;
 
   constructor(
     public storage: Storage,
@@ -132,6 +134,18 @@ export class AppComponent {
     //         }
     //     }
     // });
+
+    this.timerSubscription = timer(0, 30000)
+      .pipe(
+        map(() => {
+          this.getNotificationCount();
+        })
+      )
+      .subscribe();
+  }
+
+  ngOnDestroy() {
+    this.timerSubscription.unsubscribe();
   }
 
   setInitialPage(pin: any): void {
@@ -185,5 +199,18 @@ export class AppComponent {
     OneSignal.promptForPushNotificationsWithUserResponse((accepted) => {
       console.log('User accepted notifications: ' + accepted);
     });
+  }
+
+  getNotificationCount() {
+    this.globalService
+      .getNotificationCount()
+      .then((response: any) => {
+        if (response.btIsSuccess) {
+          this.globalService.notification_count = response.object;
+        } else {
+          this.globalService.notification_count = 0;
+        }
+      })
+      .catch((response: any) => {});
   }
 }

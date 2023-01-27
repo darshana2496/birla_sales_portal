@@ -71,6 +71,7 @@ export class GlobalService {
   currentlyActivePage: any;
   isAppReviewed: boolean;
   isShowingLoader: boolean;
+  notification_count = 0;
 
   constructor(
     public _http: HttpClient,
@@ -842,13 +843,13 @@ export class GlobalService {
     });
     return (await modal).present();
   }
-async showaddedProjectModal(data){
-  const modal = this.modalCtrl.create({
-    component:AddedProjectSuccessComponent,
-      componentProps:{values:data}
-  });
-  return (await modal).present();
-} 
+  async showaddedProjectModal(data) {
+    const modal = this.modalCtrl.create({
+      component: AddedProjectSuccessComponent,
+      componentProps: { values: data },
+    });
+    return (await modal).present();
+  }
   // async showThanksModal(){
   //   const modal = this.modalCtrl.create({
   //     component: ThankYouModalComponent
@@ -861,5 +862,17 @@ async showaddedProjectModal(data){
       componentProps: props,
     });
     return (await modal).present();
+  }
+
+  getNotificationCount() {
+    let promise = new Promise((resolve, reject) => {
+      this._http
+        .get(this.urls + 'v1/config/getnotificationcount/' + this.customerId)
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
   }
 }
