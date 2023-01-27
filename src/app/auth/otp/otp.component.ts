@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { map, Observable, Subject, takeUntil, timer } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Device as device } from '@capacitor/device';
+import { Device } from '@awesome-cordova-plugins/device/ngx';
 import { Storage } from '@ionic/storage-angular';
 
 @Component({
@@ -40,7 +40,8 @@ export class OtpComponent implements OnInit {
     public globalService: GlobalService,
     public fb: FormBuilder,
     public storage: Storage,
-    public router: Router
+    public router: Router,
+    public device: Device
   ) {
     this.otpFormGroup = this.fb.group({
       otp: new FormControl('', [Validators.required]),
@@ -51,14 +52,7 @@ export class OtpComponent implements OnInit {
       this.userDetails.vcEmail = email.slice(0, email.lastIndexOf('~'));
     }
 
-    device
-      .getId()
-      .then((val) => {
-        this.deviceId = val.uuid;
-      })
-      .catch((e) => {
-        console.log(e);
-      });
+    this.deviceId = this.device.uuid;
   }
 
   ngOnInit() {}
@@ -127,8 +121,8 @@ export class OtpComponent implements OnInit {
                   //when user is logged in
                   // this.navCtrl.push("ModalProjectAddSuccessPage", { 'projectObj': obj })
                   // call modal of project added successfully
-                  console.log(response,"response from local")
-                  this.globalService.showaddedProjectModal(obj)
+                  console.log(response, 'response from local');
+                  this.globalService.showaddedProjectModal(obj);
                   this.router.navigate(['/enter-pin']);
                   // this.router.navigate(['/add-project']);
                 } else {

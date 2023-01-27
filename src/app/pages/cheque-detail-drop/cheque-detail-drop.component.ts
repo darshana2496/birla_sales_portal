@@ -14,7 +14,7 @@ export class ChequeDetailDropComponent implements OnInit {
   selectedDate: any;
   canDismiss = false;
   presentingElement = null;
- 
+
   isSelected = true;
   constructor(public globalService: GlobalService, public fb: FormBuilder) {
     this.myform = fb.group({
@@ -25,7 +25,6 @@ export class ChequeDetailDropComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.globalService
       .getChequeDropLocation()
       .then((response: any) => {
@@ -67,8 +66,6 @@ export class ChequeDetailDropComponent implements OnInit {
       vcDate: this.myform.get('date').value,
       vcLastUpdatedIP: this.globalService.deviceIP,
     };
-    var data;
-    console.log(chequeObj, 'Check obj');
     this.globalService
       .dropChequeLocations(chequeObj)
       .then((response: any) => {
@@ -80,14 +77,10 @@ export class ChequeDetailDropComponent implements OnInit {
           );
           this.myform.reset();
         } else {
-        
         }
       })
       .catch((response: any) => {
         console.log(response, 'response error');
       });
-      this.compareWith
   }
-
 }
-

@@ -13,14 +13,21 @@
           <div class="bs-form">
             <div class="form-group typ-band bot-space">
               <ion-item lines="none" class="app-form-group app-select">
-                <ion-label class="app-field-label" position="floating">Location</ion-label>
+                <ion-label class="app-field-label" position="floating"
+                  >Location</ion-label
+                >
                 <ion-select
-                text="Hello" okText="Ok" cancelText="Dismiss" multiple="true"
+                  text="Hello"
+                  okText="Ok"
+                  cancelText="Dismiss"
+                  multiple="true"
                   name="location"
                   formControlName="location"
-                  [compareWith]="compareWith">
-                  <ion-select-option selected="true"
-                    value="{{loc.intLocationID }}"
+                  [compareWith]="compareWith"
+                >
+                  <ion-select-option
+                    selected="true"
+                    value="{{ loc.intLocationID }}"
                     *ngFor="let loc of dropLocationList"
                     >{{ loc.vcLocation }}</ion-select-option
                   >
@@ -103,7 +110,9 @@
                   'opacity-full':
                     myform.get('chequeNo').errors &&
                     (myform.get('chequeNo').dirty ||
-                      myform.get('chequeNo').touched)}">
+                      myform.get('chequeNo').touched)
+                }"
+              >
                 Cheque no. is required.
               </div>
             </div>
@@ -138,7 +147,8 @@
           <ion-content>
             <!-- <p class="ion-padding-horizontal"></p> -->
             <ion-item>
-              <ion-datetime presentation="date"
+              <ion-datetime
+                presentation="date"
                 (ionChange)="onTermsChanged($event)"
                 [(ngModel)]="selectedDate"
               ></ion-datetime>
