@@ -1,6 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IonInput } from '@ionic/angular';
 import { Storage } from '@ionic/storage-angular';
 import { GlobalService } from 'src/app/services/global.service';
 
@@ -22,7 +29,9 @@ export class EnterPinComponent implements OnInit {
     public route: Router,
     public fb: FormBuilder,
     public globalService: GlobalService,
-    public storage: Storage
+    public storage: Storage,
+    public elementRef: ElementRef,
+    public renderer: Renderer2
   ) {
     this.enterpinGroup = fb.group({
       pin1: fb.control('', Validators.required),

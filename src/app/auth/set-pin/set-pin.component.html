@@ -10,13 +10,13 @@
           <form [formGroup]="pinGroup" (ngSubmit)="fnsetPin()">
             <div class="form-group-wrap">
               <span class="field-label"
-                ><span class="cm-bold">enter pin</span></span
+                ><span class="cm-bold">Enter pin</span></span
               >
               <div formGroupName="firstPin" class="form-group ion-text-center">
                 <div class="otp-parent display-flex-content">
                   <ion-item lines="none" class="app-otp-input">
                     <ion-input
-                    autofocus="true"
+                      autofocus="true"
                       #codeBox1
                       appOnlyNumber
                       class="app-form-control"
@@ -24,7 +24,7 @@
                       inputmode="numeric"
                       maxlength="1"
                       name="pin1"
-                      (keyup)="globalService.onKeyEvent($event,codeBox2,'')"
+                      (keyup)="globalService.onKeyEvent($event, codeBox2, '')"
                       formControlName="pin1"
                     ></ion-input>
 
@@ -36,20 +36,24 @@
                       inputmode="numeric"
                       maxlength="1"
                       name="pin2"
-                      (keyup)="globalService.onKeyEvent($event,codeBox3,codeBox1)"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox3, codeBox1)
+                      "
                       formControlName="pin2"
                     ></ion-input>
 
                     <ion-input
-                    #codeBox3
-                    appOnlyNumber
-                    class="app-form-control"
-                    type="password"
-                    inputmode="numeric"
-                    maxlength="1"
-                    name="pin3"
-                    (keyup)="globalService.onKeyEvent($event, codeBox4, codeBox2)"
-                    formControlName="pin3"
+                      #codeBox3
+                      appOnlyNumber
+                      class="app-form-control"
+                      type="password"
+                      inputmode="numeric"
+                      maxlength="1"
+                      name="pin3"
+                      (keyup)="
+                        globalService.onKeyEvent($event, codeBox4, codeBox2)
+                      "
+                      formControlName="pin3"
                     ></ion-input>
 
                     <ion-input
@@ -71,7 +75,7 @@
             </div>
             <div class="form-group-wrap">
               <span class="field-label"
-                ><span class="cm-bold">re-enter pin</span></span
+                ><span class="cm-bold">Re-enter pin</span></span
               >
               <div formGroupName="secondPin" class="form-group ion-text-center">
                 <div class="otp-parent display-flex-content">
