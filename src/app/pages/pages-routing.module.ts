@@ -17,6 +17,7 @@ import { ChequeDetailDropComponent } from './cheque-detail-drop/cheque-detail-dr
 import { CallsComponent } from './calls/calls.component';
 import { ThankYouModalComponent } from './thank-you-modal/thank-you-modal.component';
 import { AddProjectComponent } from './add-project/add-project.component';
+import { SelectCustomerComponent } from './select-customer/select-customer.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,9 @@ const routes: Routes = [
       {
         path: 'faq',
         component: FaqComponent,
+      },
+      {
+       path:'select-customer',component:SelectCustomerComponent
       },
       {
         path: 'cheque-drop',

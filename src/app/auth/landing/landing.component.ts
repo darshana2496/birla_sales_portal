@@ -14,6 +14,6 @@ export class LandingPage implements OnInit {
 
   gotoCustIdPage() {
     this.storage.set('FirstTimeAppLoad', false);
-    this.router.navigate(['/loginwithcustid']);
+    this.router.navigate(['/login-with-uname']);
   }
 }

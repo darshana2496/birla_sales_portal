@@ -1,0 +1,30 @@
+<app-header class="typ-transparent" [type]="'normal'" [typeTitle]="'logo'"></app-header>
+<ion-content [fullscreen]="true" class="lyt-section typ-bg">
+  <div class="content-inner lyt-section typ-bg">
+    <div class="content">
+      <div class="form-cont app-form">
+        <div class="bs-title-desc ion-text-start">
+          <h2 class="title">Hello</h2>
+          <h3 class="sub-title">welcome home</h3>
+        </div>
+        <div class="ion-text-center" >
+        <form [formGroup]="logForm" (ngSubmit)="fnSubmit()">          
+            <ion-item lines="none" class="app-form-group">
+              <ion-label class="app-field-label" position="floating">USERNAME</ion-label>
+              <ion-input formControlName="username" class="app-form-control" type="text" required></ion-input>
+            </ion-item>
+
+            <ion-item lines="none" class="app-form-group">
+              <ion-label class="app-field-label" position="floating">PASSWORD</ion-label>   
+              <ion-input formControlName="password" class="app-form-control" type="password" required></ion-input>
+            </ion-item>       
+          <div class="button-parent" >
+            <ion-button class="app-btn btn-default" [disabled]="!logForm.valid" type="submit">Submit
+            </ion-button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
