@@ -501,7 +501,7 @@ export class GlobalService {
     };
     console.log(data, 'encrypted');
     let promise = new Promise((resolve, reject) => {
-      this.validateCustomerUnamePassword(obj)
+      this.validateCustomerUnamePassword(data)
         .then((data: any) => {
           if (data.btIsSuccess) {
             resolve(data);

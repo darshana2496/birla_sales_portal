@@ -67,7 +67,6 @@ export class AppComponent {
     });
 
     this.platform.ready().then(() => {
-
       App.addListener('backButton', () => {
         App.exitApp();
       });
@@ -76,7 +75,7 @@ export class AppComponent {
           if (isRooted) {
             setTimeout(() => {
               alert(
-                'Birla Estate My Home app cannot run on rooted devices. Inconvenience regretted.'
+                'Birla Estate Sales app app cannot run on rooted devices. Inconvenience regretted.'
               );
               App.exitApp();
             }, 2000);
