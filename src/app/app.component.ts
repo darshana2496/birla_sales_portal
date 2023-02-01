@@ -1,4 +1,3 @@
-import { ThankYouModalComponent } from './pages/thank-you-modal/thank-you-modal.component';
 import { NavigationEnd, Router } from '@angular/router';
 import { Component, ViewChild, Optional } from '@angular/core';
 import { Network } from '@capacitor/network';
@@ -82,8 +81,6 @@ export class AppComponent {
       }
 
       this.globalService.deviceId = this.device.uuid;
-
-      this.OneSignalInit();
 
       this.globalService.network = Network.getStatus()
         .then((val) => {
@@ -194,8 +191,7 @@ export class AppComponent {
   setInitialPage(pin: any): void {
     this.globalService.setInitialProject(); //used to get list of customerProjects added and get if isAppReviewd
     if (pin != null) {
-      // this.router.navigate(['dashboard']);
-      // this.router.navigate(['enter-pin']);
+      this.router.navigate(['enter-pin']);
     } else {
       this.storage.get('FirstTimeAppLoad').then((val) => {
         if (val == null) {

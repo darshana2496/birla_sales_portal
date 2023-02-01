@@ -13,6 +13,8 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Device } from '@awesome-cordova-plugins/device/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +34,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TimeInMinsFormatPipe,
     AuthenticationService,
     SocialSharing,
+    Device,
+    Diagnostic,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,6 +1,6 @@
 {
-	"appId": "io.birla.myhome",
-	"appName": "Birla Estates My Home",
+	"appId": "io.birla.salesapp",
+	"appName": "Birla Estates Sales App",
 	"webDir": "www",
 	"bundledWebRuntime": false,
 	"plugins": {

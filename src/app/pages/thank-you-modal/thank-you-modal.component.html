@@ -1,69 +1,112 @@
 <ion-content padding class="bs-modal typ-appReview">
   <div class="modal-wrap">
-      <button class="button-link button close-app-review" (click)="closePage()">
-          <i class="icon-close"></i>
-      </button>
-      <span class="bg-sprite bg-appReview"></span>
-      <div class="head">
-          <h2 class="title">Thank you for using <span class="cm-line-break"> our app</span></h2>
-          <p>How was you experience with us?</p>
-
+    <ion-button class="app-btn btn-link close-app-review" (click)="closePage()">
+      <i class="icon-close"></i>
+    </ion-button>
+    <span class="bg-sprite bg-appReview"></span>
+    <div class="head">
+      <h2 class="title">
+        Thank you for using <span class="cm-line-break"> our app</span>
+      </h2>
+      <p>How was you experience with us?</p>
+    </div>
+    <form [formGroup]="myform">
+      <div class="cont">
+        <ion-grid class="grid ion-text-center">
+          <ion-row
+            class="row ion-align-items-center ion-justify-content-center"
+          >
+            <ion-col size="auto">
+              <div class="bs-checkbox">
+                <input
+                  type="radio"
+                  id="good"
+                  name="exp"
+                  value="good"
+                  formControlName="exp"
+                />
+                <label for="good">Good</label>
+              </div>
+            </ion-col>
+            <ion-col size="auto">
+              <div class="bs-checkbox">
+                <input
+                  type="radio"
+                  id="awesome"
+                  value="awesome"
+                  name="exp"
+                  formControlName="exp"
+                />
+                <label for="awesome">Awesome</label>
+              </div>
+            </ion-col>
+            <ion-col size="auto">
+              <div class="bs-checkbox">
+                <input
+                  type="radio"
+                  id="clean"
+                  value="clean"
+                  name="exp"
+                  formControlName="exp"
+                />
+                <label for="clean">Clean</label>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row
+            class="row ion-align-items-center ion-justify-content-center"
+          >
+            <ion-col size="auto">
+              <div class="bs-checkbox">
+                <input
+                  type="radio"
+                  id="satisfactory"
+                  name="exp"
+                  value="satisfactory"
+                  formControlName="exp"
+                />
+                <label for="satisfactory">Satisfactory</label>
+              </div>
+            </ion-col>
+            <ion-col size="auto">
+              <div class="bs-checkbox">
+                <input
+                  type="radio"
+                  id="friendly"
+                  name="exp"
+                  value="User-friendly"
+                  formControlName="exp"
+                />
+                <label for="friendly">User-friendly</label>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <div class="bs-form">
+          <div class="form-group typ-band addOn bot-space">
+            <ion-item lines="none">
+              <ion-label class="app-field-label" position="floating"
+                >Comments</ion-label
+              >
+              <ion-textarea
+                class="app-form-control"
+                value=""
+                formControlName="comment"
+              ></ion-textarea>
+            </ion-item>
+          </div>
+        </div>
       </div>
-      <form [formGroup]="myform">
-          <div class="cont">
-              <ion-grid class="grid ion-text-center">
-                  <ion-row class="row ion-align-items-center ion-justify-content-center">
-                      <ion-col size="auto">
-                          <div class="bs-checkbox">
-                              <input type="radio" id="good" name="exp" value="good" formControlName="exp">
-                              <label for="good">Good</label>
-                          </div>
-                      </ion-col>
-                      <ion-col size="auto">
-                          <div class="bs-checkbox">
-                              <input type="radio" id="awesome" value="awesome" name="exp" formControlName="exp">
-                              <label for="awesome">Awesome</label>
-                          </div>
-                      </ion-col>
-                      <ion-col size="auto">
-                          <div class="bs-checkbox">
-                              <input type="radio" id="clean" value="clean" name="exp" formControlName="exp">
-                              <label for="clean">Clean</label>
-                          </div>
-                      </ion-col>
-                  </ion-row>
-                  <ion-row class="row ion-align-items-center ion-justify-content-center">
-                      <ion-col size="auto">
-                          <div class="bs-checkbox">
-                              <input type="radio" id="satisfactory" name="exp" value="satisfactory"
-                                  formControlName="exp">
-                              <label for="satisfactory">Satisfactory</label>
-                          </div>
-                      </ion-col>
-                      <ion-col size="auto">
-                          <div class="bs-checkbox">
-                              <input type="radio" id="friendly" name="exp" value="User-friendly"
-                                  formControlName="exp">
-                              <label for="friendly">User-friendly</label>
-                          </div>
-                      </ion-col>
-                  </ion-row>
-              </ion-grid>
-              <div class="bs-form">
-                  <div class="form-group typ-band addOn bot-space">
-                      <ion-item lines="none">
-                          <ion-label class="app-field-label" position="floating">Comments</ion-label>
-                          <ion-textarea class="app-form-control" value="" formControlName="comment"></ion-textarea>
-                      </ion-item>
-                  </div>
-              </div>
-          </div>
-          <div class="footer">
-              <div class="act-wrap">
-                  <ion-button class="app-btn btn-default"  (click)="submitData()"
-                      [disabled]="disableBtn">SUBMIT</ion-button>
-              </div>
-          </div>
-      </form>
+      <div class="footer">
+        <div class="act-wrap">
+          <ion-button
+            class="app-btn btn-default"
+            (click)="submitData()"
+            [disabled]="disableBtn"
+            >SUBMIT</ion-button
+          >
+        </div>
+      </div>
+    </form>
   </div>
 </ion-content>
