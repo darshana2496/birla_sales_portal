@@ -26,6 +26,8 @@ import { AddProjectComponent } from './add-project/add-project.component';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { AddedProjectSuccessComponent } from './added-project-success/added-project-success.component';
 import { PipesModule } from '../utilities/pipes/pipes.module';
+import { SelectCustomerComponent } from './select-customer/select-customer.component';
+import { IonicSelectableModule } from 'ionic-selectable';
 
 @NgModule({
   imports: [
@@ -35,7 +37,8 @@ import { PipesModule } from '../utilities/pipes/pipes.module';
     CommonComponentsModule,
     PagesRoutingModule,
     ReactiveFormsModule,
-    PipesModule
+    PipesModule,
+    IonicSelectableModule
   ],
   declarations: [
     PagesComponent,
@@ -55,7 +58,8 @@ import { PipesModule } from '../utilities/pipes/pipes.module';
     CallsComponent,
     ThankYouModalComponent,
     AddProjectComponent,
-    AddedProjectSuccessComponent
+    AddedProjectSuccessComponent,
+    SelectCustomerComponent
   ],
   providers:[SocialSharing]
 })

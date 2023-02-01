@@ -9,6 +9,7 @@ import { AuthComponent } from './auth.component';
 import { LoginComponent } from './login/login.component';
 import { SetPinComponent } from './set-pin/set-pin.component';
 import { EnterPinComponent } from './enter-pin/enter-pin.component';
+import { LoginWithUnamenpassComponent } from './login-with-unamenpass/login-with-unamenpass.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,9 @@ const routes: Routes = [
       {
         path: 'know-your-cust-id',
         component: KnowYourCustIdPage,
+      },
+      {
+        path:'login-with-uname',component:LoginWithUnamenpassComponent
       },
       {
         path: 'landing',
