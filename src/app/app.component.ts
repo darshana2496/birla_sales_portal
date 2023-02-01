@@ -1,16 +1,27 @@
 import { ThankYouModalComponent } from './pages/thank-you-modal/thank-you-modal.component';
 import { NavigationEnd, Router } from '@angular/router';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Optional } from '@angular/core';
 import { Network } from '@capacitor/network';
 import {
   NavController,
   Platform,
   MenuController,
   ModalController,
+  PopoverController,
+  LoadingController,
+  ToastController,
+  IonRouterOutlet,
+  IonTabs,
+  IonApp,
 } from '@ionic/angular';
+import { App } from '@capacitor/app';
+
 import { Storage } from '@ionic/storage-angular';
 import { GlobalService } from './services/global.service';
 import OneSignal from 'onesignal-cordova-plugin';
+import { map, timer } from 'rxjs';
+import { Device } from '@awesome-cordova-plugins/device/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +32,8 @@ export class AppComponent {
   @ViewChild('myNav') nav: NavController;
 
   rootPage: string;
+  exitAppCount: number = 0;
+  timerSubscription: any;
 
   constructor(
     public storage: Storage,
@@ -28,7 +41,14 @@ export class AppComponent {
     public platform: Platform,
     public router: Router,
     public menuCtrl: MenuController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public device: Device,
+    public diagnostic: Diagnostic,
+    public popoverController: PopoverController,
+    public loadingController: LoadingController,
+    public toastController: ToastController,
+    @Optional() public routerOutlet: IonRouterOutlet,
+    @Optional() public ionTab: IonTabs
   ) {
     storage.create();
     this.router.events.subscribe((event: any) => {
@@ -48,90 +68,127 @@ export class AppComponent {
     });
 
     this.platform.ready().then(() => {
+      if (this.platform.is('cordova')) {
+        this.diagnostic.isDeviceRooted().then((isRooted: boolean) => {
+          if (isRooted) {
+            setTimeout(() => {
+              alert(
+                'Birla Estate My Home app cannot run on rooted devices. Inconvenience regretted.'
+              );
+              App.exitApp();
+            }, 2000);
+          }
+        });
+      }
+
+      this.globalService.deviceId = this.device.uuid;
+
       this.OneSignalInit();
-    });
 
-    this.globalService.network = Network.getStatus()
-      .then((val) => {
-        return val;
-      })
-      .catch((err) => {
-        return null;
+      this.globalService.network = Network.getStatus()
+        .then((val) => {
+          return val;
+        })
+        .catch((err) => {
+          return null;
+        });
+      ``;
+
+      this.globalService.getNetworkCarrierInfo();
+
+      storage.get('AccessPin').then((val) => {
+        this.setInitialPage(val);
       });
-    ``;
 
-    this.globalService.getNetworkCarrierInfo();
+      platform.backButton.subscribe((event) => {
+        alert(event);
+        let menuBarOpen = this.menuCtrl.isOpen();
 
-    storage.get('AccessPin').then((val) => {
-      this.setInitialPage(val);
+        this.popoverController
+          .getTop()
+          .then((popover) => {
+            return this.popoverController.dismiss();
+          })
+          .catch((e) => console.log(e));
+        this.modalCtrl
+          .getTop()
+          .then((modal) => {
+            return this.modalCtrl.dismiss();
+          })
+          .catch((e) => console.log(e));
+        this.loadingController
+          .getTop()
+          .then((loading) => {
+            return this.loadingController.dismiss();
+          })
+          .catch((e) => console.log(e));
+        this.toastController
+          .getTop()
+          .then((toast) => {
+            return this.toastController.dismiss();
+          })
+          .catch((e) => console.log(e));
+        this.exitAppCount++;
+        if (this.routerOutlet && !this.routerOutlet.canGoBack()) {
+          if (this.exitAppCount > 1) {
+            App.exitApp();
+          }
+        }
+
+        if (menuBarOpen) {
+          this.menuCtrl.close();
+          this.exitAppCount = 0;
+        } else {
+          if (this.routerOutlet && !this.routerOutlet.canGoBack()) {
+            const tabsNav = this.ionTab.outlet.getContext();
+            // if (tabsNav != null) {
+            //   if (tabsNav.getSelected().index != 0) {
+            //       this.exitAppCount = 0;
+            //       tabsNav.select(0);
+            //       return;
+            //   }
+            // }
+
+            this.exitAppCount++;
+            if (this.exitAppCount > 1) {
+              App.exitApp();
+            } else {
+              // this.globalService.showToastMessage(
+              //     "Press again to exit",
+              //     1000,
+              //     "bottom"
+              // );
+            }
+          } else {
+            this.exitAppCount = 0;
+            if (this.globalService.currentlyActivePage == '/network-check') {
+              // if (this.globalService.currentlyActivePage == "NetworkCheckPage") {
+              this.globalService.checkInternetConnection();
+            } else if (
+              this.globalService.currentlyActivePage ==
+              'payment-gateway-response'
+            ) {
+              // } else if (this.globalService.currentlyActivePage == "PaymentGatewayResponsePage") {
+              this.router.navigate(['/login-with-uname']);
+            } else {
+              this.nav.pop();
+            }
+          }
+        }
+      });
+
+      this.timerSubscription = timer(0, 30000)
+        .pipe(
+          map(() => {
+            this.getNotificationCount();
+          })
+        )
+        .subscribe();
     });
+  }
 
-    //used to check for tabs
-    // platform.registerBackButtonAction(event => {
-    //   let menuBarOpen = this.menuCtrl.isOpen();
-
-    //   var activePortal =
-    //       this.ionicApp._loadingPortal.getActive() ||
-    //       this.ionicApp._modalPortal.getActive() ||
-    //       this.ionicApp._toastPortal.getActive() ||
-    //       this.ionicApp._overlayPortal.getActive();
-    //   if (activePortal) {
-    //       activePortal.dismiss();
-    //       this.exitAppCount++;
-    //       if (!this.nav.canGoBack()) {
-    //           if (this.exitAppCount > 1) {
-    //               platform.exitApp();
-    //           }
-    //       }
-    //       return;
-    //     }
-
-    //     if (menuBarOpen) {
-    //         console.log("Menu bar open");
-    //         this.menuCtrl.close();
-    //         //this.globalService.closeSideMenu();
-    //         this.exitAppCount = 0;
-    //     } else {
-    //         console.log("Menu bar closed");
-    //         console.log(this.nav);
-
-    //         if (!this.nav.canGoBack()) {
-    //             const tabsNav = this.appCtrl.getNavByIdOrName("myTabsNav") as Tabs;
-    //             if (tabsNav != null) {
-    //                 if (tabsNav.getSelected().index != 0) {
-    //                     this.exitAppCount = 0;
-    //                     tabsNav.select(0);
-    //                     return;
-    //                 }
-    //             }
-
-    //             this.exitAppCount++;
-    //             if (this.exitAppCount > 1) {
-    //                 platform.exitApp();
-    //             } else {
-    //                 this.globalService.showToastMessage(
-    //                     "Press again to exit",
-    //                     1000,
-    //                     "bottom"
-    //                 );
-    //             }
-    //         } else {
-    //             this.exitAppCount = 0;
-    //             console.log("this.nav.getActive().id", this.nav.getActive().id);
-    //             if (this.nav.getActive().id == "NetworkCheckPage") {
-    //                 this.globalService.checkInternetConnection();
-    //             } else if (this.nav.getActive().id == "PaymentGatewayResponsePage") {
-    //                 this.appCtrl.getRootNavs()[1].setRoot(CustomerTabsPage);
-    //                 setTimeout(() => {
-    //                     this.appCtrl.getRootNavs()[1].getActiveChildNav().select(0);
-    //                 }, 500);
-    //             }
-    //             else {
-    //                 this.nav.pop();
-    //             }
-    //         }
-    //     }
-    // });
+  ngOnDestroy() {
+    this.timerSubscription.unsubscribe();
   }
 
   setInitialPage(pin: any): void {
@@ -144,7 +201,7 @@ export class AppComponent {
         if (val == null) {
           this.router.navigate(['AppIntroPage']);
         } else {
-          this.router.navigate(['loginwithcustid']);
+          this.router.navigate(['login-with-uname']);
         }
       });
     }
@@ -185,5 +242,18 @@ export class AppComponent {
     OneSignal.promptForPushNotificationsWithUserResponse((accepted) => {
       console.log('User accepted notifications: ' + accepted);
     });
+  }
+
+  getNotificationCount() {
+    this.globalService
+      .getNotificationCount()
+      .then((response: any) => {
+        if (response.btIsSuccess) {
+          this.globalService.notification_count = response.object;
+        } else {
+          this.globalService.notification_count = 0;
+        }
+      })
+      .catch((response: any) => {});
   }
 }
