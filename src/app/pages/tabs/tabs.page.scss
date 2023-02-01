@@ -25,4 +25,12 @@ ion-tab-button {
   &.tab-selected ion-icon {
     color: $clr-primary;
   }
+
+  ion-badge {
+    --background: purple;
+    --color: #fff;
+    padding: 3px 3px;
+    margin-left: 4px;
+    margin-top: -3px;
+  }
 }

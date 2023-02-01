@@ -1,22 +1,38 @@
-<app-header class="typ-transparent" [type]="'normal'" [typeTitle]="'logo'"></app-header>
+<app-header
+  class="typ-transparent"
+  [type]="'normal'"
+  [backbtn]="true"
+  [typeTitle]="'logo'"
+></app-header>
 
 <ion-content class="lyt-section typ-bg extra-padding ion-padding">
   <div class="content-inner">
-    <div class="content ">
+    <div class="content">
       <div class="form-cont app-lyt-add-project">
         <div class="bs-title-desc ion-text-start">
           <!-- <h4 class="title">Add a project</h4> -->
           <h3 class="sub-title">Add a project</h3>
         </div>
         <div class="bs-form">
-          <span class="field-label">Enter the Customer ID for the project <br /> you would like to add</span>
+          <span class="field-label"
+            >Enter the Customer ID for the project <br />
+            you would like to add</span
+          >
         </div>
         <ion-list class="app-form temp">
           <ion-item lines="none" class="app-form-group">
-            <ion-label class="app-field-label" position="floating">CUSTOMER ID</ion-label>
-            <ion-input class="app-form-control" type="number" [(ngModel)]="typedText"></ion-input>
+            <ion-label class="app-field-label" position="floating"
+              >CUSTOMER ID</ion-label
+            >
+            <ion-input
+              class="app-form-control"
+              type="number"
+              [(ngModel)]="typedText"
+            ></ion-input>
 
-            <ion-button (click)="inputBtn()"><span class="icons icon-next"></span></ion-button>
+            <ion-button (click)="inputBtn()"
+              ><span class="icons icon-next"></span
+            ></ion-button>
           </ion-item>
         </ion-list>
       </div>

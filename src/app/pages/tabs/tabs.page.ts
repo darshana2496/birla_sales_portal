@@ -1,3 +1,4 @@
+import { GlobalService } from 'src/app/services/global.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage implements OnInit {
+  constructor(public globalService: GlobalService) {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -1,5 +1,4 @@
 import { AssetsPreviewComponent } from './../common-components/assets-preview/assets-preview.component';
-import { Network } from '@capacitor/network';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {
@@ -14,14 +13,8 @@ import { AlertController, MenuController } from '@ionic/angular';
 import { GET_IP_API_URL } from '../utilities/constants/globals';
 import { ICustomerProject } from '../utilities/constants/commonInterface';
 import { Subject } from 'rxjs';
-import { App } from '@capacitor/app';
 
-import {
-  NavigationEnd,
-  NavigationExtras,
-  Router,
-  RouterStateSnapshot,
-} from '@angular/router';
+import { Router } from '@angular/router';
 import { ThankYouModalComponent } from '../pages/thank-you-modal/thank-you-modal.component';
 import { AddedProjectSuccessComponent } from '../pages/added-project-success/added-project-success.component';
 @Injectable({
@@ -71,6 +64,7 @@ export class GlobalService {
   currentlyActivePage: any;
   isAppReviewed: boolean;
   isShowingLoader: boolean;
+  notification_count = 0;
 
   constructor(
     public _http: HttpClient,
@@ -264,7 +258,6 @@ export class GlobalService {
     this.clearPinInput.next(true);
   }
   getProjectDetails() {
-    var tempIdforProject: number = 602188;
     let promise = new Promise((resolve, reject) => {
       this._http
         .get(
@@ -292,12 +285,6 @@ export class GlobalService {
     duration: number,
     position: string
   ) {
-    let showToastMsg =
-      navParam == null ||
-      navParam.fileType == 'xlsx' ||
-      navParam.fileType == 'xls'
-        ? false
-        : true;
     let pos;
     switch (position) {
       case 'top':
@@ -322,47 +309,8 @@ export class GlobalService {
           return;
         });
       });
-    // this.downloadCollateral.present();
-
-    // this.downloadCollateral.onDidDismiss((data, role) => {
-    //     //role can be backdrop or close
-    //     console.log("navParam", navParam);
-
-    //     if (role == "close") {
-    //         console.log("view clicked");
-
-    //         switch (navParam.fileType) {
-    //             case "jpeg":
-    //             case "jpg":
-    //             case "png":
-    //               this.route.navigate(['/asset-preview'], navParam);
-    //                 // this.appCtrl.getRootNavs()[1].push("AssetPreviewPage", { previewData: navParam });
-    //                 break;
-    //             case "docx":
-    //             case "doc":
-    //                 this.openDownloadedFile(navParam, "application/msword");
-    //                 break;
-    //             case "pdf":
-    //                 this.openDownloadedFile(navParam, "application/pdf");
-    //                 break;
-    //             default:
-    //                 break;
-    //         }
-    //     } else {
-    //         console.log("normal close");
-    //     }
-    // });
   }
-  openDownloadedFile(navParam: any, mimeType: string) {
-    // this.fileOpener.open(navParam.nativeUrl, mimeType)
-    //     .then((response: any) => {
-    //     })
-    //     .catch((response: any) => {
-    //         if (response.status == 9) {
-    //             this.showDownloadToast("No app found to open this file", null, 3000, "top");
-    //         }
-    //     });
-  }
+
   updateCustomerNotification() {
     let obj = {
       vcCustomerID: this.customerId,
@@ -645,33 +593,7 @@ export class GlobalService {
     });
     alert.present();
   }
-  onKeyUpEventOTP(event, index, repeat, uniqueComponentNameId) {
-    const eventCode = event.which || event.keyCode;
-    if (event.target.value.length === 1) {
-      if (index !== repeat) {
-        (<HTMLInputElement>(
-          this.getCodeBoxElement(index + 1, uniqueComponentNameId)
-        )).focus();
-      } else {
-        (<HTMLInputElement>(
-          this.getCodeBoxElement(index, uniqueComponentNameId)
-        )).blur();
-        // Submit code
-      }
-    }
-    if (!event.target.value.length) {
-      if (index != 1) {
-        (<HTMLInputElement>(
-          this.getCodeBoxElement(index - 1, uniqueComponentNameId)
-        )).focus();
-      }
-    }
-    if (eventCode === 8 && index !== 1) {
-      (<HTMLInputElement>(
-        this.getCodeBoxElement(index - 1, uniqueComponentNameId)
-      )).focus();
-    }
-  }
+
   getCustomerId(obj) {
     let promise = new Promise((resolve, reject) => {
       this._http
@@ -784,48 +706,15 @@ export class GlobalService {
   }
 
   onKeyEvent(event: any, compoid, previd) {
-    // if (event.target.value) {
-    //   event.target.type = 'password';
-    // } else {
-    //   event.target.type = 'tel';
-    // }
-    // alert(event.target.value);
     if (event.key == 'Backspace') {
-      previd.setFocus();
+      setTimeout(() => {
+        previd.setFocus();
+      }, 100);
     } else if (event.key !== 'Backspace' && event.target.value) {
-      compoid.setFocus();
-      console.log(compoid);
-      // (compoid);
-      // event.preventDefault();
+      setTimeout(() => {
+        compoid.setFocus();
+      }, 100);
     }
-  }
-
-  onKeyDownEvent(event: any) {
-    // alert(event.key);
-    if (event.target.value) {
-      event.target.type = 'password';
-    } else {
-      event.target.type = 'tel';
-    }
-  }
-
-  onFocusEventOTP(index, uniqueComponentNameId) {
-    for (let item = 1; item < index; item++) {
-      const currentElement = this.getCodeBoxElement(
-        item,
-        uniqueComponentNameId
-      );
-      if (!(<HTMLInputElement>currentElement).value) {
-        (<HTMLInputElement>currentElement).focus();
-        break;
-      }
-    }
-  }
-  getCodeBoxElement(index: number, uniqueComponentNameId: string) {
-    let dom = document.getElementById(uniqueComponentNameId);
-
-    let ref = dom.children.namedItem('pin' + index).children[0];
-    return ref;
   }
 
   async getUserfeedback() {
@@ -842,13 +731,13 @@ export class GlobalService {
     });
     return (await modal).present();
   }
-async showaddedProjectModal(data){
-  const modal = this.modalCtrl.create({
-    component:AddedProjectSuccessComponent,
-      componentProps:{values:data}
-  });
-  return (await modal).present();
-} 
+  async showaddedProjectModal(data) {
+    const modal = this.modalCtrl.create({
+      component: AddedProjectSuccessComponent,
+      componentProps: { values: data },
+    });
+    return (await modal).present();
+  }
   // async showThanksModal(){
   //   const modal = this.modalCtrl.create({
   //     component: ThankYouModalComponent
@@ -861,5 +750,17 @@ async showaddedProjectModal(data){
       componentProps: props,
     });
     return (await modal).present();
+  }
+
+  getNotificationCount() {
+    let promise = new Promise((resolve, reject) => {
+      this._http
+        .get(this.urls + 'v1/config/getnotificationcount/' + this.customerId)
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        });
+    });
+    return promise;
   }
 }
