@@ -67,6 +67,10 @@ export class AppComponent {
     });
 
     this.platform.ready().then(() => {
+
+      App.addListener('backButton', () => {
+        App.exitApp();
+      });
       if (this.platform.is('cordova')) {
         this.diagnostic.isDeviceRooted().then((isRooted: boolean) => {
           if (isRooted) {
@@ -97,82 +101,82 @@ export class AppComponent {
         this.setInitialPage(val);
       });
 
-      platform.backButton.subscribe((event) => {
-        alert(event);
-        let menuBarOpen = this.menuCtrl.isOpen();
+      // platform.backButton.subscribe((event) => {
+      //   alert(event);
+      //   let menuBarOpen = this.menuCtrl.isOpen();
 
-        this.popoverController
-          .getTop()
-          .then((popover) => {
-            return this.popoverController.dismiss();
-          })
-          .catch((e) => console.log(e));
-        this.modalCtrl
-          .getTop()
-          .then((modal) => {
-            return this.modalCtrl.dismiss();
-          })
-          .catch((e) => console.log(e));
-        this.loadingController
-          .getTop()
-          .then((loading) => {
-            return this.loadingController.dismiss();
-          })
-          .catch((e) => console.log(e));
-        this.toastController
-          .getTop()
-          .then((toast) => {
-            return this.toastController.dismiss();
-          })
-          .catch((e) => console.log(e));
-        this.exitAppCount++;
-        if (this.routerOutlet && !this.routerOutlet.canGoBack()) {
-          if (this.exitAppCount > 1) {
-            App.exitApp();
-          }
-        }
+      //   this.popoverController
+      //     .getTop()
+      //     .then((popover) => {
+      //       return this.popoverController.dismiss();
+      //     })
+      //     .catch((e) => console.log(e));
+      //   this.modalCtrl
+      //     .getTop()
+      //     .then((modal) => {
+      //       return this.modalCtrl.dismiss();
+      //     })
+      //     .catch((e) => console.log(e));
+      //   this.loadingController
+      //     .getTop()
+      //     .then((loading) => {
+      //       return this.loadingController.dismiss();
+      //     })
+      //     .catch((e) => console.log(e));
+      //   this.toastController
+      //     .getTop()
+      //     .then((toast) => {
+      //       return this.toastController.dismiss();
+      //     })
+      //     .catch((e) => console.log(e));
+      //   this.exitAppCount++;
+      //   if (this.routerOutlet && !this.routerOutlet.canGoBack()) {
+      //     if (this.exitAppCount > 1) {
+      //       App.exitApp();
+      //     }
+      //   }
 
-        if (menuBarOpen) {
-          this.menuCtrl.close();
-          this.exitAppCount = 0;
-        } else {
-          if (this.routerOutlet && !this.routerOutlet.canGoBack()) {
-            const tabsNav = this.ionTab.outlet.getContext();
-            // if (tabsNav != null) {
-            //   if (tabsNav.getSelected().index != 0) {
-            //       this.exitAppCount = 0;
-            //       tabsNav.select(0);
-            //       return;
-            //   }
-            // }
+      //   if (menuBarOpen) {
+      //     this.menuCtrl.close();
+      //     this.exitAppCount = 0;
+      //   } else {
+      //     if (this.routerOutlet && !this.routerOutlet.canGoBack()) {
+      //       const tabsNav = this.ionTab.outlet.getContext();
+      //       // if (tabsNav != null) {
+      //       //   if (tabsNav.getSelected().index != 0) {
+      //       //       this.exitAppCount = 0;
+      //       //       tabsNav.select(0);
+      //       //       return;
+      //       //   }
+      //       // }
 
-            this.exitAppCount++;
-            if (this.exitAppCount > 1) {
-              App.exitApp();
-            } else {
-              // this.globalService.showToastMessage(
-              //     "Press again to exit",
-              //     1000,
-              //     "bottom"
-              // );
-            }
-          } else {
-            this.exitAppCount = 0;
-            if (this.globalService.currentlyActivePage == '/network-check') {
-              // if (this.globalService.currentlyActivePage == "NetworkCheckPage") {
-              this.globalService.checkInternetConnection();
-            } else if (
-              this.globalService.currentlyActivePage ==
-              'payment-gateway-response'
-            ) {
-              // } else if (this.globalService.currentlyActivePage == "PaymentGatewayResponsePage") {
-              this.router.navigate(['/login-with-uname']);
-            } else {
-              this.nav.pop();
-            }
-          }
-        }
-      });
+      //       this.exitAppCount++;
+      //       if (this.exitAppCount > 1) {
+      //         App.exitApp();
+      //       } else {
+      //         // this.globalService.showToastMessage(
+      //         //     "Press again to exit",
+      //         //     1000,
+      //         //     "bottom"
+      //         // );
+      //       }
+      //     } else {
+      //       this.exitAppCount = 0;
+      //       if (this.globalService.currentlyActivePage == '/network-check') {
+      //         // if (this.globalService.currentlyActivePage == "NetworkCheckPage") {
+      //         this.globalService.checkInternetConnection();
+      //       } else if (
+      //         this.globalService.currentlyActivePage ==
+      //         'payment-gateway-response'
+      //       ) {
+      //         // } else if (this.globalService.currentlyActivePage == "PaymentGatewayResponsePage") {
+      //         this.router.navigate(['/login-with-uname']);
+      //       } else {
+      //         this.nav.pop();
+      //       }
+      //     }
+      //   }
+      // });
 
       this.timerSubscription = timer(0, 30000)
         .pipe(
