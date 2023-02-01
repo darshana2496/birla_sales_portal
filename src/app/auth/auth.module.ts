@@ -19,6 +19,7 @@ import { OnlyNumberDirective } from '../utilities/directives/only-number.directi
 import { EnterPinComponent } from './enter-pin/enter-pin.component';
 import { PipesModule } from '../utilities/pipes/pipes.module';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
+import { LoginWithUnamenpassComponent } from './login-with-unamenpass/login-with-unamenpass.component';
 
 @NgModule({
   imports: [
@@ -38,7 +39,7 @@ import { Device } from '@awesome-cordova-plugins/device/ngx';
     LandingPage,
     LoginWithCustIdPage,
     OtpComponent,
-
+    LoginWithUnamenpassComponent,
     SetPinComponent,
     OnlyNumberDirective,
     EnterPinComponent,

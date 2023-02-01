@@ -87,6 +87,9 @@ export class GlobalService {
     });
     return promise;
   }
+  logWithUnamePass(){
+
+  }
   vaultBirlaUploads(obj) {
     let promise = new Promise((resolve, reject) => {
       this._http
@@ -353,11 +356,11 @@ export class GlobalService {
             this.storage.remove('AccessPin');
             if (this.menuCtrl.isOpen()) {
               this.menuCtrl.close().then((response: any) => {
-                this.route.navigate(['/loginwithcustid']);
+                this.route.navigate(['/login-with-uname']);
                 this.clearAllAddedProjects();
               });
             } else {
-              this.route.navigate(['/loginwithcustid']);
+              this.route.navigate(['/login-with-uname']);
             }
           },
         },
@@ -492,6 +495,61 @@ export class GlobalService {
     });
     return promise;
   }
+    async validateCustomerwithUnamePass(obj:any) {
+      let data={
+        "username":this.encryptData(obj.username),
+        "password":this.encryptData(obj.password),
+      }
+      console.log(data,'encrypted');
+      let promise = new Promise((resolve, reject) => {
+        this.validateCustomerUnamePassword(obj)
+        .then((data: any) => {
+          if (data.btIsSuccess) {
+           
+            resolve(data);
+          } else {
+            resolve(data);
+          }
+        })
+        .catch((data: any) => {
+          reject(data);
+        });
+      })
+      return promise;
+    }
+  
+  
+  validateCustomerUnamePassword(obj) {
+    let promise = new Promise((resolve, reject) => {
+      this._http
+        .post(environment.serverUrl + 'v1/account/salesadmin', obj)
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((response) => {
+          reject(response);
+        });
+    });
+    return promise;
+  }
+  selectCustomer(id){
+    
+    let promise = new Promise((resolve, reject) => {
+      this._http
+        .post(`${environment.serverUrl}v1/account/salesadmin/customerlist?id=${id}`,'')
+        
+        .toPromise()
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((response) => {
+          reject(response);
+        });
+    });
+    return promise;
+  }
+
   encryptData(msg) {
     var keySize = 256;
     var salt = CryptoJS.lib.WordArray.random(16);
