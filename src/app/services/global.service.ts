@@ -65,6 +65,7 @@ export class GlobalService {
   isAppReviewed: boolean;
   isShowingLoader: boolean;
   notification_count = 0;
+  deviceId: any;
 
   constructor(
     public _http: HttpClient,
@@ -87,9 +88,7 @@ export class GlobalService {
     });
     return promise;
   }
-  logWithUnamePass(){
-
-  }
+  logWithUnamePass() {}
   vaultBirlaUploads(obj) {
     let promise = new Promise((resolve, reject) => {
       this._http
@@ -461,7 +460,7 @@ export class GlobalService {
         let obj = {
           vcCustomerID: this.encryptedCustId,
           vcIp: '',
-          vcDeviceID: '',
+          vcDeviceID: this.deviceId,
           // vcDeviceID: "db377163-09a3-48f6-a93f-13210a82f3ea"
         };
 
@@ -495,17 +494,16 @@ export class GlobalService {
     });
     return promise;
   }
-    async validateCustomerwithUnamePass(obj:any) {
-      let data={
-        "username":this.encryptData(obj.username),
-        "password":this.encryptData(obj.password),
-      }
-      console.log(data,'encrypted');
-      let promise = new Promise((resolve, reject) => {
-        this.validateCustomerUnamePassword(obj)
+  async validateCustomerwithUnamePass(obj: any) {
+    let data = {
+      username: this.encryptData(obj.username),
+      password: this.encryptData(obj.password),
+    };
+    console.log(data, 'encrypted');
+    let promise = new Promise((resolve, reject) => {
+      this.validateCustomerUnamePassword(obj)
         .then((data: any) => {
           if (data.btIsSuccess) {
-           
             resolve(data);
           } else {
             resolve(data);
@@ -514,11 +512,10 @@ export class GlobalService {
         .catch((data: any) => {
           reject(data);
         });
-      })
-      return promise;
-    }
-  
-  
+    });
+    return promise;
+  }
+
   validateCustomerUnamePassword(obj) {
     let promise = new Promise((resolve, reject) => {
       this._http
@@ -533,12 +530,14 @@ export class GlobalService {
     });
     return promise;
   }
-  selectCustomer(id){
-    
+  selectCustomer(id) {
     let promise = new Promise((resolve, reject) => {
       this._http
-        .post(`${environment.serverUrl}v1/account/salesadmin/customerlist?id=${id}`,'')
-        
+        .post(
+          `${environment.serverUrl}v1/account/salesadmin/customerlist?id=${id}`,
+          ''
+        )
+
         .toPromise()
         .then((response) => {
           resolve(response);

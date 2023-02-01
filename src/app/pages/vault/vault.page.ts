@@ -45,7 +45,6 @@ export class VaultPage implements OnInit {
     this.activeItemSliding = null;
     this.isSlideOpen = false;
     this.resetListCount();
-    this.globalService.showThankyouModal();
   }
 
   vaultBirlaUploads(): void {
@@ -145,7 +144,6 @@ export class VaultPage implements OnInit {
   }
 
   shareDoc(data) {
-
     this.globalService.showDownloadToast('Please wait..', null, 2000, 'top');
     this.globalService.showLoader();
     let currentFiledata = data;
@@ -156,7 +154,6 @@ export class VaultPage implements OnInit {
       })
       .catch((error: any) => {
         console.log(error);
-        
       });
   }
 }
