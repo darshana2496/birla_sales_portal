@@ -8,25 +8,24 @@
     <div class="content">
       <div class="form-cont app-form">
         <div class="bs-title-desc ion-text-start">
-          <h2 class="title">Username</h2>
-          <h3 class="sub-title">welcome home</h3>
+          <h2 class="title">Hello {{ userName }}</h2>
         </div>
         <div class="ion-text-center">
           <!-- <form [formGroup]="selForm" (ngSubmit)="fnSubmit()"> [modalCssClass]="modaldesign"  -->
           <ion-item class="app-form-group app-select" lines="none">
             <ion-label class="app-field-label" position="stacked"
-              >Choose Project</ion-label
+              >Choose Customer</ion-label
             >
             <ionic-selectable
               #portComponent
               [items]="sampleData"
-              itemValueField="id"
-              itemTextField="name"
+              itemValueField="customerCode"
+              itemTextField="customerName"
               [canSearch]="true"
               [canClear]="true"
               [(ngModel)]="port"
-              (onSearch)="searchPorts($event)"
               (onChange)="portChange($event)"
+              (onSearch)="searchPorts($event)"
             >
               <ng-template ionicSelectableHeaderTemplate>
                 <ion-toolbar>
@@ -40,11 +39,18 @@
                   <ion-title>Select Project</ion-title>
                 </ion-toolbar>
               </ng-template>
+              <ng-template
+                ionicSelectableItemTemplate
+                let-port="item"
+                let-isPortSelected="isItemSelected"
+              >
+                {{ port.customerName }} ({{ port.customerCode }})
+              </ng-template>
               <!-- <ng-template ionicSelectableSearchTemplate> Abc </ng-template> -->
               <!-- <ng-template ionicSelectableItemTemplate let-port="item">
                 {{port.name}} ({{port.country.name}})
               </ng-template> -->
-              <ng-template ionicSelectableFooterTemplate></ng-template>
+              <!-- <ng-template ionicSelectableFooterTemplate></ng-template> -->
               <!-- <ng-template ionicSelectableFooterTemplate>
 
           </ng-template> -->

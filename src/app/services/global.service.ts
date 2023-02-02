@@ -501,7 +501,7 @@ export class GlobalService {
     };
     console.log(data, 'encrypted');
     let promise = new Promise((resolve, reject) => {
-      this.validateCustomerUnamePassword(data)
+      this.validateCustomerUnamePassword(obj)
         .then((data: any) => {
           if (data.btIsSuccess) {
             resolve(data);
@@ -530,13 +530,11 @@ export class GlobalService {
     });
     return promise;
   }
-  selectCustomer(id) {
+  getCustomerlist(id) {
     let promise = new Promise((resolve, reject) => {
       this._http
-        .post(
-          `${environment.serverUrl}v1/account/salesadmin/customerlist?id=${id}`,
-          ''
-        )
+        .get(
+          `${environment.serverUrl}v1/account/salesadmin/customerlist?id=${id}`)
 
         .toPromise()
         .then((response) => {

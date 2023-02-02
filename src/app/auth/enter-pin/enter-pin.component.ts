@@ -81,7 +81,7 @@ export class EnterPinComponent implements OnInit {
             this.globalService.openNotificationTab();
           }, 500);
         }
-        this.route.navigate(['/dashboard']);
+        this.route.navigate(['/select-customer']);
         this.globalService.isPhoneUnlocked = true;
       } else {
         this.globalService.clearPinInputs();
