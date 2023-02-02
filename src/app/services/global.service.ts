@@ -66,7 +66,7 @@ export class GlobalService {
   isShowingLoader: boolean;
   notification_count = 0;
   deviceId: any;
-
+  userData: any;
   constructor(
     public _http: HttpClient,
     public storage: Storage,

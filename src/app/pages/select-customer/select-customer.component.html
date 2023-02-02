@@ -1,4 +1,8 @@
-<app-header class="typ-transparent" [type]="'normal'" [typeTitle]="'logo'"></app-header>
+<app-header
+  class="typ-transparent"
+  [type]="'normal'"
+  [typeTitle]="'logo'"
+></app-header>
 <ion-content [fullscreen]="true" class="lyt-section typ-bg">
   <div class="content-inner lyt-section typ-bg">
     <div class="content">
@@ -7,25 +11,43 @@
           <h2 class="title">Username</h2>
           <h3 class="sub-title">welcome home</h3>
         </div>
-        <div class="ion-text-center" >
-        <!-- <form [formGroup]="selForm" (ngSubmit)="fnSubmit()"> [modalCssClass]="modaldesign"  -->
+        <div class="ion-text-center">
+          <!-- <form [formGroup]="selForm" (ngSubmit)="fnSubmit()"> [modalCssClass]="modaldesign"  -->
           <ion-item class="app-form-group app-select" lines="none">
-            <ion-label class="app-field-label" position="stacked">Choose Project</ion-label>
-          <ionic-selectable #portComponent [items]="sampleData" itemValueField="id"
-            itemTextField="name"  [canSearch]="true" [canClear]="true" [(ngModel)]="port" (onChange)="portChange($event)">
-          
-            <ng-template ionicSelectableHeaderTemplate>
-         <ion-toolbar> 
-          <ion-buttons slot="end">
-            <ion-button (click)="portComponent.close()">cancel</ion-button>
-          </ion-buttons>
-          <ion-title>Select Project</ion-title>
-        </ion-toolbar>
-          </ng-template>
-          <!-- <ng-template ionicSelectableFooterTemplate>
+            <ion-label class="app-field-label" position="stacked"
+              >Choose Project</ion-label
+            >
+            <ionic-selectable
+              #portComponent
+              [items]="sampleData"
+              itemValueField="id"
+              itemTextField="name"
+              [canSearch]="true"
+              [canClear]="true"
+              [(ngModel)]="port"
+              (onChange)="portChange($event)"
+            >
+              <ng-template ionicSelectableHeaderTemplate>
+                <ion-toolbar>
+                  <ion-buttons slot="end">
+                    <ion-button
+                      class="app-btn btn-link"
+                      (click)="portComponent.close()"
+                      >cancel</ion-button
+                    >
+                  </ion-buttons>
+                  <ion-title>Select Project</ion-title>
+                </ion-toolbar>
+              </ng-template>
+              <!-- <ng-template ionicSelectableSearchTemplate> Abc </ng-template> -->
+              <!-- <ng-template ionicSelectableItemTemplate let-port="item">
+                {{port.name}} ({{port.country.name}})
+              </ng-template> -->
+              <ng-template ionicSelectableFooterTemplate></ng-template>
+              <!-- <ng-template ionicSelectableFooterTemplate>
 
           </ng-template> -->
-          <!-- <ng-template ionicSelectableFooterTemplate>
+              <!-- <ng-template ionicSelectableFooterTemplate>
 
             <ion-toolbar>
               <ion-row class="ion-justify-content-center">
@@ -43,13 +65,17 @@
               </ion-row>
             </ion-toolbar>
           </ng-template> -->
-  </ionic-selectable>
+            </ionic-selectable>
           </ion-item>
-          <div class="button-parent" >
-            <ion-button class="app-btn btn-default" (click)="fnSubmit()" type="submit">Submit
+          <div class="button-parent">
+            <ion-button
+              class="app-btn btn-default"
+              (click)="fnSubmit()"
+              type="submit"
+              >Submit
             </ion-button>
           </div>
-        <!-- </form> -->
+          <!-- </form> -->
         </div>
       </div>
     </div>

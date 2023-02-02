@@ -9,52 +9,46 @@ import { GlobalService } from 'src/app/services/global.service';
   styleUrls: ['./login-with-unamenpass.component.scss'],
 })
 export class LoginWithUnamenpassComponent implements OnInit {
-  logForm:FormGroup;
+  logForm: FormGroup;
   encryptSecretKey = this.globalSrv.encryptSecretKey;
-  constructor(public router:Router,public fb:FormBuilder,public globalSrv:GlobalService) {
-    this.logForm=fb.group({
-      username:fb.control('',Validators.required),
-      password:fb.control('',Validators.required)
-    })
-   }
+  constructor(
+    public router: Router,
+    public fb: FormBuilder,
+    public globalSrv: GlobalService
+  ) {
+    this.logForm = fb.group({
+      username: fb.control('', Validators.required),
+      password: fb.control('', Validators.required),
+    });
+
+    // console.log(
+    //   'Decrypt',
+    //   this.globalSrv.decrypt(
+    //     this.encryptSecretKey,
+    //     '8X1+diJI85bCBuVJy5a1msk4xZZlkjNpysEWuVJmAEyND0dSc75CFqR7KIDNOUwO36Kzr82Guu2ElRkd1cWLSdptq+5UXSewz3muwJgjL/yIKkOYJMr8gGh5lIa8KDLV9olIHJixdTZp3LJOedNKDdqaSf3sHAmygBDSZPyVhdzoYfrZJXZ1O0XbHut13neC'
+    //   )
+    // );
+  }
 
   ngOnInit() {}
-fnSubmit(){
-  console.log(this.logForm.value)
-this.globalSrv.validateCustomerwithUnamePass(this.logForm.value).then((response: any) => {
-  if (response.statusMessage == 'Invalid Customer') {
-  } else {
-    // var decryptedContactNo = this.globalService.decrypt(
-    //   this.encryptSecretKey,
-    //   response.object.vcContactNo
-    // );
-    // var decryptedEmail = this.globalService.decrypt(
-    //   this.encryptSecretKey,
-    //   response.object.vcEmail
-    // );
-    // var decryptedName = this.globalService.decrypt(
-    //   this.encryptSecretKey,
-    //   response.object.vcName
-    // );
-  }
+  fnSubmit() {
+    this.globalSrv
+      .validateCustomerwithUnamePass(this.logForm.value)
+      .then((response: any) => {
+        if (response.btIsSuccess) {
+          this.globalSrv.userData = this.globalSrv.decrypt(
+            this.encryptSecretKey,
+            response.object
+          );
 
-  // this.validateCustData = {
-  //   vcContactNo: decryptedContactNo,
-  //   vcEmail: decryptedEmail,
-  //   vcName: decryptedName,
-  // };
-  if (response.btIsSuccess) {
-    response['object']['otp'] = response.vcTitle;
-
-    // this.globalService.logCustomerDetail=this.validateCustData
-    // this.navCtrl.push("ValidateCustIdPage", { "serverResponse": this.validateCustData });
-    this.router.navigate(['/select-customer']);
-  } else {
-    this.globalSrv.universalAlert('', response.statusMessage, 'Ok');
+          console.log('Decrypted data', this.globalSrv.userData);
+          this.router.navigate(['/select-customer']);
+        } else {
+          this.globalSrv.universalAlert('', response.statusMessage, 'Ok');
+        }
+      })
+      .catch((response: any) => {
+        console.log(response);
+      });
   }
-})
-.catch((response: any) => {
-  console.log(response);
-});
-}
 }
