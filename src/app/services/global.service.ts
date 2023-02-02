@@ -530,11 +530,11 @@ export class GlobalService {
     });
     return promise;
   }
-  getCustomerlist(id, pageNumber) {
+  getCustomerlist(id, pageNumber,searchedtext) {
     let promise = new Promise((resolve, reject) => {
       this._http
         .get(
-          `${environment.serverUrl}v1/account/salesadmin/customerlist?id=${id}&&page=${pageNumber}`
+          `${environment.serverUrl}v1/account/salesadmin/customerlist?id=${id}&&page=${pageNumber}&searchtext=${searchedtext}`
         )
 
         .toPromise()
