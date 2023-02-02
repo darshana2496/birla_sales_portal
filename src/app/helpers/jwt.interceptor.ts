@@ -16,7 +16,10 @@ export class JwtInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (request.url.includes(`${environment.serverUrl}`)) {
+    if (
+      request.url.includes(`${environment.serverUrl}`) &&
+      !request.url.includes('/account/salesadmin/customerlist')
+    ) {
       //hide loader for notification api
       this.globalService.showLoader();
     }

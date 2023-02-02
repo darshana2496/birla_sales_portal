@@ -27,6 +27,8 @@
               [(ngModel)]="port"
               (onChange)="portChange($event)"
               (onSearch)="searchPorts($event)"
+              [hasInfiniteScroll]="true"
+              (onInfiniteScroll)="getMoreCustomer($event)"
             >
               <ng-template ionicSelectableHeaderTemplate>
                 <ion-toolbar>
