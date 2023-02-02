@@ -16,10 +16,7 @@ export class JwtInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (
-      !request.url.includes('getnotificationcount') &&
-      request.url.includes(`${environment.serverUrl}`)
-    ) {
+    if (request.url.includes(`${environment.serverUrl}`)) {
       //hide loader for notification api
       this.globalService.showLoader();
     }

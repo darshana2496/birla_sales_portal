@@ -25,6 +25,7 @@
               [canSearch]="true"
               [canClear]="true"
               [(ngModel)]="port"
+              (onSearch)="searchPorts($event)"
               (onChange)="portChange($event)"
             >
               <ng-template ionicSelectableHeaderTemplate>

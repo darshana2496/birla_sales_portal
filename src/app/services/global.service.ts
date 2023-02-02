@@ -808,16 +808,4 @@ export class GlobalService {
     });
     return (await modal).present();
   }
-
-  getNotificationCount() {
-    let promise = new Promise((resolve, reject) => {
-      this._http
-        .get(this.urls + 'v1/config/getnotificationcount/' + this.customerId)
-        .toPromise()
-        .then((response) => {
-          resolve(response);
-        });
-    });
-    return promise;
-  }
 }

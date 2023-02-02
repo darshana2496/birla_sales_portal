@@ -32,7 +32,6 @@ export class AppComponent {
 
   rootPage: string;
   exitAppCount: number = 0;
-  timerSubscription: any;
 
   constructor(
     public storage: Storage,
@@ -176,19 +175,7 @@ export class AppComponent {
       //     }
       //   }
       // });
-
-      this.timerSubscription = timer(0, 30000)
-        .pipe(
-          map(() => {
-            this.getNotificationCount();
-          })
-        )
-        .subscribe();
     });
-  }
-
-  ngOnDestroy() {
-    this.timerSubscription.unsubscribe();
   }
 
   setInitialPage(pin: any): void {
@@ -225,18 +212,5 @@ export class AppComponent {
         }
       }
     });
-  }
-
-  getNotificationCount() {
-    this.globalService
-      .getNotificationCount()
-      .then((response: any) => {
-        if (response.btIsSuccess) {
-          this.globalService.notification_count = response.object;
-        } else {
-          this.globalService.notification_count = 0;
-        }
-      })
-      .catch((response: any) => {});
   }
 }
