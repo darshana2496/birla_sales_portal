@@ -82,19 +82,28 @@ export class SelectCustomerComponent implements OnInit {
     // console.log(projdetail, 'check');
     this.globalService.selectedProjectObj = projdetail;
   }
-
+  filterPorts(ports: any[], text: string) {
+    return ports.filter((port) => {
+      return (
+        port.customerName.trim().toLowerCase().match(text.trim())
+      );
+    });
+  }
   searchPorts(event: { component: IonicSelectableComponent; text: string }) {
-    let portName = event.text;
-    // event.component.startSearch();
-    // console.log('search text', portName);
+    event.component.items=this.sampleData;
+   
+    let portName = event.text.trim().toLowerCase();;
+    if(portName.length > 2){
+      event.component.startSearch();
+      event.component.items=this.filterPorts(this.sampleData,portName)
+    }
+    else if(portName.length < 2) {
+      event.component.endSearch();
+    }
+    else{
+      event.component.endSearch();
+    }
+    event.component.endSearch();
 
-    // Assume that we already have some PortService that return ports
-    // filtered by name from our server.
-    // this.portService.getPorts(portName).subscribe(ports => {
-    //   event.component.items = ports;
-
-    //   // Get ports from a storage and stop searching.
-    //   event.component.endSearch();
-    // });
   }
 }

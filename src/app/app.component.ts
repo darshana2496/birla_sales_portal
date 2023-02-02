@@ -32,6 +32,7 @@ export class AppComponent {
 
   rootPage: string;
   exitAppCount: number = 0;
+  
 
   constructor(
     public storage: Storage,
@@ -97,97 +98,21 @@ export class AppComponent {
 
       storage.get('AccessPin').then((val) => {
         this.setInitialPage(val);
-      });
-
-      // platform.backButton.subscribe((event) => {
-      //   alert(event);
-      //   let menuBarOpen = this.menuCtrl.isOpen();
-
-      //   this.popoverController
-      //     .getTop()
-      //     .then((popover) => {
-      //       return this.popoverController.dismiss();
-      //     })
-      //     .catch((e) => console.log(e));
-      //   this.modalCtrl
-      //     .getTop()
-      //     .then((modal) => {
-      //       return this.modalCtrl.dismiss();
-      //     })
-      //     .catch((e) => console.log(e));
-      //   this.loadingController
-      //     .getTop()
-      //     .then((loading) => {
-      //       return this.loadingController.dismiss();
-      //     })
-      //     .catch((e) => console.log(e));
-      //   this.toastController
-      //     .getTop()
-      //     .then((toast) => {
-      //       return this.toastController.dismiss();
-      //     })
-      //     .catch((e) => console.log(e));
-      //   this.exitAppCount++;
-      //   if (this.routerOutlet && !this.routerOutlet.canGoBack()) {
-      //     if (this.exitAppCount > 1) {
-      //       App.exitApp();
-      //     }
-      //   }
-
-      //   if (menuBarOpen) {
-      //     this.menuCtrl.close();
-      //     this.exitAppCount = 0;
-      //   } else {
-      //     if (this.routerOutlet && !this.routerOutlet.canGoBack()) {
-      //       const tabsNav = this.ionTab.outlet.getContext();
-      //       // if (tabsNav != null) {
-      //       //   if (tabsNav.getSelected().index != 0) {
-      //       //       this.exitAppCount = 0;
-      //       //       tabsNav.select(0);
-      //       //       return;
-      //       //   }
-      //       // }
-
-      //       this.exitAppCount++;
-      //       if (this.exitAppCount > 1) {
-      //         App.exitApp();
-      //       } else {
-      //         // this.globalService.showToastMessage(
-      //         //     "Press again to exit",
-      //         //     1000,
-      //         //     "bottom"
-      //         // );
-      //       }
-      //     } else {
-      //       this.exitAppCount = 0;
-      //       if (this.globalService.currentlyActivePage == '/network-check') {
-      //         // if (this.globalService.currentlyActivePage == "NetworkCheckPage") {
-      //         this.globalService.checkInternetConnection();
-      //       } else if (
-      //         this.globalService.currentlyActivePage ==
-      //         'payment-gateway-response'
-      //       ) {
-      //         // } else if (this.globalService.currentlyActivePage == "PaymentGatewayResponsePage") {
-      //         this.router.navigate(['/login-with-uname']);
-      //       } else {
-      //         this.nav.pop();
-      //       }
-      //     }
-      //   }
-      // });
+      });      
     });
   }
+
 
   setInitialPage(pin: any): void {
     this.globalService.setInitialProject(); //used to get list of customerProjects added and get if isAppReviewd
     if (pin != null) {
-      this.router.navigate(['enter-pin']);
+     this.router.navigate(['enter-pin']);
     } else {
       this.storage.get('FirstTimeAppLoad').then((val) => {
         if (val == null) {
           this.router.navigate(['AppIntroPage']);
         } else {
-          this.router.navigate(['login-with-uname']);
+           this.router.navigate(['login-with-uname']);
         }
       });
     }
