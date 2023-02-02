@@ -105,4 +105,10 @@ export class SelectCustomerComponent implements OnInit {
     }
     event.component.endSearch();
   }
+  logout(){
+    this.globalService.showConfirmationAlertPrompt(
+      'Logout',
+      'Do you want to logout'
+    );
+  }
 }
