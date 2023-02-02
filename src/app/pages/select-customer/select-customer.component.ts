@@ -66,20 +66,20 @@ export class SelectCustomerComponent implements OnInit {
     console.log('port:', event.value);
   }
   fnSubmit() {
-    console.log('Value', this.port);
-    this.globalService.customerId = this.port.customerCode;
-    this.storage.set('ProjectCustomerId', this.port.customerCode);
-    console.log(this.globalService.customerId, 'cutomer id');
+    // console.log('Value', this.port);
+    this.globalService.customerId = this.port.customerCode.toString();
+    this.storage.set('ProjectCustomerId', this.port.customerCode.toString());
+    // console.log(this.globalService.customerId, 'cutomer id');
     this.router.navigate(['/dashboard']);
     this.storage.set('selectedProjectDetail', this.port);
     const projdetail = {
-      customerProjectId: this.port.customerCode,
+      customerProjectId: this.port.customerCode.toString(),
       customerName: this.port.customerName,
       projectImage: '',
       projectName: this.port.projectName,
       userName: this.port.rmName,
     };
-    console.log(projdetail, 'check');
+    // console.log(projdetail, 'check');
     this.globalService.selectedProjectObj = projdetail;
   }
   filterPorts(ports: any[], text: string) {
