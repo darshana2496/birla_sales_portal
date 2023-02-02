@@ -8,7 +8,8 @@
     <div class="content">
       <div class="form-cont app-form">
         <div class="bs-title-desc ion-text-start">
-          <h2 class="title">Hello {{ userName }}</h2>
+          <h2 class="title">Hello </h2>
+          <h3 class="sub-title">{{ userName }}</h3>
         </div>
         <div class="ion-text-center">
           <!-- <form [formGroup]="selForm" (ngSubmit)="fnSubmit()"> [modalCssClass]="modaldesign"  -->
@@ -28,6 +29,7 @@
               (onSearch)="searchPorts($event)"
               [hasInfiniteScroll]="true"
               (onInfiniteScroll)="getMoreCustomer($event)"
+              modalCssClass="custom-modal"
             >
               <ng-template ionicSelectableHeaderTemplate>
                 <ion-toolbar>
@@ -84,6 +86,7 @@
               >Submit
             </ion-button>
           </div>
+          <ion-button class="app-btn btn-link" (click)="logout()" fill="clear">Logout</ion-button>
           <!-- </form> -->
         </div>
       </div>

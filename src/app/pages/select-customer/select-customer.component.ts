@@ -16,6 +16,7 @@ export class SelectCustomerComponent implements OnInit {
   userDetail: any;
   userName: any;
   pageNumber = 1;
+  searchedtext='';
   @ViewChild('portComponent') portComponent: IonicSelectableComponent;
   constructor(
     public storage: Storage,
@@ -33,7 +34,7 @@ export class SelectCustomerComponent implements OnInit {
   }
   getListdata() {
     this.globalService
-      .getCustomerlist(this.userDetail.member_id, this.pageNumber)
+      .getCustomerlist(this.userDetail.member_id, this.pageNumber,this.searchedtext)
       .then((x: any) => {
         if (x.btIsSuccess) {
           this.sampleData = x.object;
@@ -80,12 +81,14 @@ export class SelectCustomerComponent implements OnInit {
     });
   }
   searchPorts(event: { component: IonicSelectableComponent; text: string }) {
-    event.component.items=this.sampleData;
-   
+    // event.component.items=this.sampleData;
     let portName = event.text.trim().toLowerCase();;
+    this.searchedtext = portName;
     if(portName.length > 2){
       event.component.startSearch();
-      event.component.items=this.filterPorts(this.sampleData,portName)
+      this.getListdata()
+      // event.component.items=this.filterPorts(this.sampleData,portName)
+     
     }
     else if(portName.length < 2) {
       event.component.endSearch();
@@ -94,7 +97,12 @@ export class SelectCustomerComponent implements OnInit {
       event.component.endSearch();
     }
     event.component.endSearch();
-
+  }
+  logout(){
+    this.globalService.showConfirmationAlertPrompt(
+      'Logout',
+      'Do you want to logout'
+    );
   }
 
   getMoreCustomer(event: {
@@ -103,7 +111,7 @@ export class SelectCustomerComponent implements OnInit {
   }) {
     this.pageNumber++;
     this.globalService
-      .getCustomerlist(this.userDetail.member_id, this.pageNumber)
+      .getCustomerlist(this.userDetail.member_id, this.pageNumber,'')
       .then((x: any) => {
         if (x.btIsSuccess) {
           this.sampleData = event.component.items.concat(x.object);
