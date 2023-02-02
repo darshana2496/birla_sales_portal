@@ -16,17 +16,10 @@ export class NotificationPage implements OnInit {
       .then((response: any) => {
         if (response.btIsSuccess) {
           this.notificationList = response.object;
-          this.updateNotification();
         } else {
           this.notificationList = [];
         }
       })
-      .catch((response: any) => {});
-  }
-  updateNotification() {
-    this.globalService
-      .updateCustomerNotification()
-      .then((response: any) => {})
       .catch((response: any) => {});
   }
 }

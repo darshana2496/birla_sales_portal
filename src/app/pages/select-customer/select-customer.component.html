@@ -8,8 +8,7 @@
     <div class="content">
       <div class="form-cont app-form">
         <div class="bs-title-desc ion-text-start">
-          <h2 class="title">Hello {{userName}}</h2>
-         
+          <h2 class="title">Hello {{ userName }}</h2>
         </div>
         <div class="ion-text-center">
           <!-- <form [formGroup]="selForm" (ngSubmit)="fnSubmit()"> [modalCssClass]="modaldesign"  -->
@@ -25,7 +24,9 @@
               [canSearch]="true"
               [canClear]="true"
               [(ngModel)]="port"
-              (onChange)="portChange($event)">
+              (onChange)="portChange($event)"
+              (onSearch)="searchPorts($event)"
+            >
               <ng-template ionicSelectableHeaderTemplate>
                 <ion-toolbar>
                   <ion-buttons slot="end">
@@ -39,12 +40,12 @@
                 </ion-toolbar>
               </ng-template>
               <ng-template
-              ionicSelectableItemTemplate
-              let-port="item"
-              let-isPortSelected="isItemSelected"
-            >
-              {{port.customerName}} ({{port.customerCode}})
-            </ng-template>
+                ionicSelectableItemTemplate
+                let-port="item"
+                let-isPortSelected="isItemSelected"
+              >
+                {{ port.customerName }} ({{ port.customerCode }})
+              </ng-template>
               <!-- <ng-template ionicSelectableSearchTemplate> Abc </ng-template> -->
               <!-- <ng-template ionicSelectableItemTemplate let-port="item">
                 {{port.name}} ({{port.country.name}})
