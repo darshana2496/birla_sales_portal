@@ -15,35 +15,25 @@ export class SelectCustomerComponent implements OnInit {
   btndisabled = false;
   userDetail: any;
   userName: any;
+  pageNumber = 1;
   @ViewChild('portComponent') portComponent: IonicSelectableComponent;
   constructor(
     public storage: Storage,
     public globalService: GlobalService,
     public fb: FormBuilder,
     public router: Router
-  ) {
-    // this.selForm=fb.group({
-    //   idValue:fb.control('',Validators.required)
-    // })
-  }
+  ) {}
 
   ngOnInit() {
-    // this.sampleData=[
-    //   {"name":"NewYork","id":1},
-    //   {"name":"USA","id":2},
-    //   {"name":"London","id":3}
-    // ]
     this.storage.get('ProjectCustomerLogDetail').then((x: any) => {
-      console.log(x, 'storage check');
       this.userDetail = x;
       this.userName = x.name;
-      console.log(this.userDetail, 'storage');
       this.getListdata();
     });
   }
   getListdata() {
     this.globalService
-      .getCustomerlist(this.userDetail.member_id)
+      .getCustomerlist(this.userDetail.member_id, this.pageNumber)
       .then((x: any) => {
         if (x.btIsSuccess) {
           this.sampleData = x.object;
@@ -96,5 +86,22 @@ export class SelectCustomerComponent implements OnInit {
     //   // Get ports from a storage and stop searching.
     //   event.component.endSearch();
     // });
+  }
+
+  getMoreCustomer(event: {
+    component: IonicSelectableComponent;
+    text: string;
+  }) {
+    this.pageNumber++;
+    this.globalService
+      .getCustomerlist(this.userDetail.member_id, this.pageNumber)
+      .then((x: any) => {
+        if (x.btIsSuccess) {
+          this.sampleData = event.component.items.concat(x.object);
+          event.component.items = this.sampleData;
+          event.component.endInfiniteScroll();
+        }
+      })
+      .catch((err) => {});
   }
 }
