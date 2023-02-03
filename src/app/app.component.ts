@@ -17,7 +17,6 @@ import { App } from '@capacitor/app';
 
 import { Storage } from '@ionic/storage-angular';
 import { GlobalService } from './services/global.service';
-import OneSignal from 'onesignal-cordova-plugin';
 import { map, timer } from 'rxjs';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
@@ -32,7 +31,6 @@ export class AppComponent {
 
   rootPage: string;
   exitAppCount: number = 0;
-  
 
   constructor(
     public storage: Storage,
@@ -98,21 +96,20 @@ export class AppComponent {
 
       storage.get('AccessPin').then((val) => {
         this.setInitialPage(val);
-      });      
+      });
     });
   }
-
 
   setInitialPage(pin: any): void {
     this.globalService.setInitialProject(); //used to get list of customerProjects added and get if isAppReviewd
     if (pin != null) {
-     this.router.navigate(['enter-pin']);
+      this.router.navigate(['enter-pin']);
     } else {
       this.storage.get('FirstTimeAppLoad').then((val) => {
         if (val == null) {
           this.router.navigate(['AppIntroPage']);
         } else {
-           this.router.navigate(['login-with-uname']);
+          this.router.navigate(['login-with-uname']);
         }
       });
     }
