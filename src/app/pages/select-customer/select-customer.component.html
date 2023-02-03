@@ -29,7 +29,7 @@
               (onSearch)="searchPorts($event)"
               [hasInfiniteScroll]="true"
               (onInfiniteScroll)="getMoreCustomer($event)"
-              modalCssClass="custom-modal"
+              modalCssClass="custom-modaal"
             >
               <ng-template ionicSelectableHeaderTemplate>
                 <ion-toolbar>
@@ -58,16 +58,11 @@
               <!-- <ng-template ionicSelectableFooterTemplate>
 
           </ng-template> -->
-              <!-- <ng-template ionicSelectableFooterTemplate>
+              <ng-template ionicSelectableFooterTemplate>
 
             <ion-toolbar>
               <ion-row class="ion-justify-content-center">
-                <ion-col size="auto" *ngIf="portComponent.canClear">
-                  <ion-button class="app-btn btn-default" (click)="clear()"
-                    [disabled]="!portComponent.itemsToConfirm.length">
-                    Clear
-                  </ion-button>
-                </ion-col>               
+                               
                 <ion-col size="auto">
                   <ion-button class="app-btn btn-default" (click)="confirm()">
                     OK
@@ -75,7 +70,7 @@
                 </ion-col>
               </ion-row>
             </ion-toolbar>
-          </ng-template> -->
+          </ng-template>
             </ionic-selectable>
           </ion-item>
           <div class="button-parent">
