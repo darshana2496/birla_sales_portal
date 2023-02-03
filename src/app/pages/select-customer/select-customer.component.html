@@ -2,19 +2,20 @@
   class="typ-transparent"
   [type]="'normal'"
   [typeTitle]="'logo'"
+  [logoutBtn]="true"
 ></app-header>
 <ion-content [fullscreen]="true" class="lyt-section typ-bg">
   <div class="content-inner lyt-section typ-bg">
     <div class="content">
       <div class="form-cont app-form">
         <div class="bs-title-desc ion-text-start">
-          <h2 class="title">Hello </h2>
+          <h2 class="title">Hello</h2>
           <h3 class="sub-title">{{ userName }}</h3>
         </div>
         <div class="ion-text-center">
           <!-- <form [formGroup]="selForm" (ngSubmit)="fnSubmit()"> [modalCssClass]="modaldesign"  -->
           <ion-item class="app-form-group app-select" lines="none">
-            <ion-label class="app-field-label" position="stacked"
+            <ion-label class="app-field-label" position="floating"
               >Choose Customer</ion-label
             >
             <ionic-selectable
@@ -34,9 +35,7 @@
               <ng-template ionicSelectableHeaderTemplate>
                 <ion-toolbar>
                   <ion-buttons slot="end">
-                    <ion-button
-                      class="app-btn btn-link"
-                      (click)="portComponent.close()"
+                    <ion-button class="app-btn btn-link" (click)="cancel()"
                       >cancel</ion-button
                     >
                   </ion-buttons>
@@ -50,30 +49,20 @@
               >
                 {{ port.customerName }} ({{ port.customerCode }})
               </ng-template>
-              <!-- <ng-template ionicSelectableSearchTemplate> Abc </ng-template> -->
-              <!-- <ng-template ionicSelectableItemTemplate let-port="item">
-                {{port.name}} ({{port.country.name}})
-              </ng-template> -->
-              <!-- <ng-template ionicSelectableFooterTemplate></ng-template> -->
-              <!-- <ng-template ionicSelectableFooterTemplate>
-
-          </ng-template> -->
               <ng-template ionicSelectableFooterTemplate>
-
-            <ion-toolbar>
-              <ion-row class="ion-justify-content-center">
-                               
-                <ion-col size="auto">
-                  <ion-button class="app-btn btn-default" (click)="confirm()">
+                <ion-toolbar>
+                  <ion-button
+                    expand="full"
+                    class="app-btn btn-link ion-justify-content-center footer-btn"
+                    (click)="confirm()"
+                  >
                     OK
-                  </ion-button> 
-                </ion-col>
-              </ion-row>
-            </ion-toolbar>
-          </ng-template>
+                  </ion-button>
+                </ion-toolbar>
+              </ng-template>
             </ionic-selectable>
           </ion-item>
-          <div class="button-parent">
+          <div class="button-parent submit-btn-group">
             <ion-button
               class="app-btn btn-default"
               (click)="fnSubmit()"
@@ -81,7 +70,9 @@
               >Submit
             </ion-button>
           </div>
-          <ion-button class="app-btn btn-link" (click)="logout()" fill="clear">Logout</ion-button>
+          <!-- <ion-button class="app-btn btn-link" (click)="logout()" fill="clear"
+            >Logout</ion-button -->
+          >
           <!-- </form> -->
         </div>
       </div>

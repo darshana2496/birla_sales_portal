@@ -13,7 +13,7 @@
         </ion-buttons>
       </ng-container>
       <ion-nav class="toolbar toolbar-md">
-        <ion-title>
+        <ion-title slot="">
           <ng-container *ngIf="typeTitle === 'logo'">
             <img src="../../../assets/images/logo.svg" class="cm-img" />
           </ng-container>
@@ -23,13 +23,19 @@
         </ion-title>
 
         <ng-container *ngIf="typeEnd === 'notification'">
-          <ion-buttons end class="notification-btn">
+          <ion-buttons slot="end" class="notification-btn">
             <button class="button-link button" (click)="contactModal()">
               <i class="icon-bell-outline"></i>
             </button>
           </ion-buttons>
         </ng-container>
       </ion-nav>
+
+      <ng-container *ngIf="logoutBtn === true">
+        <ion-button (click)="logout()" class="app-btn button-link logout-btn">
+          <span class="icon-log-out"></span>
+        </ion-button>
+      </ng-container>
     </ion-toolbar>
   </ion-header>
 </ng-container>

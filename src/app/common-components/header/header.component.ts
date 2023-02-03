@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   @Input('typeEnd') typeEnd;
   @Input('pageNameVal') pageNameVal;
   @Input() backbtn = false;
+  @Input() logoutBtn = false;
 
   text: string;
 
@@ -51,5 +52,12 @@ export class HeaderComponent implements OnInit {
       animationDirection: 'back',
     };
     this.navCtrl.back(animations);
+  }
+
+  logout() {
+    this.globalService.showConfirmationAlertPrompt(
+      'Logout',
+      'Do you want to logout'
+    );
   }
 }

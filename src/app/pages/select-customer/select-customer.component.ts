@@ -16,7 +16,7 @@ export class SelectCustomerComponent implements OnInit {
   userDetail: any;
   userName: any;
   pageNumber = 1;
-  searchedtext='';
+  searchedtext = '';
   @ViewChild('portComponent') portComponent: IonicSelectableComponent;
   constructor(
     public storage: Storage,
@@ -34,11 +34,15 @@ export class SelectCustomerComponent implements OnInit {
   }
   getListdata() {
     this.globalService
-      .getCustomerlist(this.userDetail.member_id, this.pageNumber,this.searchedtext)
+      .getCustomerlist(
+        this.userDetail.member_id,
+        this.pageNumber,
+        this.searchedtext
+      )
       .then((x: any) => {
         if (x.btIsSuccess) {
           this.sampleData = x.object;
-          console.log(this.sampleData);
+          this.portComponent.items = this.sampleData;
         }
       })
       .catch((err) => {});
@@ -51,7 +55,19 @@ export class SelectCustomerComponent implements OnInit {
   confirm() {
     this.portComponent.confirm();
     this.portComponent.close();
+    this.portComponent.searchText = '';
     this.btndisabled = true;
+    this.searchedtext = '';
+    this.pageNumber = 1;
+    this.getListdata();
+  }
+
+  cancel() {
+    this.portComponent.searchText = '';
+    this.searchedtext = '';
+    this.pageNumber = 1;
+    this.getListdata();
+    this.portComponent.close();
   }
   portChange(event: { component: IonicSelectableComponent; value: any }) {
     console.log('port:', event.value);
@@ -75,30 +91,25 @@ export class SelectCustomerComponent implements OnInit {
   }
   filterPorts(ports: any[], text: string) {
     return ports.filter((port) => {
-      return (
-        port.customerName.trim().toLowerCase().match(text.trim())
-      );
+      return port.customerName.trim().toLowerCase().match(text.trim());
     });
   }
   searchPorts(event: { component: IonicSelectableComponent; text: string }) {
     // event.component.items=this.sampleData;
-    let portName = event.text.trim().toLowerCase();;
+    let portName = event.text.trim().toLowerCase();
     this.searchedtext = portName;
-    if(portName.length > 2){
+    if (portName.length > 2) {
       event.component.startSearch();
-      this.getListdata()
+      this.getListdata();
       // event.component.items=this.filterPorts(this.sampleData,portName)
-     
-    }
-    else if(portName.length < 2) {
+    } else if (portName.length < 2) {
       event.component.endSearch();
-    }
-    else{
+    } else {
       event.component.endSearch();
     }
     event.component.endSearch();
   }
-  logout(){
+  logout() {
     this.globalService.showConfirmationAlertPrompt(
       'Logout',
       'Do you want to logout'
@@ -111,7 +122,7 @@ export class SelectCustomerComponent implements OnInit {
   }) {
     this.pageNumber++;
     this.globalService
-      .getCustomerlist(this.userDetail.member_id, this.pageNumber,'')
+      .getCustomerlist(this.userDetail.member_id, this.pageNumber, '')
       .then((x: any) => {
         if (x.btIsSuccess) {
           this.sampleData = event.component.items.concat(x.object);
