@@ -11,7 +11,7 @@ import { Storage } from '@ionic/storage-angular';
 })
 export class PagesComponent {
   @ViewChild(IonSlides) slides: IonSlides;
-
+  imgUrl='https://portal.birlaestates.com/Uploads/Project/Project%20Thumbnails-2021-11-24--17-45-41-786.jpg'
   slideOpts = {
     initialSlide: 0,
     slidesPerView: 2,
@@ -37,14 +37,14 @@ export class PagesComponent {
   //   },
   // };
   //when slider is selected
-  selectProject(index: number, projectObj: any) {
-    this.globalService.customerId = projectObj.customerProjectId.toString(); //used in api calls
-    this.globalService.activeSlideIndicator = index;
-    this.globalService.selectedProjectObj = projectObj;
-    this.storage.set(
-      'ProjectCustomerId',
-      projectObj.customerProjectId.toString()
-    );
+  selectProject() {
+    // this.globalService.customerId = projectObj.customerProjectId.toString(); //used in api calls
+    // this.globalService.activeSlideIndicator = index;
+    // this.globalService.selectedProjectObj = projectObj;
+    // this.storage.set(
+    //   'ProjectCustomerId',
+    //   projectObj.customerProjectId.toString()
+    // );
     this.menuCtrl.close();
 
     this.router.navigate(['dashboard']);
