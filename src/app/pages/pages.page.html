@@ -20,26 +20,25 @@
 
     <div class="bs-slider typ-menu">
       <ion-slides #slides [pager]="false" [options]="slideOpts">
-        <ion-slide></ion-slide>
+        <!--       [class.active]="globalService.activeSlideIndicator === i"
+           *ngFor="let project of globalService.projectList;let i=index" -->
         <ion-slide
-          *ngFor="let project of globalService.projectList;let i=index"
-          (click)="selectProject(i,project)"
-          [class.active]="globalService.activeSlideIndicator === i"
-        >
+          class="active"
+          (click)="selectProject()">
           <div class="img-parent">
             <img
-              src="{{project.projectImage}}"
+              [src]="imgUrl"
               onError="this.src='./assets/images/default-fallback-image-profile.png';"
             />
           </div>
-          <div class="name">{{project.projectName}}</div>
+          <!-- <div class="name">{{project.projectName}}</div> -->
         </ion-slide>
 
-        <ion-slide>
+        <!-- <ion-slide>
           <ion-button class="app-btn add-button" (click)="addProject()">
             <i class="icon icon-add"></i>
           </ion-button>
-        </ion-slide>
+        </ion-slide> -->
       </ion-slides>
     </div>
 
@@ -49,7 +48,7 @@
         class="ion-text-center"
         (click)="openPage('select-customer')"
         [ngClass]="{'active':globalService.currentlyActivePage === '/select-customer'}"
-        ><ion-label>Change Project</ion-label>
+        ><ion-label>Change Customer</ion-label>
       </ion-item>
       <ion-item
         lines="none"
