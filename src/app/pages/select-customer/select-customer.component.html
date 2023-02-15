@@ -39,7 +39,7 @@
                       >cancel</ion-button
                     >
                   </ion-buttons>
-                  <ion-title>Select Project</ion-title>
+                  <ion-title>Select Customer</ion-title>
                 </ion-toolbar>
               </ng-template>
               <ng-template
@@ -65,6 +65,7 @@
           <div class="button-parent submit-btn-group">
             <ion-button
               class="app-btn btn-default"
+              [disabled]="!portComponent.value"
               (click)="fnSubmit()"
               type="submit"
               >Submit
@@ -72,7 +73,7 @@
           </div>
           <!-- <ion-button class="app-btn btn-link" (click)="logout()" fill="clear"
             >Logout</ion-button -->
-          >
+
           <!-- </form> -->
         </div>
       </div>

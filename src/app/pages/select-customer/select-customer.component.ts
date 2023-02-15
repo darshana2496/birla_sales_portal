@@ -27,9 +27,10 @@ export class SelectCustomerComponent implements OnInit {
 
   ngOnInit() {
     this.storage.get('ProjectCustomerLogDetail').then((x: any) => {
+      this.portComponent.clear();
       this.userDetail = x;
       this.userName = x.name;
-      this.getListdata();
+      // this.getListdata();
     });
   }
   getListdata() {
@@ -102,8 +103,9 @@ export class SelectCustomerComponent implements OnInit {
       event.component.startSearch();
       this.getListdata();
       // event.component.items=this.filterPorts(this.sampleData,portName)
-    } else if (portName.length < 2) {
+    } else if (portName.length == 0) {
       event.component.endSearch();
+      this.getListdata();
     } else {
       event.component.endSearch();
     }
