@@ -1,41 +1,33 @@
 .bs-header {
   text-align: center;
-  box-shadow: 0 1px 30px -6px #bfbfbf;
-
+  box-shadow: 0 1px 30px -6px #BFBFBF;
   &.header-ios ion-toolbar:last-of-type {
     --border-width: 0;
   }
-
   .header-background {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
-
   .toolbar-container {
     padding: 0;
   }
-
   .logo-wrap {
     width: 86px;
     padding: 10px;
     margin: 0 auto;
-
     img {
       width: 100%;
     }
   }
-
   ion-nav.toolbar {
     display: block;
   }
-
   .back-button.show-back-button {
     float: left;
     margin-top: 10px;
     padding-left: 0;
     min-width: 0;
   }
-
   .back-button-icon-md {
     font-size: 1.6rem;
     color: $clr-primary;
@@ -43,25 +35,21 @@
   .back-btn {
     box-shadow: none;
     position: absolute;
-  
     left: 0;
 }
-
-
   .toolbar-background-md {
-    background: #ffffff;
+    background: #FFFFFF;
   }
-
   .app-btn {
     &.btn-link {
       --color: $clr-white;
     }
   }
-
   .close-size-custom {
     font-size: 1.3rem !important;
   }
 }
+
 
 app-header {
   .toolbar {
@@ -70,7 +58,6 @@ app-header {
     position: relative;
     // top: 15px;
   }
-
   &~.lyt-section {
     .scroll-content {
       margin-top: 56px;
@@ -79,83 +66,76 @@ app-header {
   .back-btn {
     box-shadow: none;
     position: absolute;
-  
     left: 0;
 }
-
-
 }
-
 .header-with-logo {
   ion-toolbar {
     // --min-height: 80px;
   }
-
   .toolbar {
     // min-height: 80px;
     min-height: 56px;
     position: relative;
     top: 0;
   }
-
   &~.lyt-section {
     .scroll-content {
       margin-top: 80px;
     }
   }
 }
-
 .title-default {
   font-size: 1.2rem;
-  line-height: 5.6rem;
+  // line-height: 5.6rem;
   font-weight: $font-semi-bold;
-
+  // background-color: red;
+  // display: flex;
+  // height: 200px;
   span {
     // padding: 15px 10px 0;
     display: block;
     text-transform: uppercase;
   }
 }
-
+// fix for Ios
+// ion-toolbar.ios {
+//   padding-bottom: 60px;
+//   // background-color: yellow;
+//   // height: 80px;
+// }
 .menu-btn {
   color: $clr-primary;
   font-size: 1.6rem;
   padding: 10px 0px 0;
   float: left;
 }
-
 .help-btn {
   color: $clr-primary;
   font-size: 1.6rem;
   padding: 10px 0px 0;
   float: right;
-
   .icon-info {
     font-size: 1.6rem;
   }
 }
-
 .notification-btn {
   color: $clr-primary;
   font-size: 1.6rem;
   padding: 10px 0px 0;
   float: right;
-
   .icon-bell-outline {
     font-size: 1.6rem;
   }
 }
-
 .toolbar,
 .toolbar-ios {
   background: $clr-white;
   min-height: 80px;
 }
-
 .header-md::after {
   background-image: none;
 }
-
 ion-title {
   position: absolute;
   left: 0;
@@ -165,52 +145,42 @@ ion-title {
   top: 0;
   z-index: -1;
 }
-
 .cm-img {
   height: 70px;
   padding: 10px;
 }
-
 .typ-transparent {
   ion-toolbar {
     --background: transparent;
   }
-
   .bs-header {
     position: relative;
     // top: 20px;
   }
-
   .back-button.show-back-button {
     .ion-md-arrow-back {
       color: $clr-white;
     }
   }
-
   .toolbar,
   .toolbar-ios {
     background: transparent;
   }
-
   ion-menu-button .icon-profile {
     color: $clr-white;
     font-size: 1.6rem;
   }
-
   ion-button {
     color: $clr-white;
     font-size: 1.6rem;
   }
-
   ion-title {
     color: $clr-white;
   }
-
   .cm-img {
     height: 56px;
     padding: 4px;
   }
-
   .bs-header {
     box-shadow: none;
   }

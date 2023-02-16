@@ -1,3 +1,11 @@
 .active {
   margin: auto;
 }
+
+ion-menu.ios {
+  padding-top: env(safe-area-inset-top);
+}
+
+// ion-menu ion-content {
+//   margin-top: calc(env(safe-area-inset-top) * -1);
+// }
