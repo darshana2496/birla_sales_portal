@@ -19,10 +19,7 @@
       </div>
       <ion-slides pager [options]="slideOpts">
         <ion-slide *ngFor="let projectImage of projectImages">
-          <img
-            src="{{projectImage|defaultImagePipe}}"
-            onError="this.src='../../../assets/images/default-fallback-image_2.png';"
-          />
+          <img src="{{projectImage}}" />
         </ion-slide>
       </ion-slides>
     </div>
@@ -119,7 +116,7 @@
           <h3 class="title">Life that awaits you</h3>
         </div>
       </div>
-      
+
       <!-- bloglist -->
       <!-- <h3 class="blog-list title">Life that awaits you</h3> -->
       <div class="bs-slider typ-project" *ngIf="projectStages.length">

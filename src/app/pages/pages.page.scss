@@ -2,8 +2,8 @@
   margin: auto;
 }
 
-ion-menu.ios {
-  padding-top: env(safe-area-inset-top);
+ion-menu ion-content {
+  --padding-top: env(safe-area-inset-top);
 }
 
 // ion-menu ion-content {

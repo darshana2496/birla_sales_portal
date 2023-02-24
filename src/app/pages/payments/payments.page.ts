@@ -239,9 +239,7 @@ export class PaymentsPage implements OnInit {
           this.serverError = true;
         }
       })
-      .catch((response: any) => {
-        console.log(response);
-      });
+      .catch((response: any) => {});
   }
   shareFile() {}
   dropCheque() {
@@ -249,7 +247,10 @@ export class PaymentsPage implements OnInit {
   }
   makePayment() {
     if (this.MakePaymentsPage.outstandingPayment > 0) {
-      this.route.navigate(['/make-payment']);
+      this.route.navigate([
+        '/make-payment',
+        this.MakePaymentsPage.outstandingPayment,
+      ]);
     }
   }
   chequeDetailpage() {

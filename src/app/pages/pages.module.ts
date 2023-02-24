@@ -1,3 +1,4 @@
+import { PaymentGatewayResponseComponent } from './payment-gateway-response/payment-gateway-response.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -38,7 +39,7 @@ import { IonicSelectableModule } from 'ionic-selectable';
     PagesRoutingModule,
     ReactiveFormsModule,
     PipesModule,
-    IonicSelectableModule
+    IonicSelectableModule,
   ],
   declarations: [
     PagesComponent,
@@ -59,8 +60,9 @@ import { IonicSelectableModule } from 'ionic-selectable';
     ThankYouModalComponent,
     AddProjectComponent,
     AddedProjectSuccessComponent,
-    SelectCustomerComponent
+    SelectCustomerComponent,
+    PaymentGatewayResponseComponent,
   ],
-  providers:[SocialSharing]
+  providers: [SocialSharing],
 })
 export class PagesModule {}

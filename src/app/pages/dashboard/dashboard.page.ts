@@ -75,7 +75,6 @@ export class DashBoard implements OnInit {
     public domCtrl: DomController
   ) {}
   ngOnInit(): void {
-   
     this.showConstructionProgressDetails = false;
     this.globalService
       .getProjectDetails()

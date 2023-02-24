@@ -1,3 +1,4 @@
+import { PaymentGatewayResponseComponent } from './../pages/payment-gateway-response/payment-gateway-response.component';
 import { AssetsPreviewComponent } from './../common-components/assets-preview/assets-preview.component';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,12 +12,17 @@ import { environment } from '../environments/environment';
 import * as CryptoJS from 'crypto-js/crypto-js';
 import { AlertController, MenuController } from '@ionic/angular';
 import { GET_IP_API_URL } from '../utilities/constants/globals';
-import { ICustomerProject } from '../utilities/constants/commonInterface';
+import {
+  ICustomerProject,
+  IRazorPaySuccess,
+} from '../utilities/constants/commonInterface';
 import { Subject } from 'rxjs';
-
 import { Router } from '@angular/router';
 import { ThankYouModalComponent } from '../pages/thank-you-modal/thank-you-modal.component';
 import { AddedProjectSuccessComponent } from '../pages/added-project-success/added-project-success.component';
+import { HTTP } from '@ionic-native/http/ngx';
+import { Checkout } from 'capacitor-razorpay';
+declare var RazorpayCheckout: any;
 @Injectable({
   providedIn: 'root',
 })
@@ -75,7 +81,8 @@ export class GlobalService {
     public menuCtrl: MenuController,
     public route: Router,
     public toastCtrl: ToastController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    public _httpnative: HTTP
   ) {}
   getTermOfUse() {
     let promise = new Promise((resolve, reject) => {
@@ -530,7 +537,7 @@ export class GlobalService {
     });
     return promise;
   }
-  getCustomerlist(id, pageNumber,searchedtext) {
+  getCustomerlist(id, pageNumber, searchedtext) {
     let promise = new Promise((resolve, reject) => {
       this._http
         .get(
@@ -578,6 +585,9 @@ export class GlobalService {
     return await this.loadingCtrl
       .create({
         message: "<img src='../assets/images/loader.gif' alt='loader'>",
+        spinner: null,
+        showBackdrop: false,
+        mode: 'md',
         // duration: 5000,
       })
       .then((a) => {
@@ -806,5 +816,186 @@ export class GlobalService {
       componentProps: props,
     });
     return (await modal).present();
+  }
+
+  async showPaymentResponseModal(data) {
+    const modal = this.modalCtrl.create({
+      component: PaymentGatewayResponseComponent,
+      componentProps: data,
+    });
+    return (await modal).present();
+  }
+
+  makePayment(outstandingAmount: number) {
+    console.log('outstandingAmount', outstandingAmount);
+    let promise = new Promise((resolve, reject) => {
+      this._http
+        .get(this.urls + 'Payment/getpaymentdetail/' + this.customerId)
+        .toPromise()
+        .then((response: any) => {
+          if (response.btIsSuccess) {
+            let obj = response.object;
+            //set razoppay auth
+            this.razorPayAuth.vcKeyId = obj.vcKeyID;
+            this.razorPayAuth.vcKeySecret = obj.vcKeySecret;
+
+            this.generateRazorPayOrderId(obj.vcSaleOrderNo, outstandingAmount);
+          }
+
+          resolve(response);
+        });
+    });
+    return promise;
+  }
+
+  generateRazorPayOrderId(saleOrderNo: string, outstandingPaymentAmt: number) {
+    let userNamePwd =
+      this.razorPayAuth.vcKeyId + ':' + this.razorPayAuth.vcKeySecret;
+
+    let obj = {
+      amount: outstandingPaymentAmt * 100,
+      currency: 'INR',
+      receipt: saleOrderNo,
+    };
+
+    let headers = {
+      'Content-Type': 'application/json',
+      Authorization: 'Basic ' + btoa(userNamePwd),
+    };
+    this._httpnative
+      .post('https://api.razorpay.com/v1/orders', obj, headers)
+      .then((datasuccess) => {
+        try {
+          datasuccess.data = JSON.parse(datasuccess.data);
+          if (datasuccess.data.id != null)
+            this.postPaymentDetails(datasuccess.data.id, outstandingPaymentAmt);
+        } catch (e) {
+          console.error('JSON parsing error');
+        }
+      })
+      .catch((dataerror) => {
+        if (dataerror.error) {
+          alert(JSON.parse(dataerror.error).error.description);
+        }
+      });
+  }
+
+  postPaymentDetails(razorPayOrderId: string, outstandingPaymentAmt: number) {
+    let obj = {
+      vcCustomerID: this.customerId,
+      totalpayamount: outstandingPaymentAmt,
+      orderid: razorPayOrderId,
+    };
+
+    this._http
+      .post(this.urls + 'Payment/PostPaymentdetail', obj)
+      .toPromise()
+      .then((response: any) => {
+        if (response.btIsSuccess) {
+          let obj = response.object;
+          //set razoppay auth
+          this.razorPayAuth.vcKeyId = obj.vcKeyID;
+          this.razorPayAuth.vcKeySecret = obj.vcKeySecret;
+          let vcProjectDescription = obj.vcProjectName + '-' + obj.vcUnitNo; //vcTransactionNo
+          let prefill = {
+            name: obj.vcCustomerName,
+            email: obj.vcEmailId,
+            contact: obj.vcContactNo,
+          };
+          this.payWithRazorpay(
+            razorPayOrderId,
+            obj.vcKeyID,
+            outstandingPaymentAmt,
+            obj.vcCustomerName,
+            vcProjectDescription,
+            prefill,
+            obj.vcTransactionNo
+          );
+        }
+      })
+      .catch((e) => {
+        console.log('Error', e);
+      });
+  }
+
+  async payWithRazorpay(
+    orderId: string,
+    vcKeyId: string,
+    amount: number,
+    customerName: string,
+    projectDesc: string,
+    prefill: any,
+    vcTransactionNo: string
+  ) {
+    var options;
+
+    options = {
+      description: projectDesc,
+      order_id: orderId,
+      currency: 'INR', // your 3 letter currency code
+      key: vcKeyId, // your Key Id from Razorpay dashboard
+      amount: amount * 100, // Payment amount in smallest denomiation e.g. cents for USD *100
+      name: customerName, //customer name
+      theme: {
+        color: '#840c6f',
+      },
+      prefill: prefill,
+      notes: vcTransactionNo,
+    };
+
+    await Checkout.open(options)
+      .then((response: any) => {
+        if (response.response.hasOwnProperty('razorpay_signature')) {
+          this.paymentSuccessfull(response.response);
+        } else {
+          this.paymentFailed(response.response);
+        }
+      })
+      .catch((e) => {
+        alert(JSON.parse(e.code).description);
+      });
+  }
+
+  paymentSuccessfull(payObj: IRazorPaySuccess) {
+    this._http
+      .post(this.urls + 'Payment/Razorpayreturn', payObj)
+      .subscribe((response: any) => {
+        // this.showPaymentResponseModal(response);
+        this.showPaymentResponseModal(response);
+      });
+  }
+
+  paymentFailed(transactionId: string) {
+    let obj = {
+      razorpay_payment_id: '',
+      razorpay_signature: '',
+      razorpay_order_id: '',
+      errormetadata: 'Payment Failed',
+      errordescription: 'Payment Failed',
+      errorreason: 'Payment Failed',
+    };
+
+    this._http
+      .post(this.urls + 'Payment/Razorpayreturn', obj)
+      .subscribe((response: any) => {
+        let staticResponse = this.razorPayErrorData(transactionId); //using this bcoz API response is not proper
+        this.showPaymentResponseModal(staticResponse);
+      });
+  }
+
+  razorPayErrorData(transactionId: string) {
+    let response = {
+      vcDescription: 'Payment verification failed',
+      btIsSuccess: false,
+      object: '',
+      vcTitle: null,
+    };
+
+    response['object'] =
+      'Payment verification failed. <br /><br />Transaction Number: ' +
+      transactionId +
+      ' <br /><br />We are temporary unable to process your transaction, Please contact your bank/payment service provider in case the amount has been deducted from your account. In case of the failure at our end the amount will be credited bank to the source of payment in the next 10 days.<br /><br />';
+
+    return response;
   }
 }

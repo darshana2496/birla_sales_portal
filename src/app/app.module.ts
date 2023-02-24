@@ -15,6 +15,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Device } from '@awesome-cordova-plugins/device/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { HTTP } from '@ionic-native/http/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -36,6 +37,7 @@ import { Diagnostic } from '@ionic-native/diagnostic/ngx';
     SocialSharing,
     Device,
     Diagnostic,
+    HTTP,
   ],
   bootstrap: [AppComponent],
 })
