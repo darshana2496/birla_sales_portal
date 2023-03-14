@@ -1278,7 +1278,7 @@
     "tslib" "^2.4.0"
     "xml2js" "^0.4.23"
 
-"@capacitor/core@^4.0.0", "@capacitor/core@^4.6.0", "@capacitor/core@4.6.1":
+"@capacitor/core@^4.0.0", "@capacitor/core@^4.0.1", "@capacitor/core@^4.6.0", "@capacitor/core@4.6.1":
   "integrity" "sha512-7A2IV9E8umgu9u0fChUTjQJq+Jp25GJZMmWxoQN/nVx/1rcpFJ4m1xo3NPBoIRs+aV7FR+BM17mPrnkKlA8N2g=="
   "resolved" "https://registry.npmjs.org/@capacitor/core/-/core-4.6.1.tgz"
   "version" "4.6.1"
@@ -1379,6 +1379,13 @@
 "@ionic-native/diagnostic@^5.36.0":
   "integrity" "sha512-ovzydKPNNK3zu1A0e9Z+cc8oSKaVmuV6DxCE82+KSyPddZzHuzZq/56us39WjlqQ07KDDKLwlGmIib9VGB1Y/A=="
   "resolved" "https://registry.npmjs.org/@ionic-native/diagnostic/-/diagnostic-5.36.0.tgz"
+  "version" "5.36.0"
+  dependencies:
+    "@types/cordova" "latest"
+
+"@ionic-native/http@^5.36.0":
+  "integrity" "sha512-3t7UhcqNxZuIX+HXuydlaDfA9AwDXiRFGs9GsHpJnXMTfbeKUcwzp0amqblrLslDA9tNfqSmJyFZFaMX6CRrog=="
+  "resolved" "https://registry.npmjs.org/@ionic-native/http/-/http-5.36.0.tgz"
   "version" "5.36.0"
   dependencies:
     "@types/cordova" "latest"
@@ -2696,6 +2703,10 @@
   "resolved" "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001450.tgz"
   "version" "1.0.30001450"
 
+"capacitor-razorpay@git+https://github.com/razorpay/razorpay-capacitor.git":
+  "resolved" "git+ssh://git@github.com/razorpay/razorpay-capacitor.git#8faf4530bd5a701af190e64ac406ddb3ed2b1d2e"
+  "version" "1.2.0"
+
 "chalk@^2.0.0":
   "integrity" "sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ=="
   "resolved" "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz"
@@ -2932,6 +2943,11 @@
     "normalize-path" "^3.0.0"
     "schema-utils" "^4.0.0"
     "serialize-javascript" "^6.0.0"
+
+"cordova-plugin-advanced-http@^3.3.1":
+  "integrity" "sha512-hESuB3mxIHCUrzb5lm7juda6PSNcC5N8Invizj5wGV2rSldCapiNxMTEpzKR1UVPDDP2XOtBzO0SAYS+3+g/ig=="
+  "resolved" "https://registry.npmjs.org/cordova-plugin-advanced-http/-/cordova-plugin-advanced-http-3.3.1.tgz"
+  "version" "3.3.1"
 
 "cordova-plugin-device@^2.1.0":
   "integrity" "sha512-FU0Lw1jZpuKOgG4v80LrfMAOIMCGfAVPumn7AwaX9S1iU/X3OPZUyoKUgP09q4bxL35IeNPkqNWVKYduAXZ1sg=="

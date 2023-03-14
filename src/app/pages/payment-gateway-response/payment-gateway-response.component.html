@@ -1,0 +1,23 @@
+<ion-content class="bs-modal typ-inviteSent typ-success">
+  <div class="modal-wrap">
+    <div class="content">
+      <div class="form-cont">
+        <div [ngClass]="isSuccess ? 'payment-success' : 'payment-failed'"></div>
+        <h3 class="title">Payment {{ isSuccess ? "Successful" : "Failed" }}</h3>
+        <div
+          class="desc"
+          [innerHTML]="globalService.sanitizeHtml(paymentResponse.object)"
+        ></div>
+        <div class="">
+          <div class="act-wrap">
+            <ion-button
+              class="app-btn btn-default nav-btn"
+              (click)="gotoDashboard()"
+              >GO TO DASHBOARD</ion-button
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

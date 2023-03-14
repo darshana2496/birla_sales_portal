@@ -1,3 +1,38 @@
-<p>
-  make-payment works!
-</p>
+<app-header
+  [type]="'normal'"
+  [pageNameVal]="'Pay Online'"
+  [backbtn]="true"
+  [typeTitle]="'pageName'"
+></app-header>
+
+<ion-content class="lyt-section typ-bg extra-padding ion-padding">
+  <div class="content-inner">
+    <div class="content">
+      <div class="form-cont app-form">
+        <form [formGroup]="outStandingGrp">
+          <ion-item lines="none" class="app-form-group">
+            <ion-label class="app-field-label" position="floating"
+              >TOTAL OUTSTANDING AMOUNT</ion-label
+            >
+            <ion-input
+              class="app-form-control"
+              type="number"
+              formControlName="outStandingAmount"
+            ></ion-input>
+            <ion-button (click)="makePayment()">
+              <span class="icons icon-next"></span>
+            </ion-button>
+          </ion-item>
+
+          <ul class="bs-button-group ion-text-center">
+            <li class="item">
+              <ion-button class="app-btn btn-link" (click)="makePayment()">
+                PROCEED TO PAY
+              </ion-button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>

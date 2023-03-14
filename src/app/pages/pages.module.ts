@@ -28,6 +28,8 @@ import { AddedProjectSuccessComponent } from './added-project-success/added-proj
 import { PipesModule } from '../utilities/pipes/pipes.module';
 import { SelectCustomerComponent } from './select-customer/select-customer.component';
 import { IonicSelectableModule } from 'ionic-selectable';
+import { PaymentGatewayResponseComponent } from './payment-gateway-response/payment-gateway-response.component';
+
 
 @NgModule({
   imports: [
@@ -59,7 +61,8 @@ import { IonicSelectableModule } from 'ionic-selectable';
     ThankYouModalComponent,
     AddProjectComponent,
     AddedProjectSuccessComponent,
-    SelectCustomerComponent
+    SelectCustomerComponent,
+    PaymentGatewayResponseComponent,
   ],
   providers:[SocialSharing]
 })
