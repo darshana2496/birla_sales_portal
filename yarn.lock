@@ -2958,7 +2958,6 @@
   "integrity" "sha512-mSwy9GE5pHq2ZHhu/wYk/VhrwR5VLk+XQsk3+IiiFmDgcPsrVIyELkM2FZKX09cC6i+bJVTFVKUlwteSStj3ow=="
   "resolved" "https://registry.npmjs.org/cordova-plugin-file/-/cordova-plugin-file-7.0.0.tgz"
   "version" "7.0.0"
-
 "cordova-plugin-x-socialsharing@^6.0.4":
   "integrity" "sha512-+ak6rN9i2xf/PARA/T3Hss09s0QhpFrOWvrYowy+PkCjGWx/ZVt9RkW+7yKemfyTXSgTp0YkyAAR4r6hPAfBGQ=="
   "resolved" "https://registry.npmjs.org/cordova-plugin-x-socialsharing/-/cordova-plugin-x-socialsharing-6.0.4.tgz"

@@ -1,4 +1,3 @@
-import { PaymentGatewayResponseComponent } from './../pages/payment-gateway-response/payment-gateway-response.component';
 import { AssetsPreviewComponent } from './../common-components/assets-preview/assets-preview.component';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -20,9 +19,9 @@ import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { ThankYouModalComponent } from '../pages/thank-you-modal/thank-you-modal.component';
 import { AddedProjectSuccessComponent } from '../pages/added-project-success/added-project-success.component';
+import { PaymentGatewayResponseComponent } from '../pages/payment-gateway-response/payment-gateway-response.component';
 import { HTTP } from '@ionic-native/http/ngx';
 import { Checkout } from 'capacitor-razorpay';
-declare var RazorpayCheckout: any;
 @Injectable({
   providedIn: 'root',
 })
@@ -960,7 +959,6 @@ export class GlobalService {
     this._http
       .post(this.urls + 'Payment/Razorpayreturn', payObj)
       .subscribe((response: any) => {
-        // this.showPaymentResponseModal(response);
         this.showPaymentResponseModal(response);
       });
   }
